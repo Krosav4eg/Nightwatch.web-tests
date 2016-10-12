@@ -1,0 +1,34 @@
+{
+  "src_folders" : ["e2e"],
+  "output_folder" : "reports",
+  "custom_commands_path" : "nightwatch_extend/commands",
+  "custom_assertions_path" : "nightwatch_extend/assertions",
+  "page_objects_path" : "nightwatch_extend/page-objects",
+  "globals_path" : "",
+
+  "test_workers": {
+    "enabled": false,
+    "workers": 1
+  },
+
+  "test_settings" : {
+    "default" : {
+      "filter" : "*.spec.js",
+
+      "selenium_host": "127.0.0.1",
+      "selenium_port": 4444,
+      "launch_url" : "http://demo-tables.me-test.ru:8080",
+      "silent": true,
+      "screenshots" : {
+        "enabled" : false,
+        "path" : ""
+      },
+      "desiredCapabilities": {
+        "browserName": "chrome",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true
+
+      }
+    }
+  }
+}

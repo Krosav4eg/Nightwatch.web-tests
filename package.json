@@ -1,0 +1,28 @@
+{
+  "name": "e2e-me-tests",
+  "version": "1.0.0",
+  "description": "browsers tests",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/andersenlab/web-tests.git"
+  },
+  "keywords": [
+    "e2e"
+  ],
+  "author": "alexpts <alexpts3@gmial.com>",
+  "license": "MIT",
+  "homepage": "https://bitbucket.org/andersenlab/web-tests#readme",
+  "scripts": {
+    "test": "nightwatch",
+    "selenium-start": "selenium-standalone start",
+    "selenium-install": "selenium-standalone install"
+  },
+  "dependencies": {
+    "lodash": "^4.16.4",
+    "nightwatch": "^0.9.8"
+  },
+  "devDependencies": {
+    "selenium-standalone": "^5.7.2"
+  }
+}
