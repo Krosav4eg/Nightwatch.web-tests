@@ -32,6 +32,9 @@ exports.assertion = function (selector, method, expected) {
     return result.value.length;
   };
 
+  /**
+   * @param {Function} callback
+   */
   this.command = function (callback) {
     return this.api
       .waitForElementPresent(selector, 2000)

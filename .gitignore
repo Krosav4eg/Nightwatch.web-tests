@@ -3,3 +3,6 @@ vendor/selenium-debug.log
 .idea/*
 reports/
 !reports/.gitkeep
+
+config/
+!config/.gitkeep
