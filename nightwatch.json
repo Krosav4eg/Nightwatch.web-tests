@@ -5,6 +5,13 @@
   "custom_assertions_path" : "nightwatch_extend/assertions",
   "page_objects_path" : "nightwatch_extend/page-objects",
   "globals_path" : "",
+  "live_output ": false,
+  "detailed_output": false,
+
+  "globals": {
+    "waitForConditionTimeout": 5000,
+    "abortOnAssertionFailure": true
+  },
 
   "test_workers": {
     "enabled": true,
@@ -13,15 +20,17 @@
 
   "test_settings" : {
     "default" : {
-      "filter" : "*.spec.js",
+      "filter" : "**/*.spec.js",
 
       "selenium_host": "127.0.0.1",
       "selenium_port": 4444,
       "launch_url" : "http://demo-tables.me-test.ru:8080",
       "silent": true,
       "screenshots" : {
-        "enabled" : false,
-        "path" : ""
+        "enabled" : true,
+        "on_failure" : true,
+        "on_error" : true,
+        "path" : "screens"
       },
       "desiredCapabilities": {
         "browserName": "chrome",

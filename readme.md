@@ -27,3 +27,8 @@ npm test
 
 ### Reports xUnit:
 After run we can parse reports from directory `./reports`
+
+You can run html-parser for view html report after run tests:
+```
+npm run html-report
+```

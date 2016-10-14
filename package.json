@@ -12,18 +12,20 @@
   "homepage": "https://bitbucket.org/andersenlab/web-tests#readme",
   "engines": {
     "npm": "~3.10.0",
-    "node" : ">4.4.0"
+    "node": ">4.4.0"
   },
   "engine-strict": true,
   "engineStrict": true,
   "scripts": {
     "test": "nightwatch",
     "selenium-start": "selenium-standalone start",
-    "selenium-install": "selenium-standalone install"
+    "selenium-install": "selenium-standalone install",
+    "html-report": "nightwatch-html-reporter -d ./reports"
   },
   "dependencies": {
     "lodash": "^4.16.4",
-    "nightwatch": "^0.9.8"
+    "nightwatch": "^0.9.8",
+    "nightwatch-html-reporter": "^1.0.8"
   },
   "devDependencies": {
     "selenium-standalone": "^5.7.2"

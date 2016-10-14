@@ -6,3 +6,6 @@ reports/
 
 config/
 !config/.gitkeep
+
+screens/
+!screens/.gitkeep

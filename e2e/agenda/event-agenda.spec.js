@@ -1,6 +1,6 @@
 var _ = require('lodash');
-var boot = require('./includes/boot.js');
-var auth = require('./includes/auth.js');
+var boot = require('./../includes/boot.js');
+var auth = require('./../includes/auth.js');
 
 module.exports = _.assign(boot, auth, {
     '@tags': ['client'],
@@ -17,7 +17,6 @@ module.exports = _.assign(boot, auth, {
     'open modal window - add container': function (client) {
         client
             .click('button')
-            .waitForElementPresent('modal me-event-agenda-container-form', 2000)
-            .pause(5000);
+            .waitForElementPresent('modal me-event-agenda-container-form', 2000);
     }
 });
