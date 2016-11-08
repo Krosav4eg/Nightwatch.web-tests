@@ -2,7 +2,7 @@
 
 ### Install
 
-yarn install
+yarn/npm install
 npm run selenium-install
 npm run selenium-start (only for local)
 
@@ -17,7 +17,7 @@ module.exports = {
 
 Need configurate url env for test in file nightwatch.json (test_settings.default.launch_url):
 ```javascript
-launch_url: "http://localhost:8080"
+launch_url: "http://story-14493.me-test.ru:8080/"
 ```
 
 ### Run tests

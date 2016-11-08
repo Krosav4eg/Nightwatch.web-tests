@@ -4,7 +4,7 @@ var presteps = require('./../presteps/presteps.js');
 module.exports = _.assign(presteps, {
     'authorization': function (browser) {
         browser
-            .relUrl('/event/2008/delegates')
+            .url('http://alpha.skynet.managementevents.com/event/2008/delegates')
             .assert.title('Skynet 2')
             .waitForElementVisible('input[name="username"]', 4000)
             .setValue('input[name="username"]', 'xsolve')
@@ -12,12 +12,15 @@ module.exports = _.assign(presteps, {
             .setValue('input[type="password"]', 'xs0lv3')
             .waitForElementVisible('button[type="submit"]', 4000)
             .click('button[type="submit"]')
-            .waitForElementPresent('me-nav', 10000);
+            .waitForElementPresent('me-nav', 10000)
     },
-    'ceck delegate': function (browser) {
+    'ME account assertion': function (browser) {
         browser
-            .relUrl('/event/2008/delegates')
+            .url('http://alpha.skynet.managementevents.com/event/2008/delegates')
             .useXpath()
+            .waitForElementVisible('//span[contains(text(), "Delegates")]', 4000)
+            .click('//span[contains(text(), "Delegates")]')
+            .pause(4000)
             .waitForElementVisible('//tbody/tr/td[13]/select', 4000)
             .click('//tbody/tr/td[13]/select')
             .waitForElementVisible('//tbody/tr/td[13]/select/option[@value=1]', 4000)
@@ -31,10 +34,7 @@ module.exports = _.assign(presteps, {
             .pause(10000)
             .waitForElementVisible('//h4[contains(text(),"ME account")]', 4000)
             .pause()
-        // .useXpath()
-        // .waitForElementVisible('',4000)
-
-
+    
     }
 });
 

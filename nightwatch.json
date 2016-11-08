@@ -1,14 +1,15 @@
 {
-  "src_folders" : ["tests"],
+  "src_folders" : ["e2e"],
   "output_folder" : "reports",
   "custom_commands_path" : "nightwatch_extend/commands",
+  
 
   "globals_path" : "",
   "live_output ": false,
   "detailed_output": false,
 
   "globals": {
-    "waitForConditionTimeout": 5000,
+    "waitForConditionTimeout": 10000,
     "abortOnAssertionFailure": true
   },
 
@@ -19,16 +20,16 @@
 
   "test_settings" : {
     "default" : {
-      "filter" : "**/*.spec.js",
+      "filter" : "",
 
       "selenium_host": "127.0.0.1",
       "selenium_port": 4444,
-      "launch_url" : "http://alpha.skynet.managementevents.com",
+      "launch_url" : "http://alpha.skynet.managementevents.com/event/2008/delegates",
       "silent": true,
       "screenshots" : {
-        "enabled" : false,
-        "on_failure" : false,
-        "on_error" : false,
+        "enabled" : true,
+        "on_failure" : true,
+        "on_error" : true,
         "path" : "screens"
       },
       "desiredCapabilities": {
