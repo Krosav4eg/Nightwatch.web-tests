@@ -27,9 +27,9 @@
       "launch_url" : "http://demo-tables.me-test.ru:8080",
       "silent": true,
       "screenshots" : {
-        "enabled" : true,
-        "on_failure" : true,
-        "on_error" : true,
+        "enabled" : false,
+        "on_failure" : false,
+        "on_error" : false,
         "path" : "screens"
       },
       "desiredCapabilities": {

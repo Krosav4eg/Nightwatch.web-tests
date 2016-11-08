@@ -9,10 +9,7 @@ module.exports = _.assign(boot, auth, {
         client
             .relUrl('/event-agenda-templates/add')
             .waitForElementPresent('body', 2000)
-            .waitForElementVisible('checkbox-group', 2000)
-            .assert.containsTextPresent('#page-heading h1', 'New Agenda Template')
-            .assert.elementsCountCompare('#template_name', 1)
-            .assert.elementsCountCompare('me-event-agenda-template-form', 1)
+            .waitForElementVisible('checkbox-group', 2000);
     },
 
     'check elements on agenda template page': function (client) {

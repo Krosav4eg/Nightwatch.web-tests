@@ -11,7 +11,7 @@ module.exports = _.assign(boot, auth, {
             .assert.title('Skynet 2')
             .waitForElementPresent('me-event-info', 2000)
             .waitForElementPresent('me-event-agenda-element-block', 2000)
-            .assert.elementsCountCompare('me-event-agenda-element-block', 3)
+            .assert.elementsCountCompare('me-event-agenda-element-block', 3);
     },
 
     'open modal window - add container': function (client) {
