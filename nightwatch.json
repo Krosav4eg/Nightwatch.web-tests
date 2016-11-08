@@ -1,9 +1,8 @@
 {
-  "src_folders" : ["e2e"],
+  "src_folders" : ["tests"],
   "output_folder" : "reports",
   "custom_commands_path" : "nightwatch_extend/commands",
-  "custom_assertions_path" : "nightwatch_extend/assertions",
-  "page_objects_path" : "nightwatch_extend/page-objects",
+
   "globals_path" : "",
   "live_output ": false,
   "detailed_output": false,
@@ -24,7 +23,7 @@
 
       "selenium_host": "127.0.0.1",
       "selenium_port": 4444,
-      "launch_url" : "http://demo-tables.me-test.ru:8080",
+      "launch_url" : "http://alpha.skynet.managementevents.com",
       "silent": true,
       "screenshots" : {
         "enabled" : false,
