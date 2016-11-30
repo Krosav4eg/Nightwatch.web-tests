@@ -15,7 +15,7 @@
 
   "test_workers": {
     "enabled": true,
-    "workers": 3
+    "workers": 1
   },
 
   "test_settings" : {
@@ -24,7 +24,7 @@
 
       "selenium_host": "127.0.0.1",
       "selenium_port": 4444,
-      "launch_url" : "http://alpha.skynet.managementevents.com/event/2008/delegates",
+      "launch_url" : "http://alpha.skynet.managementevents.com/",
       "silent": true,
       "screenshots" : {
         "enabled" : true,
