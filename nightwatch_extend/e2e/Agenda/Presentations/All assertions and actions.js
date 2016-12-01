@@ -6,7 +6,7 @@ var _ = require('lodash');
 var presteps = require('../../presteps/presteps.js');
 
 module.exports = _.assign(presteps, {
-    '@disabled': false,
+    '@disabled': true,
     'authorization': function (browser) {
         browser
             .url('http://alpha.skynet.managementevents.com')
@@ -132,24 +132,13 @@ module.exports = _.assign(presteps, {
             .click('//me-event-agenda-element-presentation/div/div[2]/button[text()="Attach"]')
 
     },
-    // 'add presentation window is displayed': function (browser) {
-    //     browser
-    //         .useCss()
-    //         .pause(3000)
-    //         .waitForElementNotVisible('#thisIsMainLoader', 10000)
-    //         .pause(3000)
-    //         .useXpath()
-    //         .waitForElementVisible('//modal[@class="modal fade in"]//h4[text()="Add presentation to "]', 1000)
-    //         .waitForElementVisible('//button[@data-marker="me-modal-attach-presentation-to-element__input__button__save"]', 2000)
-    //         .click('//button[@data-marker="me-modal-attach-presentation-to-element__input__button__save"]')
-    //         .pause(2000)
-    // },
+
     'attach new speaker ': function (browser) {
         browser
             .waitForElementVisible('//me-event-agenda-element-presentation/div/div[2]/button[text()="Attach"]', 1000)
             .click('//me-event-agenda-element-presentation/div/div[2]/button[text()="Attach"]')
             .waitForElementVisible('//modal[@class="modal fade in"]//h4[text()="Add presentation to "]', 1000)
-            .waitForElementVisible('//modal[@class="modal fade in"]//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__3725"]', 2000)
+            .waitForElementVisible('//modal[@class="modal fade in"]//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__3725"]', 3000)
             .click('//modal[@class="modal fade in"]//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__3725"]')
             .waitForElementVisible('//modal[@class="modal fade in"]//button[@data-marker="me-modal-attach-presentation-to-element__input__button__save"]', 2000)
             .click('//modal[@class="modal fade in"]//button[@data-marker="me-modal-attach-presentation-to-element__input__button__save"]')
@@ -234,7 +223,7 @@ module.exports = _.assign(presteps, {
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .pause(3000)
     },
-    //assertion for deleting 1-st speaker
+
 
     'edit presentation/case in Element form': function (browser) {
         browser
@@ -243,39 +232,7 @@ module.exports = _.assign(presteps, {
             .click('//div[@class="panel-heading orangeBlockColorForEvent"]/div/a[2]/i[@class="fa fa-pencil edit-element"]')
             .pause(2000)
     },
-    // ' Element form page appear': function (browser) {
-    //     browser
-    //         .waitForElementVisible('//label[contains(text(),"           End time ")]', 2000)
-    //         .assert.containsText('//label[contains(text(),"           End time ")]', 'End time')
-    //         .assert.containsText('//label[contains(text(),"           Meeting allowed ")]', 'Meeting allowed')
-    //         .assert.containsText('//option[contains(text(),"                 No meetings allowed               ")]', 'No meetings allowed')
-    //         .assert.containsText('//label[contains(text(),"Groups Used")]', 'Groups Used')
-    //         .assert.containsText('//label[contains(text(),"Event Groups")]', 'Event Groups')
-    //         .assert.elementPresent('//div[text()="               Group 1 - orange             "]')
-    //         .assert.elementPresent('//div[text()="               Group 2 - violet             "]')
-    //
-    //         .assert.containsText('//label[text()="Attach role/presentation"]', 'Attach role/presentation')
-    //         .assert.elementPresent('//me-event-agenda-element-presentation/div/div[2]/button[text()="Attach"]', 'Attach')
-    //
-    //         .assert.containsText('//label[contains(text(),"Show in calendars")]', 'Show in calendars')
-    //         .assert.elementPresent('//label[text()="               Delegates             "]')
-    //         .assert.elementPresent('//label[text()="               Provider representatives             "]')
-    //         .assert.containsText('//label[contains(text(),"Publish WWW")]', 'Publish WWW')
-    //         .useCss()
-    //         .assert.elementPresent('#visibilityPublishWWWYes')
-    //         .assert.elementPresent('#visibilityPublishWWWNo')
-    //         .useXpath()
-    //         .assert.containsText('//div[@class="form-group"]/div/label[contains(text(),"Room")]', 'Room')
-    //         .useCss()
-    //         .waitForElementVisible('input#room', 3000)
-    //         .assert.elementPresent('//modal[@class="modal fade in"]//td[text()="3756"]')
-    //         .assert.elementPresent('//modal//li[text()=" - Vekve Sandra             "]')
-    //         .assert.elementPresent('//modal//li[text()=" - Skreien Kaaby Oddvar Eirik             "]')
-    //         .assert.elementPresent('//i[@class="fa fa-pencil edit-element"]')
-    //         .assert.elementPresent('//i[@class="fa fa-trash-o delete-element"]')
-    //         .assert.elementPresent('//i[@class="fa fa-plus"]')
-    //
-    // },
+
     'changing room number': function (browser) {
         browser
             .useXpath()
@@ -371,7 +328,7 @@ module.exports = _.assign(presteps, {
             .pause(2000)
             .waitForElementVisible('//h4[text()="Attach Master Contact"]', 2000)
             .waitForElementVisible('//h4[text()="Search"]', 2000)
-            .waitForElementVisible('//a[@href="/presentations/3756/master-contact/30"]', 2000)
+            .waitForElementVisible('//a[@href="/presentations/3756/master-contact/6"]', 2000)
             .waitForElementVisible('//tr[1]//i[@class="fa fa-external-link"]', 2000)
             .waitForElementVisible('//button[text()="           Search         "]', 2000)
             .waitForElementVisible('//button[text()="           Add new         "]', 2000)
@@ -407,7 +364,7 @@ module.exports = _.assign(presteps, {
             .assert.elementPresent('//button[text()="Upload file"]')
             .assert.elementPresent('//h4[text()="Speakers"]')
             .assert.elementPresent('//button[text()="Add speaker"]')
-            .waitForElementVisible('//a[@href="/presentations/3756/master-contact/30"]', 2000)
+            .waitForElementVisible('//a[@href="/presentations/3756/master-contact/6"]', 2000)
             .waitForElementVisible('//tr[1]//i[@class="fa fa-ban"]', 2000)
 
     },
@@ -470,13 +427,39 @@ module.exports = _.assign(presteps, {
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .pause(3000)
     },
-    // 'speaker has been successfully deleted': function (browser) {
-    //     browser
-    //         .useXpath()
-    //         .assert.elementNotPresent('//a[@href="/presentations/3756/master-contact/30"]')
-    //         .assert.elementNotPresent('//tr[1]//i[@class="fa fa-ban"]');
-    //
-    // },
+
+    'back to the main page': function (browser) {
+        browser
+            .back()
+            .useCss()
+            .pause(3000)
+            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .pause(3000)
+            .useXpath()
+            .assert.elementPresent('//h5[contains(text(),"08:30 - 09:30")]')
+            .assert.elementPresent('//h5[contains(text(),"Presentation / Case")]')
+            .assert.elementPresent('//button[contains(text(), "Room#7")]')
+            .assert.elementPresent('//button[@class="btn btn-primary"]/i[@class="fa fa-plus"]')
+            .assert.elementPresent('//td[text()="3756"]')
+            .assert.elementPresent('//td[text()="New Heading"]')
+            .assert.elementPresent('//a[@href="/presentations/edit/3756"]/i')
+
+
+    },
+
+    'delete presentation': function (browser) {
+        browser
+            .waitForElementVisible('//me-event-agenda-attached-presentation-list//i[@class="fa fa-trash-o delete-element"]', 2000)
+            .click('//me-event-agenda-attached-presentation-list//i[@class="fa fa-trash-o delete-element"]')
+            .pause(1500)
+            .waitForElementVisible('//modal[@class="modal fade in"]//h4[text()="Confirmation"]', 2000)
+            .waitForElementVisible('//modal[@class="modal fade in"]//button[@data-marker="me-confirm__button__button__yes"]', 2000)
+            .click('//modal[@class="modal fade in"]//button[@data-marker="me-confirm__button__button__yes"]')
+            .useCss()
+            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .pause(3000)
+
+    },
 
 
 })
