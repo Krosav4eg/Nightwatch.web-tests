@@ -2,10 +2,10 @@
  * Created by Sergey Potapov on on 17.11.2016.
  */
 var _ = require('lodash');
-var presteps = require('./../../presteps/presteps.js');
+var presteps = require('./../../../presteps/presteps.js');
 
 module.exports = _.assign(presteps, {
-    '@disabled': false,
+    '@disabled': true,
     'authorization': function (browser) {
         browser
             .url('http://alpha.skynet.managementevents.com')

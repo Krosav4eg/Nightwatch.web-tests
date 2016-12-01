@@ -1,12 +1,10 @@
 /**
- * Created by Sergey Potapov on on 18.11.2016.
+ * Created by Sergey Potapov on on 16.11.2016.
  */
-
 var _ = require('lodash');
-var presteps = require('./../../presteps/presteps.js');
-
+var presteps = require('./../../../presteps/presteps.js');
 module.exports = _.assign(presteps, {
-    '@disabled': false,
+    '@disabled': true,
     'authorization': function (browser) {
         browser
             .url('http://alpha.skynet.managementevents.com')
@@ -29,13 +27,40 @@ module.exports = _.assign(presteps, {
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .pause(1000)
     },
-    'creation container': function (browser) {
+
+    'blank click another field': function (browser) {
         browser
-            .useCss()
             .click('button.btn.btn-primary.btn-block')
-            .pause(2000)
             .useXpath()
-            .assert.containsText('//h4[contains(text(),"Container form")]', 'Container form')
+            .assert.elementPresent('//h4[contains(text(), "Container form")]')
+            .useCss()
+            .waitForElementVisible('input#subHeading', 1000)
+            .click('input#subHeading')
+            .waitForElementVisible('input#heading', 1000)
+            .click('input#heading')
+    },
+
+    'Check that field is not required': function (browser) {
+        browser
+            .useXpath()
+            .assert.elementNotPresent('//p[text()=" Sub Heading is required.           "]')
+    },
+    'blank click Save': function (browser) {
+        browser
+            .useXpath()
+            .click('//form/div[2]/div/div/button[contains(text(),"Save")]')
+            .useCss()
+            .pause(3000)
+            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .pause(1000)
+
+    },
+    'check save button': function (browser) {
+        browser
+            .waitForElementVisible('button.btn.btn-primary.btn-block', 1000)
+            .click('button.btn.btn-primary.btn-block')
+            .useXpath()
+            .assert.elementPresent('//h4[contains(text(), "Container form")]')
             .useCss()
             .waitForElementVisible('input#heading', 1000)
             .setValue('input#heading', 'new_event2016 ')
@@ -52,36 +77,7 @@ module.exports = _.assign(presteps, {
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .pause(1000)
             .useXpath()
-            .assert.containsText('//b[1][contains(text(),"8:00")]', '8:00')
-            .assert.containsText('//b[2][contains(text(),"10:00")]', '10:00')
-            .pause(2000)
-    },
-    'delete start time': function (browser) {
-        browser
-            .useCss()
-
-            .click('i.fa.fa-pencil.edit-container')
-            .pause(2000)
-            .useXpath()
-            .assert.containsText('//h4[contains(text(),"Container form")]', 'Container form')
-            .useCss()
-            .click('#containerStartHour input')
-            .clearValue('#containerStartHour input')
-            .pause(1000)
-            .click('input#subHeading')
-            .pause(2000)
-
-            .useXpath()
-            .assert.elementPresent('//p[text()=" Start Hour is required.           "]')
-            .useCss()
-            .setValue('#containerStartHour input', ['7:00', browser.Keys.ENTER])
-            .useXpath()
-            .assert.elementPresent('//p[text()=" Date should be between 08:00 and 23:59           "]')
-             .refresh()
-            .useCss()
-            .pause(3000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(1000)
+            .assert.elementPresent('//b[contains(text(), "new_event2016")]')
 
     },
     'delete container': function (browser) {
@@ -98,5 +94,6 @@ module.exports = _.assign(presteps, {
             .assert.elementNotPresent('//b[contains(text(), "new_event2016")]')
             .pause(1000)
     },
+
 })
 ;

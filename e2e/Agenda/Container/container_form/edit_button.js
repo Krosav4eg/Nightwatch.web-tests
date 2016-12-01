@@ -1,12 +1,11 @@
 /**
- * Created by Sergey Potapov on on 18.11.2016.
+ * Created by Sergey Potapov on on 17.11.2016.
  */
-
 var _ = require('lodash');
-var presteps = require('./../../presteps/presteps.js');
+var presteps = require('./../../../presteps/presteps.js');
 
 module.exports = _.assign(presteps, {
-    '@disabled':false,
+    '@disabled': true,
     'authorization': function (browser) {
         browser
             .url('http://alpha.skynet.managementevents.com')
@@ -17,7 +16,7 @@ module.exports = _.assign(presteps, {
             .setValue('input[type="password"]', 'xs0lv3')
             .waitForElementVisible('button[type="submit"]', 1000)
             .click('button[type="submit"]')
-            .pause(5000)
+            .pause(2000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .pause(1000)
             .assert.containsText('div#page-heading', 'Dashboard')
@@ -25,13 +24,13 @@ module.exports = _.assign(presteps, {
     'redirection to agenda': function (browser) {
         browser
             .url('http://alpha.skynet.managementevents.com/event/212/agenda')
-            .pause(3000)
+            .pause(1000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(3000)
+            .pause(1000)
     },
-    'creation new container': function (browser) {
+
+    'creation container': function (browser) {
         browser
-            .useCss()
             .click('button.btn.btn-primary.btn-block')
             .pause(2000)
             .useXpath()
@@ -48,34 +47,63 @@ module.exports = _.assign(presteps, {
             .useXpath()
             .click('//form/div[2]/div/div/button[contains(text(),"Save")]')
             .pause(3000)
-            .assert.elementPresent('//b[contains(text(), "new_event2016")]')
-            .assert.containsText('//b[1][contains(text(),"8:00")]', '8:00')
-            .assert.containsText('//b[2][contains(text(),"10:00")]', '10:00')
-            .pause(2000)
-    },
-    'click on (edit button) ': function (browser) {
-        browser
-            .useCss()
-            .click('i.fa.fa-pencil.edit-container')
-            .pause(2000)
-            .useXpath()
-            .assert.containsText('//h4[contains(text(),"Container form")]', 'Container form')
-    },
-    'click NO button on form': function (browser) {
-        browser
-            .refresh()
             .useCss()
             .pause(3000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .pause(1000)
     },
-    'no change was made assertion': function (browser) {
+    'check information in agenda page': function (browser) {
         browser
+            .useXpath()
+            .assert.containsText('//b[contains(text(),"8:00")]', '8:00')
+            .assert.containsText('//b[contains(text(),"10:00")]', '10:00')
+            .assert.elementPresent('//b[contains(text(), "new_event2016")]')
+
+    },
+    'click edit button': function (browser) {
+        browser
+            .useCss()
+            .waitForElementVisible('i.fa.fa-pencil.edit-container', 3000)
+            .click('i.fa.fa-pencil.edit-container')
+            .pause(1000)
+            .useXpath()
+            .assert.containsText('//h4[contains(text(),"Container form")]', 'Container form')
+    },
+
+    'blank.click another field': function (browser) {
+        browser
+            .useCss()
+            .click('input#heading')
+            .clearValue('input#heading')
+            .click('input#subHeading')
+            .useXpath()
+            .pause(1000)
+    },
+    'blank click Save': function (browser) {
+        browser
+            .waitForElementVisible('//form/div[2]/div/div/button[contains(text(),"Save")]', 3000)
+            .click('//form/div[2]/div/div/button[contains(text(),"Save")]')
+            .pause(2000)
+            .useCss()
+            .pause(3000)
+            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .pause(3000)
+    },
+
+
+    'click NO button': function (browser) {
+        browser
+            .pause(3000)
+            .click('i.fa.fa-pencil.edit-container')
+            .refresh()
+            .pause(3000)
+            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .pause(3000)
             .useXpath()
             .assert.elementPresent('//b[contains(text(), "new_event2016")]')
             .assert.containsText('//b[1][contains(text(),"8:00")]', '8:00')
             .assert.containsText('//b[2][contains(text(),"10:00")]', '10:00')
-            .pause(1000)
+            .pause(3000)
     },
     'delete container': function (browser) {
         browser
@@ -91,6 +119,7 @@ module.exports = _.assign(presteps, {
             .assert.elementNotPresent('//b[contains(text(), "new_event2016")]')
             .pause(1000)
     },
+
 
 })
 ;

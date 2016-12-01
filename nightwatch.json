@@ -5,8 +5,8 @@
   
 
   "globals_path" : "",
-  "live_output ": false,
-  "detailed_output": false,
+  "live_output ": true,
+  "detailed_output": true,
 
   "globals": {
     "waitForConditionTimeout": 10000,

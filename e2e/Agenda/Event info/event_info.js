@@ -5,7 +5,7 @@ var _ = require('lodash');
 var presteps = require('./../presteps/presteps.js');
 
 module.exports = _.assign(presteps, {
-    '@disabled': false,
+    '@disabled': true,
     'authorization': function (browser) {
         browser
             .url('http://alpha.skynet.managementevents.com')
