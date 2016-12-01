@@ -96,8 +96,6 @@ module.exports = _.assign(presteps, {
             .setValue('me-date-time-input#elementEnd input.form-control.dateTimeInput.dateTimeInput', ['9:59', browser.Keys.ENTER])
             .waitForElementVisible('input#room', 3000)
             .click('input#room')
-            // .setValue('input#room', '9')
-
             .useXpath()
             .waitForElementVisible('//div[@class="col-sm-12 container_btn_group"]/button[2][contains(text(),"Save")]', 2000)
             .click('//div[@class="col-sm-12 container_btn_group"]/button[2][contains(text(),"Save")]')

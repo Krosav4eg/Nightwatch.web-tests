@@ -316,7 +316,7 @@ module.exports = _.assign(presteps, {
             .useXpath()
             .pause(1500)
             .waitForElementVisible('//input[@type="file"]', 1500)
-            .setValue('//input[@type="file"]', 'C:/Users/Avic/Desktop/Agenda-Elements.docx')
+            .setValue('//input[@type="file"]', 'C:/Users/Sergey Potapov on/Desktop/Agenda-Elements.docx')
             .waitForElementVisible('//button[text()="Upload file"]', 3000)
             .click('//button[text()="Upload file"]')
             .waitForElementVisible('//li[text()="     Agenda-Elements.docx (999.99 kB)   "]', 5000)

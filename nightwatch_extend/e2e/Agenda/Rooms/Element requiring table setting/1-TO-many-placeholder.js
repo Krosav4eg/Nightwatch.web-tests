@@ -160,8 +160,6 @@ module.exports = _.assign(presteps, {
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .pause(3000)
     },
-
-    //добавить проверки для конмнат на отображение в модалке и в 1-to-many-placeholder!!!!!!!!!!!
     'delete 1-to-many-placeholder panel': function (browser) {
         browser
             .useXpath()

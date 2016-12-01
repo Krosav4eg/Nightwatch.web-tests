@@ -7,7 +7,7 @@
     "type": "git",
     "url": "git+ssh://git@bitbucket.org/andersenlab/web-tests.git"
   },
-  "author": "alexpts <alexpts3@gmial.com>",
+  "author": "sergey potapov <sergeypotapoff12@gmial.com>",
   "license": "MIT",
   "homepage": "https://bitbucket.org/andersenlab/web-tests#readme",
   "engines": {
