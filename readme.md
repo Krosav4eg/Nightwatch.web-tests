@@ -3,7 +3,7 @@
 ### Install
 
 yarn/npm install
-npm run selenium-install
+npm run selenium-install (only for local)
 npm run selenium-start (only for local)
 
 ### Config

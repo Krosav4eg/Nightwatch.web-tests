@@ -1,4 +1,4 @@
 module.exports = {
-    login: 'xxx',
-    pass: 'xxx',
+    login: 'xsolve',
+    pass: 'xs0lv3',
 };

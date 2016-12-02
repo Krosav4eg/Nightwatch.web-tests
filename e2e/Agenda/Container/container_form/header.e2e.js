@@ -1,33 +1,16 @@
-/**
- * Created by Sergey Potapov on on 15.11.2016.
- */
 var _ = require('lodash');
 var presteps = require('./../../../presteps/presteps.js');
+var auth = require('./../../../presteps/auth.js');
 
-module.exports = _.assign(presteps, {
-    '@disabled': true,
-    'authorization': function (browser) {
-        browser
-            .url('http://alpha.skynet.managementevents.com')
-            .assert.title('Skynet 2')
-            .waitForElementVisible('input[name="username"]', 1000)
-            .setValue('input[name="username"]', 'xsolve')
-            .waitForElementVisible('input[type="password"]', 1000)
-            .setValue('input[type="password"]', 'xs0lv3')
-            .waitForElementVisible('button[type="submit"]', 1000)
-            .click('button[type="submit"]')
-            .pause(5000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(1000)
-            .assert.containsText('div#page-heading', 'Dashboard')
-    },
+module.exports = _.assign(presteps, auth, {
     'redirection to agenda': function (browser) {
         browser
-            .url('http://alpha.skynet.managementevents.com/event/212/agenda')
+            .relUrl('/event/212/agenda')
             .pause(3000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(1000)
+            .pause(1000);
     },
+
     'check save button': function (browser) {
         browser
             .click('button.btn.btn-primary.btn-block')
@@ -49,8 +32,9 @@ module.exports = _.assign(presteps, {
             .pause(3000)
             .assert.elementPresent('//b[contains(text(), "new_event2016")]')
             .assert.containsText('//b[1][contains(text(),"8:00")]', '8:00')
-            .assert.containsText('//b[2][contains(text(),"10:00")]', '10:00')
+            .assert.containsText('//b[2][contains(text(),"10:00")]', '10:00');
     },
+
     'delete container': function (browser) {
         browser
             .useCss()
@@ -63,12 +47,10 @@ module.exports = _.assign(presteps, {
             .pause(1000)
             .useXpath()
             .assert.elementNotPresent('//b[contains(text(), "new_event2016")]')
-            .pause(1000)
+            .pause(1000);
     },
 
-
     'Check that field is required = blank click another field': function (browser) {
-
         browser
             .useCss()
             .click('button.btn.btn-primary.btn-block')
@@ -83,9 +65,9 @@ module.exports = _.assign(presteps, {
             .useXpath()
             .assert.elementPresent('//p[text()=" Heading is required.           "]')
             .refresh()
-            .pause(3000)
-
+            .pause(3000);
     },
+
     'blank.click Save': function (browser) {
         browser
             .useCss()
@@ -96,9 +78,6 @@ module.exports = _.assign(presteps, {
             .click('//form/div[2]/div/div/button[contains(text(),"Save")]')
             .pause(1000)
             .assert.elementPresent('//p[text()=" Heading is required.           "]')
-            .refresh()
-    }
-    ,
-
-})
-;
+            .refresh();
+    },
+});
