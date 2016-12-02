@@ -2,6 +2,7 @@
 var _ = require('lodash');
 var presteps = require('./../../../presteps/presteps.js');
 
+
 module.exports = _.assign(presteps, {
     '@disabled': true,
     'authorization': function (browser) {
