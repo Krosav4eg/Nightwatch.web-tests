@@ -1,6 +1,3 @@
-/**
- * Created by Sergey Potapov on 25.11.2016.
- */
 var _ = require('lodash');
 var presteps = require('./../../../presteps/presteps.js');
 
