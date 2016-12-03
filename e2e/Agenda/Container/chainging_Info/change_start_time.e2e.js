@@ -1,31 +1,16 @@
-
 var _ = require('lodash');
 var presteps = require('./../../../presteps/presteps.js');
+var auth = require('./../../../presteps/auth.js');
 
-module.exports = _.assign(presteps, {
-    '@disabled': true,
-    'authorization': function (browser) {
-        browser
-            .url('http://alpha.skynet.managementevents.com')
-            .assert.title('Skynet 2')
-            .waitForElementVisible('input[name="username"]', 1000)
-            .setValue('input[name="username"]', 'xsolve')
-            .waitForElementVisible('input[type="password"]', 1000)
-            .setValue('input[type="password"]', 'xs0lv3')
-            .waitForElementVisible('button[type="submit"]', 1000)
-            .click('button[type="submit"]')
-            .pause(5000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(1000)
-            .assert.containsText('div#page-heading', 'Dashboard')
-    },
+module.exports = _.assign(presteps, auth, {
     'redirection to agenda': function (browser) {
         browser
-            .url('http://alpha.skynet.managementevents.com/event/212/agenda')
+            .relUrl('/event/212/agenda')
             .pause(3000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(1000)
+            .pause(1000);
     },
+
     'creation container': function (browser) {
         browser
             .useCss()
@@ -51,9 +36,10 @@ module.exports = _.assign(presteps, {
             .useXpath()
             .assert.containsText('//b[1][contains(text(),"8:00")]', '8:00')
             .assert.containsText('//b[2][contains(text(),"10:00")]', '10:00')
-            .pause(2000)
+            .pause(2000);
     },
-    'delete end time': function (browser) {
+
+    'delete start time': function (browser) {
         browser
             .useCss()
 
@@ -62,26 +48,25 @@ module.exports = _.assign(presteps, {
             .useXpath()
             .assert.containsText('//h4[contains(text(),"Container form")]', 'Container form')
             .useCss()
-            .click('#containerEndHour input')
-            .clearValue('#containerEndHour input')
+            .click('#containerStartHour input')
+            .clearValue('#containerStartHour input')
             .pause(1000)
             .click('input#subHeading')
             .pause(2000)
 
             .useXpath()
-            .assert.elementPresent('//p[text()=" End Hour is required.           "]')
+            .assert.elementPresent('//p[text()=" Start Hour is required.           "]')
             .useCss()
-
-            .setValue('#containerEndHour input', ['00:00', browser.Keys.ENTER])
+            .setValue('#containerStartHour input', ['7:00', browser.Keys.ENTER])
             .useXpath()
             .assert.elementPresent('//p[text()=" Date should be between 08:00 and 23:59           "]')
-            .refresh()
+             .refresh()
             .useCss()
             .pause(3000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(1000)
-
+            .pause(1000);
     },
+
     'delete container': function (browser) {
         browser
             .useCss()
@@ -94,7 +79,6 @@ module.exports = _.assign(presteps, {
             .pause(1000)
             .useXpath()
             .assert.elementNotPresent('//b[contains(text(), "new_event2016")]')
-            .pause(1000)
+            .pause(1000);
     },
-})
-;
+});

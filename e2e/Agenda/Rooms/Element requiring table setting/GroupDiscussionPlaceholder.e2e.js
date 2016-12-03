@@ -1,43 +1,31 @@
 var _ = require('lodash');
 var presteps = require('./../../../presteps/presteps.js');
+var auth = require('./../../../presteps/auth.js');
 
-module.exports = _.assign(presteps, {
-    '@disabled': true,
-    'authorization': function (browser) {
-        browser
-            .url('http://alpha.skynet.managementevents.com')
-            .assert.title('Skynet 2')
-            .waitForElementVisible('input[name="username"]', 1000)
-            .setValue('input[name="username"]', 'xsolve')
-            .waitForElementVisible('input[type="password"]', 1000)
-            .setValue('input[type="password"]', 'xs0lv3')
-            .waitForElementVisible('button[type="submit"]', 1000)
-            .click('button[type="submit"]')
-            .pause(5000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(1000)
-            .assert.containsText('div#page-heading', 'Dashboard')
-    },
+module.exports = _.assign(presteps, auth, {
     'redirection to agenda': function (browser) {
         browser
-            .url('http://alpha.skynet.managementevents.com/event/212/agenda')
+            .retUrl('/event/212/agenda')
             .pause(3000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(1000)
+            .pause(1000);
     },
+
     'click on add element button': function (browser) {
         browser
             .pause(2000)
             .useCss()
             .waitForElementVisible('.btn.btn-info.btn-block', 1000)
-            .click('.btn.btn-info.btn-block')
+            .click('.btn.btn-info.btn-block');
     },
+
     'element form window is displayed': function (browser) {
         browser
             .useXpath()
             .assert.elementPresent('//h4[contains(text(),"Element form")]')
-            .assert.elementPresent('//label[contains(text(),"           Agenda Element Entry Type ")]')
+            .assert.elementPresent('//label[contains(text(),"           Agenda Element Entry Type ")]');
     },
+
     'choose Element requiring table setting': function (browser) {
         browser
             .useCss()
@@ -47,9 +35,9 @@ module.exports = _.assign(presteps, {
             .useXpath()
             .waitForElementVisible('//option[contains(text(),"Element requiring table setting")]', 1000)
             .click('//option[contains(text(),"Element requiring table setting")]')
-            .pause(2000)
-
+            .pause(2000);
     },
+
     'element requiring table setting assertion': function (browser) {
         browser
             .useXpath()
@@ -78,8 +66,9 @@ module.exports = _.assign(presteps, {
             .assert.containsText('//div[@class="form-group"]/div/label[contains(text(),"Room")]', 'Room')
             .useCss()
             .waitForElementVisible('input#room', 3000)
-            .click('input#room')
+            .click('input#room');
     },
+
     'assertion agenda element type drop down list': function (browser) {
         browser
             .useCss()
@@ -97,8 +86,7 @@ module.exports = _.assign(presteps, {
             .useXpath()
             .assert.containsText('//button[text()="Attach"]', 'Attach')
             .assert.containsText('//label[text()="Attach role/presentation"]', 'Attach role/presentation')
-            .pause(1000)
-
+            .pause(1000);
     },
 
     'creating group discussion placeholder panel': function (browser) {
@@ -112,8 +100,9 @@ module.exports = _.assign(presteps, {
             .click('input#room')
             .useXpath()
             .waitForElementVisible('//div[@class="col-sm-12 container_btn_group"]/button[2][contains(text(),"Save")]', 2000)
-            .click('//div[@class="col-sm-12 container_btn_group"]/button[2][contains(text(),"Save")]')
+            .click('//div[@class="col-sm-12 container_btn_group"]/button[2][contains(text(),"Save")]');
     },
+
     'redirection after creation group discussion placeholder panel': function (browser) {
         browser
             .pause(3000)
@@ -124,15 +113,15 @@ module.exports = _.assign(presteps, {
             .waitForElementVisible('//h5[contains(text(),"08:45 - 09:15")]', 2000)
             .waitForElementVisible('//h5[contains(text(),"Group Discussion Placeholder")]', 2000)
             .useCss()
-            .waitForElementVisible('i.fa.fa-plus', 2000)
-
+            .waitForElementVisible('i.fa.fa-plus', 2000);
     },
+
     'click plus button': function (browser) {
         browser
             .click('i.fa.fa-plus')
             .pause(2000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(3000)
+            .pause(3000);
     },
 
     'choose person in  add presentation to window': function (browser) {
@@ -147,8 +136,9 @@ module.exports = _.assign(presteps, {
             .pause(1000)
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(3000)
+            .pause(3000);
     },
+
     'chosen person is displayed': function (browser) {
         browser
             .useXpath()
@@ -160,22 +150,25 @@ module.exports = _.assign(presteps, {
             .waitForElementVisible('//me-event-agenda-attached-presentation-list//i[@class="fa fa-pencil edit-element"]', 2000)
             .waitForElementVisible('//me-event-agenda-attached-presentation-list//i[@class="fa fa-trash-o delete-element"]', 2000)
             .click('//button[contains(text(), "Add room")]')
-            .pause(2000)
+            .pause(2000);
     },
+
     'add room for Group is displayed': function (browser) {
         browser
             .waitForElementVisible('//h4[contains(text(),"Add room for Group Discussion Placeholder 10-05-2012 08:45:00 - 09:15:00")]', 2000)
             .useCss()
-            .waitForElementVisible('input.form-control[title=Room]', 2000)
+            .waitForElementVisible('input.form-control[title=Room]', 2000);
     },
+
     'input room field is empty': function (browser) {
         browser
             .assert.valueContains("input.form-control[title=Room]", "")
             .setValue('input.form-control[title=Room]', 'MyRoom#3')
             .useXpath()
             .waitForElementVisible('//modal[@class="modal fade in"]//button[@data-marker="me-event-agenda__button__save-room"]', 2000)
-            .click('//modal[@class="modal fade in"]//button[@data-marker="me-event-agenda__button__save-room"]')
+            .click('//modal[@class="modal fade in"]//button[@data-marker="me-event-agenda__button__save-room"]');
     },
+
     'input room is displaying': function (browser) {
         browser
             .useCss()
@@ -185,8 +178,9 @@ module.exports = _.assign(presteps, {
             .useXpath()
             .waitForElementVisible('//button[text()="       MyRoom#3     "]', 2000)
             .click('//button[text()="       MyRoom#3     "]')
-            .pause(3000)
+            .pause(3000);
     },
+
     'add room for group discussion is displayed again': function (browser) {
         browser
             .waitForElementVisible('//h4[contains(text(),"Add room for Group Discussion Placeholder 10-05-2012 08:45:00 - 09:15:00")]', 2000)
@@ -197,15 +191,17 @@ module.exports = _.assign(presteps, {
             .click('button[data-dismiss="modalRoom"]')
             .pause(2000)
             .useXpath()
-            .waitForElementVisible('//button[text()="       MyRoom#3     "]', 2000)
+            .waitForElementVisible('//button[text()="       MyRoom#3     "]', 2000);
     },
+
     'click on edit panel': function (browser) {
         browser
             .pause(1000)
             .waitForElementVisible('//a[2]/i[@class="fa fa-pencil edit-element"]', 2000)
             .click('//a[2]/i[@class="fa fa-pencil edit-element"]')
-            .pause(1500)
+            .pause(1500);
     },
+
     'static page assertion': function (browser) {
         browser
             .assert.containsText('//h4[contains(text(),"Element form")]', 'Element form')
@@ -232,9 +228,9 @@ module.exports = _.assign(presteps, {
             .assert.elementPresent('#visibilityPublishWWWYes')
             .assert.elementPresent('#visibilityPublishWWWNo')
             .useXpath()
-            .assert.containsText('//div[@class="form-group"]/div/label[contains(text(),"Room")]', 'Room')
-
+            .assert.containsText('//div[@class="form-group"]/div/label[contains(text(),"Room")]', 'Room');
     },
+
     'assertion for room field contains name My Room': function (browser) {
         browser
             .useCss()
@@ -243,8 +239,9 @@ module.exports = _.assign(presteps, {
             .refresh()
             .pause(3000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(3000)
+            .pause(3000);
     },
+
     'delete group discussion placeholder panel': function (browser) {
         browser
             .useXpath()
@@ -256,17 +253,15 @@ module.exports = _.assign(presteps, {
             .pause(2000)
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(4000)
-
+            .pause(4000);
     },
+
     'group discussion placeholder has been deleted': function (browser) {
         browser
             .useXpath()
             .assert.elementNotPresent('//h5[contains(text(),"08:00 - 09:45")]')
             .assert.elementNotPresent('//h5[contains(text(),"Group Discussion Placeholder")]')
             .assert.elementNotPresent('//button[text()="       MyRoom#3     "]');
-
     },
 
-})
-;
+});

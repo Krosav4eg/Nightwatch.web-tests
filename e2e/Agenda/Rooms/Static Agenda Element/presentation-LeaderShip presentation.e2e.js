@@ -1,44 +1,31 @@
-
 var _ = require('lodash');
 var presteps = require('./../../../presteps/presteps.js');
+var auth = require('./../../../presteps/auth.js');
 
-module.exports = _.assign(presteps, {
-    '@disabled': true,
-    'authorization': function (browser) {
-        browser
-            .url('http://alpha.skynet.managementevents.com')
-            .assert.title('Skynet 2')
-            .waitForElementVisible('input[name="username"]', 1000)
-            .setValue('input[name="username"]', 'xsolve')
-            .waitForElementVisible('input[type="password"]', 1000)
-            .setValue('input[type="password"]', 'xs0lv3')
-            .waitForElementVisible('button[type="submit"]', 1000)
-            .click('button[type="submit"]')
-            .pause(5000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(1000)
-            .assert.containsText('div#page-heading', 'Dashboard')
-    },
+module.exports = _.assign(presteps, auth, {
     'redirection to agenda': function (browser) {
         browser
-            .url('http://alpha.skynet.managementevents.com/event/212/agenda')
+            .relUrl('/event/212/agenda')
             .pause(3000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(1000)
+            .pause(1000);
     },
+
     'click on add element button': function (browser) {
         browser
             .pause(2000)
             .useCss()
             .waitForElementVisible('.btn.btn-info.btn-block', 1000)
-            .click('.btn.btn-info.btn-block')
+            .click('.btn.btn-info.btn-block');
     },
+
     'element form window is displayed': function (browser) {
         browser
             .useXpath()
             .assert.elementPresent('//h4[contains(text(),"Element form")]')
-            .assert.elementPresent('//label[contains(text(),"           Agenda Element Entry Type ")]')
+            .assert.elementPresent('//label[contains(text(),"           Agenda Element Entry Type ")]');
     },
+
     'choose static agenda element': function (browser) {
         browser
             .useCss()
@@ -48,9 +35,9 @@ module.exports = _.assign(presteps, {
             .useXpath()
             .waitForElementVisible('//option[contains(text(),"Static agenda element")]', 1000)
             .click('//option[contains(text(),"Static agenda element")]')
-            .pause(2000)
-
+            .pause(2000);
     },
+
     'static element page assertion': function (browser) {
         browser
             .assert.containsText('//h4[contains(text(),"Element form")]', 'Element form')
@@ -83,9 +70,9 @@ module.exports = _.assign(presteps, {
             .assert.containsText('//button[text()="Attach"]', 'Attach')
             .assert.containsText('//label[text()="Attach role/presentation"]','Attach role/presentation')
             .click('//button[text()="Attach"]')
-            .pause(4000)
-
+            .pause(4000);
     },
+
     'add presentation to window is appear': function (browser) {
         browser
             .waitForElementVisible('//h4[text()="Add presentation to "]', 1000)
@@ -94,8 +81,7 @@ module.exports = _.assign(presteps, {
             .assert.elementPresent('//li[text()=" - Fenzl Alexander               "]')
             .waitForElementVisible('//button[@data-marker="me-modal-attach-presentation-to-element__input__button__cancel"]', 1000)
             .click('//button[@data-marker="me-modal-attach-presentation-to-element__input__button__cancel"]')
-            .pause(1000)
-
+            .pause(1000);
     },
 
     'creating presentation-leaderShip panel': function (browser) {
@@ -109,8 +95,9 @@ module.exports = _.assign(presteps, {
             .click('input#room')
             .useXpath()
             .waitForElementVisible('//div[@class="col-sm-12 container_btn_group"]/button[2][contains(text(),"Save")]', 2000)
-            .click('//div[@class="col-sm-12 container_btn_group"]/button[2][contains(text(),"Save")]')
+            .click('//div[@class="col-sm-12 container_btn_group"]/button[2][contains(text(),"Save")]');
     },
+
     'redirection after creation presentation-leadership ': function (browser) {
         browser
             .pause(3000)
@@ -121,16 +108,17 @@ module.exports = _.assign(presteps, {
             .waitForElementVisible('//h5[contains(text(),"09:30 - 10:00")]', 2000)
             .waitForElementVisible('//h5[contains(text(),"Presentation / Leadership presentation")]', 2000)
             .useCss()
-            .waitForElementVisible('i.fa.fa-plus', 2000)
-
+            .waitForElementVisible('i.fa.fa-plus', 2000);
     },
+
     'click add Content button': function (browser) {
         browser
             .click('i.fa.fa-plus')
             .pause(1000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(3000)
+            .pause(3000);
     },
+
     'add presentation to Presentation window is displayed': function (browser) {
         browser
             .useXpath()
@@ -143,8 +131,9 @@ module.exports = _.assign(presteps, {
             .pause(1000)
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(3000)
+            .pause(3000);
     },
+
     'added person is displayed': function (browser) {
         browser
             .useXpath()
@@ -156,25 +145,25 @@ module.exports = _.assign(presteps, {
             .waitForElementVisible('//me-event-agenda-attached-presentation-list//i[@class="fa fa-pencil edit-element"]', 2000)
             .waitForElementVisible('//me-event-agenda-attached-presentation-list//i[@class="fa fa-trash-o delete-element"]', 2000)
             .click('//button[contains(text(), "Add room")]')
-            .pause(2000)
+            .pause(2000);
     },
 
     'presentations-leader ship presentation is displayed': function (browser) {
         browser
             .waitForElementVisible('//h4[contains(text(),"Add room for Presentation / Leadership presentation 10-05-2012 09:30:00 - 10:00:00")]', 2000)
             .useCss()
-            .waitForElementVisible('input.form-control[title=Room]', 2000)
-
+            .waitForElementVisible('input.form-control[title=Room]', 2000);
     },
+
     'input Room field is empty': function (browser) {
         browser
-
             .assert.valueContains("input.form-control[title=Room]", "")
             .setValue('input.form-control[title=Room]', 'MyRoom#2')
             .useXpath()
             .waitForElementVisible('//modal[@class="modal fade in"]/div/div/modal-footer/div[@class="modal-footer"]/button[2]', 2000)
-            .click('//modal[@class="modal fade in"]/div/div/modal-footer/div[@class="modal-footer"]/button[2]')
+            .click('//modal[@class="modal fade in"]/div/div/modal-footer/div[@class="modal-footer"]/button[2]');
     },
+
     'set room is displaying': function (browser) {
         browser
             .useCss()
@@ -183,8 +172,9 @@ module.exports = _.assign(presteps, {
             .pause(3000)
             .useXpath()
             .waitForElementVisible('//button[text()="       MyRoom#2     "]', 2000)
-            .click('//button[text()="       MyRoom#2     "]')
+            .click('//button[text()="       MyRoom#2     "]');
     },
+
     'add room for Presentation is displayed again': function (browser) {
         browser
             .pause(1000)
@@ -195,14 +185,16 @@ module.exports = _.assign(presteps, {
             .waitForElementVisible('button[data-dismiss="modalRoom"]', 2000)
             .click('button[data-dismiss="modalRoom"]')
             .useXpath()
-            .waitForElementVisible('//button[text()="       MyRoom#2     "]', 4000)
+            .waitForElementVisible('//button[text()="       MyRoom#2     "]', 4000);
     },
+
     'click on edit presentation-LeaderShip presentation panel': function (browser) {
         browser
             .pause(1000)
             .waitForElementVisible('//a[2]/i[@class="fa fa-pencil edit-element"]', 2000)
-            .click('//a[2]/i[@class="fa fa-pencil edit-element"]')
+            .click('//a[2]/i[@class="fa fa-pencil edit-element"]');
     },
+
     'static page assertion': function (browser) {
         browser
             .pause(2000)
@@ -224,8 +216,7 @@ module.exports = _.assign(presteps, {
             .assert.elementPresent('#visibilityPublishWWWYes')
             .assert.elementPresent('#visibilityPublishWWWNo')
             .useXpath()
-            .assert.containsText('//div[@class="form-group"]/div/label[contains(text(),"Room")]', 'Room')
-
+            .assert.containsText('//div[@class="form-group"]/div/label[contains(text(),"Room")]', 'Room');
     },
 
     'assertion for room field contains name My Room': function (browser) {
@@ -236,8 +227,9 @@ module.exports = _.assign(presteps, {
             .refresh()
             .pause(3000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(3000)
+            .pause(3000);
     },
+
     'delete presentation-leaderShip panel': function (browser) {
         browser
             .useXpath()
@@ -249,8 +241,7 @@ module.exports = _.assign(presteps, {
             .pause(2000)
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(4000)
-
+            .pause(4000);
     },
     'presentation-leaderShip has been deleted': function (browser) {
         browser
@@ -258,8 +249,5 @@ module.exports = _.assign(presteps, {
             .assert.elementNotPresent('//h5[contains(text(),"08:00 - 09:45")]')
             .assert.elementNotPresent('//h5[contains(text(),"Presentation / Leadership presentation")]')
             .assert.elementNotPresent('//button[contains(text(), "Add room")]');
-
     },
-
-})
-;
+});

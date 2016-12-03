@@ -1,43 +1,31 @@
-
 var _ = require('lodash');
 var presteps = require('../../presteps/presteps.js');
-module.exports = _.assign(presteps, {
-    '@disabled': true,
-    'authorization': function (browser) {
-        browser
-            .url('http://alpha.skynet.managementevents.com')
-            .assert.title('Skynet 2')
-            .waitForElementVisible('input[name="username"]', 1000)
-            .setValue('input[name="username"]', 'xsolve')
-            .waitForElementVisible('input[type="password"]', 1000)
-            .setValue('input[type="password"]', 'xs0lv3')
-            .waitForElementVisible('button[type="submit"]', 1000)
-            .click('button[type="submit"]')
-            .pause(5000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(1000)
-            .assert.containsText('div#page-heading', 'Dashboard')
-    },
+var auth = require('./../../presteps/auth.js');
+
+module.exports = _.assign(presteps, auth, {
     'redirection to agenda': function (browser) {
         browser
-            .url('http://alpha.skynet.managementevents.com/event/212/agenda')
+            .relUrl('/event/212/agenda')
             .pause(3000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(1000)
+            .pause(1000);
     },
+
     'click on add element button': function (browser) {
         browser
             .pause(2000)
             .useCss()
             .waitForElementVisible('.btn.btn-info.btn-block', 1000)
-            .click('.btn.btn-info.btn-block')
+            .click('.btn.btn-info.btn-block');
     },
+
     'element form window is displayed': function (browser) {
         browser
             .useXpath()
             .assert.elementPresent('//h4[contains(text(),"Element form")]')
-            .assert.elementPresent('//label[contains(text(),"           Agenda Element Entry Type ")]')
+            .assert.elementPresent('//label[contains(text(),"           Agenda Element Entry Type ")]');
     },
+
     'choose Static agenda element': function (browser) {
         browser
             .useCss()
@@ -47,8 +35,7 @@ module.exports = _.assign(presteps, {
             .useXpath()
             .waitForElementVisible('//option[contains(text(),"Static agenda element")]', 1000)
             .click('//option[contains(text(),"Static agenda element")]')
-            .pause(2000)
-
+            .pause(2000);
     },
 
     'assertion Agenda Element Type drop down list': function (browser) {
@@ -69,34 +56,33 @@ module.exports = _.assign(presteps, {
             .assert.containsText('option[value="30"]', '               Presentation / Leadership presentation             ')
             .assert.containsText('option[value="17"]', '               Presentation / Panel discussion             ')
             .assert.containsText('option[value="31"]', '               Presentation / Snapshot             ')
-            .assert.containsText('option[value="21"]', '               Presentation / Spotlight             ')
-
+            .assert.containsText('option[value="21"]', '               Presentation / Spotlight             ');
     },
+
     'select presentation/case': function (browser) {
         browser
             .pause(1000)
             .click('option[value="27"]')
-            .pause(1000)
+            .pause(1000);
 
     },
+
     'set start time ': function (browser) {
         browser
             .waitForElementVisible('me-date-time-input#elementStartHour input.form-control.dateTimeInput.dateTimeInput', 1000)
             .setValue('me-date-time-input#elementStartHour input.form-control.dateTimeInput.dateTimeInput', ['8:00', browser.Keys.ENTER])
-            .pause(500)
-
-
+            .pause(500);
     },
+
     'set end time ': function (browser) {
         browser
             .waitForElementVisible('me-date-time-input#elementEnd input.form-control.dateTimeInput.dateTimeInput', 1000)
             .setValue('me-date-time-input#elementEnd input.form-control.dateTimeInput.dateTimeInput', ['9:45', browser.Keys.ENTER])
             .pause(1000)
             .useXpath()
-            .waitForElementVisible('//label[contains(text(),"           End time ")]', 1000)
-
-
+            .waitForElementVisible('//label[contains(text(),"           End time ")]', 1000);
     },
+
     'presentation/case page assertion': function (browser) {
         browser
             .assert.containsText('//label[contains(text(),"           End time ")]', 'End time')
@@ -118,8 +104,9 @@ module.exports = _.assign(presteps, {
             .useXpath()
             .assert.containsText('//div[@class="form-group"]/div/label[contains(text(),"Room")]', 'Room')
             .useCss()
-            .waitForElementVisible('input#room', 3000)
+            .waitForElementVisible('input#room', 3000);
     },
+
     'click on attach button': function (browser) {
         browser
             .useXpath()
@@ -128,22 +115,23 @@ module.exports = _.assign(presteps, {
             .useCss()
             .pause(2000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(1000)
+            .pause(1000);
     },
+
     'not selected speaker': function (browser) {
         browser
             .useXpath()
             .waitForElementVisible('//modal[@class="modal fade in"]//h4[text()="Add presentation to "]', 4000)
             .assert.elementPresent('//modal[@class="modal fade in"]//button[@data-marker="me-modal-attach-presentation-to-element__input__button__save"]')
             .click('//modal[@class="modal fade in"]//button[@data-marker="me-modal-attach-presentation-to-element__input__button__save"]')
-            .pause(2500)
+            .pause(2500);
     },
 
     'none speaker is displayed': function (browser) {
         browser
             .useXpath()
             .assert.elementNotPresent('//modal[@class="modal fade in"]//td[text()="3756"]')
-            .assert.elementNotPresent('//modal[@class="modal fade in"]//td[text()="3758"]')
+            .assert.elementNotPresent('//modal[@class="modal fade in"]//td[text()="3758"]');
     },
 
     'attach new speaker ': function (browser) {
@@ -183,8 +171,9 @@ module.exports = _.assign(presteps, {
             .click('//modal[@class="modal fade in"]//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__3758"]')
             .assert.elementPresent('//modal[@class="modal fade in"]//button[@data-marker="me-modal-attach-presentation-to-element__input__button__save"]')
             .click('//modal[@class="modal fade in"]//button[@data-marker="me-modal-attach-presentation-to-element__input__button__save"]')
-            .pause(5000)
+            .pause(5000);
     },
+
     'chosen speaker is displayed': function (browser) {
         browser
             .assert.elementPresent('//modal[@class="modal fade in"]//td[text()="3756"]')
@@ -204,8 +193,9 @@ module.exports = _.assign(presteps, {
             .useCss()
             .pause(3000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(3000)
+            .pause(3000);
     },
+
     'chosen speakers are displayed': function (browser) {
         browser
             .useXpath()
@@ -221,7 +211,7 @@ module.exports = _.assign(presteps, {
             .assert.elementPresent('//div[@class=""]//tr[1]//li[text()=" - Vekve Sandra             "]')
             .assert.elementPresent('//div[@class=""]//tr[1]//li[text()=" - Eriksen Olav             "]')
             .assert.elementPresent('//a[@href="/presentations/edit/3758"]/i')
-            .assert.elementPresent('//table[@class="table table-striped"]/tr[2]/td[4]/a[2]/i[@class="fa fa-trash-o delete-element"]')
+            .assert.elementPresent('//table[@class="table table-striped"]/tr[2]/td[4]/a[2]/i[@class="fa fa-trash-o delete-element"]');
     },
 
     'delete presentation': function (browser) {
@@ -234,8 +224,6 @@ module.exports = _.assign(presteps, {
             .click('//modal[@class="modal fade in"]//button[@data-marker="me-confirm__button__button__yes"]')
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(3000)
-
+            .pause(3000);
     },
-})
-;
+});

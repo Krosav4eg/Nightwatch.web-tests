@@ -1,44 +1,31 @@
-
 var _ = require('lodash');
 var presteps = require('../../presteps/presteps.js');
+var auth = require('./../../presteps/auth.js');
 
-module.exports = _.assign(presteps, {
-    '@disabled': true,
-    'authorization': function (browser) {
-        browser
-            .url('http://alpha.skynet.managementevents.com')
-            .assert.title('Skynet 2')
-            .waitForElementVisible('input[name="username"]', 1000)
-            .setValue('input[name="username"]', 'xsolve')
-            .waitForElementVisible('input[type="password"]', 1000)
-            .setValue('input[type="password"]', 'xs0lv3')
-            .waitForElementVisible('button[type="submit"]', 1000)
-            .click('button[type="submit"]')
-            .pause(5000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(1000)
-            .assert.containsText('div#page-heading', 'Dashboard')
-    },
+module.exports = _.assign(presteps, auth, {
     'redirection to agenda': function (browser) {
         browser
-            .url('http://alpha.skynet.managementevents.com/event/212/agenda')
+            .relUrl('event/212/agenda')
             .pause(3000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(1000)
+            .pause(1000);
     },
+
     'click on add element button': function (browser) {
         browser
             .pause(2000)
             .useCss()
             .waitForElementVisible('.btn.btn-info.btn-block', 1000)
-            .click('.btn.btn-info.btn-block')
+            .click('.btn.btn-info.btn-block');
     },
+
     'element form window is displayed': function (browser) {
         browser
             .useXpath()
             .assert.elementPresent('//h4[contains(text(),"Element form")]')
-            .assert.elementPresent('//label[contains(text(),"           Agenda Element Entry Type ")]')
+            .assert.elementPresent('//label[contains(text(),"           Agenda Element Entry Type ")]');
     },
+
     'choose Static agenda element': function (browser) {
         browser
             .useCss()
@@ -48,9 +35,9 @@ module.exports = _.assign(presteps, {
             .useXpath()
             .waitForElementVisible('//option[contains(text(),"Static agenda element")]', 1000)
             .click('//option[contains(text(),"Static agenda element")]')
-            .pause(2000)
-
+            .pause(2000);
     },
+
     'blank.click another field': function (browser) {
         browser
             .assert.containsText('//h4[contains(text(),"Element form")]', 'Element form')
@@ -60,8 +47,9 @@ module.exports = _.assign(presteps, {
             .waitForElementVisible('//label[contains(text(),"           Start time ")]', 2000)
             .assert.containsText('//label[contains(text(),"           Start time ")]', 'Start time')
             .click('//label[contains(text(),"           Start time ")]')
-            .assert.elementPresent('//p[text()=" Field is required.           "]')
+            .assert.elementPresent('//p[text()=" Field is required.           "]');
     },
+
     'assertion agenda element type drop down list': function (browser) {
         browser
             .useCss()
@@ -80,7 +68,7 @@ module.exports = _.assign(presteps, {
             .assert.containsText('option[value="30"]', '               Presentation / Leadership presentation             ')
             .assert.containsText('option[value="17"]', '               Presentation / Panel discussion             ')
             .assert.containsText('option[value="31"]', '               Presentation / Snapshot             ')
-            .assert.containsText('option[value="21"]', '               Presentation / Spotlight             ')
+            .assert.containsText('option[value="21"]', '               Presentation / Spotlight             ');
     },
 
     'static agenda element page assertion': function (browser) {
@@ -104,8 +92,9 @@ module.exports = _.assign(presteps, {
             .useXpath()
             .assert.containsText('//div[@class="form-group"]/div/label[contains(text(),"Room")]', 'Room')
             .useCss()
-            .waitForElementVisible('input#room', 3000)
+            .waitForElementVisible('input#room', 3000);
     },
+
     'blank.click Save': function (browser) {
         browser
             .useXpath()
@@ -115,12 +104,11 @@ module.exports = _.assign(presteps, {
             .assert.elementPresent('//p[text()=" Start Hour is required.           "]')
             .assert.elementPresent('//p[text()=" End Hour is required.           "]')
             .useCss()
-            .click('option[value="35"]')
-
+            .click('option[value="35"]');
     },
+
     'start time can not be before set time ': function (browser) {
         browser
-
             .waitForElementVisible('me-date-time-input#elementStartHour input.form-control.dateTimeInput.dateTimeInput', 1000)
             .setValue('me-date-time-input#elementStartHour input.form-control.dateTimeInput.dateTimeInput', ['7:59', browser.Keys.ENTER])
             .useXpath()
@@ -130,13 +118,11 @@ module.exports = _.assign(presteps, {
             .pause(1000)
             .clearValue('me-date-time-input#elementStartHour input.form-control.dateTimeInput.dateTimeInput')
             .setValue('me-date-time-input#elementStartHour input.form-control.dateTimeInput.dateTimeInput', ['8:00', browser.Keys.ENTER])
-            .pause(1000)
-
-
+            .pause(1000);
     },
+
     'end time can not be after set time ': function (browser) {
         browser
-
             .waitForElementVisible('me-date-time-input#elementEnd input.form-control.dateTimeInput.dateTimeInput', 1000)
             .setValue('me-date-time-input#elementEnd input.form-control.dateTimeInput.dateTimeInput', ['10:01', browser.Keys.ENTER])
             .useXpath()
@@ -149,9 +135,9 @@ module.exports = _.assign(presteps, {
             .pause(1000)
             .useXpath()
             .waitForElementVisible('//div/div/div/div/button[contains(text(),"Save")]', 4000)
-            .click('//div/div/div/div/button[contains(text(),"Save")]')
-
+            .click('//div/div/div/div/button[contains(text(),"Save")]');
     },
+
     'redirection & assertion  page': function (browser) {
         browser
             .pause(2000)
@@ -161,15 +147,17 @@ module.exports = _.assign(presteps, {
             .useXpath()
             .waitForElementVisible('//h5[contains(text(),"08:00 - 09:45")]', 2000)
             .waitForElementVisible('//h5[contains(text(),"Awards Panel")]', 2000)
-            .waitForElementVisible('//button[contains(text(), "Add room")]', 2000)
+            .waitForElementVisible('//button[contains(text(), "Add room")]', 2000);
     },
+
     'click on edit awards panel': function (browser) {
         browser
             .pause(1000)
             .waitForElementVisible('//a[2]/i[@class="fa fa-pencil edit-element"]', 2000)
             .click('//a[2]/i[@class="fa fa-pencil edit-element"]')
-            .pause(2000)
+            .pause(2000);
     },
+
     'static agenda page displayed and click on background': function (browser) {
         browser
             .assert.containsText('//label[contains(text(),"           End time ")]', 'End time')
@@ -201,8 +189,8 @@ module.exports = _.assign(presteps, {
             .click('//button[@data-marker="me-event-agenda-element-form__input__button__cancel"]')
             .assert.elementNotPresent('//span[@class="label orangeGroupColorForEvent"]')
             .assert.elementNotPresent('//span[@class="label violetGroupColorForEvent"]');
-
     },
+
     'click on pencil': function (browser) {
         browser
             .pause(1000)
@@ -210,6 +198,7 @@ module.exports = _.assign(presteps, {
             .click('//a[2]/i[@class="fa fa-pencil edit-element"]')
             .pause(2000)
     },
+
     'putting check-boxes in Group 1 & Group 2': function (browser) {
         browser
             .assert.elementPresent('//div[text()="               Group 1 - orange             "]')
@@ -220,7 +209,7 @@ module.exports = _.assign(presteps, {
             .assert.elementPresent('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__301"]/div/input')
             .click('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__301"]/div/input')
             .waitForElementVisible('//div[@class="col-sm-12 container_btn_group"]/button[2][contains(text(),"Save")]', 2000)
-            .click('//div[@class="col-sm-12 container_btn_group"]/button[2][contains(text(),"Save")]')
+            .click('//div[@class="col-sm-12 container_btn_group"]/button[2][contains(text(),"Save")]');
     },
 
     'redirection after selection "Group 1 - orange" & "Group 2 - violet"  page': function (browser) {
@@ -236,8 +225,9 @@ module.exports = _.assign(presteps, {
             .waitForElementVisible('//span[@class="label orangeGroupColorForEvent"]', 2000)
             .assert.containsText('//span[@class="label orangeGroupColorForEvent"]', 'Group 1 - orange')
             .waitForElementVisible('//span[@class="label violetGroupColorForEvent"]', 2000)
-            .assert.containsText('//span[@class="label violetGroupColorForEvent"]', 'Group 2 - violet')
+            .assert.containsText('//span[@class="label violetGroupColorForEvent"]', 'Group 2 - violet');
     },
+
     'delete award panel': function (browser) {
         browser
             .useXpath()
@@ -249,17 +239,14 @@ module.exports = _.assign(presteps, {
             .pause(2000)
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(4000)
-
+            .pause(4000);
     },
+
     'awards panel has been deleted': function (browser) {
         browser
             .useXpath()
             .assert.elementNotPresent('//h5[contains(text(),"08:00 - 09:45")]')
             .assert.elementNotPresent('//h5[contains(text(),"Awards Panel")]')
             .assert.elementNotPresent('//button[contains(text(), "Add room")]');
-
     },
-
-})
-;
+});

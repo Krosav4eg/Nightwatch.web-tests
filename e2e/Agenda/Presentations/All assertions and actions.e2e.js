@@ -1,43 +1,31 @@
 var _ = require('lodash');
 var presteps = require('../../presteps/presteps.js');
+var auth = require('./../../presteps/auth.js');
 
-module.exports = _.assign(presteps, {
-    '@disabled': true,
-    'authorization': function (browser) {
-        browser
-            .url('http://alpha.skynet.managementevents.com')
-            .assert.title('Skynet 2')
-            .waitForElementVisible('input[name="username"]', 1000)
-            .setValue('input[name="username"]', 'xsolve')
-            .waitForElementVisible('input[type="password"]', 1000)
-            .setValue('input[type="password"]', 'xs0lv3')
-            .waitForElementVisible('button[type="submit"]', 1000)
-            .click('button[type="submit"]')
-            .pause(5000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(1000)
-            .assert.containsText('div#page-heading', 'Dashboard')
-    },
+module.exports = _.assign(presteps, auth, {
     'redirection to agenda': function (browser) {
         browser
-            .url('http://alpha.skynet.managementevents.com/event/212/agenda')
+            .relUrl('/event/212/agenda')
             .pause(3000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(1000)
+            .pause(1000);
     },
+
     'click on add element button': function (browser) {
         browser
             .pause(2000)
             .useCss()
             .waitForElementVisible('.btn.btn-info.btn-block', 1000)
-            .click('.btn.btn-info.btn-block')
+            .click('.btn.btn-info.btn-block');
     },
+
     'element form window is displayed': function (browser) {
         browser
             .useXpath()
             .assert.elementPresent('//h4[contains(text(),"Element form")]')
-            .assert.elementPresent('//label[contains(text(),"           Agenda Element Entry Type ")]')
+            .assert.elementPresent('//label[contains(text(),"           Agenda Element Entry Type ")]');
     },
+
     'choose Static agenda element': function (browser) {
         browser
             .useCss()
@@ -47,8 +35,7 @@ module.exports = _.assign(presteps, {
             .useXpath()
             .waitForElementVisible('//option[contains(text(),"Static agenda element")]', 1000)
             .click('//option[contains(text(),"Static agenda element")]')
-            .pause(2000)
-
+            .pause(2000);
     },
 
     'assertion Agenda Element Type drop down list': function (browser) {
@@ -69,34 +56,32 @@ module.exports = _.assign(presteps, {
             .assert.containsText('option[value="30"]', '               Presentation / Leadership presentation             ')
             .assert.containsText('option[value="17"]', '               Presentation / Panel discussion             ')
             .assert.containsText('option[value="31"]', '               Presentation / Snapshot             ')
-            .assert.containsText('option[value="21"]', '               Presentation / Spotlight             ')
-
+            .assert.containsText('option[value="21"]', '               Presentation / Spotlight             ');
     },
+
     'select presentation/case': function (browser) {
         browser
             .pause(1000)
             .click('option[value="27"]')
-            .pause(1000)
-
+            .pause(1000);
     },
+
     'set start time ': function (browser) {
         browser
             .waitForElementVisible('me-date-time-input#elementStartHour input.form-control.dateTimeInput.dateTimeInput', 1000)
             .setValue('me-date-time-input#elementStartHour input.form-control.dateTimeInput.dateTimeInput', ['8:00', browser.Keys.ENTER])
-            .pause(500)
-
-
+            .pause(500);
     },
+
     'set end time ': function (browser) {
         browser
             .waitForElementVisible('me-date-time-input#elementEnd input.form-control.dateTimeInput.dateTimeInput', 1000)
             .setValue('me-date-time-input#elementEnd input.form-control.dateTimeInput.dateTimeInput', ['9:45', browser.Keys.ENTER])
             .pause(1000)
             .useXpath()
-            .waitForElementVisible('//label[contains(text(),"           End time ")]', 1000)
-
-
+            .waitForElementVisible('//label[contains(text(),"           End time ")]', 1000);
     },
+
     'presentation/case page assertion': function (browser) {
         browser
             .assert.containsText('//label[contains(text(),"           End time ")]', 'End time')
@@ -118,15 +103,14 @@ module.exports = _.assign(presteps, {
             .useXpath()
             .assert.containsText('//div[@class="form-group"]/div/label[contains(text(),"Room")]', 'Room')
             .useCss()
-            .waitForElementVisible('input#room', 3000)
+            .waitForElementVisible('input#room', 3000);
     },
 
     'click on attach button': function (browser) {
         browser
             .useXpath()
             .waitForElementVisible('//me-event-agenda-element-presentation/div/div[2]/button[text()="Attach"]', 1500)
-            .click('//me-event-agenda-element-presentation/div/div[2]/button[text()="Attach"]')
-
+            .click('//me-event-agenda-element-presentation/div/div[2]/button[text()="Attach"]');
     },
 
     'attach new speaker ': function (browser) {
@@ -138,7 +122,7 @@ module.exports = _.assign(presteps, {
             .click('//modal[@class="modal fade in"]//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__3725"]')
             .waitForElementVisible('//modal[@class="modal fade in"]//button[@data-marker="me-modal-attach-presentation-to-element__input__button__save"]', 2000)
             .click('//modal[@class="modal fade in"]//button[@data-marker="me-modal-attach-presentation-to-element__input__button__save"]')
-            .pause(2000)
+            .pause(2000);
     },
 
     'chosen speaker is displayed': function (browser) {
@@ -149,8 +133,9 @@ module.exports = _.assign(presteps, {
             .assert.elementPresent('//i[@class="fa fa-trash-o delete-element"]')
             .assert.elementPresent('//i[@class="fa fa-plus"]')
             .waitForElementVisible('//div/div/div/div/button[contains(text(),"Save")]', 4000)
-            .click('//div/div/div/div/button[contains(text(),"Save")]')
+            .click('//div/div/div/div/button[contains(text(),"Save")]');
     },
+
     'presentation/case has been created': function (browser) {
         browser
             .pause(4000)
@@ -164,9 +149,9 @@ module.exports = _.assign(presteps, {
             .waitForElementVisible('//li[text()=" - Hermsmeier Jörg             "]', 2000)
             .waitForElementVisible('//button[@class="btn btn-primary"]/i[@class="fa fa-plus"]', 2000)
             .waitForElementVisible('//me-event-agenda-attached-presentation-list//i[@class="fa fa-pencil edit-element"]', 2000)
-            .waitForElementVisible('//me-event-agenda-attached-presentation-list//i[@class="fa fa-trash-o delete-element"]', 2000)
-    }
-    ,
+            .waitForElementVisible('//me-event-agenda-attached-presentation-list//i[@class="fa fa-trash-o delete-element"]', 2000);
+    },
+
     'adding another speaker': function (browser) {
         browser
             .click('//button[@class="btn btn-primary"]/i[@class="fa fa-plus"]')
@@ -184,8 +169,9 @@ module.exports = _.assign(presteps, {
             .pause(1500)
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(3000)
+            .pause(3000);
     },
+
     'another speaker has been created': function (browser) {
         browser
             .pause(2000)
@@ -203,9 +189,9 @@ module.exports = _.assign(presteps, {
             .assert.elementPresent('//me-event-agenda-attached-presentation-list//i[@class="fa fa-trash-o delete-element"]')
             .assert.elementPresent('//td[text()="3756"]')
             .assert.elementPresent('//a[@href="/presentations/edit/3756"]/i')
-            .assert.elementPresent('//me-event-agenda-attached-presentation-list//i[@class="fa fa-trash-o delete-element"]')
-    }
-    ,
+            .assert.elementPresent('//me-event-agenda-attached-presentation-list//i[@class="fa fa-trash-o delete-element"]');
+    },
+
     'delete 1-st speaker in list': function (browser) {
         browser
             .waitForElementVisible('//me-event-agenda-attached-presentation-list//i[@class="fa fa-trash-o delete-element"]', 2000)
@@ -217,16 +203,15 @@ module.exports = _.assign(presteps, {
             .click('//modal[@class="modal fade in"]//button[@data-marker="me-confirm__button__button__yes"]')
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(3000)
+            .pause(3000);
     },
-
 
     'edit presentation/case in Element form': function (browser) {
         browser
             .useXpath()
             .waitForElementVisible('//div[@class="panel-heading orangeBlockColorForEvent"]/div/a[2]/i[@class="fa fa-pencil edit-element"]', 1500)
             .click('//div[@class="panel-heading orangeBlockColorForEvent"]/div/a[2]/i[@class="fa fa-pencil edit-element"]')
-            .pause(2000)
+            .pause(2000);
     },
 
     'changing room number': function (browser) {
@@ -235,19 +220,17 @@ module.exports = _.assign(presteps, {
             .assert.containsText('//div[@class="form-group"]/div/label[contains(text(),"Room")]', 'Room')
             .useCss()
             .waitForElementVisible('input#room', 3000)
-            .setValue('input#room', 'Room#7')
-
+            .setValue('input#room', 'Room#7');
     },
+
     'change start time ': function (browser) {
         browser
-
             .waitForElementVisible('me-date-time-input#elementStartHour input.form-control.dateTimeInput.dateTimeInput', 1000)
             .clearValue('me-date-time-input#elementStartHour input.form-control.dateTimeInput.dateTimeInput')
             .setValue('me-date-time-input#elementStartHour input.form-control.dateTimeInput.dateTimeInput', ['8:30', browser.Keys.ENTER])
-            .pause(500)
-
-
+            .pause(500);
     },
+
     'change end time ': function (browser) {
         browser
             .waitForElementVisible('me-date-time-input#elementEnd input.form-control.dateTimeInput.dateTimeInput', 1000)
@@ -260,8 +243,9 @@ module.exports = _.assign(presteps, {
             .useCss()
             .pause(3000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(3000)
+            .pause(3000);
     },
+
     'changing speaker is displayed': function (browser) {
         browser
             .useXpath()
@@ -271,8 +255,9 @@ module.exports = _.assign(presteps, {
             .assert.elementPresent('//button[@class="btn btn-primary"]/i[@class="fa fa-plus"]')
             .assert.elementPresent('//td[text()="3756"]')
             .assert.elementPresent('//a[@href="/presentations/edit/3756"]/i')
-            .assert.elementPresent('//me-event-agenda-attached-presentation-list//i[@class="fa fa-trash-o delete-element"]')
+            .assert.elementPresent('//me-event-agenda-attached-presentation-list//i[@class="fa fa-trash-o delete-element"]');
     },
+
     'edit presentation/case in edit presentation window': function (browser) {
         browser
             .useCss()
@@ -280,8 +265,9 @@ module.exports = _.assign(presteps, {
             .click('td.text-white.actions>a>i.fa.fa-pencil.edit-element')
             .pause(1000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(3000)
+            .pause(3000);
     },
+
     'edit presentation window is displayed': function (browser) {
         browser
             .useXpath()
@@ -304,9 +290,9 @@ module.exports = _.assign(presteps, {
             .assert.elementPresent('//input[@type="file"]')
             .assert.elementPresent('//button[text()="Upload file"]')
             .assert.elementPresent('//h4[text()="Speakers"]')
-            .assert.elementPresent('//button[text()="Add speaker"]')
-
+            .assert.elementPresent('//button[text()="Add speaker"]');
     },
+
     'upload file assertion': function (browser) {
         browser
             .useXpath()
@@ -315,10 +301,10 @@ module.exports = _.assign(presteps, {
             .setValue('//input[@type="file"]', 'C:/Users/Sergey Potapov on/Desktop/Agenda-Elements.docx')
             .waitForElementVisible('//button[text()="Upload file"]', 3000)
             .click('//button[text()="Upload file"]')
-            .waitForElementVisible('//li[text()="     Agenda-Elements.docx (999.99 kB)   "]', 5000)
-
+            .waitForElementVisible('//li[text()="     Agenda-Elements.docx (999.99 kB)   "]', 5000);
     },
-    ' attach master contact window is displayed': function (browser) {
+
+    'attach master contact window is displayed': function (browser) {
         browser
             .click('//button[text()="Add speaker"]')
             .pause(2000)
@@ -328,9 +314,9 @@ module.exports = _.assign(presteps, {
             .waitForElementVisible('//tr[1]//i[@class="fa fa-external-link"]', 2000)
             .waitForElementVisible('//button[text()="           Search         "]', 2000)
             .waitForElementVisible('//button[text()="           Add new         "]', 2000)
-            .waitForElementVisible('//button[text()="           Close         "]', 2000)
-
+            .waitForElementVisible('//button[text()="           Close         "]', 2000);
     },
+
     'select speaker': function (browser) {
         browser
             .click('//tr[1]//i[@class="fa fa-external-link"]')
@@ -361,8 +347,7 @@ module.exports = _.assign(presteps, {
             .assert.elementPresent('//h4[text()="Speakers"]')
             .assert.elementPresent('//button[text()="Add speaker"]')
             .waitForElementVisible('//a[@href="/presentations/3756/master-contact/6"]', 2000)
-            .waitForElementVisible('//tr[1]//i[@class="fa fa-ban"]', 2000)
-
+            .waitForElementVisible('//tr[1]//i[@class="fa fa-ban"]', 2000);
     },
 
     'create heading and notes': function (browser) {
@@ -379,13 +364,14 @@ module.exports = _.assign(presteps, {
             .useCss()
             .pause(2000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(2000)
+            .pause(2000);
     },
+
     'heading and notes have been saved': function (browser) {
         browser
             .useXpath()
             .assert.valueContains('//input[@placeholder="Heading"]', 'New Heading')
-            .assert.valueContains('//textarea[@rows="5"]', 'New note')
+            .assert.valueContains('//textarea[@rows="5"]', 'New note');
     },
 
     'speaker has been added': function (browser) {
@@ -404,7 +390,7 @@ module.exports = _.assign(presteps, {
             .assert.elementPresent('//td[text()="New Heading"]')
             .assert.elementPresent('//b[text()="Norwegian Ministry of Foreign Affairs"]', 1000)
             .assert.elementPresent('//a[@href="/presentations/edit/3756"]/i')
-            .assert.elementPresent('//me-event-agenda-attached-presentation-list//i[@class="fa fa-trash-o delete-element"]')
+            .assert.elementPresent('//me-event-agenda-attached-presentation-list//i[@class="fa fa-trash-o delete-element"]');
     },
 
     'delete speaker': function (browser) {
@@ -421,7 +407,7 @@ module.exports = _.assign(presteps, {
             .useCss()
             .pause(1000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(3000)
+            .pause(3000);
     },
 
     'back to the main page': function (browser) {
@@ -438,9 +424,7 @@ module.exports = _.assign(presteps, {
             .assert.elementPresent('//button[@class="btn btn-primary"]/i[@class="fa fa-plus"]')
             .assert.elementPresent('//td[text()="3756"]')
             .assert.elementPresent('//td[text()="New Heading"]')
-            .assert.elementPresent('//a[@href="/presentations/edit/3756"]/i')
-
-
+            .assert.elementPresent('//a[@href="/presentations/edit/3756"]/i');
     },
 
     'delete presentation': function (browser) {
@@ -453,10 +437,6 @@ module.exports = _.assign(presteps, {
             .click('//modal[@class="modal fade in"]//button[@data-marker="me-confirm__button__button__yes"]')
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(3000)
-
+            .pause(3000);
     },
-
-
-})
-;
+});
