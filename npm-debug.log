@@ -1,18 +1,17 @@
 0 info it worked if it ends with ok
 1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
 1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
-1 verbose cli   'run',
-1 verbose cli   'selenium-start' ]
+1 verbose cli   'test' ]
 2 info using npm@3.10.8
 3 info using node@v6.9.1
-4 verbose run-script [ 'preselenium-start', 'selenium-start', 'postselenium-start' ]
-5 info lifecycle e2e-me-tests@1.0.0~preselenium-start: e2e-me-tests@1.0.0
-6 silly lifecycle e2e-me-tests@1.0.0~preselenium-start: no script for preselenium-start, continuing
-7 info lifecycle e2e-me-tests@1.0.0~selenium-start: e2e-me-tests@1.0.0
-8 verbose lifecycle e2e-me-tests@1.0.0~selenium-start: unsafe-perm in lifecycle true
-9 verbose lifecycle e2e-me-tests@1.0.0~selenium-start: PATH: C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;C:\Users\Avic\IdeaProjects\web-tests\node_modules\.bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\Skype\Phone\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Users\Avic\AppData\Roaming\npm
-10 verbose lifecycle e2e-me-tests@1.0.0~selenium-start: CWD: C:\Users\Avic\IdeaProjects\web-tests
-11 silly lifecycle e2e-me-tests@1.0.0~selenium-start: Args: [ '/d /s /c', 'selenium-standalone start' ]
+4 verbose run-script [ 'pretest', 'test', 'posttest' ]
+5 info lifecycle e2e-me-tests@1.0.0~pretest: e2e-me-tests@1.0.0
+6 silly lifecycle e2e-me-tests@1.0.0~pretest: no script for pretest, continuing
+7 info lifecycle e2e-me-tests@1.0.0~test: e2e-me-tests@1.0.0
+8 verbose lifecycle e2e-me-tests@1.0.0~test: unsafe-perm in lifecycle true
+9 verbose lifecycle e2e-me-tests@1.0.0~test: PATH: C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;C:\Users\Avic\Desktop\web-tests\node_modules\.bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\Skype\Phone\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Users\Avic\AppData\Roaming\npm
+10 verbose lifecycle e2e-me-tests@1.0.0~test: CWD: C:\Users\Avic\Desktop\web-tests
+11 silly lifecycle e2e-me-tests@1.0.0~test: Args: [ '/d /s /c', 'nightwatch' ]
 12 verbose stack Error: kill ENOSYS
 12 verbose stack     at exports._errnoException (util.js:1026:11)
 12 verbose stack     at process.kill (internal/process.js:172:13)
@@ -22,9 +21,9 @@
 12 verbose stack     at processEmit (C:\Program Files\nodejs\node_modules\npm\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:146:32)
 12 verbose stack     at processEmit (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:146:32)
 12 verbose stack     at Signal.wrap.onsignal (internal/process.js:199:44)
-13 verbose cwd C:\Users\Avic\IdeaProjects\web-tests
+13 verbose cwd C:\Users\Avic\Desktop\web-tests
 14 error Windows_NT 10.0.10586
-15 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "run" "selenium-start"
+15 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "test"
 16 error node v6.9.1
 17 error npm  v3.10.8
 18 error code ENOSYS
