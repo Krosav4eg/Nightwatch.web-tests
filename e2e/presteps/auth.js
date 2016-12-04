@@ -1,4 +1,4 @@
-let auth = require('./../../config/auth.js');
+auth = require('./../../config/auth.js');
 
 module.exports = {
     'auth': function (client) {
