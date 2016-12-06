@@ -4,10 +4,3 @@ vendor/selenium-debug.log
 reports/
 !reports/.gitkeep
 
-config/*
-!config/.gitkeep
-
-screens/
-!screens/.gitkeep
-
-*.iml
