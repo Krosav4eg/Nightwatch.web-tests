@@ -17,7 +17,7 @@ module.exports = _.assign(presteps, auth, {
             .useCss()
             .waitForElementVisible('button.btn.btn-primary.btn-block', 10000)
             .click('button.btn.btn-primary.btn-block')
-            .pause(2000)
+            .pause(3000)
             .useXpath()
             .assert.containsText('//h4[contains(text(),"Container form")]', 'Container form')
             .useCss()
