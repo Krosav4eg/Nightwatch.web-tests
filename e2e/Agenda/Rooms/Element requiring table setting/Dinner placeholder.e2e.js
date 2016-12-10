@@ -7,9 +7,8 @@ module.exports = _.assign(presteps, auth, {
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/212/agenda')
-            .pause(3000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(1000);
+            .waitForElementVisible('#thisIsMainLoader', 10000)
+            .waitForElementNotVisible('#thisIsMainLoader', 10000);
     },
     'creation new container': function (browser) {
         browser
@@ -29,17 +28,20 @@ module.exports = _.assign(presteps, auth, {
             .setValue('#containerEndHour input', '10:00')
             .useXpath()
             .click('//form/div[2]/div/div/button[contains(text(),"Save")]')
-            .pause(3000)
+            .useCss()
+            .waitForElementVisible('#thisIsMainLoader', 10000)
+            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .useXpath()
             .assert.elementPresent('//b[contains(text(), "new_event2016")]')
             .assert.containsText('//b[1][contains(text(),"8:00")]', '8:00')
-            .assert.containsText('//b[2][contains(text(),"10:00")]', '10:00')
-            .pause(2000);
+            .assert.containsText('//b[2][contains(text(),"10:00")]', '10:00');
+
     },
+
     'click on add element button': function (browser) {
         browser
-            .pause(2000)
             .useCss()
-            .waitForElementVisible('.btn.btn-info.btn-block', 1000)
+            .waitForElementVisible('.btn.btn-info.btn-block', 4000)
             .click('.btn.btn-info.btn-block');
     },
 
@@ -117,7 +119,6 @@ module.exports = _.assign(presteps, auth, {
             .pause(3000)
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(3000)
             .useXpath()
             .waitForElementVisible('//h5[contains(text(),"08:55 - 09:25")]', 2000)
             .waitForElementVisible('//h5[contains(text(),"Dinner placeholder")]', 2000);
@@ -137,7 +138,6 @@ module.exports = _.assign(presteps, auth, {
 
     'room input field is empty': function (browser) {
         browser
-            .useCss()
             .assert.valueContains("input.form-control[title=Room]", "")
             .setValue('input.form-control[title=Room]', 'MyRoom')
             .useXpath()
@@ -150,7 +150,6 @@ module.exports = _.assign(presteps, auth, {
             .useCss()
             .pause(3000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(3000)
             .useXpath()
             .waitForElementVisible('//button[text()="               MyRoom             "]', 2000)
             .click('//button[text()="               MyRoom             "]');
@@ -205,9 +204,9 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('input#room', 2000)
             .assert.valueContains("input#room", "MyRoom")
             .refresh()
-            .pause(3000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(3000);
+            .waitForElementVisible('#thisIsMainLoader',10000)
+            .waitForElementNotVisible('#thisIsMainLoader', 10000);
+
     },
 
     'delete dinner panel': function (browser) {
@@ -220,7 +219,7 @@ module.exports = _.assign(presteps, auth, {
             .pause(2000)
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(4000);
+            .pause(1500);
     },
 
     'presentation-leaderShip has been deleted': function (browser) {
@@ -234,14 +233,13 @@ module.exports = _.assign(presteps, auth, {
         browser
             .useCss()
             .click('.fa.fa-trash-o.delete-container')
-            .pause(1000)
-            .waitForElementVisible('div.modal-footer>button.btn.btn-success', 1000)
+            .waitForElementVisible('div.modal-footer>button.btn.btn-success', 4000)
             .click('div.modal-footer>button.btn.btn-success')
-            .pause(3000)
+            .waitForElementVisible('#thisIsMainLoader', 10000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .pause(1000)
             .useXpath()
-            .assert.elementNotPresent('//b[contains(text(), "new_event2016")]')
-            .pause(1000);
+            .assert.elementNotPresent('//b[contains(text(), "new_event2016")]');
+
     },
 });

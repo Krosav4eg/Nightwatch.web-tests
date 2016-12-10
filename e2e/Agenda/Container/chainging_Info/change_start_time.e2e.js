@@ -32,19 +32,19 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
             .click('//form/div[2]/div/div/button[contains(text(),"Save")]')
             .useCss()
-            .pause(3000)
+            .waitForElementVisible('#thisIsMainLoader', 10000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .pause(1000)
             .useXpath()
             .assert.containsText('//b[1][contains(text(),"8:00")]', '8:00')
             .assert.containsText('//b[2][contains(text(),"10:00")]', '10:00')
-            .pause(2000);
+            .pause(1000);
     },
 
     'delete start time': function (browser) {
         browser
             .useCss()
-
+            .waitForElementVisible('i.fa.fa-pencil.edit-container', 2000)
             .click('i.fa.fa-pencil.edit-container')
             .pause(2000)
             .useXpath()
@@ -62,9 +62,9 @@ module.exports = _.assign(presteps, auth, {
             .setValue('#containerStartHour input', ['7:00', browser.Keys.ENTER])
             .useXpath()
             .assert.elementPresent('//p[text()=" Date should be between 08:00 and 23:59           "]')
-             .refresh()
+            .refresh()
             .useCss()
-            .pause(3000)
+            .waitForElementVisible('#thisIsMainLoader', 10000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .pause(1000);
     },
@@ -76,11 +76,11 @@ module.exports = _.assign(presteps, auth, {
             .pause(1000)
             .waitForElementVisible('div.modal-footer>button.btn.btn-success', 1000)
             .click('div.modal-footer>button.btn.btn-success')
-            .pause(3000)
+            .waitForElementVisible('#thisIsMainLoader', 10000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .pause(1000)
             .useXpath()
-            .assert.elementNotPresent('//b[contains(text(), "new_event2016")]')
-            .pause(1000);
+            .assert.elementNotPresent('//b[contains(text(), "new_event2016")]');
+
     },
 });

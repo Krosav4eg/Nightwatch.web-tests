@@ -3,12 +3,12 @@ var presteps = require('./../../../presteps/presteps.js');
 var auth = require('./../../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
-       'redirection to agenda': function (browser) {
+
+    'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/212/agenda')
-            .pause(3000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(1000);
+            .waitForElementVisible('#thisIsMainLoader', 10000)
+            .waitForElementNotVisible('#thisIsMainLoader', 10000);
     },
     'creation new container': function (browser) {
         browser
@@ -28,19 +28,23 @@ module.exports = _.assign(presteps, auth, {
             .setValue('#containerEndHour input', '10:00')
             .useXpath()
             .click('//form/div[2]/div/div/button[contains(text(),"Save")]')
-            .pause(3000)
+            .useCss()
+            .waitForElementVisible('#thisIsMainLoader', 10000)
+            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .useXpath()
             .assert.elementPresent('//b[contains(text(), "new_event2016")]')
             .assert.containsText('//b[1][contains(text(),"8:00")]', '8:00')
-            .assert.containsText('//b[2][contains(text(),"10:00")]', '10:00')
-            .pause(2000);
+            .assert.containsText('//b[2][contains(text(),"10:00")]', '10:00');
+
     },
+
     'click on add element button': function (browser) {
         browser
-            .pause(2000)
             .useCss()
-            .waitForElementVisible('.btn.btn-info.btn-block', 1000)
+            .waitForElementVisible('.btn.btn-info.btn-block', 4000)
             .click('.btn.btn-info.btn-block');
     },
+
 
     'element form window is displayed': function (browser) {
         browser
@@ -92,13 +96,13 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
             .assert.containsText('//button[text()="Attach"]', 'Attach')
             .assert.containsText('//label[text()="Attach role/presentation"]', 'Attach role/presentation')
-            .click('//button[text()="Attach"]')
-            .pause(4000);
+            .click('//button[text()="Attach"]');
+            //.pause(4000);
     },
 
     'add presentation to window is appear': function (browser) {
         browser
-            .waitForElementVisible('//h4[text()="Add presentation to "]', 1000)
+            .waitForElementVisible('//h4[text()="Add presentation to "]', 5000)
             .pause(1000)
             .assert.elementPresent('//h4[text()="Add presentation to "]')
             .assert.elementPresent('//li[text()=" - Fenzl Alexander               "]')
@@ -126,10 +130,10 @@ module.exports = _.assign(presteps, auth, {
             .pause(3000)
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(3000)
+            //.pause(3000)
             .useXpath()
-            .waitForElementVisible('//h5[contains(text(),"09:30 - 10:00")]', 2000)
-            .waitForElementVisible('//h5[contains(text(),"Presentation / Leadership presentation")]', 2000)
+            .waitForElementVisible('//h5[contains(text(),"09:30 - 10:00")]', 5000)
+            .waitForElementVisible('//h5[contains(text(),"Presentation / Leadership presentation")]', 5000)
             .useCss()
             .waitForElementVisible('i.fa.fa-plus', 2000);
     },
@@ -138,23 +142,23 @@ module.exports = _.assign(presteps, auth, {
         browser
             .click('i.fa.fa-plus')
             .pause(1000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(3000);
+            .waitForElementNotVisible('#thisIsMainLoader', 10000);
+
     },
 
     'add presentation to Presentation window is displayed': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//h4[text()="Add presentation to "]/b[text()="Presentation / Leadership presentation"]', 2000)
-            .waitForElementVisible('//modal[@class="modal fade in"]//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__3733"]', 2000)
-            .waitForElementVisible('//modal[@class="modal fade in"]//li[text()=" - Fenzl Alexander               "]', 2000)
+            .waitForElementVisible('//h4[text()="Add presentation to "]/b[text()="Presentation / Leadership presentation"]', 4000)
+            .waitForElementVisible('//modal[@class="modal fade in"]//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__3733"]', 4000)
+            .waitForElementVisible('//modal[@class="modal fade in"]//li[text()=" - Fenzl Alexander               "]', 4000)
             .click('//modal[@class="modal fade in"]//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__3733"]')
-            .waitForElementVisible('//modal[@class="modal fade in"]//button[@data-marker="me-modal-attach-presentation-to-element__input__button__save"]', 2000)
+            .waitForElementVisible('//modal[@class="modal fade in"]//button[@data-marker="me-modal-attach-presentation-to-element__input__button__save"]', 4000)
             .click('//modal[@class="modal fade in"]//button[@data-marker="me-modal-attach-presentation-to-element__input__button__save"]')
             .pause(1000)
             .useCss()
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(3000);
+            .waitForElementNotVisible('#thisIsMainLoader', 10000);
+
     },
 
     'added person is displayed': function (browser) {
@@ -264,7 +268,7 @@ module.exports = _.assign(presteps, auth, {
             .pause(2000)
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(4000);
+            .pause(2000);
     },
     'presentation-leaderShip has been deleted': function (browser) {
         browser
@@ -277,14 +281,13 @@ module.exports = _.assign(presteps, auth, {
         browser
             .useCss()
             .click('.fa.fa-trash-o.delete-container')
-            .pause(1000)
-            .waitForElementVisible('div.modal-footer>button.btn.btn-success', 1000)
+            .waitForElementVisible('div.modal-footer>button.btn.btn-success', 4000)
             .click('div.modal-footer>button.btn.btn-success')
-            .pause(3000)
+            .waitForElementVisible('#thisIsMainLoader', 10000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .pause(1000)
             .useXpath()
-            .assert.elementNotPresent('//b[contains(text(), "new_event2016")]')
-            .pause(1000);
+            .assert.elementNotPresent('//b[contains(text(), "new_event2016")]');
+
     },
 });

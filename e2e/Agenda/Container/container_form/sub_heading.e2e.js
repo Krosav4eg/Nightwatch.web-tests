@@ -7,13 +7,13 @@ module.exports = _.assign(presteps, auth, {
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/212/agenda')
-            .pause(3000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(3000);
+            .waitForElementVisible('#thisIsMainLoader', 10000)
+            .waitForElementNotVisible('#thisIsMainLoader', 10000);
     },
 
     'blank click another field': function (browser) {
         browser
+            .waitForElementVisible('button.btn.btn-primary.btn-block',5000)
             .click('button.btn.btn-primary.btn-block')
             .useXpath()
             .assert.elementPresent('//h4[contains(text(), "Container form")]')
@@ -35,14 +35,13 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
             .click('//form/div[2]/div/div/button[contains(text(),"Save")]')
             .useCss()
-            .pause(3000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(1000);
+            .waitForElementNotVisible('#thisIsMainLoader', 10000);
+
     },
 
     'check save button': function (browser) {
         browser
-            .waitForElementVisible('button.btn.btn-primary.btn-block', 1000)
+            .waitForElementVisible('button.btn.btn-primary.btn-block', 4000)
             .click('button.btn.btn-primary.btn-block')
             .useXpath()
             .assert.elementPresent('//h4[contains(text(), "Container form")]')
@@ -58,9 +57,8 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
             .click('//form/div[2]/div/div/button[contains(text(),"Save")]')
             .useCss()
-            .pause(3000)
+            .waitForElementVisible('#thisIsMainLoader', 10000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(1000)
             .useXpath()
             .assert.elementPresent('//b[contains(text(), "new_event2016")]');
     },
@@ -69,14 +67,12 @@ module.exports = _.assign(presteps, auth, {
         browser
             .useCss()
             .click('.fa.fa-trash-o.delete-container')
-            .pause(1000)
-            .waitForElementVisible('div.modal-footer>button.btn.btn-success', 1000)
+            .waitForElementVisible('div.modal-footer>button.btn.btn-success', 5000)
             .click('div.modal-footer>button.btn.btn-success')
-            .pause(3000)
+            .waitForElementVisible('#thisIsMainLoader', 10000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(1000)
             .useXpath()
-            .assert.elementNotPresent('//b[contains(text(), "new_event2016")]')
-            .pause(1000);
+            .assert.elementNotPresent('//b[contains(text(), "new_event2016")]');
+
     },
 });

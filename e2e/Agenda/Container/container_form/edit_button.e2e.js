@@ -7,9 +7,8 @@ module.exports = _.assign(presteps, auth, {
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/212/agenda')
-            .pause(1000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(1000)
+            .waitForElementVisible('#thisIsMainLoader', 10000)
+            .waitForElementNotVisible('#thisIsMainLoader', 10000);
     },
 
     'creation container': function (browser) {
@@ -29,11 +28,10 @@ module.exports = _.assign(presteps, auth, {
             .setValue('#containerEndHour input', '10:00')
             .useXpath()
             .click('//form/div[2]/div/div/button[contains(text(),"Save")]')
-            .pause(3000)
             .useCss()
-            .pause(3000)
+            .waitForElementVisible('#thisIsMainLoader', 10000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(1000)
+            .pause(1000);
     },
 
     'check information in agenda page': function (browser) {
@@ -51,7 +49,7 @@ module.exports = _.assign(presteps, auth, {
             .click('i.fa.fa-pencil.edit-container')
             .pause(1000)
             .useXpath()
-            .assert.containsText('//h4[contains(text(),"Container form")]', 'Container form')
+            .assert.containsText('//h4[contains(text(),"Container form")]', 'Container form');
     },
 
     'blank.click another field': function (browser) {
@@ -59,20 +57,20 @@ module.exports = _.assign(presteps, auth, {
             .useCss()
             .click('input#heading')
             .clearValue('input#heading')
-            .click('input#subHeading')
-            .useXpath()
-            .pause(1000)
+            .click('input#subHeading');
+
+
     },
 
     'blank click Save': function (browser) {
         browser
+            .useXpath()
             .waitForElementVisible('//form/div[2]/div/div/button[contains(text(),"Save")]', 3000)
             .click('//form/div[2]/div/div/button[contains(text(),"Save")]')
-            .pause(2000)
             .useCss()
-            .pause(3000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(3000)
+            .waitForElementVisible('#thisIsMainLoader', 10000)
+            .waitForElementNotVisible('#thisIsMainLoader', 10000);
+
     },
 
     'click NO button': function (browser) {
@@ -87,21 +85,21 @@ module.exports = _.assign(presteps, auth, {
             .assert.elementPresent('//b[contains(text(), "new_event2016")]')
             .assert.containsText('//b[1][contains(text(),"8:00")]', '8:00')
             .assert.containsText('//b[2][contains(text(),"10:00")]', '10:00')
-            .pause(3000)
+            .pause(3000);
     },
 
     'delete container': function (browser) {
         browser
             .useCss()
             .click('.fa.fa-trash-o.delete-container')
-            .pause(2000)
-            .waitForElementVisible('div.modal-footer>button.btn.btn-success', 5000)
+            .pause(1000)
+            .waitForElementVisible('div.modal-footer>button.btn.btn-success', 1000)
             .click('div.modal-footer>button.btn.btn-success')
-            .pause(3000)
+            .waitForElementVisible('#thisIsMainLoader', 10000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .pause(1000)
             .useXpath()
-            .assert.elementNotPresent('//b[contains(text(), "new_event2016")]')
-            .pause(1000)
+            .assert.elementNotPresent('//b[contains(text(), "new_event2016")]');
+
     },
 });

@@ -7,9 +7,8 @@ module.exports = _.assign(presteps, auth, {
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/212/agenda')
-            .pause(3000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(1000);
+            .waitForElementVisible('#thisIsMainLoader', 10000)
+            .waitForElementNotVisible('#thisIsMainLoader', 10000);
     },
     'creation new container': function (browser) {
         browser
@@ -29,18 +28,20 @@ module.exports = _.assign(presteps, auth, {
             .setValue('#containerEndHour input', '10:00')
             .useXpath()
             .click('//form/div[2]/div/div/button[contains(text(),"Save")]')
-            .pause(3000)
+            .useCss()
+            .waitForElementVisible('#thisIsMainLoader', 10000)
+            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .useXpath()
             .assert.elementPresent('//b[contains(text(), "new_event2016")]')
             .assert.containsText('//b[1][contains(text(),"8:00")]', '8:00')
-            .assert.containsText('//b[2][contains(text(),"10:00")]', '10:00')
-            .pause(2000);
+            .assert.containsText('//b[2][contains(text(),"10:00")]', '10:00');
+
     },
 
     'click on add element button': function (browser) {
         browser
-            .pause(2000)
             .useCss()
-            .waitForElementVisible('.btn.btn-info.btn-block', 1000)
+            .waitForElementVisible('.btn.btn-info.btn-block', 4000)
             .click('.btn.btn-info.btn-block');
     },
 
@@ -60,7 +61,7 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
             .waitForElementVisible('//option[contains(text(),"Static agenda element")]', 1000)
             .click('//option[contains(text(),"Static agenda element")]')
-            .pause(2000);
+            .pause(1500);
     },
 
     'Static agenda element page assertion': function (browser) {
@@ -70,17 +71,12 @@ module.exports = _.assign(presteps, auth, {
             .assert.containsText('//label[contains(text(),"           Start time ")]', 'Start time')
             .assert.containsText('//label[contains(text(),"           End time ")]', 'End time')
             .assert.containsText('//label[contains(text(),"           Meeting allowed ")]', 'Meeting allowed')
-
             .assert.containsText('//option[contains(text(),"                 No meetings allowed               ")]', 'No meetings allowed')
-
             .assert.containsText('//label[contains(text(),"Groups Used")]', 'Groups Used')
-
             .verify.attributeEquals('//div[5]/div/div/div[@class="checkbox block"]/label/input[@class="ng-untouched ng-pristine ng-valid"]', 'checked', 'true')
-
             .assert.containsText('//label[contains(text(),"Event Groups")]', 'Event Groups')
             .assert.elementPresent('//div[text()="               Group 1 - orange             "]')
             .assert.elementPresent('//div[text()="               Group 2 - violet             "]')
-
             .assert.containsText('//label[contains(text(),"Show in calendars")]', 'Show in calendars')
             .assert.elementPresent('//label[text()="               Delegates             "]')
             .assert.elementPresent('//label[text()="               Provider representatives             "]')
@@ -112,10 +108,8 @@ module.exports = _.assign(presteps, auth, {
 
     'redirection after creation awards panel': function (browser) {
         browser
-            .pause(3000)
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(3000)
             .useXpath()
             .waitForElementVisible('//h5[contains(text(),"08:59 - 09:59")]', 2000)
             .waitForElementVisible('//h5[contains(text(),"Awards Panel")]', 2000)
@@ -133,13 +127,11 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
             .waitForElementVisible('//a[3]/i[@class="fa fa-trash-o delete-element"]', 1000)
             .click('//a[3]/i[@class="fa fa-trash-o delete-element"]')
-            .pause(1500)
-            .waitForElementVisible('//div[text()="     Do you really want to delete element Awards Panel?   "]', 2000)
+            .waitForElementVisible('//div[text()="     Do you really want to delete element Awards Panel?   "]', 4000)
             .click('//modal[@class="modal fade in"]/div/div/modal-footer/div/button[@data-marker="me-confirm__button__button__yes"]')
-            .pause(2000)
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(4000);
+            .pause(1500);
     },
 
     'awards panel has been deleted': function (browser) {
@@ -153,15 +145,14 @@ module.exports = _.assign(presteps, auth, {
         browser
             .useCss()
             .click('.fa.fa-trash-o.delete-container')
-            .pause(1000)
-            .waitForElementVisible('div.modal-footer>button.btn.btn-success', 1000)
+            .waitForElementVisible('div.modal-footer>button.btn.btn-success', 4000)
             .click('div.modal-footer>button.btn.btn-success')
-            .pause(3000)
+            .waitForElementVisible('#thisIsMainLoader', 10000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .pause(1000)
             .useXpath()
-            .assert.elementNotPresent('//b[contains(text(), "new_event2016")]')
-            .pause(1000);
+            .assert.elementNotPresent('//b[contains(text(), "new_event2016")]');
+
     },
 
 });

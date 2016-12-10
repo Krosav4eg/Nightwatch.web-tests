@@ -2,14 +2,13 @@ var _ = require('lodash');
 var presteps = require('../../presteps/presteps.js');
 var auth = require('./../../presteps/auth.js');
 
-module.exports = _.assign(presteps,auth, {
+module.exports = _.assign(presteps, auth, {
 
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/212/agenda')
-            .pause(3000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(1000);
+            .waitForElementVisible('#thisIsMainLoader', 10000)
+            .waitForElementNotVisible('#thisIsMainLoader', 10000);
     },
     'creation new container': function (browser) {
         browser
@@ -29,20 +28,23 @@ module.exports = _.assign(presteps,auth, {
             .setValue('#containerEndHour input', '10:00')
             .useXpath()
             .click('//form/div[2]/div/div/button[contains(text(),"Save")]')
-            .pause(3000)
+            .useCss()
+            .waitForElementVisible('#thisIsMainLoader', 10000)
+            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .useXpath()
             .assert.elementPresent('//b[contains(text(), "new_event2016")]')
             .assert.containsText('//b[1][contains(text(),"8:00")]', '8:00')
-            .assert.containsText('//b[2][contains(text(),"10:00")]', '10:00')
-            .pause(2000);
+            .assert.containsText('//b[2][contains(text(),"10:00")]', '10:00');
+
     },
 
     'click on add element button': function (browser) {
         browser
-            .pause(2000)
             .useCss()
-            .waitForElementVisible('.btn.btn-info.btn-block', 1000)
+            .waitForElementVisible('.btn.btn-info.btn-block', 4000)
             .click('.btn.btn-info.btn-block');
     },
+
 
     'element form window is displayed': function (browser) {
         browser
@@ -120,10 +122,8 @@ module.exports = _.assign(presteps,auth, {
             .assert.containsText('//label[contains(text(),"Event Groups")]', 'Event Groups')
             .assert.elementPresent('//div[text()="               Group 1 - orange             "]')
             .assert.elementPresent('//div[text()="               Group 2 - violet             "]')
-
             .assert.containsText('//label[text()="Attach role/presentation"]', 'Attach role/presentation')
             .assert.elementPresent('//me-event-agenda-element-presentation/div/div[2]/button[text()="Attach"]', 'Attach')
-
             .assert.containsText('//label[contains(text(),"Show in calendars")]', 'Show in calendars')
             .assert.elementPresent('//label[text()="               Delegates             "]')
             .assert.elementPresent('//label[text()="               Provider representatives             "]')
@@ -168,13 +168,12 @@ module.exports = _.assign(presteps,auth, {
     'click on attach button': function (browser) {
         browser
             .useXpath()
-            .click('//me-event-agenda-element-presentation/div/div[2]/button[text()="Attach"]')
-            .pause(1000);
+            .click('//me-event-agenda-element-presentation/div/div[2]/button[text()="Attach"]');
     },
 
     'add presentation window is displayed': function (browser) {
         browser
-            .waitForElementVisible('//h4[text()="Add presentation to "]', 1000)
+            .waitForElementVisible('//h4[text()="Add presentation to "]', 5000)
             .waitForElementVisible('//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__3729"]', 1000)
             .click('//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__3729"]')
             .waitForElementVisible('//button[@data-marker="me-modal-attach-presentation-to-element__input__button__save"]', 1000)
@@ -197,21 +196,19 @@ module.exports = _.assign(presteps,auth, {
             .pause(2000)
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(3000)
             .useXpath()
-            .waitForElementVisible('//h5[contains(text(),"08:00 - 09:45")]', 2000)
-            .waitForElementVisible('//h5[contains(text(),"Presentation / Chairman")]', 2000)
-            .waitForElementVisible('//button[contains(text(), "Add room")]', 2000)
-            .waitForElementVisible('//li[text()=" - Weber Jürgen             "]', 2000)
-            .waitForElementVisible('//button[@class="btn btn-primary"]/i[@class="fa fa-plus"]', 2000)
-            .waitForElementVisible('//me-event-agenda-attached-presentation-list//i[@class="fa fa-pencil edit-element"]', 2000)
-            .waitForElementVisible('//me-event-agenda-attached-presentation-list//i[@class="fa fa-trash-o delete-element"]', 2000);
+            .waitForElementVisible('//h5[contains(text(),"08:00 - 09:45")]', 4000)
+            .waitForElementVisible('//h5[contains(text(),"Presentation / Chairman")]', 4000)
+            .waitForElementVisible('//button[contains(text(), "Add room")]', 4000)
+            .waitForElementVisible('//li[text()=" - Weber Jürgen             "]', 4000)
+            .waitForElementVisible('//button[@class="btn btn-primary"]/i[@class="fa fa-plus"]', 4000)
+            .waitForElementVisible('//me-event-agenda-attached-presentation-list//i[@class="fa fa-pencil edit-element"]', 4000)
+            .waitForElementVisible('//me-event-agenda-attached-presentation-list//i[@class="fa fa-trash-o delete-element"]', 4000);
     },
 
     'click on edit presentation/chairman panel': function (browser) {
         browser
-            .pause(1000)
-            .waitForElementVisible('//a[2]/i[@class="fa fa-pencil edit-element"]', 2000)
+            .waitForElementVisible('//a[2]/i[@class="fa fa-pencil edit-element"]', 5000)
             .click('//a[2]/i[@class="fa fa-pencil edit-element"]')
             .pause(2000);
     },
@@ -224,7 +221,6 @@ module.exports = _.assign(presteps,auth, {
             .assert.containsText('//label[contains(text(),"Groups Used")]', 'Groups Used')
             .assert.containsText('//label[contains(text(),"Event Groups")]', 'Event Groups')
             .assert.elementPresent('//div[text()="               Group 1 - orange             "]')
-
             .assert.elementPresent('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__300"]/div/input')
             .click('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__300"]/div/input')
             .assert.elementPresent('//div[text()="               Group 2 - violet             "]')
@@ -241,9 +237,8 @@ module.exports = _.assign(presteps,auth, {
             .assert.containsText('//div[@class="form-group"]/div/label[contains(text(),"Room")]', 'Room')
             .useCss()
             .waitForElementVisible('input#room', 3000)
-            .pause(2000)
             .useXpath()
-            .waitForElementVisible('//button[@data-marker="me-event-agenda-element-form__input__button__cancel"]', 1000)
+            .waitForElementVisible('//button[@data-marker="me-event-agenda-element-form__input__button__cancel"]', 4000)
             .click('//button[@data-marker="me-event-agenda-element-form__input__button__cancel"]')
             .assert.elementNotPresent('//span[@class="label orangeGroupColorForEvent"]')
             .assert.elementNotPresent('//span[@class="label violetGroupColorForEvent"]');
@@ -260,7 +255,6 @@ module.exports = _.assign(presteps,auth, {
     'putting check-boxes in Group 1 & Group 2': function (browser) {
         browser
             .assert.elementPresent('//div[text()="               Group 1 - orange             "]')
-
             .assert.elementPresent('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__300"]/div/input')
             .click('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__300"]/div/input')
             .assert.elementPresent('//div[text()="               Group 2 - violet             "]')
@@ -275,14 +269,13 @@ module.exports = _.assign(presteps,auth, {
             .pause(2000)
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(3000)
             .useXpath()
-            .waitForElementVisible('//h5[contains(text(),"08:00 - 09:45")]', 2000)
-            .waitForElementVisible('//h5[contains(text(),"Presentation / Chairman")]', 2000)
-            .waitForElementVisible('//button[contains(text(), "Add room")]', 2000)
-            .waitForElementVisible('//span[@class="label orangeGroupColorForEvent"]', 2000)
+            .waitForElementVisible('//h5[contains(text(),"08:00 - 09:45")]', 4000)
+            .waitForElementVisible('//h5[contains(text(),"Presentation / Chairman")]', 4000)
+            .waitForElementVisible('//button[contains(text(), "Add room")]', 4000)
+            .waitForElementVisible('//span[@class="label orangeGroupColorForEvent"]', 4000)
             .assert.containsText('//span[@class="label orangeGroupColorForEvent"]', 'Group 1 - orange')
-            .waitForElementVisible('//span[@class="label violetGroupColorForEvent"]', 2000)
+            .waitForElementVisible('//span[@class="label violetGroupColorForEvent"]', 4000)
             .assert.containsText('//span[@class="label violetGroupColorForEvent"]', 'Group 2 - violet');
     },
 
@@ -296,7 +289,7 @@ module.exports = _.assign(presteps,auth, {
             .pause(2000)
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(5000);
+            .pause(1500);
     },
 
     'presentation/chairman has been deleted': function (browser) {
@@ -317,7 +310,7 @@ module.exports = _.assign(presteps,auth, {
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .pause(1000)
             .useXpath()
-            .assert.elementNotPresent('//b[contains(text(), "new_event2016")]')
-            .pause(1000);
+            .assert.elementNotPresent('//b[contains(text(), "new_event2016")]');
+
     },
 });

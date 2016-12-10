@@ -7,15 +7,15 @@ module.exports = _.assign(presteps, auth, {
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/212/agenda')
-            .pause(3000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(1000);
+            .waitForElementVisible('#thisIsMainLoader', 10000)
+            .waitForElementNotVisible('#thisIsMainLoader', 10000);
     },
 
     'Check that field is required = blank click another field': function (browser) {
         browser
+            .waitForElementVisible('button.btn.btn-primary.btn-block', 3000)
             .click('button.btn.btn-primary.btn-block')
-            .pause(5000)
+            .pause(2000)
             .useXpath()
             .assert.containsText('//h4[contains(text(),"Container form")]', 'Container form')
             .useCss()
@@ -81,28 +81,29 @@ module.exports = _.assign(presteps, auth, {
 
     'that information message appears': function (browser) {
         browser
-            .assert.elementPresent('//div[text()=" You don`t have any elements into container                 "]')
-            .pause(2000);
+            .assert.elementPresent('//div[text()=" You don`t have any elements into container                 "]');
+
     },
 
     'delete container': function (browser) {
         browser
             .useCss()
+            .waitForElementVisible('.fa.fa-trash-o.delete-container', 5000)
             .click('.fa.fa-trash-o.delete-container')
-            .pause(1000)
-            .waitForElementVisible('div.modal-footer>button.btn.btn-success', 1000)
+            .waitForElementVisible('div.modal-footer>button.btn.btn-success', 3000)
             .click('div.modal-footer>button.btn.btn-success')
-            .pause(3000)
+            .waitForElementVisible('#thisIsMainLoader', 10000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .pause(1000)
             .useXpath()
-            .assert.elementNotPresent('//b[contains(text(), "new_event2016")]')
-            .pause(1000);
+            .assert.elementNotPresent('//b[contains(text(), "new_event2016")]');
+
     },
 
     'container without time 8:00-8:00': function (browser) {
         browser
             .useCss()
+            .waitForElementVisible('button.btn.btn-primary.btn-block', 3000)
             .click('button.btn.btn-primary.btn-block')
             .pause(2000)
             .useXpath()
@@ -118,7 +119,10 @@ module.exports = _.assign(presteps, auth, {
             .setValue('#containerEndHour input', '8:00')
             .useXpath()
             .click('//form/div[2]/div/div/button[contains(text(),"Save")]')
-            .pause(3000)
+            .useCss()
+            .waitForElementVisible('#thisIsMainLoader', 10000)
+            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .useXpath()
             .assert.elementPresent('//b[contains(text(), "new_event2016")]')
             .assert.containsText('//b[1][contains(text(),"8:00")]', '8:00')
             .assert.containsText('//b[2][contains(text(),"8:00")]', '8:00');
@@ -131,11 +135,10 @@ module.exports = _.assign(presteps, auth, {
             .pause(1000)
             .waitForElementVisible('div.modal-footer>button.btn.btn-success', 1000)
             .click('div.modal-footer>button.btn.btn-success')
-            .pause(3000)
+            .waitForElementVisible('#thisIsMainLoader', 10000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(1000)
             .useXpath()
-            .assert.elementNotPresent('//b[contains(text(), "new_event2016")]')
-            .pause(1000)
+            .assert.elementNotPresent('//b[contains(text(), "new_event2016")]');
+
     },
 });

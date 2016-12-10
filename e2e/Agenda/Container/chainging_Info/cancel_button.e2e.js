@@ -8,7 +8,7 @@ module.exports = _.assign(presteps, auth, {
         browser
             .relUrl('/event/212/agenda')
             .waitForElementVisible('#thisIsMainLoader', 10000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .waitForElementNotVisible('#thisIsMainLoader', 10000);
     },
     'creation container': function (browser) {
         browser
@@ -30,18 +30,18 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
             .click('//form/div[2]/div/div/button[contains(text(),"Save")]')
             .useCss()
-            .pause(3000)
+            .waitForElementVisible('#thisIsMainLoader', 10000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .pause(1000)
             .useXpath()
             .assert.containsText('//b[1][contains(text(),"8:00")]', '8:00')
-            .assert.containsText('//b[2][contains(text(),"10:00")]', '10:00')
-            .pause(2000);
+            .assert.containsText('//b[2][contains(text(),"10:00")]', '10:00');
     },
 
     'click on (edit button) ': function (browser) {
         browser
             .useCss()
+            .waitForElementVisible('i.fa.fa-pencil.edit-container', 2000)
             .click('i.fa.fa-pencil.edit-container')
             .pause(2000)
             .useXpath()
@@ -52,7 +52,7 @@ module.exports = _.assign(presteps, auth, {
         browser
             .refresh()
             .useCss()
-            .pause(3000)
+            .waitForElementVisible('#thisIsMainLoader', 10000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .pause(1000);
     },
@@ -62,8 +62,7 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
             .assert.elementPresent('//b[contains(text(), "new_event2016")]')
             .assert.containsText('//b[1][contains(text(),"8:00")]', '8:00')
-            .assert.containsText('//b[2][contains(text(),"10:00")]', '10:00')
-            .pause(1000);
+            .assert.containsText('//b[2][contains(text(),"10:00")]', '10:00');
     },
 
     'delete container': function (browser) {
@@ -73,11 +72,11 @@ module.exports = _.assign(presteps, auth, {
             .pause(1000)
             .waitForElementVisible('div.modal-footer>button.btn.btn-success', 1000)
             .click('div.modal-footer>button.btn.btn-success')
-            .pause(3000)
+            .waitForElementVisible('#thisIsMainLoader', 10000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .pause(1000)
             .useXpath()
-            .assert.elementNotPresent('//b[contains(text(), "new_event2016")]')
-            .pause(1000);
+            .assert.elementNotPresent('//b[contains(text(), "new_event2016")]');
+
     },
 });
