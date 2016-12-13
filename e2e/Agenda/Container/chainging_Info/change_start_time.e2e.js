@@ -3,7 +3,7 @@ var presteps = require('./../../../presteps/presteps.js');
 var auth = require('./../../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
-
+    '@disabled':true ,
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/212/agenda')
@@ -55,7 +55,6 @@ module.exports = _.assign(presteps, auth, {
             .pause(1000)
             .click('input#subHeading')
             .pause(2000)
-
             .useXpath()
             .assert.elementPresent('//p[text()=" Start Hour is required.           "]')
             .useCss()

@@ -3,7 +3,7 @@ var presteps = require('./../../../presteps/presteps.js');
 var auth = require('./../../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
-
+    '@disabled': false,
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/212/agenda')
@@ -37,10 +37,48 @@ module.exports = _.assign(presteps, auth, {
             .assert.containsText('//b[2][contains(text(),"10:00")]', '10:00');
 
     },
-
-    'click on add element button': function (browser) {
+    'redirection to settings page': function (browser) {
         browser
             .useCss()
+            .relUrl('/event/212/settings')
+            .waitForElementVisible('#thisIsMainLoader', 10000)
+            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .useXpath()
+            .waitForElementVisible('//span[text()="212/IndustryForum Energy - Event settings"]', 5000);
+    },
+    'inputting checkboxes': function (browser) {
+        browser
+            .waitForElementVisible('//input[@data-marker="me-event-settings-agenda-group-qty__input__text"]', 5000)
+            .clearValue('//input[@data-marker="me-event-settings-agenda-group-qty__input__text"]')
+            .setValue('//input[@data-marker="me-event-settings-agenda-group-qty__input__text"]', ['6', browser.Keys.ENTER])
+            .waitForElementVisible('//input[@data-marker="me-groups-managed-automatically__input__checkbox__1"]', 5000)
+
+            .waitForElementVisible('//input[@data-marker="me-groups-managed-automatically__input__checkbox__2"]', 5000)
+
+            .waitForElementVisible('//input[@data-marker="me-groups-managed-automatically__input__checkbox__3"]', 5000)
+
+            .waitForElementVisible('//input[@data-marker="me-groups-managed-automatically__input__checkbox__4"]', 5000)
+
+            .waitForElementVisible('//input[@data-marker="me-groups-managed-automatically__input__checkbox__5"]', 5000)
+
+            .waitForElementVisible('//input[@data-marker="me-groups-managed-automatically__input__checkbox__6"]', 5000)
+
+            .waitForElementVisible('//div[@class="panel-body"]/div//div[3]/button[2]', 5000)
+            .click('//div[@class="panel-body"]/div//div[3]/button[2]')
+            .useCss()
+            .waitForElementVisible('#thisIsMainLoader', 10000)
+            .waitForElementNotVisible('#thisIsMainLoader', 10000);
+
+    },
+    'redirection to agenda page again': function (browser) {
+        browser
+            .relUrl('/event/212/agenda')
+            .waitForElementVisible('#thisIsMainLoader', 10000)
+            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+
+    },
+    'click on add element button': function (browser) {
+        browser
             .waitForElementVisible('.btn.btn-info.btn-block', 4000)
             .click('.btn.btn-info.btn-block');
     },
@@ -99,6 +137,20 @@ module.exports = _.assign(presteps, auth, {
             .setValue('me-date-time-input#elementStartHour input.form-control.dateTimeInput.dateTimeInput', ['8:59', browser.Keys.ENTER])
             .waitForElementVisible('me-date-time-input#elementEnd input.form-control.dateTimeInput.dateTimeInput', 1000)
             .setValue('me-date-time-input#elementEnd input.form-control.dateTimeInput.dateTimeInput', ['9:59', browser.Keys.ENTER])
+            .useXpath()
+            .waitForElementVisible('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__300"]', 4000)
+            .click('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__300"]')
+            .waitForElementVisible('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__301"]', 4000)
+            .click('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__301"]')
+            .waitForElementVisible('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__5180"]', 4000)
+            .click('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__5180"]')
+            .waitForElementVisible('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__5181"]', 4000)
+            .click('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__5181"]')
+            .waitForElementVisible('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__5182"]', 4000)
+            .click('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__5182"]')
+            .waitForElementVisible('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__5183"]', 4000)
+            .click('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__5183"]')
+            .useCss()
             .waitForElementVisible('input#room', 3000)
             .click('input#room')
             .useXpath()
@@ -113,7 +165,28 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
             .waitForElementVisible('//h5[contains(text(),"08:59 - 09:59")]', 2000)
             .waitForElementVisible('//h5[contains(text(),"Awards Panel")]', 2000)
-            .waitForElementVisible('//button[contains(text(), "Add room")]', 2000);
+            .waitForElementVisible('//button[contains(text(), "Add room")]', 2000)
+            .waitForElementVisible('//span[@class="label orangeGroupColorForEvent"]', 2000)
+            .waitForElementVisible('//span[@class="label violetGroupColorForEvent"]', 2000)
+            .waitForElementVisible('//span[@class="label blueGroupColorForEvent"]', 2000)
+            .waitForElementVisible('//span[@class="label greenGroupColorForEvent"]', 2000)
+            .waitForElementVisible('//span[@class="label redGroupColorForEvent"]', 2000)
+            .waitForElementVisible('//span[@class="label grayBlockColorForEvent"]', 2000)
+    },
+    'check all groups colors ': function (browser) {
+        browser
+            .assert.cssProperty('//span[@class="label orangeGroupColorForEvent"]', 'background-color', 'rgba(255, 153, 51, 1)')
+            .assert.cssProperty('//span[@class="label violetGroupColorForEvent"]', 'background-color', 'rgba(255, 153, 255, 1)')
+            .assert.cssProperty('//span[@class="label blueGroupColorForEvent"]', 'background-color', 'rgba(51, 153, 255, 1)')
+            .assert.cssProperty('//span[@class="label greenGroupColorForEvent"]', 'background-color', 'rgba(153, 255, 204, 1)')
+            .assert.cssProperty('//span[@class="label redGroupColorForEvent"]', 'background-color', 'rgba(255, 102, 102, 1)')
+            .assert.cssProperty('//span[@class="label grayBlockColorForEvent"]', 'background-color', 'rgba(204, 204, 204, 1)')
+    },
+
+    'check container color ': function (browser) {
+        browser
+            .assert.elementPresent('//button[text()="Add container"]')
+            .assert.cssProperty('//button[text()="Add container"]', 'background-color', 'rgba(79, 142, 220, 1)');
     },
 
     'check static agenda element color': function (browser) {
@@ -122,25 +195,83 @@ module.exports = _.assign(presteps, auth, {
             .assert.cssProperty('//div[@class="panel-heading orangeBlockColorForEvent"]', 'background-color', 'rgba(245, 166, 35, 1)');
     },
 
-    'delete award panel': function (browser) {
+    'check that the button is green when room was not chosen': function (browser) {
         browser
+            .assert.elementPresent('//button[text()="               Add room             "]')
+            .assert.cssProperty('//button[text()="               Add room             "]', 'background-color', 'rgba(133, 199, 68, 1)');
+    },
+    'click add room': function (browser) {
+        browser
+            .waitForElementVisible('//button[contains(text(), "Add room")]', 5000)
+            .click('//button[contains(text(), "Add room")]');
+    },
+
+    'add room for awards panel is displayed': function (browser) {
+        browser
+            .waitForElementVisible('//h4[contains(text(),"Add room for Awards Panel 10-05-2012 08:59:00 - 09:59:00")]', 4000)
+            .useCss()
+            .waitForElementVisible('input.form-control[title=Room]', 2000)
+            .assert.valueContains("input.form-control[title=Room]", "")
+            .setValue('input.form-control[title=Room]', 'MyRoom')
             .useXpath()
-            .waitForElementVisible('//a[3]/i[@class="fa fa-trash-o delete-element"]', 1000)
-            .click('//a[3]/i[@class="fa fa-trash-o delete-element"]')
-            .waitForElementVisible('//div[text()="     Do you really want to delete element Awards Panel?   "]', 4000)
-            .click('//modal[@class="modal fade in"]/div/div/modal-footer/div/button[@data-marker="me-confirm__button__button__yes"]')
+            .waitForElementVisible('//modal[@class="modal fade in"]/div/div/modal-footer/div[@class="modal-footer"]/button[2]', 2000)
+            .click('//modal[@class="modal fade in"]/div/div/modal-footer/div[@class="modal-footer"]/button[2]');
+    },
+    'redirection after adding room': function (browser) {
+        browser
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(1500);
+            .useXpath()
+            .waitForElementVisible('//h5[contains(text(),"08:59 - 09:59")]', 2000)
+            .waitForElementVisible('//h5[contains(text(),"Awards Panel")]', 2000)
+            .waitForElementVisible('//button[contains(text(), "MyRoom")]', 2000);
     },
+    'check that the button is red when room was choosen': function (browser) {
+        browser
+            .assert.elementPresent('//button[contains(text(), "MyRoom")]')
+            .assert.cssProperty('//button[contains(text(), "MyRoom")]', 'background-color', 'rgba(231, 60, 60, 1)');
+    },
+    'delete groups checkboxes': function (browser) {
+        browser
+            .waitForElementVisible('//a[2]/i[@class="fa fa-pencil edit-element"]', 2000)
+            .click('//a[2]/i[@class="fa fa-pencil edit-element"]')
+            .pause(2000);
+
+    },
+
 
     'awards panel has been deleted': function (browser) {
         browser
             .useXpath()
-            .assert.elementNotPresent('//h5[contains(text(),"08:59 - 09:59")]')
-            .assert.elementNotPresent('//h5[contains(text(),"Awards Panel")]')
-            .assert.elementNotPresent('//button[contains(text(), "Add room")]');
+            .waitForElementVisible('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__300"]', 4000)
+            .click('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__300"]')
+            .waitForElementVisible('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__301"]', 4000)
+            .click('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__301"]')
+            .waitForElementVisible('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__5180"]', 4000)
+            .click('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__5180"]')
+            .waitForElementVisible('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__5181"]', 4000)
+            .click('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__5181"]')
+            .waitForElementVisible('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__5182"]', 4000)
+            .click('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__5182"]')
+            .waitForElementVisible('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__5183"]', 4000)
+            .click('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__5183"]')
+            .useXpath()
+            .waitForElementVisible('//div[@class="col-sm-12 container_btn_group"]/button[2][contains(text(),"Save")]', 2000)
+            .click('//div[@class="col-sm-12 container_btn_group"]/button[2][contains(text(),"Save")]')
+            .useCss()
+            .waitForElementNotVisible('#thisIsMainLoader', 10000);
     },
+    'groups are not present': function (browser) {
+        browser
+            .useXpath()
+            .assert.elementNotPresent('//span[@class="label orangeGroupColorForEvent"]')
+            .assert.elementNotPresent('//span[@class="label violetGroupColorForEvent"]')
+            .assert.elementNotPresent('//span[@class="label blueGroupColorForEvent"]')
+            .assert.elementNotPresent('//span[@class="label greenGroupColorForEvent"]')
+            .assert.elementNotPresent('//span[@class="label redGroupColorForEvent"]')
+            .assert.elementNotPresent('//span[@class="label grayBlockColorForEvent"]');
+    },
+
     'delete container': function (browser) {
         browser
             .useCss()
@@ -154,5 +285,6 @@ module.exports = _.assign(presteps, auth, {
             .assert.elementNotPresent('//b[contains(text(), "new_event2016")]');
 
     },
+
 
 });
