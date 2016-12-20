@@ -3,7 +3,8 @@ var presteps = require('./../../presteps/presteps.js');
 var auth = require('./../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
-    '@disabled': false,
+    '@disabled': true,
+    
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/212/presentations')
@@ -23,26 +24,27 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('//h4/span[text()="3"]', 5000);
 
     },
-    'delegate - Case presentation - parallel. check that number  is correct and the same as in list': function (browser) {
+
+
+    'Case parallel. check that number  is correct and the same as in list': function (browser) {
         browser
-            .waitForElementVisible('//option[text()="Delegate - Case presentation - parallel"]', 5000)
-            .click('//option[text()="Delegate - Case presentation - parallel"]')
+            .waitForElementVisible('//option[text()="Partner - Case - parallel"]', 5000)
+            .click('//option[text()="Partner - Case - parallel"]')
             .useCss()
-            .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
-            .waitForElementVisible('//h4/span[text()="0"]', 5000);
+            .waitForElementVisible('//h4/span[text()="3"]', 5000);
 
     },
-    'Delegate - Case presentation - whole audience. check that number  is correct and the same as in list': function (browser) {
+    'case - whole audience. check that number  is correct and the same as in list': function (browser) {
         browser
-            .waitForElementVisible('//option[text()="Delegate - Case presentation - whole audience"]', 5000)
-            .click('//option[text()="Delegate - Case presentation - whole audience"]')
+            .waitForElementVisible('//option[text()="Partner - Case - whole audience"]', 5000)
+            .click('//option[text()="Partner - Case - whole audience"]')
             .useCss()
-            .waitForElementVisible('#thisIsMainLoader', 30000)
+            //.waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
-            .waitForElementVisible('//h4/span[text()="0"]', 5000);
+            .waitForElementVisible('//h4/span[text()="1"]', 5000);
 
     },
     'delegate - Chairman speach . check that number  is correct and the same as in list': function (browser) {
@@ -91,13 +93,13 @@ module.exports = _.assign(presteps, auth, {
     },
     ' delegate - Gold spotlight. check that number  is correct and the same as in list': function (browser) {
         browser
-            .waitForElementVisible('//option[text()="Delegate - Gold spotlight"]', 5000)
-            .click('//option[text()="Delegate - Gold spotlight"]')
+            .waitForElementVisible('//option[text()="Partner - Gold spotlight"]', 5000)
+            .click('//option[text()="Partner - Gold spotlight"]')
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
-            .waitForElementVisible('//h4/span[text()="0"]', 5000);
+            .waitForElementVisible('//h4/span[text()="3"]', 5000);
 
     },
     ' delegate - Group discussion initiation. check that number  is correct and the same as in list': function (browser) {
@@ -144,15 +146,15 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('//h4/span[text()="5"]', 5000);
 
     },
-    ' delegate - SnapShot. check that number  is correct and the same as in list': function (browser) {
+    ' partner - SnapShot. check that number  is correct and the same as in list': function (browser) {
         browser
-            .waitForElementVisible('//option[text()="Delegate - SnapShot"]', 5000)
-            .click('//option[text()="Delegate - SnapShot"]')
+            .waitForElementVisible('//option[text()="Partner - SnapShot"]', 5000)
+            .click('//option[text()="Partner - SnapShot"]')
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
-            .waitForElementVisible('//h4/span[text()="0"]', 5000);
+            .waitForElementVisible('//h4/span[text()="2"]', 5000);
 
     },
     ' Partner - Keynote. check that number  is correct and the same as in list': function (browser) {
@@ -163,7 +165,7 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
-            .waitForElementVisible('//h4/span[text()="2"]', 5000);
+            .waitForElementVisible('//h4/span[text()="3"]', 5000);
 
     },
 });
