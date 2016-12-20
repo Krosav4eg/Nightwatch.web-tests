@@ -221,11 +221,11 @@ module.exports = _.assign(presteps, auth, {
             .assert.containsText('//label[contains(text(),"Groups Used")]', 'Groups Used')
             .assert.containsText('//label[contains(text(),"Event Groups")]', 'Event Groups')
             .assert.elementPresent('//div[text()="               Group 1 - orange             "]')
-            .assert.elementPresent('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__300"]/div/input')
-            .click('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__300"]/div/input')
+            .assert.elementPresent('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__0"]')
+            .click('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__0"]')
             .assert.elementPresent('//div[text()="               Group 2 - violet             "]')
-            .assert.elementPresent('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__301"]/div/input')
-            .click('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__301"]/div/input')
+            .assert.elementPresent('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__1"]')
+            .click('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__1"]')
             .assert.containsText('//label[contains(text(),"Show in calendars")]', 'Show in calendars')
             .assert.elementPresent('//label[text()="               Delegates             "]')
             .assert.elementPresent('//label[text()="               Provider representatives             "]')
@@ -255,11 +255,11 @@ module.exports = _.assign(presteps, auth, {
     'putting check-boxes in Group 1 & Group 2': function (browser) {
         browser
             .assert.elementPresent('//div[text()="               Group 1 - orange             "]')
-            .assert.elementPresent('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__300"]/div/input')
-            .click('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__300"]/div/input')
+            .assert.elementPresent('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__0"]')
+            .click('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__0"]')
             .assert.elementPresent('//div[text()="               Group 2 - violet             "]')
-            .assert.elementPresent('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__301"]/div/input')
-            .click('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__301"]/div/input')
+            .assert.elementPresent('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__1"]')
+            .click('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__1"]')
             .waitForElementVisible('//div[@class="col-sm-12 container_btn_group"]/button[2][contains(text(),"Save")]', 2000)
             .click('//div[@class="col-sm-12 container_btn_group"]/button[2][contains(text(),"Save")]');
     },
