@@ -10,17 +10,33 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
-    'select by id down': function (browser) {
+    'select by presenter up': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//tr/th[1]', 10000)
-            .click('//tr/th[1]')
+            .waitForElementVisible('//tr/th[2]', 10000)
+            .click('//tr/th[2]')
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
-            .waitForElementVisible('a[href="/presentations/edit/3985"]',5000)
-            .assert.elementPresent('a[href="/presentations/edit/3985"]')
-
+            .useXpath()
+            .waitForElementVisible('//tr[1]/td[2]/span[text()="         Delegate       "]',5000)
+            .assert.elementPresent('//tr[1]/td[2]/span[text()="         Delegate       "]')
+            .assert.elementPresent('//tr[2]/td[2]/span[text()="         Delegate       "]')
+            .assert.elementPresent('//tr[3]/td[2]/span[text()="         Delegate       "]')
+            .assert.elementPresent('//tr[4]/td[2]/span[text()="         Delegate       "]')
+            .assert.elementPresent('//tr[5]/td[2]/span[text()="         Partner       "]')
+            .assert.elementPresent('//tr[6]/td[2]/span[text()="         Partner       "]')
+            .assert.elementPresent('//tr[7]/td[2]/span[text()="         Partner       "]')
+            .assert.elementPresent('//tr[8]/td[2]/span[text()="         Partner       "]')
+            .assert.elementPresent('//tr[9]/td[2]/span[text()="         Partner       "]')
+            .assert.elementPresent('//tr[10]/td[2]/span[text()="         Partner       "]')
+            .assert.elementPresent('//tr[11]/td[2]/span[text()="         Partner       "]')
+            .assert.elementPresent('//tr[12]/td[2]/span[text()="         Partner       "]')
+            .assert.elementPresent('//tr[13]/td[2]/span[text()="         Partner       "]')
+            .assert.elementPresent('//tr[14]/td[2]/span[text()="         Partner       "]')
+            .assert.elementPresent('//tr[15]/td[2]/span[text()="         Partner       "]')
+            .assert.elementPresent('//tr[16]/td[2]/span[text()="         Partner       "]')
+        
 
     },
 
