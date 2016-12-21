@@ -41,7 +41,6 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('//option[text()="Partner - Case - whole audience"]', 5000)
             .click('//option[text()="Partner - Case - whole audience"]')
             .useCss()
-            //.waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
             .waitForElementVisible('//h4/span[text()="1"]', 5000);

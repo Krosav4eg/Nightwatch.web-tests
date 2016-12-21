@@ -10,25 +10,24 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
-    'select by speaker last name down': function (browser) {
+    'select by speaker title up': function (browser) {
         browser
             .useXpath()
-            .getLocationInView("//tr/th[9]", function (result) {
+            .getLocationInView("//tr/th[10]", function (result) {
                 this.assert.equal(typeof result, "object")
                 this.assert.equal(result.status, 0)
                 this.assert.equal(result.value.x, 1178)
                 this.assert.equal(result.value.y, 523)
-                this.click('//tr/th[9]')
+                this.click('//tr/th[10]')
                     .useCss()
                     .waitForElementNotVisible('#thisIsMainLoader', 10000)
                     .useXpath()
-                    .waitForElementVisible('//tr[1]/td[9]/span', 5000)
-                    .assert.elementPresent('//tr[1]/td[9]/span')
-                    .assert.elementPresent('//tr[1]/td[9]/span')
-                    .assert.elementPresent('//tr[1]/td[9]/span')
-                    .assert.elementPresent('//tr[2]/td[9]/span')
-                    .assert.elementPresent('//tr[3]/td[9]/span')
-                    .assert.elementPresent('//tr[4]/td[9]/span')
+                    .waitForElementVisible('//tr[1]/td[10]/span', 5000)
+                    .assert.elementPresent('//tr[1]/td[10]/span')
+                    .assert.elementPresent('//tr[2]/td[10]/span')
+                    .assert.elementPresent('//tr[3]/td[10]/span')
+                    .assert.elementPresent('//tr[4]/td[10]/span')
+
 
             });
 

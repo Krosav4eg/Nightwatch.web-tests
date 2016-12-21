@@ -10,29 +10,30 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
-    'select by speaker last name down': function (browser) {
+    'select by speaker title up': function (browser) {
         browser
             .useXpath()
-            .getLocationInView("//tr/th[9]", function (result) {
+            .getLocationInView("//tr/th[10]", function (result) {
                 this.assert.equal(typeof result, "object")
                 this.assert.equal(result.status, 0)
                 this.assert.equal(result.value.x, 1178)
                 this.assert.equal(result.value.y, 523)
-                this.click('//tr/th[9]')
+                this.click('//tr/th[10]')
                     .useCss()
                     .waitForElementNotVisible('#thisIsMainLoader', 10000)
                     .useXpath()
-                    .waitForElementVisible('//tr/th[9]', 10000)
-                    .click('//tr/th[9]')
+                    .waitForElementVisible('//tr/th[10]', 10000)
+                    .click('//tr/th[10]')
                     .useCss()
                     .waitForElementVisible('#thisIsMainLoader', 30000)
                     .waitForElementNotVisible('#thisIsMainLoader', 30000)
                     .useXpath()
-                    .waitForElementVisible('//tr[1]/td[9]/span/ul/li[text()="             Philipp           "]', 5000)
-                    .assert.elementPresent('//tr[1]/td[9]/span/ul/li[text()="             Philipp           "]')
-                    .assert.elementPresent('//tr[1]/td[9]/span/ul/li[text()="             Hodosov           "]')
-                    .assert.elementPresent('//tr[1]/td[9]/span/ul/li[text()="             Sandra           "]')
-                    .assert.elementPresent('//tr[5]/td[9]/span/ul/li[text()="             Philipp           "]')
+                    .waitForElementVisible('//tr[1]/td[10]/span/ul/li[text()="             Senior IT architect           "]', 5000)
+                    .assert.elementPresent('//tr[1]/td[10]/span/ul/li[text()="             Senior IT architect           "]')
+                    .assert.elementPresent('//tr[2]/td[10]/span/ul/li[text()="             Bereichsleiter IT           "]')
+                    .assert.elementPresent('//tr[2]/td[10]/span/ul/li[text()="             Function Title           "]')
+                    .assert.elementPresent('//tr[2]/td[10]/span/ul/li[text()="             Senior Adviser Information Security           "]')
+
 
             });
 
