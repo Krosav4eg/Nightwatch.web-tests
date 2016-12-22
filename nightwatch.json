@@ -15,7 +15,7 @@
 
   "test_workers": {
     "enabled": true,
-    "workers": 1
+    "workers": 5
   },
 
   "test_settings" : {

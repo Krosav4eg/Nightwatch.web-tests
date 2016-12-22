@@ -3,7 +3,7 @@ var presteps = require('./../../presteps/presteps.js');
 var auth = require('./../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
-    '@disabled': true,
+    '@disabled': false,
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/212/presentations')
@@ -16,8 +16,8 @@ module.exports = _.assign(presteps, auth, {
             .getLocationInView("//tr/th[10]", function (result) {
                 this.assert.equal(typeof result, "object")
                 this.assert.equal(result.status, 0)
-                this.assert.equal(result.value.x, 1178)
-                this.assert.equal(result.value.y, 523)
+                this.assert.equal(result.value.x, 1350)
+                this.assert.equal(result.value.y, 522)
                 this.setValue('//tr/td[10]/input[@type="text"]', ['ges', browser.Keys.ENTER])
                     .useCss()
                     .waitForElementNotVisible('#thisIsMainLoader', 10000)
