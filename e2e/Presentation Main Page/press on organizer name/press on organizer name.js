@@ -4,7 +4,7 @@ var auth = require('./../../presteps/auth.js');
 
 
 module.exports = _.assign(presteps, auth, {
-    '@disabled': false,
+    '@disabled': true,
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/212/presentations')
