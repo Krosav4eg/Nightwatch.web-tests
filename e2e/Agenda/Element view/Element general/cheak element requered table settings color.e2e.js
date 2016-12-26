@@ -19,7 +19,7 @@ module.exports = _.assign(presteps, auth, {
             .assert.containsText('//h4[contains(text(),"Container form")]', 'Container form')
             .useCss()
             .waitForElementVisible('input#heading', 1000)
-            .setValue('input#heading', 'new_event2016 ')
+            .setValue('input#heading', 'autotest10 ')
             .waitForElementVisible('input#subHeading', 1000)
             .setValue('input#subHeading', 'test')
             .waitForElementVisible('#containerStartHour input', 1000)
@@ -32,7 +32,7 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#thisIsMainLoader', 10000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .useXpath()
-            .assert.elementPresent('//b[contains(text(), "new_event2016")]')
+            .assert.elementPresent('//b[contains(text(), "autotest10")]')
             .assert.containsText('//b[1][contains(text(),"8:00")]', '8:00')
             .assert.containsText('//b[2][contains(text(),"10:00")]', '10:00');
 
@@ -158,7 +158,7 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .pause(1000)
             .useXpath()
-            .assert.elementNotPresent('//b[contains(text(), "new_event2016")]');
+            .assert.elementNotPresent('//b[contains(text(), "autotest10")]');
 
     },
 });

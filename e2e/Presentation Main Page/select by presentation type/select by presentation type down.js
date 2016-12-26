@@ -28,7 +28,13 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
             .waitForElementVisible('//tr[1]/td[4]/span[text()="         SnapShot       "]', 5000)
             .assert.elementPresent('//tr[1]/td[4]/span[text()="         SnapShot       "]')
-            .assert.elementPresent('//tr[2]/td[4]/span[text()="         SnapShot       "]')
+
+            .assert.elementPresent('//tr[13]/td[4]/span[text()="         Panel discussion       "]')
+            .assert.elementPresent('//tr[14]/td[4]/span[text()="         Panel discussion       "]')
+            .assert.elementPresent('//tr[15]/td[4]/span[text()="         Panel discussion       "]')
+            .assert.elementPresent('//tr[16]/td[4]/span[text()="         Panel discussion       "]')
+            .assert.elementPresent('//tr[17]/td[4]/span[text()="         Panel discussion       "]')
+
             .assert.elementPresent('//tr[3]/td[4]/span[text()="         Keynote       "]')
             .assert.elementPresent('//tr[4]/td[4]/span[text()="         Keynote       "]')
             .assert.elementPresent('//tr[5]/td[4]/span[text()="         Keynote       "]')
@@ -39,11 +45,7 @@ module.exports = _.assign(presteps, auth, {
             .assert.elementPresent('//tr[10]/td[4]/span[text()="         Case - parallel       "]')
             .assert.elementPresent('//tr[11]/td[4]/span[text()="         Case - parallel       "]')
             .assert.elementPresent('//tr[12]/td[4]/span[text()="         Case - whole audience       "]')
-            .assert.elementPresent('//tr[13]/td[4]/span[text()="         Panel discussion       "]')
-            .assert.elementPresent('//tr[14]/td[4]/span[text()="         Panel discussion       "]')
-            .assert.elementPresent('//tr[15]/td[4]/span[text()="         Panel discussion       "]')
-            .assert.elementPresent('//tr[16]/td[4]/span[text()="         Panel discussion       "]')
-            .assert.elementPresent('//tr[17]/td[4]/span[text()="         Panel discussion       "]')
+
             .assert.elementPresent('//tr[18]/td[4]/span[text()="         Leadership presentation       "]')
             .assert.elementPresent('//tr[19]/td[4]/span[text()="         Leadership presentation       "]')
             .assert.elementPresent('//tr[20]/td[4]/span[text()="         Keynote       "]')

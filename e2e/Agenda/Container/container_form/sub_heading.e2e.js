@@ -47,7 +47,7 @@ module.exports = _.assign(presteps, auth, {
             .assert.elementPresent('//h4[contains(text(), "Container form")]')
             .useCss()
             .waitForElementVisible('input#heading', 1000)
-            .setValue('input#heading', 'new_event2016 ')
+            .setValue('input#heading', 'autotest8 ')
             .waitForElementVisible('input#subHeading', 1000)
             .setValue('input#subHeading', 'test')
             .waitForElementVisible('#containerStartHour input', 1000)
@@ -60,7 +60,7 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#thisIsMainLoader', 10000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .useXpath()
-            .assert.elementPresent('//b[contains(text(), "new_event2016")]');
+            .assert.elementPresent('//b[contains(text(), "autotest8")]');
     },
 
     'delete container': function (browser) {
@@ -72,7 +72,7 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#thisIsMainLoader', 10000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .useXpath()
-            .assert.elementNotPresent('//b[contains(text(), "new_event2016")]');
+            .assert.elementNotPresent('//b[contains(text(), "autotest8")]');
 
     },
 });

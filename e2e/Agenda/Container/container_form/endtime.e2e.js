@@ -3,7 +3,7 @@ var presteps = require('./../../../presteps/presteps.js');
 var auth = require('./../../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
-    '@disabled':true ,
+    '@disabled': true,
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/212/agenda')
@@ -30,8 +30,9 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
             .click('//form/div[2]/div/div/button[contains(text(),"Save")]')
             .assert.elementPresent('//p[text()=" End Hour is required.           "]')
-            .refresh()
-            .pause(3000);
+            .waitForElementVisible('//modal[@class="modal fade in"]//button[1][@class="btn btn-default pull-right"]', 2000)
+            .click('//modal[@class="modal fade in"]//button[1][@class="btn btn-default pull-right"]')
+            .pause(2000);
     },
 
     'check end time after event': function (browser) {
@@ -46,8 +47,9 @@ module.exports = _.assign(presteps, auth, {
             .setValue('#containerEndHour input', ['00:00', browser.Keys.ENTER])
             .useXpath()
             .assert.elementPresent('//p[text()=" Date should be between 08:00 and 23:59           "]')
-            .refresh()
-            .pause(7000);
+            .waitForElementVisible('//modal[@class="modal fade in"]//button[1][@class="btn btn-default pull-right"]', 2000)
+            .click('//modal[@class="modal fade in"]//button[1][@class="btn btn-default pull-right"]')
+            .pause(2000);
     },
 
     'check end time after creation container': function (browser) {
@@ -59,7 +61,7 @@ module.exports = _.assign(presteps, auth, {
             .assert.containsText('//h4[contains(text(),"Container form")]', 'Container form')
             .useCss()
             .waitForElementVisible('input#heading', 1000)
-            .setValue('input#heading', 'new_event2016 ')
+            .setValue('input#heading', 'autotest5')
             .waitForElementVisible('input#subHeading', 1000)
             .setValue('input#subHeading', 'test')
             .waitForElementVisible('#containerStartHour input', 1000)
@@ -68,13 +70,13 @@ module.exports = _.assign(presteps, auth, {
             .setValue('#containerEndHour input', '10:00')
             .useXpath()
             .click('//form/div[2]/div/div/button[contains(text(),"Save")]')
-            .pause(3000)
+            .waitForElementVisible('//b[2][contains(text(),"10:00")]',5000)
             .assert.containsText('//b[2][contains(text(),"10:00")]', '10:00');
     },
 
     'Check that only container was create ': function (browser) {
         browser
-            .assert.elementPresent('//b[contains(text(), "new_event2016")]')
+            .assert.elementPresent('//b[contains(text(), "autotest5")]')
             .assert.containsText('//b[1][contains(text(),"8:00")]', '8:00')
             .assert.containsText('//b[2][contains(text(),"10:00")]', '10:00');
     },
@@ -96,7 +98,7 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .pause(1000)
             .useXpath()
-            .assert.elementNotPresent('//b[contains(text(), "new_event2016")]');
+            .assert.elementNotPresent('//b[contains(text(), "autotest5")]');
 
     },
 
@@ -110,7 +112,7 @@ module.exports = _.assign(presteps, auth, {
             .assert.containsText('//h4[contains(text(),"Container form")]', 'Container form')
             .useCss()
             .waitForElementVisible('input#heading', 1000)
-            .setValue('input#heading', 'new_event2016 ')
+            .setValue('input#heading', 'autotest5 ')
             .waitForElementVisible('input#subHeading', 1000)
             .setValue('input#subHeading', 'test')
             .waitForElementVisible('#containerStartHour input', 1000)
@@ -123,7 +125,7 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#thisIsMainLoader', 10000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .useXpath()
-            .assert.elementPresent('//b[contains(text(), "new_event2016")]')
+            .assert.elementPresent('//b[contains(text(), "autotest5")]')
             .assert.containsText('//b[1][contains(text(),"8:00")]', '8:00')
             .assert.containsText('//b[2][contains(text(),"8:00")]', '8:00');
     },
@@ -138,7 +140,7 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#thisIsMainLoader', 10000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .useXpath()
-            .assert.elementNotPresent('//b[contains(text(), "new_event2016")]');
+            .assert.elementNotPresent('//b[contains(text(), "autotest5")]');
 
     },
 });

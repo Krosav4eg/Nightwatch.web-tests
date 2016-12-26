@@ -3,7 +3,7 @@ var presteps = require('./../../../presteps/presteps.js');
 var auth = require('./../../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
-    '@disabled':true ,
+    '@disabled': true,
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/212/agenda')
@@ -22,7 +22,7 @@ module.exports = _.assign(presteps, auth, {
             .assert.containsText('//h4[contains(text(),"Container form")]', 'Container form')
             .useCss()
             .waitForElementVisible('input#heading', 1000)
-            .setValue('input#heading', 'new_event2016 ')
+            .setValue('input#heading', 'test3')
             .waitForElementVisible('input#subHeading', 1000)
             .setValue('input#subHeading', 'test')
             .waitForElementVisible('#containerStartHour input', 1000)
@@ -58,19 +58,18 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
             .assert.elementPresent('//p[text()=" Start Hour is required.           "]')
             .useCss()
-            .setValue('#containerStartHour input', ['7:00', browser.Keys.ENTER])
+            .setValue('#containerStartHour input', ['7:59', browser.Keys.ENTER])
             .useXpath()
             .assert.elementPresent('//p[text()=" Date should be between 08:00 and 23:59           "]')
-            .refresh()
-            .useCss()
-            .waitForElementVisible('#thisIsMainLoader', 10000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .pause(1000);
+            .waitForElementVisible('//modal[@class="modal fade in"]//button[1][@class="btn btn-default pull-right"]', 2000)
+            .click('//modal[@class="modal fade in"]//button[1][@class="btn btn-default pull-right"]')
+            .pause(2000);
     },
 
     'delete container': function (browser) {
         browser
             .useCss()
+            .waitForElementVisible('.fa.fa-trash-o.delete-container', 2000)
             .click('.fa.fa-trash-o.delete-container')
             .pause(1000)
             .waitForElementVisible('div.modal-footer>button.btn.btn-success', 1000)
@@ -79,7 +78,7 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .pause(1000)
             .useXpath()
-            .assert.elementNotPresent('//b[contains(text(), "new_event2016")]');
+            .assert.elementNotPresent('//b[contains(text(), "test3")]');
 
     },
 });

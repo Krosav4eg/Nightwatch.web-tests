@@ -3,7 +3,7 @@ var presteps = require('./../../../presteps/presteps.js');
 var auth = require('./../../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
-    '@disabled':true ,
+    '@disabled': true,
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/212/agenda')
@@ -20,7 +20,7 @@ module.exports = _.assign(presteps, auth, {
             .assert.containsText('//h4[contains(text(),"Container form")]', 'Container form')
             .useCss()
             .waitForElementVisible('input#heading', 1000)
-            .setValue('input#heading', 'new_event2016 ')
+            .setValue('input#heading', 'autotest6')
             .waitForElementVisible('input#subHeading', 1000)
             .setValue('input#subHeading', 'test')
             .waitForElementVisible('#containerStartHour input', 1000)
@@ -33,7 +33,7 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#thisIsMainLoader', 10000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .useXpath()
-            .assert.elementPresent('//b[contains(text(), "new_event2016")]')
+            .assert.elementPresent('//b[contains(text(), "autotest6")]')
             .assert.containsText('//b[1][contains(text(),"8:00")]', '8:00')
             .assert.containsText('//b[2][contains(text(),"10:00")]', '10:00');
     },
@@ -48,7 +48,7 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .pause(1000)
             .useXpath()
-            .assert.elementNotPresent('//b[contains(text(), "new_event2016")]');
+            .assert.elementNotPresent('//b[contains(text(), "autotest6")]');
 
     },
 
@@ -66,14 +66,15 @@ module.exports = _.assign(presteps, auth, {
             .click('input#subHeading')
             .useXpath()
             .assert.elementPresent('//p[text()=" Heading is required.           "]')
-            .useCss()
-            .refresh()
-            .waitForElementVisible('#thisIsMainLoader', 10000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000);
+            .waitForElementVisible('//modal[@class="modal fade in"]//button[1][@class="btn btn-default pull-right"]', 2000)
+            .click('//modal[@class="modal fade in"]//button[1][@class="btn btn-default pull-right"]')
+            .pause(2000)
+
     },
 
     'blank.click Save': function (browser) {
         browser
+            .useCss()
             .click('button.btn.btn-primary.btn-block')
             .pause(2000)
             .useXpath()
