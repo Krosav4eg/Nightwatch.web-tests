@@ -1,9 +1,9 @@
 var _ = require('lodash');
-var presteps = require('./../../presteps/presteps.js');
-var auth = require('./../../presteps/auth.js');
+var presteps = require('./../../../presteps/presteps.js');
+var auth = require('./../../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
-    '@disabled': true,
+    '@disabled': false,
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/212/presentations')
