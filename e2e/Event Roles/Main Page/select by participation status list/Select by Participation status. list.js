@@ -3,7 +3,7 @@ var presteps = require('./../../../presteps/presteps.js');
 var auth = require('./../../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
-    '@disabled': false,
+    '@disabled': true,
 
     'redirection to the event-participant-roles': function (browser) {
         browser

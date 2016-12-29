@@ -22,10 +22,10 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
             .waitForElementVisible('//h4/span[text()="4"]', 5000)
-            .waitForElementVisible('//tr[1]/td[2]/span[text()="       Advisory board member     "]', 5000)
-            .waitForElementVisible('//tr[2]/td[2]/span[text()="       Advisory board member     "]', 5000)
-            .waitForElementVisible('//tr[3]/td[2]/span[text()="       Advisory board member     "]', 5000)
-            .waitForElementVisible('//tr[4]/td[2]/span[text()="       Advisory board member     "]', 5000);
+            .waitForElementVisible('//tr[1]/td[2]/span[text()="Advisory board member"]', 5000)
+            .waitForElementVisible('//tr[2]/td[2]/span[text()="Advisory board member"]', 5000)
+            .waitForElementVisible('//tr[3]/td[2]/span[text()="Advisory board member"]', 5000)
+            .waitForElementVisible('//tr[4]/td[2]/span[text()="Advisory board member"]', 5000);
 
     },
 
@@ -38,7 +38,7 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
             .waitForElementVisible('//h4/span[text()="1"]', 5000)
-            .waitForElementVisible('//tr[1]/td[2]/span[text()="       Awards candidate     "]', 5000);
+            .waitForElementVisible('//tr[1]/td[2]/span[text()="Awards candidate"]', 5000);
 
     },
     ' Case / expert speaker. check that number  is correct and the same as in list': function (browser) {
@@ -48,10 +48,10 @@ module.exports = _.assign(presteps, auth, {
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
-            .waitForElementVisible('//h4/span[text()="3"]', 5000)
-            .waitForElementVisible('//tr[1]/td[2]/span[text()="       Case / expert speaker     "]', 5000)
-            .waitForElementVisible('//tr[2]/td[2]/span[text()="       Case / expert speaker     "]', 5000)
-            .waitForElementVisible('//tr[3]/td[2]/span[text()="       Case / expert speaker     "]', 5000);
+            .waitForElementVisible('//h4/span[text()="2"]', 5000)
+            .waitForElementVisible('//tr[1]/td[2]/span[text()="Case / expert speaker"]', 5000)
+            .waitForElementVisible('//tr[2]/td[2]/span[text()="Case / expert speaker"]', 5000);
+
 
     },
     'Chairman . check that number  is correct and the same as in list': function (browser) {
@@ -63,8 +63,8 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
             .waitForElementVisible('//h4/span[text()="2"]', 5000)
-            .waitForElementVisible('//tr[1]/td[2]/span[text()="       Chairman     "]', 5000)
-            .waitForElementVisible('//tr[2]/td[2]/span[text()="       Chairman     "]', 5000);
+            .waitForElementVisible('//tr[1]/td[2]/span[text()="Chairman"]', 5000)
+            .waitForElementVisible('//tr[2]/td[2]/span[text()="Chairman"]', 5000);
 
     },
     'Cross-function keynote speaker. check that number  is correct and the same as in list': function (browser) {
@@ -76,7 +76,7 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
             .waitForElementVisible('//h4/span[text()="1"]', 5000)
-            .waitForElementVisible('//tr[1]/td[2]/span[text()="       Cross-function keynote speaker     "]', 5000);
+            .waitForElementVisible('//tr[1]/td[2]/span[text()="Cross-function keynote speaker"]', 5000);
 
     },
     'debate speaker. check that number  is correct and the same as in list': function (browser) {
@@ -88,10 +88,10 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
             .waitForElementVisible('//h4/span[text()="4"]', 5000)
-            .waitForElementVisible('//tr[1]/td[2]/span[text()="       Debate speaker     "]', 5000)
-            .waitForElementVisible('//tr[2]/td[2]/span[text()="       Debate speaker     "]', 5000)
-            .waitForElementVisible('//tr[3]/td[2]/span[text()="       Debate speaker     "]', 5000)
-            .waitForElementVisible('//tr[4]/td[2]/span[text()="       Debate speaker     "]', 5000);
+            .waitForElementVisible('//tr[1]/td[2]/span[text()="Debate speaker"]', 5000)
+            .waitForElementVisible('//tr[2]/td[2]/span[text()="Debate speaker"]', 5000)
+            .waitForElementVisible('//tr[3]/td[2]/span[text()="Debate speaker"]', 5000)
+            .waitForElementVisible('//tr[4]/td[2]/span[text()="Debate speaker"]', 5000);
 
     },
     ' FishBowl speaker. check that number  is correct and the same as in list': function (browser) {
@@ -103,7 +103,7 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
             .waitForElementVisible('//h4/span[text()="1"]', 5000)
-            .waitForElementVisible('//tr[1]/td[2]/span[text()="       FishBowl speaker     "]', 5000);
+            .waitForElementVisible('//tr[1]/td[2]/span[text()="FishBowl speaker"]', 5000);
 
     },
     ' Group discussion initiator. check that number  is correct and the same as in list': function (browser) {
@@ -115,8 +115,8 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
             .waitForElementVisible('//h4/span[text()="2"]', 5000)
-            .waitForElementVisible('//tr[1]/td[2]/span[text()="       Group discussion initiator     "]', 5000)
-            .waitForElementVisible('//tr[2]/td[2]/span[text()="       Group discussion initiator     "]', 5000);
+            .waitForElementVisible('//tr[1]/td[2]/span[text()="Group discussion initiator"]', 5000)
+            .waitForElementVisible('//tr[2]/td[2]/span[text()="Group discussion initiator"]', 5000);
 
     },
     'Host delegate. check that number  is correct and the same as in list': function (browser) {
@@ -128,8 +128,8 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
             .waitForElementVisible('//h4/span[text()="2"]', 5000)
-            .waitForElementVisible('//tr[1]/td[2]/span[text()="       Host delegate     "]', 5000)
-            .waitForElementVisible('//tr[2]/td[2]/span[text()="       Host delegate     "]', 5000);
+            .waitForElementVisible('//tr[1]/td[2]/span[text()="Host delegate"]', 5000)
+            .waitForElementVisible('//tr[2]/td[2]/span[text()="Host delegate"]', 5000);
 
     },
     'Keynote speaker. check that number  is correct and the same as in list': function (browser) {
@@ -140,9 +140,8 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
-            .waitForElementVisible('//h4/span[text()="2"]', 5000)
-            .waitForElementVisible('//tr[1]/td[2]/span[text()="       Keynote speaker     "]', 5000)
-            .waitForElementVisible('//tr[1]/td[2]/span[text()="       Keynote speaker     "]', 5000);
+            .waitForElementVisible('//h4/span[text()="1"]', 5000)
+            .waitForElementVisible('//tr[1]/td[2]/span[text()="Keynote speaker"]', 5000);
 
     },
     'Leadership speaker. check that number  is correct and the same as in list': function (browser) {
@@ -154,8 +153,8 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
             .waitForElementVisible('//h4/span[text()="2"]', 5000)
-            .waitForElementVisible('//tr[1]/td[2]/span[text()="       Leadership speaker     "]', 5000)
-            .waitForElementVisible('//tr[1]/td[2]/span[text()="       Leadership speaker     "]', 5000);
+            .waitForElementVisible('//tr[1]/td[2]/span[text()="Leadership speaker"]', 5000)
+            .waitForElementVisible('//tr[1]/td[2]/span[text()="Leadership speaker"]', 5000);
 
     },
     'panel speaker. check that number  is correct and the same as in list': function (browser) {
@@ -166,13 +165,11 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
-            .waitForElementVisible('//h4/span[text()="5"]', 5000)
-            .waitForElementVisible('//tr[1]/td[2]/span[text()="       Panel speaker     "]', 5000)
-            .waitForElementVisible('//tr[2]/td[2]/span[text()="       Panel speaker     "]', 5000)
-            .waitForElementVisible('//tr[3]/td[2]/span[text()="       Panel speaker     "]', 5000)
-            .waitForElementVisible('//tr[4]/td[2]/span[text()="       Panel speaker     "]', 5000)
-            .waitForElementVisible('//tr[3]/td[2]/span[text()="       Panel speaker     "]', 5000);
-
+            .waitForElementVisible('//h4/span[text()="4"]', 5000)
+            .waitForElementVisible('//tr[1]/td[2]/span[text()="Panel speaker"]', 5000)
+            .waitForElementVisible('//tr[2]/td[2]/span[text()="Panel speaker"]', 5000)
+            .waitForElementVisible('//tr[3]/td[2]/span[text()="Panel speaker"]', 5000)
+            .waitForElementVisible('//tr[4]/td[2]/span[text()="Panel speaker"]', 5000);
 
     },
     ' Testimonial. check that number  is correct and the same as in list': function (browser) {
@@ -184,8 +181,8 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
             .waitForElementVisible('//h4/span[text()="2"]', 5000)
-            .waitForElementVisible('//tr[1]/td[2]/span[text()="       Testimonial     "]', 5000)
-            .waitForElementVisible('//tr[2]/td[2]/span[text()="       Testimonial     "]', 5000);
+            .waitForElementVisible('//tr[1]/td[2]/span[text()="Testimonial"]', 5000)
+            .waitForElementVisible('//tr[2]/td[2]/span[text()="Testimonial"]', 5000);
 
     },
 
