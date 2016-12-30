@@ -31,22 +31,16 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('//tr[1]/td[5]/span/div[text()="           Heading           "]/ul/li[3]/span[text()="                 Sub heading 3               "]', 30000)
             .waitForElementVisible('//tr[1]/td[7]/span/ul/li[1][text()="             Mainova AG           "]', 3000)
             .waitForElementVisible('//tr[1]/td[7]/span/ul/li[2][text()="             :em engineering methods AG           "]', 3000)
-            .waitForElementVisible('//tr[1]/td[7]/span/ul/li[3][text()="             Norwegian Ministry of Foreign Affairs           "]', 3000)
-            .waitForElementVisible('//tr[1]/td[8]/span/ul/li[1][text()="             Lübcke           "]', 3000)
             .waitForElementVisible('//tr[1]/td[8]/span/ul/li[2][text()="             Nikolay           "]', 3000)
-            .waitForElementVisible('//tr[1]/td[8]/span/ul/li[3][text()="             Vekve           "]', 3000)
             .waitForElementVisible('//tr[1]/td[9]/span/ul/li[2][text()="             Hodosov           "]', 3000)
-            .waitForElementVisible('//tr[1]/td[9]/span/ul/li[3][text()="             Sandra           "]', 3000)
             .waitForElementVisible('//tr[1]/td[9]/span/ul/li[1][text()="             Philipp           "]', 3000)
             .waitForElementVisible('//tr[1]/td[10]/span/ul/li[1][text()="             Bereichsleiter IT           "]', 3000)
             .waitForElementVisible('//tr[1]/td[10]/span/ul/li[2][text()="             Function Title           "]', 3000)
-            .waitForElementVisible('//tr[1]/td[10]/span/ul/li[3][text()="             Senior Adviser Information Security           "]', 3000)
             .waitForElementVisible('//tr[1]/td[11]/span/ul/li[1][text()="             p.luebcke@mainova.de           "]', 3000)
             .waitForElementVisible('//tr[1]/td[11]/span/ul/li[2][text()="             go@go.go           "]', 3000)
-            .waitForElementVisible('//tr[1]/td[11]/span/ul/li[3][text()="             sandra.vekve@mfa.no           "]', 3000)
             .waitForElementVisible('//tr[1]/td[12]/span/ul/li[1][text()="             +49151 46756613           "]', 3000)
-            .waitForElementVisible('//tr[1]/td[12]/span/ul/li[2][text()="             4790992788           "]', 3000)
-            .waitForElementVisible('//tr[1]/td[12]/span/ul/li[3][text()="             324567890546789           "]', 3000);
+            .waitForElementVisible('//tr[1]/td[12]/span/ul/li[2][text()="             4790992788           "]', 3000);
+
     },
     'check information about speaker in the edit presentation (#3696)': function (browser) {
         browser
@@ -56,38 +50,24 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
             .waitForElementVisible('//h1[text()="Edit Presentation (#3696)"]', 3000)
-
             .waitForElementVisible('//a[@href="/presentations/3696/master-contact/416319"]', 3000)
             .waitForElementVisible('//a[@href="/presentations/3696/master-contact/492275"]', 3000)
-            .waitForElementVisible('//a[@href="/presentations/3696/master-contact/6"]', 3000)
-
             .waitForElementVisible('//tr[1]/td[2]/span[text()="       Delegate     "]', 3000)
             .waitForElementVisible('//tr[2]/td[2]/span[text()="       Guest Speaker     "]', 3000)
-            .waitForElementVisible('//tr[3]/td[2]/span[text()="       Delegate     "]', 3000)
             .waitForElementVisible('//tr[1]/td[3]/span[text()="       Mainova AG     "]', 3000)
             .waitForElementVisible('//tr[2]/td[3]/span[text()="       :em engineering methods AG     "]', 3000)
-            .waitForElementVisible('//tr[3]/td[3]/span[text()="       Norwegian Ministry of Foreign Affairs     "]', 3000)
-
             .waitForElementVisible('//tr[1]/td[4]/span[text()="       Lübcke     "]', 3000)
             .waitForElementVisible('//tr[2]/td[4]/span[text()="       Nikolay     "]', 3000)
-            .waitForElementVisible('//tr[3]/td[4]/span[text()="       Vekve     "]', 3000)
-
             .waitForElementVisible('//tr[1]/td[5]/span[text()="       Philipp     "]', 3000)
             .waitForElementVisible('//tr[2]/td[5]/span[text()="       Hodosov     "]', 3000)
-            .waitForElementVisible('//tr[3]/td[5]/span[text()="       Sandra     "]', 3000)
             .waitForElementVisible('//tr[2]/td[6]/span[text()="       Academic Title     "]', 3000)
             .waitForElementVisible('//tr[1]/td[7]/span[text()="       Bereichsleiter IT     "]', 3000)
             .waitForElementVisible('//tr[2]/td[7]/span[text()="       Function Title     "]', 3000)
-            .waitForElementVisible('//tr[3]/td[7]/span[text()="       Senior Adviser Information Security     "]', 3000)
-
             .waitForElementVisible('//tr[1]/td[8]/span[text()="       p.luebcke@mainova.de     "]', 3000)
             .waitForElementVisible('//tr[2]/td[8]/span[text()="       go@go.go     "]', 3000)
-            .waitForElementVisible('//tr[3]/td[8]/span[text()="       sandra.vekve@mfa.no     "]', 3000)
-
             .waitForElementVisible('//tr[1]/td[9]/span[text()="       Delegate     "]', 3000)
             .waitForElementVisible('//tr[2]/td[9]/span[text()="       Delegate     "]', 3000)
             .waitForElementVisible('//tr[3]/td[9]/span[text()="       Delegate     "]', 3000)
-
             .waitForElementVisible('//tr[2]/td[10]/span/button[@class="btn btn-danger"]', 3000)
             .waitForElementVisible('//tr[3]/td[10]/span/button[@class="btn btn-danger"]', 3000);
 

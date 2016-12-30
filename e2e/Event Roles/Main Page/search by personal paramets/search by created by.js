@@ -14,13 +14,16 @@
 //         browser
 //             .useXpath()
 //             .waitForElementVisible('//h1[text()="Event role"]', 3000)
-//             .waitForElementVisible('//tr[1]/td[10]/input[@type="text"]', 3000)
+//             .waitForElementVisible('//tr[1]/td[10]/input[@type="text"]', 7000)
 //             .setValue('//tr[1]/td[10]/input[@type="text"]', ['Xsolve Test User', browser.Keys.ENTER])
 //             .useCss()
 //             .waitForElementVisible('#thisIsMainLoader', 3000)
 //             .waitForElementNotVisible('#thisIsMainLoader', 3000)
 //             .useXpath()
 //             .waitForElementVisible('//span[text()="       Xsolve Test User     "]', 3000)
+//
+//
+//
 //
 //     },
 //
