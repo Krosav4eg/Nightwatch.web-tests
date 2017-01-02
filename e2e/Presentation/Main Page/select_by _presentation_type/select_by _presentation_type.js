@@ -35,10 +35,7 @@ module.exports = _.assign(presteps, auth, {
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
-            .waitForElementVisible('//h4/span[text()="3"]', 5000)
-            .waitForElementVisible('//tr[1]/td[4]/span[text()="         Case - parallel       "]', 5000)
-            .waitForElementVisible('//tr[2]/td[4]/span[text()="         Case - parallel       "]', 5000)
-            .waitForElementVisible('//tr[3]/td[4]/span[text()="         Case - parallel       "]', 5000);
+            .waitForElementVisible('//h4/span[text()="3"]', 5000);
 
     },
     'case - whole audience. check that number  is correct and the same as in list': function (browser) {
@@ -48,8 +45,8 @@ module.exports = _.assign(presteps, auth, {
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
-            .waitForElementVisible('//h4/span[text()="1"]', 5000)
-            .waitForElementVisible('//tr[1]/td[4]/span[text()="         Case - whole audience       "]', 5000);
+            .waitForElementVisible('//h4/span[text()="1"]', 5000);
+
 
     },
     'delegate - Chairman speach . check that number  is correct and the same as in list': function (browser) {
@@ -112,10 +109,7 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
-            .waitForElementVisible('//h4/span[text()="3"]', 5000)
-            .waitForElementVisible('//tr[1]/td[4]/span[text()="         Gold spotlight       "]', 5000)
-            .waitForElementVisible('//tr[2]/td[4]/span[text()="         Gold spotlight       "]', 5000)
-            .waitForElementVisible('//tr[3]/td[4]/span[text()="         Gold spotlight       "]', 5000);
+            .waitForElementVisible('//h4/span[text()="3"]', 5000);
 
     },
     ' delegate - Group discussion initiation. check that number  is correct and the same as in list': function (browser) {
@@ -140,8 +134,7 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
             .waitForElementVisible('//h4/span[text()="1"]', 5000)
-            .waitForElementVisible('//tr[1]/td[4]/span[text()="         Keynote       "]', 5000)
-            //.waitForElementVisible('//tr[2]/td[4]/span[text()="         Keynote       "]', 5000);
+            .waitForElementVisible('//tr[1]/td[4]/span[text()="         Keynote       "]', 5000);
 
     },
     ' delegate - Leadership presentation. check that number  is correct and the same as in list': function (browser) {
@@ -169,9 +162,7 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('//tr[1]/td[4]/span[text()="         Panel discussion       "]', 5000)
             .waitForElementVisible('//tr[2]/td[4]/span[text()="         Panel discussion       "]', 5000)
             .waitForElementVisible('//tr[3]/td[4]/span[text()="         Panel discussion       "]', 5000)
-            .waitForElementVisible('//tr[4]/td[4]/span[text()="         Panel discussion       "]', 5000)
-            //.waitForElementVisible('//tr[5]/td[4]/span[text()="         Panel discussion       "]', 5000);
-
+            .waitForElementVisible('//tr[4]/td[4]/span[text()="         Panel discussion       "]', 5000);
     },
     ' partner - SnapShot. check that number  is correct and the same as in list': function (browser) {
         browser
@@ -181,9 +172,7 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
-            .waitForElementVisible('//h4/span[text()="2"]', 5000)
-            .waitForElementVisible('//tr[1]/td[4]/span[text()="         SnapShot       "]', 5000)
-            .waitForElementVisible('//tr[2]/td[4]/span[text()="         SnapShot       "]', 5000);
+            .waitForElementVisible('//h4/span[text()="2"]', 5000);
 
     },
     ' Partner - Keynote. check that number  is correct and the same as in list': function (browser) {

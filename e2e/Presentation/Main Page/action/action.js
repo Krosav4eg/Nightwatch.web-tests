@@ -21,7 +21,7 @@ module.exports = _.assign(presteps, auth, {
     },
     'pess on id': function (browser) {
         browser
-            .waitForElementVisible('//a[@href="/presentations/edit/3696"]', 3000)
+            .waitForElementVisible('//a[@href="/presentations/edit/3696"]', 10000)
             .click('//a[@href="/presentations/edit/3696"]')
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)
@@ -56,8 +56,8 @@ module.exports = _.assign(presteps, auth, {
     },
     'press on organizer name': function (browser) {
         browser
-            .waitForElementVisible('//a[@href="/presentations/3696/master-contact/6"]', 3000)
-            .click('//a[@href="/presentations/3696/master-contact/6"]')
+            .waitForElementVisible('//a[@href="/presentations/edit/3696"]', 10000)
+            .click('//a[@href="/presentations/edit/3696"]')
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000)

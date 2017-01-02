@@ -17,11 +17,9 @@ module.exports = _.assign(presteps, auth, {
             .useCss()
             .waitForElementVisible('a[href="/presentations/edit/3696"]', 5000)
             .assert.elementPresent('a[href="/presentations/edit/3696"]')
-            .assert.elementPresent('a[href="/presentations/edit/3716"]')
             .assert.elementPresent('a[href="/presentations/edit/3723"]')
-            .assert.elementPresent('a[href="/presentations/edit/3725"]')
             .assert.elementPresent('a[href="/presentations/edit/3726"]')
-            .assert.elementPresent('a[href="/presentations/edit/3727"]')
+            .assert.elementPresent('a[href="/presentations/edit/3733"]')
             .assert.elementPresent('a[href="/presentations/edit/3729"]')
             .assert.elementPresent('a[href="/presentations/edit/3752"]')
             .assert.elementPresent('a[href="/presentations/edit/3753"]')
@@ -34,9 +32,8 @@ module.exports = _.assign(presteps, auth, {
             .assert.elementPresent('a[href="/presentations/edit/3762"]')
             .assert.elementPresent('a[href="/presentations/edit/3763"]')
             .assert.elementPresent('a[href="/presentations/edit/3795"]')
-            .assert.elementPresent('a[href="/presentations/edit/3795"]')
-            .assert.elementPresent('a[href="/presentations/edit/3810"]')
-
+            .assert.elementPresent('a[href="/presentations/edit/3811"]')
+            .assert.elementPresent('a[href="/presentations/edit/3810"]');
 
     },
 

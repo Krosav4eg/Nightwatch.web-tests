@@ -31,7 +31,7 @@ module.exports = _.assign(presteps, auth, {
                     .waitForElementVisible('//tr/td[11]/span/ul/li[1][text()="             p.luebcke@mainova.de           "]', 5000)
                     .assert.elementPresent('//tr/td[11]/span/ul/li[1][text()="             p.luebcke@mainova.de           "]')
                     .assert.elementPresent('//tr[1]/td[11]/span/ul/li[text()="             go@go.go           "]')
-                    //.assert.elementPresent('//tr[1]/td[11]/span/ul/li[text()="             sandra.vekve@mfa.no           "]')
+                    .assert.elementPresent('//tr[1]/td[11]/span/ul/li[text()="             Sergey_Potapof@mail.ru           "]')
 
             });
 

@@ -32,7 +32,7 @@ module.exports = _.assign(presteps, auth, {
                     .assert.elementPresent('//tr[1]/td[12]/span/ul/li[text()="             4915254617454           "]')
                     .assert.elementPresent('//tr[2]/td[12]/span/ul/li[text()="             +49151 46756613           "]')
                     .assert.elementPresent('//tr[2]/td[12]/span/ul/li[text()="             4790992788           "]')
-                   // .assert.elementPresent('//tr[2]/td[12]/span/ul/li[text()="             324567890546789           "]')
+                    .assert.elementPresent('//tr[2]/td[12]/span/ul/li[text()="             0978544488           "]')
 
 
             });

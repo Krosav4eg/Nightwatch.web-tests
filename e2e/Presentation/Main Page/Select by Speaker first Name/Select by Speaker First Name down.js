@@ -28,11 +28,11 @@ module.exports = _.assign(presteps, auth, {
                     .waitForElementVisible('#thisIsMainLoader', 30000)
                     .waitForElementNotVisible('#thisIsMainLoader', 30000)
                     .useXpath()
-                    .waitForElementVisible('//tr[1]/td[9]/span/ul/li[text()="             Philipp           "]', 5000)
-                    .assert.elementPresent('//tr[1]/td[9]/span/ul/li[text()="             Philipp           "]')
-                    .assert.elementPresent('//tr[1]/td[9]/span/ul/li[text()="             Hodosov           "]')
+                    .waitForElementVisible('//tr[1]/td[9]/span/ul/li[text()="             Herbert           "]', 5000)
+                    .assert.elementPresent('//tr[1]/td[9]/span/ul/li[text()="             Herbert           "]')
                     .assert.elementPresent('//tr[1]/td[9]/span/ul/li[text()="             Sandra           "]')
-                    .assert.elementPresent('//tr[5]/td[9]/span/ul/li[text()="             Philipp           "]')
+                    .assert.elementPresent('//tr[2]/td[9]/span/ul/li[text()="             Sandra           "]')
+                    .assert.elementPresent('//tr[2]/td[9]/span/ul/li[text()="             Olav           "]')
 
             });
 

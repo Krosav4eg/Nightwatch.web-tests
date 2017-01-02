@@ -46,7 +46,6 @@ module.exports = _.assign(presteps, auth, {
             .assert.elementPresent('//tr[17]/td[4]/span[text()="         Leadership presentation       "]')
             .assert.elementPresent('//tr[18]/td[4]/span[text()="         Leadership presentation       "]')
             .assert.elementPresent('//tr[19]/td[4]/span[text()="         Keynote       "]')
-
             .assert.elementPresent('//tr[20]/td[4]/span[text()="         Group discussion initiation       "]')
 
     },

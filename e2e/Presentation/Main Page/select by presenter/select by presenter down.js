@@ -44,7 +44,7 @@ module.exports = _.assign(presteps, auth, {
             .assert.elementPresent('//tr[16]/td[2]/span[text()="         Delegate       "]')
             .assert.elementPresent('//tr[17]/td[2]/span[text()="         Delegate       "]')
             .assert.elementPresent('//tr[18]/td[2]/span[text()="         Delegate       "]')
-            .assert.elementPresent('//tr[19]/td[2]/span[text()="         Delegate       "]')
+            .assert.elementPresent('//tr[19]/td[2]/span[text()="         Delegate       "]');
             // .assert.elementPresent('//tr[20]/td[2]/span[text()="         Delegate       "]')
 
 

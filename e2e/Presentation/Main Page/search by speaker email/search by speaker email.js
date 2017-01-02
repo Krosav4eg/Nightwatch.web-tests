@@ -25,8 +25,7 @@ module.exports = _.assign(presteps, auth, {
                     .waitForElementVisible('//tr[1]/td[11]/span/ul/li[text()="             p.luebcke@mainova.de           "]', 5000)
                     .assert.elementPresent('//tr[1]/td[11]/span/ul/li[text()="             p.luebcke@mainova.de           "]')
                     .assert.elementPresent('//tr[1]/td[11]/span/ul/li[text()="             go@go.go           "]')
-                   // .assert.elementPresent('//tr[1]/td[11]/span/ul/li[text()="             sandra.vekve@mfa.no           "]')
-                    .assert.elementPresent('//tr[2]/td[11]/span/ul/li[text()="             p.luebcke@mainova.de           "]')
+                    .assert.elementPresent('//tr[1]/td[11]/span/ul/li[text()="             Sergey_Potapof@mail.ru           "]')
             });
 
     },

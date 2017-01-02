@@ -27,8 +27,9 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
             .waitForElementVisible('//tr[1]/td[7]/span/ul/li[text()="             Telenor ASA           "]', 5000)
             .assert.elementPresent('//tr[1]/td[7]/span/ul/li[text()="             Telenor ASA           "]')
-            .assert.elementPresent('//tr[2]/td[7]/span/ul/li[text()="             EWE AG           "]')
-            .assert.elementPresent('//tr[2]/td[7]/span/ul/li[2][text()="             SpareBank 1 Gruppen AS           "]')
+            .assert.elementPresent('//tr[1]/td[7]/span/ul/li[text()="             :em engineering methods AG           "]')
+            .assert.elementPresent('//tr[1]/td[7]/span/ul/li[text()="             Mainova AG           "]')
+            .assert.elementPresent('//tr[2]/td[7]/span/ul/li[text()="             Telenor ASA           "]')
             
     },
 

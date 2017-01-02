@@ -18,7 +18,7 @@ module.exports = _.assign(presteps, auth, {
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
-            .assert.elementPresent('a[href="/presentations/edit/3716"]')
+            //.assert.elementPresent('a[href="/presentations/edit/3716"]')
             .assert.elementPresent('a[href="/presentations/edit/3723"]')
             .assert.elementPresent('a[href="/presentations/edit/3725"]')
             .assert.elementPresent('a[href="/presentations/edit/3726"]')

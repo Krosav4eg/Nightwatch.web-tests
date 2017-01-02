@@ -30,8 +30,7 @@ module.exports = _.assign(presteps, auth, {
                     .useXpath()
                     .waitForElementVisible('//tr[1]/td[10]/span/ul/li[text()="             Senior IT architect           "]', 5000)
                     .assert.elementPresent('//tr[1]/td[10]/span/ul/li[text()="             Senior IT architect           "]')
-                    .assert.elementPresent('//tr[2]/td[10]/span/ul/li[text()="             Bereichsleiter IT           "]')
-                    .assert.elementPresent('//tr[2]/td[10]/span/ul/li[text()="             Function Title           "]')
+                    .assert.elementPresent('//tr[2]/td[10]/span/ul/li[text()="             Head of Business Development Infrastructure           "]')
                     .assert.elementPresent('//tr[2]/td[10]/span/ul/li[text()="             Senior Adviser Information Security           "]')
 
 
