@@ -3,7 +3,7 @@ var presteps = require('./../../../presteps/presteps.js');
 var auth = require('./../../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
-    '@disabled': true,
+    '@disabled': false,
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/212/presentations')
@@ -31,7 +31,7 @@ module.exports = _.assign(presteps, auth, {
                     .waitForElementVisible('//tr/td[11]/span/ul/li[1][text()="             p.luebcke@mainova.de           "]', 5000)
                     .assert.elementPresent('//tr/td[11]/span/ul/li[1][text()="             p.luebcke@mainova.de           "]')
                     .assert.elementPresent('//tr[1]/td[11]/span/ul/li[text()="             go@go.go           "]')
-                    .assert.elementPresent('//tr[1]/td[11]/span/ul/li[text()="             sandra.vekve@mfa.no           "]')
+                    //.assert.elementPresent('//tr[1]/td[11]/span/ul/li[text()="             sandra.vekve@mfa.no           "]')
 
             });
 

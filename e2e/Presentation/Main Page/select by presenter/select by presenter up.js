@@ -3,7 +3,7 @@ var presteps = require('./../../../presteps/presteps.js');
 var auth = require('./../../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
-    '@disabled': true,
+    '@disabled': false,
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/212/presentations')
@@ -21,9 +21,9 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
             .waitForElementVisible('//tr[1]/td[2]/span[text()="         Delegate       "]',5000)
             .assert.elementPresent('//tr[1]/td[2]/span[text()="         Delegate       "]')
-            .assert.elementPresent('//tr[2]/td[2]/span[text()="         Delegate       "]')
-            .assert.elementPresent('//tr[3]/td[2]/span[text()="         Delegate       "]')
-            .assert.elementPresent('//tr[4]/td[2]/span[text()="         Delegate       "]')
+            .assert.elementPresent('//tr[2]/td[2]/span[text()="         Partner       "]')
+            .assert.elementPresent('//tr[3]/td[2]/span[text()="         Partner       "]')
+            .assert.elementPresent('//tr[4]/td[2]/span[text()="         Partner       "]')
             .assert.elementPresent('//tr[5]/td[2]/span[text()="         Partner       "]')
             .assert.elementPresent('//tr[6]/td[2]/span[text()="         Partner       "]')
             .assert.elementPresent('//tr[7]/td[2]/span[text()="         Partner       "]')
@@ -33,10 +33,13 @@ module.exports = _.assign(presteps, auth, {
             .assert.elementPresent('//tr[11]/td[2]/span[text()="         Partner       "]')
             .assert.elementPresent('//tr[12]/td[2]/span[text()="         Partner       "]')
             .assert.elementPresent('//tr[13]/td[2]/span[text()="         Partner       "]')
-            .assert.elementPresent('//tr[14]/td[2]/span[text()="         Partner       "]')
-            .assert.elementPresent('//tr[15]/td[2]/span[text()="         Partner       "]')
-            .assert.elementPresent('//tr[16]/td[2]/span[text()="         Partner       "]')
-        
+            .assert.elementPresent('//tr[20]/td[2]/span[text()="         Delegate       "]')
+            .assert.elementPresent('//tr[19]/td[2]/span[text()="         Delegate       "]')
+            .assert.elementPresent('//tr[18]/td[2]/span[text()="         Delegate       "]')
+            .assert.elementPresent('//tr[17]/td[2]/span[text()="         Delegate       "]')
+            .assert.elementPresent('//tr[16]/td[2]/span[text()="         Delegate       "]')
+            .assert.elementPresent('//tr[15]/td[2]/span[text()="         Delegate       "]')
+            .assert.elementPresent('//tr[14]/td[2]/span[text()="         Delegate       "]')
 
     },
 

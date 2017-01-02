@@ -3,7 +3,7 @@ var presteps = require('./../../../presteps/presteps.js');
 var auth = require('./../../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
-    '@disabled': true,
+    '@disabled': false,
 
     'redirection to agenda': function (browser) {
         browser
@@ -21,10 +21,9 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
-            .waitForElementVisible('//h4/span[text()="3"]', 5000)
+            .waitForElementVisible('//h4/span[text()="2"]', 5000)
             .waitForElementVisible('//tr[1]/td[4]/span[text()="         Case presentation       "]', 5000)
             .waitForElementVisible('//tr[2]/td[4]/span[text()="         Case presentation       "]', 5000)
-            .waitForElementVisible('//tr[3]/td[4]/span[text()="         Case presentation       "]', 5000);
 
     },
 
@@ -140,9 +139,9 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
-            .waitForElementVisible('//h4/span[text()="2"]', 5000)
+            .waitForElementVisible('//h4/span[text()="1"]', 5000)
             .waitForElementVisible('//tr[1]/td[4]/span[text()="         Keynote       "]', 5000)
-            .waitForElementVisible('//tr[2]/td[4]/span[text()="         Keynote       "]', 5000);
+            //.waitForElementVisible('//tr[2]/td[4]/span[text()="         Keynote       "]', 5000);
 
     },
     ' delegate - Leadership presentation. check that number  is correct and the same as in list': function (browser) {
@@ -166,12 +165,12 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
-            .waitForElementVisible('//h4/span[text()="5"]', 5000)
+            .waitForElementVisible('//h4/span[text()="4"]', 5000)
             .waitForElementVisible('//tr[1]/td[4]/span[text()="         Panel discussion       "]', 5000)
             .waitForElementVisible('//tr[2]/td[4]/span[text()="         Panel discussion       "]', 5000)
             .waitForElementVisible('//tr[3]/td[4]/span[text()="         Panel discussion       "]', 5000)
             .waitForElementVisible('//tr[4]/td[4]/span[text()="         Panel discussion       "]', 5000)
-            .waitForElementVisible('//tr[5]/td[4]/span[text()="         Panel discussion       "]', 5000);
+            //.waitForElementVisible('//tr[5]/td[4]/span[text()="         Panel discussion       "]', 5000);
 
     },
     ' partner - SnapShot. check that number  is correct and the same as in list': function (browser) {
