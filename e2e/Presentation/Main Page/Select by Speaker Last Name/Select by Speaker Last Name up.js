@@ -3,8 +3,8 @@ var presteps = require('./../../../presteps/presteps.js');
 var auth = require('./../../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
-    '@disabled': false,
-    'redirection to agenda': function (browser) {
+    '@disabled': true,
+    'redirection to true': function (browser) {
         browser
             .relUrl('/event/212/presentations')
             .waitForElementVisible('#thisIsMainLoader', 30000)
