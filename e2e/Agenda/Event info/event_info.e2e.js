@@ -3,52 +3,52 @@ var presteps = require('./../../presteps/presteps.js');
 var auth = require('./../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
-    '@disabled':true ,
+    '@disabled':true,
     'redirection to agenda': function (browser) {
         browser
-            .relUrl('/event/232/agenda')
+            .relUrl('/event/210/agenda')
             .waitForElementVisible('#thisIsMainLoader', 10000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000);
     },
 
     'check event name': function (browser) {
         browser.useXpath()
-            .waitForElementVisible('//h3[contains(text(),"IndustryForum Energy")]', 3000)
-            .assert.containsText('//h3[contains(text(),"IndustryForum Energy")]', 'IndustryForum Energy');
+            .waitForElementVisible('//h3[contains(text(),"IndustryForum Automotive")]', 3000)
+            .assert.containsText('//h3[contains(text(),"IndustryForum Automotive")]', 'IndustryForum Automotive');
     },
 
     'check event Local name': function (browser) {
         browser
-            .waitForElementVisible('//div[contains(text(),"Local name: StrategyCircle Energie")]', 3000)
-            .assert.containsText('//div[contains(text(),"Local name: StrategyCircle Energie")]', 'Local name: StrategyCircle Energie');
+            .waitForElementVisible('//div[contains(text(),"Local name: StrategyCircle Automobilindustrie")]', 3000)
+            .assert.containsText('//div[contains(text(),"Local name: StrategyCircle Automobilindustrie")]', 'Local name: StrategyCircle Automobilindustrie');
     },
 
     'check event date': function (browser) {
         browser
-            .waitForElementVisible('//div[contains(text(),"Dates: 2012-05-09 08:00:00 - 2012-05-10 18:00:00")]', 1000)
-            .assert.containsText('//div[contains(text(),"Dates: 2012-05-09 08:00:00 - 2012-05-10 18:00:00")]', 'Dates: 2012-05-09 08:00:00 - 2012-05-10 18:00:00');
+            .waitForElementVisible('//div[contains(text(),"Dates: 2012-11-27 08:00:00 - 2012-11-28 18:00:00")]', 1000)
+            .assert.containsText('//div[contains(text(),"Dates: 2012-11-27 08:00:00 - 2012-11-28 18:00:00")]', 'Dates: 2012-11-27 08:00:00 - 2012-11-28 18:00:00');
     },
 
     'check event ID': function (browser) {
         browser
-            .waitForElementVisible('//h4[contains(text()," (#212)")]', 1000)
-            .assert.containsText('//h4[contains(text()," (#212)")]', '(#212)');
+            .waitForElementVisible('//h4[contains(text()," (#210)")]', 1000)
+            .assert.containsText('//h4[contains(text()," (#210)")]', '(#210)');
     },
 
     'two day event (data and time check)': function (browser) {
         browser
-            .waitForElementVisible('//div[contains(text(),"Dates: 2012-05-09 08:00:00 - 2012-05-10 18:00:00")]', 1000)
-            .assert.containsText('//div[contains(text(),"Dates: 2012-05-09 08:00:00 - 2012-05-10 18:00:00")]', 'Dates: 2012-05-09 08:00:00 - 2012-05-10 18:00:00');
+            .waitForElementVisible('//div[contains(text(),"Dates: 2012-11-27 08:00:00 - 2012-11-28 18:00:00")]', 1000)
+            .assert.containsText('//div[contains(text(),"Dates: 2012-11-27 08:00:00 - 2012-11-28 18:00:00")]', 'Dates: 2012-11-27 08:00:00 - 2012-11-28 18:00:00');
     },
 
     'two day event (day tabs)': function (browser) {
         browser
             .useCss()
             .waitForElementVisible('a.btn.btn-default.day.active', 1000)
-            .assert.containsText('a.btn.btn-default.day.active', '2012-05-09')
+            .assert.containsText('a.btn.btn-default.day.active', '2012-11-27')
             .useXpath()
             .waitForElementVisible('//a[@class="btn btn-default day"]', 1000)
-            .assert.containsText('//a[@class="btn btn-default day"]', '2012-05-10');
+            .assert.containsText('//a[@class="btn btn-default day"]', '2012-11-28');
     },
 
     'can not create time before event': function (browser) {
@@ -175,7 +175,7 @@ module.exports = _.assign(presteps, auth, {
 
     'redirection to one day event': function (browser) {
         browser
-            .relUrl('/event/213/presentations')
+            .relUrl('/event/210/presentations')
             .useCss()
             .pause(1000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
@@ -185,8 +185,8 @@ module.exports = _.assign(presteps, auth, {
     'one day event (data and time check)': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//div[contains(text(),"Dates: 2012-05-24 08:00:00 - 2012-05-24 18:00:00")]', 1000)
-            .assert.containsText('//div[contains(text(),"Dates: 2012-05-24 08:00:00 - 2012-05-24 18:00:00")]', 'Dates: 2012-05-24 08:00:00 - 2012-05-24 18:00:00');
+            .waitForElementVisible('//div[contains(text(),"Dates: 2012-11-27 08:00:00 - 2012-11-28 18:00:00")]', 1000)
+            .assert.containsText('//div[contains(text(),"Dates: 2012-11-27 08:00:00 - 2012-11-28 18:00:00")]', 'Dates: 2012-11-27 08:00:00 - 2012-11-28 18:00:00');
     },
 
     'check the tabs are not displaying in one day event': function (browser) {
