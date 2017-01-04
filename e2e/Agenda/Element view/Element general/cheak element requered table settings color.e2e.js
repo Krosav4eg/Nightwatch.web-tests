@@ -19,7 +19,7 @@ module.exports = _.assign(presteps, auth, {
             .assert.containsText('//h4[contains(text(),"Container form")]', 'Container form')
             .useCss()
             .waitForElementVisible('input#heading', 1000)
-            .setValue('input#heading', 'new_event2016 ')
+            .setValue('input#heading', 'autotest10 ')
             .waitForElementVisible('input#subHeading', 1000)
             .setValue('input#subHeading', 'test')
             .waitForElementVisible('#containerStartHour input', 1000)
@@ -32,7 +32,7 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#thisIsMainLoader', 10000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .useXpath()
-            .assert.elementPresent('//b[contains(text(), "new_event2016")]')
+            .assert.elementPresent('//b[contains(text(), "autotest10")]')
             .assert.containsText('//b[1][contains(text(),"8:00")]', '8:00')
             .assert.containsText('//b[2][contains(text(),"10:00")]', '10:00');
 
@@ -52,29 +52,28 @@ module.exports = _.assign(presteps, auth, {
             .assert.elementPresent('//label[contains(text(),"           Agenda Element Entry Type ")]');
     },
 
-    'choose Element requiring table setting': function (browser) {
+    'Choose Element requiring table setting': function (browser) {
         browser
             .useCss()
             .waitForElementVisible('select#agendaElementEntryTypeId.form-control', 2000)
             .click('select#agendaElementEntryTypeId.form-control')
-            .pause(1000)
             .useXpath()
-            .waitForElementVisible('//option[contains(text(),"Element requiring table setting")]', 1000)
-            .click('//option[contains(text(),"Element requiring table setting")]')
-            .pause(2000);
+            .waitForElementVisible('//option[contains(text(),"Element requiring table setting")]', 5000)
+            .click('//option[contains(text(),"Element requiring table setting")]');
+
     },
 
     'assertion agenda element Type drop down list': function (browser) {
         browser
             .useCss()
-            .waitForElementVisible('select#agendaElementTypeId', 2000)
+            .waitForElementVisible('select#agendaElementTypeId', 4000)
             .assert.containsText('option[value="23"]', '               1-TO-MANY Placeholder             ')
             .assert.containsText('option[value="34"]', '               Dinner placeholder             ')
             .assert.containsText('option[value="33"]', '               Group Discussion Placeholder             ')
             .assert.containsText('option[value="32"]', '               Lunch Placeholder             ');
     },
 
-    'lunch placeholder page assertion2': function (browser) {
+    'lunch placeholder page assertion': function (browser) {
         browser
             .useXpath()
             .assert.containsText('//label[contains(text(),"           End time ")]', 'End time')
@@ -116,7 +115,6 @@ module.exports = _.assign(presteps, auth, {
 
     'redirection after creation Dinner-placeholder': function (browser) {
         browser
-            .pause(3000)
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .useXpath()
@@ -125,88 +123,10 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('//button[contains(text(), "Add room")]', 2000);
     },
 
-    'click add room': function (browser) {
+    'cheak element requered table settings color': function (browser) {
         browser
-            .click('//button[contains(text(), "Add room")]');
-    },
-
-    'add room for Awards Panel is displayed': function (browser) {
-        browser
-            .waitForElementVisible('//h4[contains(text(),"Add room for Lunch Placeholder 10-05-2012 08:55:00 - 09:25:00")]', 2000)
-            .useCss()
-            .waitForElementVisible('input.form-control[title=Room]', 2000);
-    },
-
-    'room input field is empty': function (browser) {
-        browser
-            .useCss()
-            .assert.valueContains("input.form-control[title=Room]", "")
-            .setValue('input.form-control[title=Room]', 'MyRoom')
-            .useXpath()
-            .waitForElementVisible('//modal[@class="modal fade in"]//button[@data-marker="me-event-agenda__button__save-room"]', 2000)
-            .click('//modal[@class="modal fade in"]//button[@data-marker="me-event-agenda__button__save-room"]')
-    },
-
-    'created room is displaying': function (browser) {
-        browser
-            .useCss()
-            .pause(2000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            .useXpath()
-            .waitForElementVisible('//button[text()="               MyRoom             "]', 2000)
-            .click('//button[text()="               MyRoom             "]');
-    },
-
-    'add room is displayed again': function (browser) {
-        browser
-            .waitForElementVisible('//h4[contains(text(),"Add room for Lunch Placeholder 10-05-2012 08:55:00 - 09:25:00")]', 2000)
-            .useCss()
-            .waitForElementVisible('input.form-control[title=Room]', 2000)
-            .assert.valueContains("input.form-control[title=Room]", "MyRoom")
-            .waitForElementVisible('button[data-dismiss="modalRoom"]', 2000)
-            .click('button[data-dismiss="modalRoom"]')
-            .useXpath()
-            .waitForElementVisible('//button[text()="               MyRoom             "]', 3000);
-    },
-
-    'click on edit lunch panel': function (browser) {
-        browser
-            .pause(1000)
-            .waitForElementVisible('//a[2]/i[@class="fa fa-pencil edit-element"]', 2000)
-            .click('//a[2]/i[@class="fa fa-pencil edit-element"]')
-            .pause(2000);
-    },
-    'lunch placeholder page assertion': function (browser) {
-        browser
-            .assert.containsText('//h4[contains(text(),"Element form")]', 'Element form')
-            .assert.containsText('//label[contains(text(),"Agenda Element Type ")]', 'Agenda Element Type ')
-            .assert.containsText('//label[contains(text(),"           Start time ")]', 'Start time')
-            .assert.containsText('//label[contains(text(),"           End time ")]', 'End time')
-            .assert.containsText('//label[contains(text(),"           Meeting allowed ")]', 'Meeting allowed')
-            .assert.containsText('//option[contains(text(),"                 No meetings allowed               ")]', 'No meetings allowed')
-            .assert.containsText('//label[contains(text(),"Groups Used")]', 'Groups Used')
-            .assert.containsText('//label[contains(text(),"Event Groups")]', 'Event Groups')
-            .assert.elementPresent('//div[text()="               Group 1 - orange             "]')
-            .assert.elementPresent('//div[text()="               Group 2 - violet             "]')
-            .assert.containsText('//label[contains(text(),"Show in calendars")]', 'Show in calendars')
-            .assert.elementPresent('//label[text()="               Delegates             "]')
-            .assert.elementPresent('//label[text()="               Provider representatives             "]')
-            .assert.containsText('//label[contains(text(),"Publish WWW")]', 'Publish WWW')
-            .useCss()
-            .assert.elementPresent('#visibilityPublishWWWYes')
-            .assert.elementPresent('#visibilityPublishWWWNo')
-            .useXpath()
-            .assert.containsText('//div[@class="form-group"]/div/label[contains(text(),"Room")]', 'Room');
-    },
-
-    'verifying for room field contains name My Room': function (browser) {
-        browser
-            .useCss()
-            .waitForElementVisible('input#room', 2000)
-            .assert.valueContains("input#room", "MyRoom")
-            .refresh()
-            .waitForElementNotVisible('#thisIsMainLoader', 10000);
-
+            .assert.elementPresent('//div[@class="panel-heading greenBlockColorForEvent"]')
+            .assert.cssProperty('//div[@class="panel-heading greenBlockColorForEvent"]', 'background-color', 'rgba(0, 135, 129, 1)');
     },
 
     'delete lunch panel': function (browser) {
@@ -216,18 +136,17 @@ module.exports = _.assign(presteps, auth, {
             .click('//a[3]/i[@class="fa fa-trash-o delete-element"]')
             .waitForElementVisible('//div[text()="     Do you really want to delete element Lunch Placeholder?   "]', 2000)
             .click('//modal[@class="modal fade in"]/div/div/modal-footer/div/button[@data-marker="me-confirm__button__button__yes"]')
-            .pause(2000)
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .pause(1500);
     },
 
-    'presentation-leaderShip has been deleted': function (browser) {
+    'lunch panel has been deleted': function (browser) {
         browser
             .useXpath()
-            .assert.elementNotPresent('//h5[contains(text(),"08:00 - 09:45")]')
+            .assert.elementNotPresent('//h5[contains(text(),"08:55 - 09:25")]')
             .assert.elementNotPresent('//h5[contains(text(),"Lunch Placeholder")]')
-            .assert.elementNotPresent('//button[contains(text(), "       MyRoom     ")]');
+            .assert.elementNotPresent('//button[contains(text(), "Add room")]');
     },
     'delete container': function (browser) {
         browser
@@ -239,7 +158,7 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .pause(1000)
             .useXpath()
-            .assert.elementNotPresent('//b[contains(text(), "new_event2016")]');
+            .assert.elementNotPresent('//b[contains(text(), "autotest10")]');
 
     },
 });
