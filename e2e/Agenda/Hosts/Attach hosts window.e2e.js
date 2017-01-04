@@ -177,8 +177,9 @@ module.exports = _.assign(presteps, auth, {
 
     'chosen speaker is displayed': function (browser) {
         browser
+            .waitForElementVisible('//modal[@class="modal fade in"]//td[text()="3756"]',5000)
             .assert.elementPresent('//modal[@class="modal fade in"]//td[text()="3756"]')
-            .assert.elementPresent('//li[text()=" - Skreien Kaaby Oddvar Eirik             "]')
+            .assert.elementPresent('//li[text()=" - Kennedy Cathal             "]')
             .assert.elementPresent('//a[@href="/presentations/edit/3756"]//i[@class="fa fa-pencil edit-element"]')
             .assert.elementPresent('//tr[1]//i[@class="fa fa-trash-o delete-element"]')
             .assert.elementPresent('//modal[@class="modal fade in"]//td[text()="3758"]')
@@ -201,7 +202,7 @@ module.exports = _.assign(presteps, auth, {
             .assert.elementPresent('//button[contains(text(), "       Add room     ")]')
             .assert.elementPresent('//button[@class="btn btn-primary"]/i[@class="fa fa-plus"]')
             .assert.elementPresent('//td[text()="3756"]')
-            .assert.elementPresent('//div[@class=""]//tr[1]//li[text()=" - Skreien Kaaby Oddvar Eirik             "]')
+            .assert.elementPresent('//div[@class=""]//tr[1]//li[text()=" - Kennedy Cathal             "]')
             .assert.elementPresent('//a[@href="/presentations/edit/3756"]/i')
             .assert.elementPresent('//me-event-agenda-attached-presentation-list//i[@class="fa fa-trash-o delete-element"]')
             .assert.elementPresent('//td[text()="3758"]')
