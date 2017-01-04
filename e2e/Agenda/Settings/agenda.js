@@ -3,7 +3,7 @@ var presteps = require('./../../presteps/presteps.js');
 var auth = require('./../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
-    '@disabled': true,
+    '@disabled': false,
     'redirection to settings page': function (browser) {
         browser
             .useCss()
@@ -98,8 +98,8 @@ module.exports = _.assign(presteps, auth, {
         browser
             .useCss()
             .relUrl('/event/212/settings')
-            .waitForElementVisible('#thisIsMainLoader', 20000)
-            .waitForElementNotVisible('#thisIsMainLoader', 20000)
+            .waitForElementVisible('#thisIsMainLoader', 30000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
             .waitForElementVisible('//span[text()="212/IndustryForum Energy - Event settings"]', 5000);
 

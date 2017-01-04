@@ -3,10 +3,10 @@ var presteps = require('./../../../presteps/presteps.js');
 var auth = require('./../../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
-    '@disabled':true ,
+    '@disabled': false,
     'redirection to agenda': function (browser) {
         browser
-            .relUrl('/event/212/agenda')
+            .relUrl('/event/213/agenda')
             .waitForElementVisible('#thisIsMainLoader', 10000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000);
     },
@@ -90,14 +90,14 @@ module.exports = _.assign(presteps, auth, {
             .useCss()
             .waitForElementVisible('select#agendaElementTypeId', 2000)
             .click('select#agendaElementTypeId')
-            .assert.containsText('option[value="30"]', '               Presentation / Leadership presentation             ')
-            .click('option[value="30"]')
+            .assert.containsText('option[value="18"]', '               Presentation / Debate             ')
+            .click('option[value="18"]')
             .pause(1000)
             .useXpath()
             .assert.containsText('//button[text()="Attach"]', 'Attach')
             .assert.containsText('//label[text()="Attach role/presentation"]', 'Attach role/presentation')
             .click('//button[text()="Attach"]');
-            //.pause(4000);
+
     },
 
     'add presentation to window is appear': function (browser) {
@@ -105,13 +105,13 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('//h4[text()="Add presentation to "]', 5000)
             .pause(1000)
             .assert.elementPresent('//h4[text()="Add presentation to "]')
-            .assert.elementPresent('//li[text()=" - Fenzl Alexander               "]')
+            .assert.elementPresent('//li[text()=" - Schütt Helmut               "]')
             .waitForElementVisible('//button[@data-marker="me-modal-attach-presentation-to-element__input__button__cancel"]', 1000)
             .click('//button[@data-marker="me-modal-attach-presentation-to-element__input__button__cancel"]')
             .pause(1000);
     },
 
-    'creating presentation-leaderShip panel': function (browser) {
+    'creating presentation-debate panel': function (browser) {
         browser
             .useCss()
             .waitForElementVisible('me-date-time-input#elementStartHour input.form-control.dateTimeInput.dateTimeInput', 1000)
@@ -125,15 +125,14 @@ module.exports = _.assign(presteps, auth, {
             .click('//div[@class="col-sm-12 container_btn_group"]/button[2][contains(text(),"Save")]');
     },
 
-    'redirection after creation presentation-leadership ': function (browser) {
+    'redirection after creation presentation-debate ': function (browser) {
         browser
             .pause(3000)
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            //.pause(3000)
             .useXpath()
             .waitForElementVisible('//h5[contains(text(),"09:30 - 10:00")]', 5000)
-            .waitForElementVisible('//h5[contains(text(),"Presentation / Leadership presentation")]', 5000)
+            .waitForElementVisible('//h5[contains(text(),"Presentation / Debate")]', 5000)
             .useCss()
             .waitForElementVisible('i.fa.fa-plus', 2000);
     },
@@ -149,10 +148,10 @@ module.exports = _.assign(presteps, auth, {
     'add presentation to Presentation window is displayed': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//h4[text()="Add presentation to "]/b[text()="Presentation / Leadership presentation"]', 4000)
-            .waitForElementVisible('//modal[@class="modal fade in"]//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__3733"]', 4000)
-            .waitForElementVisible('//modal[@class="modal fade in"]//li[text()=" - Fenzl Alexander               "]', 4000)
-            .click('//modal[@class="modal fade in"]//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__3733"]')
+            .waitForElementVisible('//h4[text()="Add presentation to "]/b[text()="Presentation / Debate"]', 4000)
+            .waitForElementVisible('//modal[@class="modal fade in"]//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__932"]', 4000)
+            .waitForElementVisible('//modal[@class="modal fade in"]//li[text()=" - Schütt Helmut               "]', 4000)
+            .click('//modal[@class="modal fade in"]//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__932"]')
             .waitForElementVisible('//modal[@class="modal fade in"]//button[@data-marker="me-modal-attach-presentation-to-element__input__button__save"]', 4000)
             .click('//modal[@class="modal fade in"]//button[@data-marker="me-modal-attach-presentation-to-element__input__button__save"]')
             .pause(1000)
@@ -165,9 +164,9 @@ module.exports = _.assign(presteps, auth, {
         browser
             .useXpath()
             .waitForElementVisible('//h5[contains(text(),"09:30 - 10:00")]', 2000)
-            .waitForElementVisible('//h5[contains(text(),"Presentation / Leadership presentation")]', 2000)
+            .waitForElementVisible('//h5[contains(text(),"Presentation / Debate")]', 2000)
             .waitForElementVisible('//button[contains(text(), "Add room")]', 2000)
-            .waitForElementVisible('//li[text()=" - Fenzl Alexander             "]', 2000)
+            .waitForElementVisible('//li[text()=" - Schütt Helmut             "]', 2000)
             .waitForElementVisible('//button[@class="btn btn-primary"]/i[@class="fa fa-plus"]', 2000)
             .waitForElementVisible('//me-event-agenda-attached-presentation-list//i[@class="fa fa-pencil edit-element"]', 2000)
             .waitForElementVisible('//me-event-agenda-attached-presentation-list//i[@class="fa fa-trash-o delete-element"]', 2000)
@@ -175,9 +174,9 @@ module.exports = _.assign(presteps, auth, {
             .pause(2000);
     },
 
-    'presentations-leader ship presentation is displayed': function (browser) {
+    'presentation-debate is displayed': function (browser) {
         browser
-            .waitForElementVisible('//h4[contains(text(),"Add room for Presentation / Leadership presentation 10-05-2012 09:30:00 - 10:00:00")]', 2000)
+            .waitForElementVisible('//h4[contains(text(),"Add room for Presentation / Debate 24-05-2012 09:30:00 - 10:00:00")]', 2000)
             .useCss()
             .waitForElementVisible('input.form-control[title=Room]', 2000);
     },
@@ -205,7 +204,7 @@ module.exports = _.assign(presteps, auth, {
     'add room for Presentation is displayed again': function (browser) {
         browser
             .pause(1000)
-            .waitForElementVisible('//h4[contains(text(),"Add room for Presentation / Leadership presentation 10-05-2012 09:30:00 - 10:00:00")]', 2000)
+            .waitForElementVisible('//h4[contains(text(),"Add room for Presentation / Debate 24-05-2012 09:30:00 - 10:00:00")]', 2000)
             .useCss()
             .waitForElementVisible('input.form-control[title=Room]', 2000)
             .assert.valueContains("input.form-control[title=Room]", "MyRoom#2")
@@ -263,7 +262,7 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('//a[3]/i[@class="fa fa-trash-o delete-element"]', 1000)
             .click('//a[3]/i[@class="fa fa-trash-o delete-element"]')
             .pause(1500)
-            .waitForElementVisible('//div[text()="     Do you really want to delete element Presentation / Leadership presentation?   "]', 2000)
+            .waitForElementVisible('//div[text()="     Do you really want to delete element Presentation / Debate?   "]', 2000)
             .click('//modal[@class="modal fade in"]/div/div/modal-footer/div/button[@data-marker="me-confirm__button__button__yes"]')
             .pause(2000)
             .useCss()
@@ -273,8 +272,8 @@ module.exports = _.assign(presteps, auth, {
     'presentation-leaderShip has been deleted': function (browser) {
         browser
             .useXpath()
-            .assert.elementNotPresent('//h5[contains(text(),"08:00 - 09:45")]')
-            .assert.elementNotPresent('//h5[contains(text(),"Presentation / Leadership presentation")]')
+            .assert.elementNotPresent('//h5[contains(text(),"09:30 - 10:00")]')
+            .assert.elementNotPresent('//h5[contains(text(),"Presentation / Debate presentation")]')
             .assert.elementNotPresent('//button[contains(text(), "Add room")]');
     },
     'delete container': function (browser) {

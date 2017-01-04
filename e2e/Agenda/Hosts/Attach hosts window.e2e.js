@@ -3,7 +3,7 @@ var presteps = require('../../presteps/presteps.js');
 var auth = require('./../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
-    '@disabled': true,
+    '@disabled': false,
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/212/agenda')
@@ -161,7 +161,6 @@ module.exports = _.assign(presteps, auth, {
         browser
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-            //.pause(1000)
             .useXpath()
             .waitForElementVisible('//me-event-agenda-element-presentation/div/div[2]/button[text()="Attach"]', 3000)
             .click('//me-event-agenda-element-presentation/div/div[2]/button[text()="Attach"]')
@@ -190,13 +189,14 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('//div/div/div/div/button[contains(text(),"Save")]', 4000)
             .click('//div/div/div/div/button[contains(text(),"Save")]')
             .useCss()
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .pause(3000);
     },
 
     'chosen speakers are displayed': function (browser) {
         browser
             .useXpath()
+            .waitForElementVisible('//h5[contains(text(),"08:00 - 09:45")]','10000')
             .assert.elementPresent('//h5[contains(text(),"08:00 - 09:45")]')
             .assert.elementPresent('//h5[contains(text(),"Presentation / Case")]')
             .assert.elementPresent('//button[contains(text(), "       Add room     ")]')

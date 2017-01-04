@@ -3,7 +3,7 @@ var presteps = require('../../presteps/presteps.js');
 var auth = require('./../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
-    '@disabled':true,
+    '@disabled':false,
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/212/agenda')
@@ -302,6 +302,7 @@ module.exports = _.assign(presteps, auth, {
     'delete container': function (browser) {
         browser
             .useCss()
+            .waitForElementVisible('.fa.fa-trash-o.delete-container','10000')
             .click('.fa.fa-trash-o.delete-container')
             .pause(1000)
             .waitForElementVisible('modal.modal.fade.in div.modal-footer>button.btn.btn-success', 5000)
