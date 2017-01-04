@@ -6,7 +6,7 @@ module.exports = _.assign(presteps, auth, {
     '@disabled':true ,
     'redirection to agenda': function (browser) {
         browser
-            .relUrl('/event/212/agenda')
+            .relUrl('/event/239/agenda')
             .waitForElementVisible('#thisIsMainLoader', 10000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000);
     },
@@ -116,12 +116,11 @@ module.exports = _.assign(presteps, auth, {
 
     'redirection after creation Dinner-placeholder': function (browser) {
         browser
-            .pause(3000)
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .useXpath()
-            .waitForElementVisible('//h5[contains(text(),"08:55 - 09:25")]', 2000)
-            .waitForElementVisible('//h5[contains(text(),"Dinner placeholder")]', 2000);
+            .waitForElementVisible('//h5[contains(text(),"08:55 - 09:25")]', 7000)
+            .waitForElementVisible('//h5[contains(text(),"Dinner placeholder")]', 7000);
     },
 
     'click add room': function (browser) {
@@ -131,7 +130,7 @@ module.exports = _.assign(presteps, auth, {
 
     'add room for Dinner placeholder is displayed': function (browser) {
         browser
-            .waitForElementVisible('//h4[contains(text(),"Add room for Dinner placeholder 10-05-2012 08:55:00 - 09:25:00")]', 2000)
+            .waitForElementVisible('//h4[contains(text(),"Add room for Dinner placeholder 14-11-2013 08:55:00 - 09:25:00")]', 2000)
             .useCss()
             .waitForElementVisible('input.form-control[title=Room]', 2000);
     },
@@ -157,7 +156,7 @@ module.exports = _.assign(presteps, auth, {
 
     'add room is displayed again': function (browser) {
         browser
-            .waitForElementVisible('//h4[contains(text(),"Add room for Dinner placeholder 10-05-2012 08:55:00 - 09:25:00")]', 2000)
+            .waitForElementVisible('//h4[contains(text(),"Add room for Dinner placeholder 14-11-2013 08:55:00 - 09:25:00")]', 2000)
             .useCss()
             .waitForElementVisible('input.form-control[title=Room]', 2000)
             .assert.valueContains("input.form-control[title=Room]", "MyRoom")

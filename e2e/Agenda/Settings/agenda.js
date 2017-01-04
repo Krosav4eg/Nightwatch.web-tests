@@ -123,8 +123,6 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('//input[@data-marker="me-event-settings-agenda-group-qty__input__text"]', 5000)
             .clearValue('//input[@data-marker="me-event-settings-agenda-group-qty__input__text"]')
             .setValue('//input[@data-marker="me-event-settings-agenda-group-qty__input__text"]', ['2', browser.Keys.ENTER])
-            // .assert.elementNotPresent('//input[@data-marker="me-groups-managed-automatically__input__checkbox__1"]')
-            // .assert.elementNotPresent('//input[@data-marker="me-groups-managed-automatically__input__checkbox__2"]')
             .assert.elementNotPresent('//input[@data-marker="me-groups-managed-automatically__input__checkbox__3"]')
             .assert.elementNotPresent('//input[@data-marker="me-groups-managed-automatically__input__checkbox__4"]')
             .assert.elementNotPresent('//input[@data-marker="me-groups-managed-automatically__input__checkbox__5"]')
@@ -144,8 +142,6 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
             .waitForElementVisible('//div[text()="Event Groups"]', 5000)
-            // .assert.elementNotPresent('//p[text()="Group 1 - orange - 22"]')
-            // .assert.elementNotPresent('//p[text()="Group 2 - violet - 21"]')
             .assert.elementNotPresent('//p[text()="Group 3 - blue - 0"]')
             .assert.elementNotPresent('//p[text()="Group 4 - green - 0"]')
             .assert.elementNotPresent('//p[text()="Group 5 - red - 0"]')
@@ -162,11 +158,7 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
             .waitForElementVisible('//legend[text()="Master Contact Information"]', 5000)
             .waitForElementVisible('//a[@href="http://alpha.ew.managementevents.com/EW/MasterContact/cruII/id/105375"]', 5000)
-            .waitForElementVisible('//legend[text()="Participation Information"]', 5000)
-        //elements may be are not visible
-            // .assert.elementNotPresent('//legend[text()="Blocked Times"]')
-            // .assert.elementNotPresent('//label[text()="Blocked time(s)"]')
-            // .assert.elementNotPresent('//button[text()="Add Blocked Time"]');
+            .waitForElementVisible('//legend[text()="Participation Information"]', 5000);
 
     },
 

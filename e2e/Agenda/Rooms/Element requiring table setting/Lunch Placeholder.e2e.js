@@ -3,10 +3,10 @@ var presteps = require('./../../../presteps/presteps.js');
 var auth = require('./../../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
-    '@disabled':true ,
+    '@disabled':true,
     'redirection to agenda': function (browser) {
         browser
-            .relUrl('/event/212/agenda')
+            .relUrl('/event/238/agenda')
             .waitForElementVisible('#thisIsMainLoader', 10000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000);
     },
@@ -132,7 +132,7 @@ module.exports = _.assign(presteps, auth, {
 
     'add room for Awards Panel is displayed': function (browser) {
         browser
-            .waitForElementVisible('//h4[contains(text(),"Add room for Lunch Placeholder 10-05-2012 08:55:00 - 09:25:00")]', 2000)
+            .waitForElementVisible('//h4[contains(text(),"Add room for Lunch Placeholder 17-10-2013 08:55:00 - 09:25:00")]', 2000)
             .useCss()
             .waitForElementVisible('input.form-control[title=Room]', 2000);
     },
@@ -159,7 +159,7 @@ module.exports = _.assign(presteps, auth, {
 
     'add room is displayed again': function (browser) {
         browser
-            .waitForElementVisible('//h4[contains(text(),"Add room for Lunch Placeholder 10-05-2012 08:55:00 - 09:25:00")]', 2000)
+            .waitForElementVisible('//h4[contains(text(),"Add room for Lunch Placeholder 17-10-2013 08:55:00 - 09:25:00")]', 2000)
             .useCss()
             .waitForElementVisible('input.form-control[title=Room]', 2000)
             .assert.valueContains("input.form-control[title=Room]", "MyRoom")
