@@ -3,10 +3,10 @@ var presteps = require('./../../../presteps/presteps.js');
 var auth = require('./../../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
-    '@disabled':true ,
+    '@disabled':true,
     'redirection to agenda': function (browser) {
         browser
-            .relUrl('/event/212/agenda')
+            .relUrl('/event/230/agenda')
             .waitForElementVisible('#thisIsMainLoader', 10000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000);
     },
@@ -118,12 +118,12 @@ module.exports = _.assign(presteps, auth, {
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 10000)
             .useXpath()
-            .waitForElementVisible('//h5[contains(text(),"08:55 - 09:25")]', 2000)
-            .waitForElementVisible('//h5[contains(text(),"Lunch Placeholder")]', 2000)
-            .waitForElementVisible('//button[contains(text(), "Add room")]', 2000);
+            .waitForElementVisible('//h5[contains(text(),"08:55 - 09:25")]', 7000)
+            .waitForElementVisible('//h5[contains(text(),"Lunch Placeholder")]', 7000)
+            .waitForElementVisible('//button[contains(text(), "Add room")]', 7000);
     },
 
-    'cheak element requered table settings color': function (browser) {
+    'check element required table settings color': function (browser) {
         browser
             .assert.elementPresent('//div[@class="panel-heading greenBlockColorForEvent"]')
             .assert.cssProperty('//div[@class="panel-heading greenBlockColorForEvent"]', 'background-color', 'rgba(0, 135, 129, 1)');

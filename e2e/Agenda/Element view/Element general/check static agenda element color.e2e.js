@@ -6,7 +6,7 @@ module.exports = _.assign(presteps, auth, {
     '@disabled': true,
     'redirection to agenda': function (browser) {
         browser
-            .relUrl('/event/212/agenda')
+            .relUrl('/event/228/agenda')
             .waitForElementVisible('#thisIsMainLoader', 10000)
             .waitForElementNotVisible('#thisIsMainLoader', 10000);
     },
@@ -40,11 +40,11 @@ module.exports = _.assign(presteps, auth, {
     'redirection to settings page': function (browser) {
         browser
             .useCss()
-            .relUrl('/event/212/settings')
+            .relUrl('/event/228/settings')
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
-            .waitForElementVisible('//span[text()="212/IndustryForum Energy - Event settings"]', 5000);
+            .waitForElementVisible('//span[text()="228/IndustryForum Retail - Event settings"]', 5000);
     },
     'inputting checkboxes': function (browser) {
         browser
@@ -72,7 +72,7 @@ module.exports = _.assign(presteps, auth, {
     },
     'redirection to agenda page again': function (browser) {
         browser
-            .relUrl('/event/212/agenda')
+            .relUrl('/event/228/agenda')
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
 
@@ -90,7 +90,7 @@ module.exports = _.assign(presteps, auth, {
             .assert.elementPresent('//label[contains(text(),"           Agenda Element Entry Type ")]');
     },
 
-    'Choose Static agenda element': function (browser) {
+    'choose Static agenda element': function (browser) {
         browser
             .useCss()
             .waitForElementVisible('select#agendaElementEntryTypeId.form-control', 2000)
@@ -102,7 +102,7 @@ module.exports = _.assign(presteps, auth, {
             .pause(1500);
     },
 
-    'Static agenda element page assertion': function (browser) {
+    'static agenda element page assertion': function (browser) {
         browser
             .assert.containsText('//h4[contains(text(),"Element form")]', 'Element form')
             .assert.containsText('//label[contains(text(),"Agenda Element Type ")]', 'Agenda Element Type ')
@@ -208,7 +208,7 @@ module.exports = _.assign(presteps, auth, {
 
     'add room for awards panel is displayed': function (browser) {
         browser
-            .waitForElementVisible('//h4[contains(text(),"Add room for Awards Panel 10-05-2012 08:59:00 - 09:59:00")]', 4000)
+            .waitForElementVisible('//h4[contains(text(),"Add room for Awards Panel 25-04-2013 08:59:00 - 09:59:00")]', 4000)
             .useCss()
             .waitForElementVisible('input.form-control[title=Room]', 2000)
             .assert.valueContains("input.form-control[title=Room]", "")
