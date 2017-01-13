@@ -45,5 +45,4 @@ module.exports = _.assign(presteps, auth, {
             .verify.attributeEquals('//table/tbody/tr[1]/td[1]/input', 'checked', 'true');
     },
 
-
 });
