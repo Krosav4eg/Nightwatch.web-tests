@@ -1,6 +1,6 @@
 var _ = require('lodash');
-var presteps = require('./../presteps/presteps.js');
-var auth = require('./../presteps/auth.js');
+var presteps = require('./../../presteps/presteps.js');
+var auth = require('./../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
 
@@ -19,33 +19,34 @@ module.exports = _.assign(presteps, auth, {
             .assert.elementPresent('//div[text()="Dates: 2012-05-09 08:00:00 - 2012-05-10 18:00:00"]')
             .assert.elementPresent('//div[text()="Venue: , "]');
     },
-    'sort by country up': function (browser) {
+    'sort by first name up': function (browser) {
         browser
-            .waitForElementVisible('//tr[1]/th[8]', 3000)
-            .click('//tr[1]/th[8]')
+            .waitForElementVisible('//tr[1]/th[4]', 3000)
+            .click('//tr[1]/th[4]')
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
-            .waitForElementVisible('//tr[1]/td[8]/span[text()="         Belarus       "]', 7000)
-            .waitForElementVisible('//tr[2]/td[8]/span[text()="         Germany       "]', 7000)
-            .waitForElementVisible('//tr[3]/td[8]/span[text()="         Germany       "]', 7000)
-            .waitForElementVisible('//tr[4]/td[8]/span[text()="         Germany       "]', 7000);
+            .waitForElementVisible('//tr[1]/td[4]/span[text()="         Alexander       "]', 7000)
+            .waitForElementVisible('//tr[2]/td[4]/span[text()="         Cathal       "]', 7000)
+            .waitForElementVisible('//tr[3]/td[4]/span[text()="         Constantin       "]', 7000)
+            .waitForElementVisible('//tr[4]/td[4]/span[text()="         Herbert       "]', 7000);
 
 
     },
-    'sort by country down': function (browser) {
+    'sort by first name down': function (browser) {
         browser
-            .waitForElementVisible('//tr[1]/th[8]', 3000)
-            .click('//tr[1]/th[8]')
+            .waitForElementVisible('//tr[1]/th[4]', 3000)
+            .click('//tr[1]/th[4]')
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
-            .waitForElementVisible('//tr[1]/td[8]/span[text()="         Ukraine       "]', 7000)
-            .waitForElementVisible('//tr[2]/td[8]/span[text()="         Norway       "]', 7000)
-            .waitForElementVisible('//tr[3]/td[8]/span[text()="         Norway       "]', 7000)
-            .waitForElementVisible('//tr[4]/td[8]/span[text()="         Norway       "]', 7000);
+            .waitForElementVisible('//tr[1]/td[4]/span[text()="         Sandra       "]', 7000)
+            .waitForElementVisible('//tr[2]/td[4]/span[text()="         Potapoff       "]', 7000)
+            .waitForElementVisible('//tr[3]/td[4]/span[text()="         Philipp       "]', 7000)
+            .waitForElementVisible('//tr[4]/td[4]/span[text()="         Olav       "]', 7000);
+
 
     },
 

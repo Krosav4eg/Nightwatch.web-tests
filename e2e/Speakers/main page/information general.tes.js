@@ -1,6 +1,6 @@
 var _ = require('lodash');
-var presteps = require('./../presteps/presteps.js');
-var auth = require('./../presteps/auth.js');
+var presteps = require('./../../presteps/presteps.js');
+var auth = require('./../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
 
@@ -18,17 +18,6 @@ module.exports = _.assign(presteps, auth, {
             .assert.elementPresent('//div[text()="Local name: StrategyCircle Energie"]')
             .assert.elementPresent('//div[text()="Dates: 2012-05-09 08:00:00 - 2012-05-10 18:00:00"]')
             .assert.elementPresent('//div[text()="Venue: , "]');
-    },
-    'search by title ': function (browser) {
-        browser
-            .waitForElementVisible('//tr[1]/td[5]/input[@type="text"]', 3000)
-            .setValue('//tr[1]/td[5]/input[@type="text"]', ['Geschäftsführer', browser.Keys.ENTER])
-            .useCss()
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
-            .useXpath()
-            .waitForElementVisible('//tr[2]/td[5]/span[text()="         Geschäftsführer       "]', 7000);
-
     },
 
 });

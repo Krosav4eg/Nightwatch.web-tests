@@ -1,6 +1,6 @@
 var _ = require('lodash');
-var presteps = require('./../presteps/presteps.js');
-var auth = require('./../presteps/auth.js');
+var presteps = require('./../../presteps/presteps.js');
+var auth = require('./../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
 
@@ -19,15 +19,15 @@ module.exports = _.assign(presteps, auth, {
             .assert.elementPresent('//div[text()="Dates: 2012-05-09 08:00:00 - 2012-05-10 18:00:00"]')
             .assert.elementPresent('//div[text()="Venue: , "]');
     },
-    'search by country ': function (browser) {
+    'search by first name ': function (browser) {
         browser
-            .waitForElementVisible('//tr[1]/td[9]/input[@type="text"]', 3000)
-            .setValue('//tr[1]/td[9]/input[@type="text"]', ['Management ', browser.Keys.ENTER])
+            .waitForElementVisible('//tr[1]/td[4]/input[@type="text"]', 3000)
+            .setValue('//tr[1]/td[4]/input[@type="text"]', ['Sandra', browser.Keys.ENTER])
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
-            .waitForElementVisible('//tr[1]/td[9]/span/ul/li/span[text()="               Management Events             "]', 7000);
+            .waitForElementVisible('//tr[1]/td[4]/span[text()="         Sandra       "]', 7000);
 
     },
 

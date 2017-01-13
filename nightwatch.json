@@ -20,7 +20,7 @@
 
   "test_settings" : {
     "default" : {
-      "filter" : "**/*.tes.js",
+      "filter" : "**/*.test.js",
 
       "selenium_host": "127.0.0.1",
       "selenium_port": 4444,
