@@ -51,23 +51,43 @@ module.exports = _.assign(presteps, auth, {
 
     },
 
-    // 'click on add a new candidate  button': function (browser) {
+    'click on add a new candidate  button': function (browser) {
+        browser
+            .useXpath()
+            .click('//button[text()="Add a new candidate"]')
+            .click('//input[@value-property-name="companyId"]')
+            .useCss()
+            .setValue('.auto-complete input', "UNiQUARE")
+            .pause(3000)
+            .useXpath()
+            .click('//*[contains(text(),"UNiQUARE")]')
+            .pause(3000)
+            .click('//button[text()="Add company"]')
+            .pause(2500);
+        // .click('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="country"]')
+            // .useCss()
+            // .setValue('.auto-complete input', "Ukraine")
+            // .pause(3000)
+            // .useXpath()
+            // .click('//*[contains(text(),"Ukraine")]')
+            // .pause(3000)
+            // .click('//*[text()="Candidate 1"]/../../../../../..//button[text()="Save"]')
+            // .pause(3000)
+
+    },
+    // 'create new candidate': function (browser) {
     //     browser
-    //         .useXpath()
     //         .click('//button[text()="Add a new candidate"]')
-    //         .waitForElementVisible('//button[text()="Add company"]', 10000)
-    //         .waitForElementVisible('//input[@value-property-name="companyId"]', 10000)
     //         .click('//input[@value-property-name="companyId"]')
     //         .useCss()
-    //         .setValue('.auto-complete input', "UNiQUARE")
-    //         .pause(5000)
-    //         .useXpath()
-    //         .click('//*[contains(text(),"UNiQUARE")]')
+    //         .setValue('.auto-complete input', "Aalef")
     //         .pause(3000)
-    //         .click('//button[text()="Add company"]')
-    //         .pause(3000);
+    //         .useXpath()
+    //         .click('//*[contains(text(),"Aalef")]')
+    //         .click('//button[text()="Add company"]');
     //
     // },
+
     'added candidate has been displayed': function (browser) {
         browser
             .useXpath()
@@ -103,17 +123,17 @@ module.exports = _.assign(presteps, auth, {
             .click('//button[text()="Add company"]')
             .waitForElementVisible('//div[text()="Please select a company"]', 10000)
     },
-    // 'enter alcatel in the autocomplete to displaying companies': function (browser) {
-    //     browser
-    //         .click('//input[@value-property-name="companyId"]')
-    //         .useCss()
-    //         .setValue('.auto-complete input', "Alcatel")
-    //         .pause(5000)
-    //         .useXpath()
-    //         .click('//*[contains(text(),"Alcatel")]')
-    //         .click('//button[text()="Add company"]')
-    //         .pause(3000);
-    // },
+    'enter alcatel in the autocomplete to displaying companies': function (browser) {
+        browser
+            .click('//input[@value-property-name="companyId"]')
+            .useCss()
+            .setValue('.auto-complete input', "Alcatel")
+            .pause(5000)
+            .useXpath()
+            .click('//*[contains(text(),"Alcatel")]')
+            .click('//button[text()="Add company"]')
+            .pause(3000);
+    },
     'added second candidate has been displayed': function (browser) {
         browser
             .useXpath()
@@ -196,30 +216,30 @@ module.exports = _.assign(presteps, auth, {
 
     },
 
-    // 'click on add new button': function (browser) {
-    //     browser
-    //         .waitForElementVisible('//button[text()="Add a new candidate"]', 10000)
-    //         .click('//button[text()="Add a new candidate"]')
-    //         .waitForElementVisible('//button[text()="Add company"]', 10000)
-    //         .waitForElementVisible('//input[@value-property-name="companyId"]', 10000);
-    //
-    // },
-    //
-    // 'create new candidate': function (browser) {
-    //     browser
-    //         .click('//input[@value-property-name="companyId"]')
-    //         .useCss()
-    //         .setValue('.auto-complete input', "Aalef")
-    //         .pause(3000)
-    //         .useXpath()
-    //         .click('//*[contains(text(),"Aalef")]')
-    //         .click('//button[text()="Add company"]');
-    //
-    // },
+    'click on add new button': function (browser) {
+        browser
+            .waitForElementVisible('//button[text()="Add a new candidate"]', 10000)
+            .click('//button[text()="Add a new candidate"]')
+            .waitForElementVisible('//button[text()="Add company"]', 10000)
+            .waitForElementVisible('//input[@value-property-name="companyId"]', 10000);
+
+    },
+
+    'create new candidate': function (browser) {
+        browser
+            .click('//input[@value-property-name="companyId"]')
+            .useCss()
+            .setValue('.auto-complete input', "Aalef")
+            .pause(3000)
+            .useXpath()
+            .click('//*[contains(text(),"Aalef")]')
+            .click('//button[text()="Add company"]');
+
+    },
 
     'created candidate is not visible': function (browser) {
         browser
-        // .waitForElementVisible('//div[text()="Award saved successfully"]', 10000)
+            .waitForElementVisible('//div[text()="Award saved successfully"]', 10000)
             .assert.elementNotPresent('//h3[text()="Candidate 3"]');
     },
     'status switcher is "ON"': function (browser) {
