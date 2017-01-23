@@ -7,12 +7,12 @@ module.exports = _.assign(presteps, auth, {
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/212/agenda')
-            .waitForElementVisible('#thisIsMainLoader', 10000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000);
+            .waitForElementVisible('#thisIsMainLoader', 30000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
     'creation new container': function (browser) {
         browser
-            .waitForElementVisible('button.btn.btn-primary.btn-block', 10000)
+            .waitForElementVisible('button.btn.btn-primary.btn-block', 30000)
             .click('button.btn.btn-primary.btn-block')
             .pause(2000)
             .useXpath()
@@ -29,8 +29,8 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
             .click('//form/div[2]/div/div/button[contains(text(),"Save")]')
             .useCss()
-            .waitForElementVisible('#thisIsMainLoader', 10000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .waitForElementVisible('#thisIsMainLoader', 30000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
             .assert.elementPresent('//b[contains(text(), "new_event2016")]')
             .assert.containsText('//b[1][contains(text(),"8:00")]', '8:00')
@@ -137,7 +137,7 @@ module.exports = _.assign(presteps, auth, {
             .click('//me-event-agenda-element-presentation/div/div[2]/button[text()="Attach"]')
             .useCss()
             .pause(2000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000);
+            .waitForElementNotVisible('#thisIsMainLoader', 30000);
 
     },
 
@@ -160,7 +160,7 @@ module.exports = _.assign(presteps, auth, {
     'attach new speaker ': function (browser) {
         browser
             .useCss()
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
             .waitForElementVisible('//me-event-agenda-element-presentation/div/div[2]/button[text()="Attach"]', 3000)
             .click('//me-event-agenda-element-presentation/div/div[2]/button[text()="Attach"]')
@@ -196,7 +196,7 @@ module.exports = _.assign(presteps, auth, {
     'chosen speakers are displayed': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//h5[contains(text(),"08:00 - 09:45")]','10000')
+            .waitForElementVisible('//h5[contains(text(),"08:00 - 09:45")]','30000')
             .assert.elementPresent('//h5[contains(text(),"08:00 - 09:45")]')
             .assert.elementPresent('//h5[contains(text(),"Presentation / Case")]')
             .assert.elementPresent('//button[contains(text(), "       Add room     ")]')
@@ -220,7 +220,7 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('//modal[@class="modal fade in"]//button[@data-marker="me-confirm__button__button__yes"]', 2000)
             .click('//modal[@class="modal fade in"]//button[@data-marker="me-confirm__button__button__yes"]')
             .useCss()
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .pause(2000);
     },
 
@@ -230,8 +230,8 @@ module.exports = _.assign(presteps, auth, {
             .pause(1500)
             .waitForElementVisible('modal.modal.fade.in div.modal-footer>button.btn.btn-success', 4000)
             .click('modal.modal.fade.in div.modal-footer>button.btn.btn-success')
-            .waitForElementVisible('#thisIsMainLoader', 10000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .waitForElementVisible('#thisIsMainLoader', 30000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .pause(1000)
             .useXpath()
             .assert.elementNotPresent('//b[contains(text(), "new_event2016")]');

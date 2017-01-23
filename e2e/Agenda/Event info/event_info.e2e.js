@@ -7,8 +7,8 @@ module.exports = _.assign(presteps, auth, {
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/210/agenda')
-            .waitForElementVisible('#thisIsMainLoader', 10000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000);
+            .waitForElementVisible('#thisIsMainLoader', 30000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
 
     'check event name': function (browser) {
@@ -84,7 +84,7 @@ module.exports = _.assign(presteps, auth, {
             .click('//form/div[2]/div/div/button[contains(text(),"Save")]')
             .useCss()
             .pause(3000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .pause(1000);
     },
 
@@ -103,7 +103,7 @@ module.exports = _.assign(presteps, auth, {
             .click('.fa.fa-trash-o.delete-container')
             .pause(1000)
             .click('div.modal-footer>button.btn.btn-success')
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .pause(1000)
             .useXpath()
             .assert.elementNotPresent('//b[contains(text(), "new_event2016")]')
@@ -145,8 +145,8 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
             .click('//form/div[2]/div/div/button[contains(text(),"Save")]')
             .useCss()
-            .waitForElementVisible('#thisIsMainLoader', 10000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .waitForElementVisible('#thisIsMainLoader', 30000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .pause(1000);
     },
 
@@ -164,8 +164,8 @@ module.exports = _.assign(presteps, auth, {
             .click('.fa.fa-trash-o.delete-container')
             .pause(1000)
             .click('div.modal-footer>button.btn.btn-success')
-            .waitForElementVisible('#thisIsMainLoader', 10000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .waitForElementVisible('#thisIsMainLoader', 30000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .pause(1000)
             .useXpath()
             .assert.elementNotPresent('//b[contains(text(), "new_event2016")]')
@@ -178,7 +178,7 @@ module.exports = _.assign(presteps, auth, {
             .relUrl('/event/210/presentations')
             .useCss()
             .pause(1000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .pause(1000);
     },
 

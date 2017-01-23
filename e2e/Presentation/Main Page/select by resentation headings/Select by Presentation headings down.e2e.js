@@ -13,13 +13,13 @@ module.exports = _.assign(presteps, auth, {
     'select by presentation headings down': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//tr/th[5]', 10000)
+            .waitForElementVisible('//tr/th[5]', 30000)
             .click('//tr/th[5]')
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
-            .waitForElementVisible('//tr/th[5]', 10000)
+            .waitForElementVisible('//tr/th[5]', 30000)
             .click('//tr/th[5]')
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)

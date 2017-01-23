@@ -7,8 +7,8 @@ module.exports = _.assign(presteps, auth, {
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/220/agenda')
-            .waitForElementVisible('#thisIsMainLoader', 10000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000);
+            .waitForElementVisible('#thisIsMainLoader', 30000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
 
     'Check that field is required = blank click another field': function (browser) {
@@ -46,8 +46,8 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#containerEndHour input', 1000)
             .setValue('#containerEndHour input', ['00:00', browser.Keys.ENTER])
             .useXpath()
-            .waitForElementVisible('//p[text()=" Date should be between 08:00 and 18:00           "]',10000)
-            .waitForElementVisible('//modal[@class="modal fade in"]//button[1][@class="btn btn-default pull-right"]', 10000)
+            .waitForElementVisible('//p[text()=" Date should be between 08:00 and 18:00           "]',30000)
+            .waitForElementVisible('//modal[@class="modal fade in"]//button[1][@class="btn btn-default pull-right"]', 30000)
             .click('//modal[@class="modal fade in"]//button[1][@class="btn btn-default pull-right"]')
             .pause(2000);
     },
@@ -94,8 +94,8 @@ module.exports = _.assign(presteps, auth, {
             .click('.fa.fa-trash-o.delete-container')
             .waitForElementVisible('div.modal-footer>button.btn.btn-success', 3000)
             .click('div.modal-footer>button.btn.btn-success')
-            .waitForElementVisible('#thisIsMainLoader', 10000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .waitForElementVisible('#thisIsMainLoader', 30000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .pause(1000)
             .useXpath()
             .assert.elementNotPresent('//b[contains(text(), "autotest5")]');
@@ -122,8 +122,8 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
             .click('//form/div[2]/div/div/button[contains(text(),"Save")]')
             .useCss()
-            .waitForElementVisible('#thisIsMainLoader', 10000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .waitForElementVisible('#thisIsMainLoader', 30000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
             .assert.elementPresent('//b[contains(text(), "autotest5")]')
             .assert.containsText('//b[1][contains(text(),"8:00")]', '8:00')
@@ -136,10 +136,10 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('.fa.fa-trash-o.delete-container', 5000)
             .click('.fa.fa-trash-o.delete-container')
             .pause(1000)
-            .waitForElementVisible('div.modal-footer>button.btn.btn-success', 10000)
+            .waitForElementVisible('div.modal-footer>button.btn.btn-success', 30000)
             .click('div.modal-footer>button.btn.btn-success')
-            .waitForElementVisible('#thisIsMainLoader', 10000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .waitForElementVisible('#thisIsMainLoader', 30000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
             .assert.elementNotPresent('//b[contains(text(), "autotest5")]');
 

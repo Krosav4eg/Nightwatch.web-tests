@@ -47,7 +47,7 @@ module.exports = _.assign(presteps, auth, {
 
     'sort by title down': function (browser) {
         browser
-            .waitForElementVisible('//me-event-presentation-speaker-list//th[7][contains(text(),"Title")]', 10000)
+            .waitForElementVisible('//me-event-presentation-speaker-list//th[7][contains(text(),"Title")]', 30000)
             .click('//me-event-presentation-speaker-list//th[7][contains(text(),"Title")]')
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)

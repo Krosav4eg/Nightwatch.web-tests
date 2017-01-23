@@ -14,7 +14,7 @@ module.exports = _.assign(presteps, auth, {
     'select by delegate': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//tr/td[2]/select/option[2]', 10000)
+            .waitForElementVisible('//tr/td[2]/select/option[2]', 30000)
             .click('//tr/td[2]/select/option[2]')
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)

@@ -14,7 +14,7 @@ module.exports = _.assign(presteps, auth, {
     'search by created by 3 numbers': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//tr/td[3]/input[@type="text"]', 10000)
+            .waitForElementVisible('//tr/td[3]/input[@type="text"]', 30000)
             .setValue('//tr/td[3]/input[@type="text"]', ['man', browser.Keys.ENTER])
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)

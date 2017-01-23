@@ -39,6 +39,6 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
-            .waitForElementVisible('//tr[1]/td[8]/span[text()="       sergey_potapof@mail.ru     "]', 10000);
+            .waitForElementVisible('//tr[1]/td[8]/span[text()="       sergey_potapof@mail.ru     "]', 30000);
     },
 });

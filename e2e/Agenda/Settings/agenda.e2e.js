@@ -11,7 +11,7 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#thisIsMainLoader', 20000)
             .waitForElementNotVisible('#thisIsMainLoader', 20000)
             .useXpath()
-            .waitForElementVisible('//span[text()="212/IndustryForum Energy - Event settings"]', 10000);
+            .waitForElementVisible('//span[text()="212/IndustryForum Energy - Event settings"]', 30000);
 
     },
     'select all check-boxes and radio buttons': function (browser) {

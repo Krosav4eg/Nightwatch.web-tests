@@ -13,7 +13,7 @@ module.exports = _.assign(presteps, auth, {
     'select by organizer down': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//tr/th[4]', 10000)
+            .waitForElementVisible('//tr/th[4]', 30000)
             .click('//tr/th[4]')
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)

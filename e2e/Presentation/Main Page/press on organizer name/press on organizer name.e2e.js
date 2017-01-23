@@ -14,7 +14,7 @@ module.exports = _.assign(presteps, auth, {
     'select press on organizer name': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//tr/th[3]', 10000)
+            .waitForElementVisible('//tr/th[3]', 30000)
             .click('//tr/th[3]')
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)
@@ -31,7 +31,7 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
-            .waitForElementVisible('//div[text()="           Participation info - VTT Technical Research Centre of Finland  - (E#7589)           "]', 10000)
+            .waitForElementVisible('//div[text()="           Participation info - VTT Technical Research Centre of Finland  - (E#7589)           "]', 30000)
 
 
 

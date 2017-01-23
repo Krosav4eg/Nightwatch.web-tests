@@ -24,7 +24,7 @@ module.exports = _.assign(presteps, auth, {
         browser
             .useXpath()
             .moveToElement('//tr[1]/td[10]/span/ul/li[text()="             Panel discussion           "]', 1298, 597)
-            .waitForElementVisible('//option[text()="Case - parallel"]', 10000)
+            .waitForElementVisible('//option[text()="Case - parallel"]', 30000)
             .click('//option[text()="Case - parallel"]')
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)
@@ -40,7 +40,7 @@ module.exports = _.assign(presteps, auth, {
     'check whole-audience presentations': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//option[text()="Case - whole audience"]', 10000)
+            .waitForElementVisible('//option[text()="Case - whole audience"]', 30000)
             .click('//option[text()="Case - whole audience"]')
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)
@@ -53,7 +53,7 @@ module.exports = _.assign(presteps, auth, {
     'check case presentations': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//option[text()="Case presentation"]', 10000)
+            .waitForElementVisible('//option[text()="Case presentation"]', 30000)
             .click('//option[text()="Case presentation"]')
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)
@@ -69,7 +69,7 @@ module.exports = _.assign(presteps, auth, {
     'check chairman speach': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//option[text()="Chairman speach"]', 10000)
+            .waitForElementVisible('//option[text()="Chairman speach"]', 30000)
             .click('//option[text()="Chairman speach"]')
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)
@@ -82,7 +82,7 @@ module.exports = _.assign(presteps, auth, {
     'check Cross-function keynote': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//option[text()="Cross-function keynote"]', 10000)
+            .waitForElementVisible('//option[text()="Cross-function keynote"]', 30000)
             .click('//option[text()="Cross-function keynote"]')
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)
@@ -95,7 +95,7 @@ module.exports = _.assign(presteps, auth, {
     'check debate': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//option[text()="Debate"]', 10000)
+            .waitForElementVisible('//option[text()="Debate"]', 30000)
             .click('//option[text()="Debate"]')
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)
@@ -111,7 +111,7 @@ module.exports = _.assign(presteps, auth, {
     'check FishBowl': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//option[text()="FishBowl"]', 10000)
+            .waitForElementVisible('//option[text()="FishBowl"]', 30000)
             .click('//option[text()="FishBowl"]')
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)
@@ -124,7 +124,7 @@ module.exports = _.assign(presteps, auth, {
     'check group discussion initiation': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//option[text()="Group discussion initiation"]', 10000)
+            .waitForElementVisible('//option[text()="Group discussion initiation"]', 30000)
             .click('//option[text()="Group discussion initiation"]')
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)
@@ -138,7 +138,7 @@ module.exports = _.assign(presteps, auth, {
     'check group leadership presentation': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//option[text()="Leadership presentation"]', 10000)
+            .waitForElementVisible('//option[text()="Leadership presentation"]', 30000)
             .click('//option[text()="Leadership presentation"]')
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)
@@ -152,7 +152,7 @@ module.exports = _.assign(presteps, auth, {
     'check group panel discussion': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//option[text()="Panel discussion"]', 10000)
+            .waitForElementVisible('//option[text()="Panel discussion"]', 30000)
             .click('//option[text()="Panel discussion"]')
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)

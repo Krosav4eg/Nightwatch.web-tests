@@ -14,7 +14,7 @@ module.exports = _.assign(presteps, auth, {
     'select by  blank': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//tr/td[2]/select/option[1]', 10000)
+            .waitForElementVisible('//tr/td[2]/select/option[1]', 30000)
             .click('//tr/td[2]/select/option[1]')
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)

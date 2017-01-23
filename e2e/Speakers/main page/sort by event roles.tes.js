@@ -24,7 +24,7 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
             .moveToElement('//tr[1]/th[11]', 1298, 597)
             .click('//tr[1]/th[11]')
-            .waitForElementVisible('//tr[1]/td[11]/span/ul/li[text()="             Chairman           "]', 10000)
+            .waitForElementVisible('//tr[1]/td[11]/span/ul/li[text()="             Chairman           "]', 30000)
             .assert.elementPresent('//tr[1]/td[11]/span/ul/li[text()="             Chairman           "]')
             .assert.elementPresent('//tr[3]/td[11]/span/ul/li[text()="             Debate speaker           "]')
             .assert.elementPresent('//tr[5]/td[11]/span/ul/li[text()="             Case / expert speaker           "]')
@@ -34,7 +34,7 @@ module.exports = _.assign(presteps, auth, {
         browser
             .moveToElement('//tr[1]/th[11]', 1298, 597)
             .click('//tr[1]/th[11]')
-            .waitForElementVisible('//tr[1]/td[11]/span/ul/li[text()="             Debate speaker           "]', 10000)
+            .waitForElementVisible('//tr[1]/td[11]/span/ul/li[text()="             Debate speaker           "]', 30000)
             .assert.elementPresent('//tr[1]/td[11]/span/ul/li[text()="             Debate speaker           "]')
             .assert.elementPresent('//tr[2]/td[11]/span/ul/li[text()="             Advisory board member           "]')
     },

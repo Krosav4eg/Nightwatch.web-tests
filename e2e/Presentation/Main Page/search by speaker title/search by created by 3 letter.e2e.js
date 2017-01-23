@@ -20,7 +20,7 @@ module.exports = _.assign(presteps, auth, {
                 this.assert.equal(result.value.y, 522)
                 this.setValue('//tr/td[10]/input[@type="text"]', ['ges', browser.Keys.ENTER])
                     .useCss()
-                    .waitForElementNotVisible('#thisIsMainLoader', 10000)
+                    .waitForElementNotVisible('#thisIsMainLoader', 30000)
                     .useXpath()
                     .waitForElementVisible('//tr[2]/td[10]/span/ul/li[text()="             Geschäftsführer           "]', 5000)
                     .assert.elementPresent('//tr[2]/td[10]/span/ul/li[text()="             Geschäftsführer           "]')

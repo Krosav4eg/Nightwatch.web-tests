@@ -7,15 +7,15 @@ module.exports = _.assign(presteps, auth, {
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/216/agenda')
-            .waitForElementVisible('#thisIsMainLoader', 10000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000);
+            .waitForElementVisible('#thisIsMainLoader', 30000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000);
 
     },
 
     'creation container': function (browser) {
         browser
             .useCss()
-            .waitForElementVisible('button.btn.btn-primary.btn-block', 10000)
+            .waitForElementVisible('button.btn.btn-primary.btn-block', 30000)
             .click('button.btn.btn-primary.btn-block')
             .pause(2000)
             .useXpath()
@@ -32,8 +32,8 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
             .click('//form/div[2]/div/div/button[contains(text(),"Save")]')
             .useCss()
-            .waitForElementVisible('#thisIsMainLoader', 10000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .waitForElementVisible('#thisIsMainLoader', 30000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .pause(1000)
             .useXpath()
             .assert.containsText('//b[1][contains(text(),"8:00")]', '8:00')
@@ -69,13 +69,13 @@ module.exports = _.assign(presteps, auth, {
     'delete container': function (browser) {
         browser
             .useCss()
-            .waitForElementVisible('.fa.fa-trash-o.delete-container',10000)
+            .waitForElementVisible('.fa.fa-trash-o.delete-container',30000)
             .click('.fa.fa-trash-o.delete-container')
             .pause(1000)
-            .waitForElementVisible('div.modal-footer>button.btn.btn-success', 10000)
+            .waitForElementVisible('div.modal-footer>button.btn.btn-success', 30000)
             .click('div.modal-footer>button.btn.btn-success')
-            .waitForElementVisible('#thisIsMainLoader', 10000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .waitForElementVisible('#thisIsMainLoader', 30000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .pause(1000)
             .useXpath()
             .assert.elementNotPresent('//b[contains(text(), "test2")]');

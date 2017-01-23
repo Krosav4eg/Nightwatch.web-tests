@@ -7,8 +7,8 @@ module.exports = _.assign(presteps, auth, {
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/224/agenda')
-            .waitForElementVisible('#thisIsMainLoader', 10000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000);
+            .waitForElementVisible('#thisIsMainLoader', 30000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
 
     'container creation': function (browser) {
@@ -29,8 +29,8 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
             .click('//form/div[2]/div/div/button[contains(text(),"Save")]')
             .useCss()
-            .waitForElementVisible('#thisIsMainLoader', 10000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .waitForElementVisible('#thisIsMainLoader', 30000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
             .assert.elementPresent('//b[contains(text(), "autotest9")]')
             .pause(1000);
@@ -52,7 +52,7 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('div.modal-footer>button.btn.btn-danger', 1000)
             .click('div.modal-footer>button.btn.btn-danger')
             .pause(3000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .pause(1000)
             .useXpath()
             .assert.elementPresent('//b[contains(text(), "autotest9")]');
@@ -61,13 +61,13 @@ module.exports = _.assign(presteps, auth, {
     'click OK button': function (browser) {
         browser
             .useCss()
-            .waitForElementVisible('.fa.fa-trash-o.delete-container',10000)
+            .waitForElementVisible('.fa.fa-trash-o.delete-container',30000)
             .click('.fa.fa-trash-o.delete-container')
             .pause(1000)
-            .waitForElementVisible('div.modal-footer>button.btn.btn-success', 10000)
+            .waitForElementVisible('div.modal-footer>button.btn.btn-success', 30000)
             .click('div.modal-footer>button.btn.btn-success')
-            .waitForElementVisible('#thisIsMainLoader', 10000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .waitForElementVisible('#thisIsMainLoader', 30000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .pause(1000)
             .useXpath()
             .assert.elementNotPresent('//b[contains(text(), "test2")]');

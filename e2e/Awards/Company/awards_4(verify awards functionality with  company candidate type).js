@@ -7,8 +7,8 @@
 //     'redirection to awards': function (browser) {
 //         browser
 //             .relUrl('/event/1401/awards')
-//             .waitForElementVisible('#thisIsMainLoader', 10000)
-//             .waitForElementNotVisible('#thisIsMainLoader', 10000);
+//             .waitForElementVisible('#thisIsMainLoader', 30000)
+//             .waitForElementNotVisible('#thisIsMainLoader', 30000);
 //     },
 //     'check awards page info': function (browser) {
 //         browser
@@ -53,10 +53,10 @@
 //         browser
 //             .click('//button[@type="submit"]')
 //             .useCss()
-//             .waitForElementVisible('#thisIsMainLoader', 10000)
-//             .waitForElementNotVisible('#thisIsMainLoader', 10000)
+//             .waitForElementVisible('#thisIsMainLoader', 30000)
+//             .waitForElementNotVisible('#thisIsMainLoader', 30000)
 //             .useXpath()
-//             .waitForElementVisible('//div[text()="Award saved successfully"]', 10000)
+//             .waitForElementVisible('//div[text()="Award saved successfully"]', 30000)
 //             .assert.elementNotPresent('//h3[text()="Candidate 1"]')
 //             .assert.elementNotPresent('//h3[text()="Candidate 2"]');
 //     },
@@ -66,9 +66,9 @@
 //             .click('//button[@type="submit"]')
 //             .click('//label[@btnradio="1"]')
 //             .useCss()
-//             .waitForElementVisible('#thisIsMainLoader', 10000)
-//             .waitForElementNotVisible('#thisIsMainLoader', 10000)
-//             .waitForElementVisible('//div[text()="Award saved successfully"]', 10000);
+//             .waitForElementVisible('#thisIsMainLoader', 30000)
+//             .waitForElementNotVisible('#thisIsMainLoader', 30000)
+//             .waitForElementVisible('//div[text()="Award saved successfully"]', 30000);
 //     },
 //
 // });

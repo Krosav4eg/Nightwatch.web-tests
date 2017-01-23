@@ -13,7 +13,7 @@ module.exports = _.assign(presteps, auth, {
     'select by id blank': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//tr/td[1]/input[@type="text"]', 10000)
+            .waitForElementVisible('//tr/td[1]/input[@type="text"]', 30000)
             .setValue('//tr/td[1]/input[@type="text"]', ['#37', browser.Keys.ENTER])
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)

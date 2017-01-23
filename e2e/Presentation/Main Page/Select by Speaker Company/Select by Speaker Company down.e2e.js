@@ -13,13 +13,13 @@ module.exports = _.assign(presteps, auth, {
     'select by speaker company up': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//tr/th[7]', 10000)
+            .waitForElementVisible('//tr/th[7]', 30000)
             .click('//tr/th[7]')
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
-            .waitForElementVisible('//tr/th[7]', 10000)
+            .waitForElementVisible('//tr/th[7]', 30000)
             .click('//tr/th[7]')
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)

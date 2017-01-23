@@ -7,8 +7,8 @@
 //     'redirection to awards': function (browser) {
 //         browser
 //             .relUrl('/event/1401/awards')
-//             .waitForElementVisible('#thisIsMainLoader', 10000)
-//             .waitForElementNotVisible('#thisIsMainLoader', 10000);
+//             .waitForElementVisible('#thisIsMainLoader', 30000)
+//             .waitForElementNotVisible('#thisIsMainLoader', 30000);
 //     },
 //     'check awards page info': function (browser) {
 //         browser
@@ -40,43 +40,43 @@
 //     'try to click on "Contact" radio button': function (browser) {
 //         browser
 //             .click('//input[@id=1]')
-//             .waitForElementVisible('//*[contains(text(),"be changed because candidates have been selected.Please remove the existing candidates before changing the candidate type of the award.")]', 10000);
+//             .waitForElementVisible('//*[contains(text(),"be changed because candidates have been selected.Please remove the existing candidates before changing the candidate type of the award.")]', 30000);
 //
 //     },
 //
 //     'try to click on "Project" radio button': function (browser) {
 //         browser
 //             .click('//input[@id=3]')
-//             .waitForElementVisible('//*[contains(text(),"be changed because candidates have been selected.Please remove the existing candidates before changing the candidate type of the award.")]', 10000);
+//             .waitForElementVisible('//*[contains(text(),"be changed because candidates have been selected.Please remove the existing candidates before changing the candidate type of the award.")]', 30000);
 //
 //     },
 //     'delete all candidates from candidates table': function (browser) {
 //         browser
-//             .waitForElementVisible('//div[@class="row"][1]//button[text()="Delete"]', 10000)
+//             .waitForElementVisible('//div[@class="row"][1]//button[text()="Delete"]', 30000)
 //             .click('//div[@class="row"][1]//button[text()="Delete"]')
 //             .waitForElementVisible('//button[@data-marker="me-confirm__button__button__yes"]', 3000)
 //             .click('//button[@data-marker="me-confirm__button__button__yes"]')
 //             .useCss()
-//             .waitForElementVisible('#thisIsMainLoader', 10000)
-//             .waitForElementNotVisible('#thisIsMainLoader', 10000)
+//             .waitForElementVisible('#thisIsMainLoader', 30000)
+//             .waitForElementNotVisible('#thisIsMainLoader', 30000)
 //             .useXpath()
-//             .waitForElementVisible('//div[@class="row"][2]//button[text()="Delete"]', 10000)
+//             .waitForElementVisible('//div[@class="row"][2]//button[text()="Delete"]', 30000)
 //             .click('//div[@class="row"][2]//button[text()="Delete"]')
 //             .waitForElementVisible('//button[@data-marker="me-confirm__button__button__yes"]', 3000)
 //             .click('//button[@data-marker="me-confirm__button__button__yes"]')
 //             .useCss()
-//             .waitForElementVisible('#thisIsMainLoader', 10000)
-//             .waitForElementNotVisible('#thisIsMainLoader', 10000)
+//             .waitForElementVisible('#thisIsMainLoader', 30000)
+//             .waitForElementNotVisible('#thisIsMainLoader', 30000)
 //             .useXpath()
-//             .waitForElementVisible('//div[@class="row"][3]//button[text()="Delete"]', 10000)
+//             .waitForElementVisible('//div[@class="row"][3]//button[text()="Delete"]', 30000)
 //             .click('//div[@class="row"][3]//button[text()="Delete"]')
 //             .waitForElementVisible('//button[@data-marker="me-confirm__button__button__yes"]', 3000)
 //             .click('//button[@data-marker="me-confirm__button__button__yes"]')
 //             .useCss()
-//             .waitForElementVisible('#thisIsMainLoader', 10000)
-//             .waitForElementNotVisible('#thisIsMainLoader', 10000)
+//             .waitForElementVisible('#thisIsMainLoader', 30000)
+//             .waitForElementNotVisible('#thisIsMainLoader', 30000)
 //             .useXpath()
-//             .waitForElementVisible('//div[text()="Company deleted successfully"]', 10000)
+//             .waitForElementVisible('//div[text()="Company deleted successfully"]', 30000)
 //             .assert.elementNotPresent('//h3[text()="Candidate 1"]')
 //             .assert.elementNotPresent('//h3[text()="Candidate 2"]')
 //             .assert.elementNotPresent('//h3[text()="Candidate 3"]');
@@ -87,9 +87,9 @@
 //             .click('//input[@id=2]')
 //             .click('//button[@type="submit"]')
 //             .useCss()
-//             .waitForElementVisible('#thisIsMainLoader', 10000)
-//             .waitForElementNotVisible('#thisIsMainLoader', 10000)
+//             .waitForElementVisible('#thisIsMainLoader', 30000)
+//             .waitForElementNotVisible('#thisIsMainLoader', 30000)
 //             .useXpath()
-//             .waitForElementVisible('//div[text()="Award saved successfully"]', 10000);
+//             .waitForElementVisible('//div[text()="Award saved successfully"]', 30000);
 //     },
 // });

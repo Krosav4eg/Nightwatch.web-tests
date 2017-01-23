@@ -24,7 +24,7 @@ module.exports = _.assign(presteps, auth, {
         browser
             .useXpath()
             .moveToElement('//tr[1]/td[12]/span/ul/li/span[text()="               Delegate             "]', 1298, 597)
-            .waitForElementVisible('//tr[1]/td[12]/span/ul/li/span[text()="               Delegate             "]', 10000)
+            .waitForElementVisible('//tr[1]/td[12]/span/ul/li/span[text()="               Delegate             "]', 30000)
             .click('//option[text()="Delegate"]')
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)
@@ -46,7 +46,7 @@ module.exports = _.assign(presteps, auth, {
     'check partner type': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//option[text()="Partner"]', 10000)
+            .waitForElementVisible('//option[text()="Partner"]', 30000)
             .click('//option[text()="Partner"]')
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)

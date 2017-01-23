@@ -13,7 +13,7 @@ module.exports = _.assign(presteps, auth, {
     'select by id up': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//tr/th[1]', 10000)
+            .waitForElementVisible('//tr/th[1]', 30000)
             .useCss()
             .waitForElementVisible('a[href="/presentations/edit/3696"]', 5000)
             .assert.elementPresent('a[href="/presentations/edit/3696"]')

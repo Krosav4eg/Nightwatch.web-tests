@@ -7,12 +7,12 @@
 //     'redirection to agenda': function (browser) {
 //         browser
 //             .relUrl('/event/212/agenda')
-//             .waitForElementVisible('#thisIsMainLoader', 10000)
-//             .waitForElementNotVisible('#thisIsMainLoader', 10000);
+//             .waitForElementVisible('#thisIsMainLoader', 30000)
+//             .waitForElementNotVisible('#thisIsMainLoader', 30000);
 //     },
 //     'creation new container': function (browser) {
 //         browser
-//             .waitForElementVisible('button.btn.btn-primary.btn-block', 10000)
+//             .waitForElementVisible('button.btn.btn-primary.btn-block', 30000)
 //             .click('button.btn.btn-primary.btn-block')
 //             .pause(2000)
 //             .useXpath()
@@ -169,7 +169,7 @@
 //     'presentation/case has been created': function (browser) {
 //         browser
 //             .useCss()
-//             .waitForElementNotVisible('#thisIsMainLoader', 10000)
+//             .waitForElementNotVisible('#thisIsMainLoader', 30000)
 //             .useXpath()
 //             .waitForElementVisible('//h5[contains(text(),"08:00 - 09:45")]', 2000)
 //             .waitForElementVisible('//h5[contains(text(),"Presentation / Case")]', 2000)
@@ -192,7 +192,7 @@
 //     //         .click('//button[@class="btn btn-primary"]/i[@class="fa fa-plus"]')
 //     //         .useCss()
 //     //         .pause(1500)
-//     //         .waitForElementNotVisible('#thisIsMainLoader', 10000)
+//     //         .waitForElementNotVisible('#thisIsMainLoader', 30000)
 //     //         .pause(3000)
 //     //         .useXpath()
 //     //         .waitForElementVisible('//modal[@class="modal fade in"]//h4[text()="Add presentation to "]', 2000)
@@ -202,7 +202,7 @@
 //     //         .waitForElementVisible('//modal[@class="modal fade in"]//button[@data-marker="me-modal-attach-presentation-to-element__input__button__save"]', 2000)
 //     //         .click('//modal[@class="modal fade in"]//button[@data-marker="me-modal-attach-presentation-to-element__input__button__save"]')
 //     //         .useCss()
-//     //         .waitForElementNotVisible('#thisIsMainLoader', 10000);
+//     //         .waitForElementNotVisible('#thisIsMainLoader', 30000);
 //     //
 //     // },
 //
@@ -239,7 +239,7 @@
 //             .waitForElementVisible('//a[@href="EventPresentationIndex"]', 5000)
 //             .click('//a[@href="EventPresentationIndex"]')
 //             .useCss()
-//             .waitForElementNotVisible('#thisIsMainLoader', 10000)
+//             .waitForElementNotVisible('#thisIsMainLoader', 30000)
 //             .useXpath()
 //             .waitForElementVisible('//h4[text()="Event (#212)"]', 5000)
 //             .waitForElementVisible('//h4[text()="Presentations"]', 5000)
@@ -262,7 +262,7 @@
 //             .waitForElementVisible('//tr[4]/td[9]/span/ul/li[4][text()="             Olav           "]', 5000)
 //             .back()
 //             .useCss()
-//             .waitForElementNotVisible('#thisIsMainLoader', 10000)
+//             .waitForElementNotVisible('#thisIsMainLoader', 30000)
 //             .waitForElementVisible('a.btn.btn-default.day.active', 5000)
 //             .useXpath()
 //             .waitForElementVisible('//a[2][@class="btn btn-default day"]', 5000)
@@ -279,7 +279,7 @@
 //             .waitForElementVisible('//modal[@class="modal fade in"]//button[@data-marker="me-confirm__button__button__yes"]', 2000)
 //             .click('//modal[@class="modal fade in"]//button[@data-marker="me-confirm__button__button__yes"]')
 //             .useCss()
-//             .waitForElementNotVisible('#thisIsMainLoader', 10000);
+//             .waitForElementNotVisible('#thisIsMainLoader', 30000);
 //
 //     },
 //     'edit presentation/case in Element form': function (browser) {
@@ -326,7 +326,7 @@
 //             .waitForElementVisible('//div/div/div/div/button[contains(text(),"Save")]', 4000)
 //             .click('//div/div/div/div/button[contains(text(),"Save")]')
 //             .useCss()
-//             .waitForElementNotVisible('#thisIsMainLoader', 10000);
+//             .waitForElementNotVisible('#thisIsMainLoader', 30000);
 //
 //     },
 //
@@ -354,7 +354,7 @@
 //             .waitForElementVisible('//modal[@class="modal fade in"]//button[@data-marker="me-confirm__button__button__yes"]', 2000)
 //             .click('//modal[@class="modal fade in"]//button[@data-marker="me-confirm__button__button__yes"]')
 //             .useCss()
-//             .waitForElementNotVisible('#thisIsMainLoader', 10000);
+//             .waitForElementNotVisible('#thisIsMainLoader', 30000);
 //
 //     },
 //     'delete container': function (browser) {
@@ -363,7 +363,7 @@
 //             .pause(1000)
 //             .waitForElementVisible('modal.modal.fade.in div.modal-footer>button.btn.btn-success', 1000)
 //             .click('modal.modal.fade.in div.modal-footer>button.btn.btn-success')
-//             .waitForElementNotVisible('#thisIsMainLoader', 10000)
+//             .waitForElementNotVisible('#thisIsMainLoader', 30000)
 //             .useXpath()
 //             .assert.elementNotPresent('//b[contains(text(), "new_event2016")]')
 //             .pause(1000);

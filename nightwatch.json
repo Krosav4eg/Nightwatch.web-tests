@@ -9,7 +9,7 @@
   "detailed_output": true,
 
   "globals": {
-    "waitForConditionTimeout": 10000,
+    "waitForConditionTimeout": 30000,
     "abortOnAssertionFailure": true
   },
 
@@ -24,7 +24,7 @@
 
       "selenium_host": "127.0.0.1",
       "selenium_port": 4444,
-      "launch_url" : "http://test.skynet.managementevents.com",
+      "launch_url" : "http://alpha.skynet.managementevents.com",
       "silent": true,
       "screenshots" : {
         "enabled" : true,

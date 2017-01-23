@@ -7,8 +7,8 @@ module.exports = _.assign(presteps, auth, {
     'redirection to awards': function (browser) {
         browser
             .relUrl('/event/1504/awards')
-            .waitForElementVisible('#thisIsMainLoader', 10000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000);
+            .waitForElementVisible('#thisIsMainLoader', 30000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
     'check awards page info': function (browser) {
         browser
@@ -35,49 +35,49 @@ module.exports = _.assign(presteps, auth, {
 
 
     },
-    // 'select company radio button ': function (browser) {
-    //     browser
-    //         .click('//input[@id=2]')
-    //         .click('//label[@btnradio="1"]')
-    //         .click('//button[@type="submit"]')
-    //         .useCss()
-    //         .waitForElementVisible('#thisIsMainLoader', 10000)
-    //         .waitForElementNotVisible('#thisIsMainLoader', 10000)
-    //         .useXpath()
-    //         .waitForElementVisible('//div[text()="Award saved successfully"]', 10000)
-    //         .waitForElementVisible('//button[text()="Add a new candidate"]', 10000);
-    //
-    // },
-    //
-    // 'create new candidate': function (browser) {
-    //     browser
-    //         .click('//button[text()="Add a new candidate"]')
-    //         .click('//input[@value-property-name="companyId"]')
-    //         .useCss()
-    //         .setValue('.auto-complete input', "Aalef")
-    //         .pause(3000)
-    //         .useXpath()
-    //         .click('//*[contains(text(),"Aalef")]')
-    //         .click('//button[text()="Add company"]');
-    //
-    // },
+    'select company radio button ': function (browser) {
+        browser
+            .click('//input[@id=2]')
+            .click('//label[@btnradio="1"]')
+            .click('//button[@type="submit"]')
+            .useCss()
+            .waitForElementVisible('#thisIsMainLoader', 30000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
+            .useXpath()
+            .waitForElementVisible('//div[text()="Award saved successfully"]', 30000)
+            .waitForElementVisible('//button[text()="Add a new candidate"]', 30000);
+
+    },
+
+    'create new candidate': function (browser) {
+        browser
+            .click('//button[text()="Add a new candidate"]')
+            .click('//input[@value-property-name="companyId"]')
+            .useCss()
+            .setValue('.auto-complete input', "Aalef")
+            .pause(3000)
+            .useXpath()
+            .click('//*[contains(text(),"Aalef")]')
+            .click('//button[text()="Add company"]');
+
+    },
     'added candidate has been displayed': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//h4[text()="Candidates"]', 10000)
-            .waitForElementVisible('//h3[text()="Candidate 1"]', 10000)
-            .waitForElementVisible('//label[text()="Company Name"]', 10000)
-            .waitForElementVisible('//span[text()="             Aalef Oy             "]', 10000)
-            .waitForElementVisible('//a[@href="http://alpha.ew.managementevents.com/EW/MasterCompany/cruII/id/92844"]', 10000)
-            .waitForElementVisible('//label[text()="Country"]', 10000)
-            .waitForElementVisible('//img[@src="http://alpha.master-api.managementevents.com/frontend/web/images/no-image.png"]', 10000)
-            .waitForElementVisible('//label[text()="Introduction"]', 10000)
-            .waitForElementVisible('//div/textarea', 10000)
-            .waitForElementVisible('//button[text()="Winner"]', 10000)
-            .waitForElementVisible('//button[text()="Delete"]', 10000)
-            .waitForElementVisible('//div[@class="form-group"]//div[text()="Modified: "]', 10000)
-            .waitForElementVisible('//div[@class="form-group"]//div[text()="Modified by: "]', 10000)
-            .waitForElementVisible('//div[@class="form-group"]//button[text()="Save"]', 10000);
+            .waitForElementVisible('//h4[text()="Candidates"]', 30000)
+            .waitForElementVisible('//h3[text()="Candidate 1"]', 30000)
+            .waitForElementVisible('//label[text()="Company Name"]', 30000)
+            .waitForElementVisible('//span[text()="             Aalef Oy             "]', 30000)
+            .waitForElementVisible('//a[@href="http://alpha.ew.managementevents.com/EW/MasterCompany/cruII/id/92844"]', 30000)
+            .waitForElementVisible('//label[text()="Country"]', 30000)
+            .waitForElementVisible('//img[@src="http://alpha.master-api.managementevents.com/frontend/web/images/no-image.png"]', 30000)
+            .waitForElementVisible('//label[text()="Introduction"]', 30000)
+            .waitForElementVisible('//div/textarea', 30000)
+            .waitForElementVisible('//button[text()="Winner"]', 30000)
+            .waitForElementVisible('//button[text()="Delete"]', 30000)
+            .waitForElementVisible('//div[@class="form-group"]//div[text()="Modified: "]', 30000)
+            .waitForElementVisible('//div[@class="form-group"]//div[text()="Modified by: "]', 30000)
+            .waitForElementVisible('//div[@class="form-group"]//button[text()="Save"]', 30000);
 
     },
     'press "choose file" button': function (browser) {
@@ -87,10 +87,10 @@ module.exports = _.assign(presteps, auth, {
             .window_handles(function (result) {
                 var handle = result.value[0];
                 browser.switchWindow(handle)
-                    .waitForElementVisible('//h4[text()="Company  - Aalef Oy (#92844)"]', 10000)
-                    .waitForElementVisible('//input[@name="CompanyPicture"]', 10000)
+                    .waitForElementVisible('//h4[text()="Company  - Aalef Oy (#92844)"]', 30000)
+                    .waitForElementVisible('//input[@name="CompanyPicture"]', 30000)
                     .setValue('//input[@name="CompanyPicture"]', 'C:/Users/Avic/Desktop/2017-01-17_10h27_59.png')
-                    .waitForElementVisible('//img[@alt="[]"]', 10000)
+                    .waitForElementVisible('//img[@alt="[]"]', 30000)
                     .getElementSize('//img[@alt="[]"]', function (result) {
                         this.assert.equal(typeof result, "object")
                         this.assert.equal(result.status, 0)
@@ -99,7 +99,7 @@ module.exports = _.assign(presteps, auth, {
                     })
                     .useCss()
                     .click('#action_done_cropping')
-                    .waitForElementVisible('.contact-picture', 10000)
+                    .waitForElementVisible('.contact-picture', 30000)
                     .getElementSize(".contact-picture", function (result) {
                         this.assert.equal(typeof result, "object")
                         this.assert.equal(result.status, 0)
@@ -111,8 +111,8 @@ module.exports = _.assign(presteps, auth, {
     'go to the candidate 1 page ': function (browser) {
         browser
             .relUrl('/event/1504/awards')
-            .waitForElementVisible('#thisIsMainLoader', 10000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .waitForElementVisible('#thisIsMainLoader', 30000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
 
     },
 
@@ -120,16 +120,16 @@ module.exports = _.assign(presteps, auth, {
         browser
             .useXpath()
             .moveToElement('//me-event-candidates-form//button[text()="Save"]', 100, 100)
-            .waitForElementVisible('//h3[text()="Candidate 1"]', 10000)
-            .waitForElementVisible('//button[text()="Delete"]', 10000)
+            .waitForElementVisible('//h3[text()="Candidate 1"]', 30000)
+            .waitForElementVisible('//button[text()="Delete"]', 30000)
             .click('//button[text()="Delete"]')
             .waitForElementVisible('//button[@data-marker="me-confirm__button__button__yes"]', 3000)
             .click('//button[@data-marker="me-confirm__button__button__yes"]')
             .useCss()
-            .waitForElementVisible('#thisIsMainLoader', 10000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .waitForElementVisible('#thisIsMainLoader', 30000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
-            .waitForElementVisible('//div[text()="Company deleted successfully"]', 10000)
+            .waitForElementVisible('//div[text()="Company deleted successfully"]', 30000)
             .assert.elementNotPresent('//h3[text()="Candidate 1"]')
 
     }

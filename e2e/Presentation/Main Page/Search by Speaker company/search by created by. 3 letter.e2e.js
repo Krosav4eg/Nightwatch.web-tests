@@ -13,7 +13,7 @@ module.exports = _.assign(presteps, auth, {
     'search by 3 letters': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//tr/td[7]/input[@type="text"]', 10000)
+            .waitForElementVisible('//tr/td[7]/input[@type="text"]', 30000)
             .setValue('//tr/td[7]/input[@type="text"]', ['tel', browser.Keys.ENTER])
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)

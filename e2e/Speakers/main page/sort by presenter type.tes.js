@@ -24,7 +24,7 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
             .moveToElement('//tr[1]/th[12]', 1298, 597)
             .click('//tr[1]/th[12]')
-            .waitForElementVisible('//tr[1]/td[12]/span/ul/li/span[text()="               Delegate             "]', 10000)
+            .waitForElementVisible('//tr[1]/td[12]/span/ul/li/span[text()="               Delegate             "]', 30000)
             .assert.elementPresent('//tr[1]/td[12]/span/ul/li/span[text()="               Delegate             "]')
             .assert.elementPresent('//tr[2]/td[12]/span/ul/li/span[text()="               Delegate             "]')
             .assert.elementPresent('//tr[3]/td[12]/span/ul/li/span[text()="               Delegate             "]')
@@ -35,7 +35,7 @@ module.exports = _.assign(presteps, auth, {
         browser
             .moveToElement('//tr[1]/th[12]', 1298, 597)
             .click('//tr[1]/th[12]')
-            .waitForElementVisible('//tr[1]/td[12]/span/ul/li/span[text()="               Delegate             "]', 10000)
+            .waitForElementVisible('//tr[1]/td[12]/span/ul/li/span[text()="               Delegate             "]', 30000)
             .assert.elementPresent('//tr[1]/td[12]/span/ul/li/span[text()="               Delegate             "]')
             .assert.elementPresent('//tr[2]/td[12]/span/ul/li/span[text()="               Delegate             "]')
             .assert.elementPresent('//tr[3]/td[12]/span/ul/li/span[text()="               Delegate             "]')

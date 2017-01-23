@@ -13,7 +13,7 @@ module.exports = _.assign(presteps, auth, {
     'select by id down': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//tr/th[1]', 10000)
+            .waitForElementVisible('//tr/th[1]', 30000)
             .click('//tr/th[1]')
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 30000)

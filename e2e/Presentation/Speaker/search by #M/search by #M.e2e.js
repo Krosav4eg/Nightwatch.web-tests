@@ -39,7 +39,7 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
-            .waitForElementVisible('//tr[1]/td[1]/span/a[@href="/presentations/3732/master-contact/29"]', 10000);
+            .waitForElementVisible('//tr[1]/td[1]/span/a[@href="/presentations/3732/master-contact/29"]', 30000);
 
     },
 

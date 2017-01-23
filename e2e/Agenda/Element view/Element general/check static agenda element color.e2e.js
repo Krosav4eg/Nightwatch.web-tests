@@ -7,12 +7,12 @@ module.exports = _.assign(presteps, auth, {
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/228/agenda')
-            .waitForElementVisible('#thisIsMainLoader', 10000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000);
+            .waitForElementVisible('#thisIsMainLoader', 30000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
     'creation new container': function (browser) {
         browser
-            .waitForElementVisible('button.btn.btn-primary.btn-block', 10000)
+            .waitForElementVisible('button.btn.btn-primary.btn-block', 30000)
             .click('button.btn.btn-primary.btn-block')
             .pause(2000)
             .useXpath()
@@ -220,7 +220,7 @@ module.exports = _.assign(presteps, auth, {
     'redirection after adding room': function (browser) {
         browser
             .useCss()
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
             .waitForElementVisible('//h5[contains(text(),"08:59 - 09:59")]', 2000)
             .waitForElementVisible('//h5[contains(text(),"Awards Panel")]', 2000)
@@ -259,7 +259,7 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('//div[@class="col-sm-12 container_btn_group"]/button[2][contains(text(),"Save")]', 2000)
             .click('//div[@class="col-sm-12 container_btn_group"]/button[2][contains(text(),"Save")]')
             .useCss()
-            .waitForElementNotVisible('#thisIsMainLoader', 10000);
+            .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
     'groups are not present': function (browser) {
         browser
@@ -278,8 +278,8 @@ module.exports = _.assign(presteps, auth, {
             .click('.fa.fa-trash-o.delete-container')
             .waitForElementVisible('div.modal-footer>button.btn.btn-success', 4000)
             .click('div.modal-footer>button.btn.btn-success')
-            .waitForElementVisible('#thisIsMainLoader', 10000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .waitForElementVisible('#thisIsMainLoader', 30000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .pause(1000)
             .useXpath()
             .assert.elementNotPresent('//b[contains(text(), "new_event2016")]');

@@ -7,8 +7,8 @@ module.exports = _.assign(presteps, auth, {
     'redirection to awards': function (browser) {
         browser
             .relUrl('/event/216/awards')
-            .waitForElementVisible('#thisIsMainLoader', 10000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000);
+            .waitForElementVisible('#thisIsMainLoader', 30000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
     'check awards page info': function (browser) {
         browser
@@ -60,12 +60,12 @@ module.exports = _.assign(presteps, auth, {
             .click('//input[@id=2]')
             .click('//button[@type="submit"]')
             .useCss()
-            .waitForElementVisible('#thisIsMainLoader', 10000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .waitForElementVisible('#thisIsMainLoader', 30000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
-            .waitForElementVisible('//div[text()="Award saved successfully"]', 10000)
+            .waitForElementVisible('//div[text()="Award saved successfully"]', 30000)
             .checkModifiedInSelectorXpath('//*[contains(text(),"Awards")]/../..//div[contains(text(),"Modified:")]/../div[2]')
-            .waitForElementVisible('//button[text()="Add a new candidate"]', 10000);
+            .waitForElementVisible('//button[text()="Add a new candidate"]', 30000);
 
     },
     'to return everything to its original position ': function (browser) {
@@ -74,8 +74,8 @@ module.exports = _.assign(presteps, auth, {
             .click('//label[@btnradio="0"]')
             .click('//button[@type="submit"]')
             .useCss()
-            .waitForElementVisible('#thisIsMainLoader', 10000)
-            .waitForElementNotVisible('#thisIsMainLoader', 10000)
+            .waitForElementVisible('#thisIsMainLoader', 30000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
             .waitForElementVisible('//h3[text()="IndustryForum Healthcare"]', 7000)
             .checkModifiedInSelectorXpath('//*[contains(text(),"Awards")]/../..//div[contains(text(),"Modified:")]/../div[2]');
