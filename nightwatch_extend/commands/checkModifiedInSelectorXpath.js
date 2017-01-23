@@ -16,7 +16,6 @@ module.exports.command = function (selector) {
     if (mm < 10) {
         mm = "0" + mm;
     }
-
     var yy = today.getFullYear();
 
     var hh = today.getHours();
@@ -32,6 +31,7 @@ module.exports.command = function (selector) {
     this
         .useXpath()
         .getText(selector, function (result) {
+
             dateModified = result.value;
             dateModified = dateModified.substr(0, 13);
             console.log("currentTime = " + currentTime);
@@ -39,3 +39,4 @@ module.exports.command = function (selector) {
             this.assert.equal(currentTime, dateModified);
         });
 };
+
