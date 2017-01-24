@@ -24,27 +24,27 @@ module.exports = _.assign(presteps, auth, {
     'added candidate has been displayed': function (browser) {
         browser
             .useXpath()
-            .verify.elementPresent('//h4[contains(text(),"Candidates")]', 30000)
+            .verify.elementPresent('//h4[contains(text(),"Candidates")]')
 
-            .verify.elementPresent('//h3[contains(text(),"Candidate 1")]', 30000)
-            .verify.elementPresent('//label[contains(text(),"Company Name")]', 30000)
-            .verify.elementPresent('//span[contains(text(),"Allgemeines Krankenhaus Celle")]', 30000)
-            .verify.elementPresent('//a[@href="http://test.ew.managementevents.com/EW/MasterCompany/cruII/id/22280"]', 30000)
-            .verify.elementPresent('//label[contains(text(),"Country")]', 30000)
-            .verify.elementPresent('//span[contains(text(),"Germany")]', 30000)
+            .verify.elementPresent('//h3[contains(text(),"Candidate 1")]')
+            .verify.elementPresent('//label[contains(text(),"Company Name")]')
+            .verify.elementPresent('//span[contains(text(),"Allgemeines Krankenhaus Celle")]')
+            .verify.elementPresent('//a[contains(text(),"(M#22280)")]')
+            .verify.elementPresent('//label[contains(text(),"Country")]')
+            .verify.elementPresent('//span[contains(text(),"Germany")]')
 
-            .verify.elementPresent('//*[text()="Candidates"]/../..//img', 30000)
+            .verify.elementPresent('//*[text()="Candidates"]/../..//img')
 
-            .verify.elementPresent('//label[contains(text(),"Introduction")]', 30000)
-            .verify.elementPresent('//div/textarea', 30000)
+            .verify.elementPresent('//label[contains(text(),"Introduction")]')
+            .verify.elementPresent('//div/textarea')
 
-            .verify.elementPresent('//button[contains(text(),"Winner")]', 30000)
-            .verify.elementPresent('//button[contains(text(),"Delete")]', 30000)
+            .verify.elementPresent('//button[contains(text(),"Winner")]')
+            .verify.elementPresent('//button[contains(text(),"Delete")]')
 
-            .verify.elementPresent('//div[@class="form-group"]//div[contains(text(),"Modified: ")]', 30000)
-            .verify.elementPresent('//div[@class="form-group"]//div[contains(text(),"Modified by: ")]', 30000)
+            .verify.elementPresent('//div[@class="form-group"]//div[contains(text(),"Modified: ")]')
+            .verify.elementPresent('//div[@class="form-group"]//div[contains(text(),"Modified by: ")]')
 
-            .verify.elementPresent('//div[@class="form-group"]//button[text()="Save"]', 30000)
+            .verify.elementPresent('//div[@class="form-group"]//button[text()="Save"]')
     },
 
     'delete candidate': function (browser) {

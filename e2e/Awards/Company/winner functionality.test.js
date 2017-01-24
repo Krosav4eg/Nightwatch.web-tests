@@ -29,7 +29,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//h3[contains(text(),"Candidate 1")]', 30000)
             .verify.elementPresent('//label[contains(text(),"Company Name")]', 30000)
             .verify.elementPresent('//span[contains(text(),"Aalef Oy")]', 30000)
-            .verify.elementPresent('//a[@href="http://test.ew.managementevents.com/EW/MasterCompany/cruII/id/92844"]', 30000)
+            .verify.elementPresent('//a[contains(text(),"(M#92844)")]', 30000)
             .verify.elementPresent('//label[contains(text(),"Country")]', 30000)
 
             .verify.elementPresent('//*[text()="Candidates"]/../..//img', 30000)
@@ -76,6 +76,10 @@ module.exports = _.assign(presteps, auth, {
     'refresh page and verify in introduction field': function (browser) {
         browser
             .refresh()
+            .useCss()
+            .waitForElementVisible('#thisIsMainLoader', 30000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
+            .useXpath()
             .waitForElementVisible('//me-event-candidates-form//button[text()="Save"]', 20000)
             .moveToElement('//me-event-candidates-form//button[text()="Save"]', 100, 100)
 
@@ -83,15 +87,15 @@ module.exports = _.assign(presteps, auth, {
             .verify.valueContains('//form//div[1]//textarea', 'Very important information')
 
             .waitForElementVisible('//form//div[2]//textarea', 30000)
-            .verify.valueContains('//form//div[2]//textarea', 'You are best of the best')
-            .verify(2500);
+            .verify.valueContains('//form//div[2]//textarea', 'You are best of the best');
     },
 
     'click winners button again': function (browser) {
         browser
             .clickBySelectorXpath('//button[text()="Winner"]')
-            .verify.elementNotPresent('//*[contains(text(),"s description")]')
-            .verify.elementNotPresent('//form//div[2]//textarea')
+            .pause(1000)
+            .verify.elementNotPresent('//*[contains(text(),"s description")]', 30000)
+            .verify.elementNotPresent('//form//div[2]//textarea', 30000)
             .verify.cssProperty('//button[text()="Winner"]', 'background-color', 'rgba(41, 115, 207, 1)')
             .pause(1500);
     },
@@ -110,17 +114,18 @@ module.exports = _.assign(presteps, auth, {
 
             .checkModifiedInSelectorXpath('//*[contains(text(),"Awards")]/../..//div[contains(text(),"Modified:")]/../div[2]')
             .verify.valueContains('//form//div[2]//textarea', 'You are best of the best of the best')
-            .pause(1500);
+            .pause(1200);
     },
 
     'to return everything to its original position ': function (browser) {
         browser
-            .clickBySelectorXpath('//button[text()="Winner"]')
-
+            .click('//button[text()="Winner"]')
             .clickBySelectorXpath('//me-event-candidates-form//button[text()="Save"]')
 
             .waitForElementVisible('//div[text()="Award saved successfully"]', 20000)
-            .pause(3500)
-            .deleteCancdndidate();
+            .pause(3000)
+
+            .deleteCandidate();
     },
 });
+

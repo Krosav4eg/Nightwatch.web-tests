@@ -18,7 +18,7 @@ module.exports = _.assign(presteps, auth, {
 
     'click on add a new candidate  button': function (browser) {
         browser
-            .addNewCandidate("PRS");
+            .addNewCandidate("PRS Prime Re Services AG");
     },
 
     'added candidate has been displayed': function (browser) {
@@ -28,9 +28,8 @@ module.exports = _.assign(presteps, auth, {
 
             .verify.elementPresent('//h3[contains(text(),"Candidate 1")]')
             .verify.elementPresent('//label[contains(text(),"Company Name")]')
-            .verify.elementPresent('//a[@href="http://test.ew.managementevents.com/EW/MasterCompany/cruII/id/84462"]')
+            .verify.elementPresent('//a[contains(text(),"(M#84462)")]')
             .verify.elementPresent('//label[contains(text(),"Country")]')
-            .verify.elementPresent('//span[contains(text(),"Switzerland")]')
 
             .verify.elementPresent('//*[text()="Candidates"]/../..//img')
 
@@ -48,7 +47,9 @@ module.exports = _.assign(presteps, auth, {
 
     'click on casterContact ID': function (browser) {
         browser
+
             .clickBySelectorXpath('//a[@href="http://test.ew.managementevents.com/EW/MasterCompany/cruII/id/84462"]', 30000)
+            .clickBySelectorXpath('//a[contains(text(),"(M#84462)")]', 30000)
     },
 
     'check contact information': function (browser) {
