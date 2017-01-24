@@ -124,13 +124,8 @@ module.exports = _.assign(presteps, auth, {
 
             .waitForElementVisible('//div[text()="Award saved successfully"]', 20000)
             .pause(3000)
-            // .click('//button[text()="Delete"]')
-            // .waitForElementVisible('//button[@data-marker="me-confirm__button__button__yes"]', 20000)
-            // .click('//button[@data-marker="me-confirm__button__button__yes"]')
-            //
-            // .waitForElementVisible('//div[text()="Company deleted successfully"]', 20000);
-            .deleteCandidate();
 
+            .deleteCandidate();
     },
 });
 

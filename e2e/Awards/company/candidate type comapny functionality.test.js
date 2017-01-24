@@ -53,6 +53,7 @@ module.exports = _.assign(presteps, auth, {
             .setValueByXpath('//div[1]/div/input[1][@type="text"]','The best of the best')
             .setValueByXpath('//div[2]/div/input[1][@type="text"]','The best of the best 2')
     },
+
     'select company radio button ': function (browser) {
         browser
             .clickBySelectorXpath('//input[@id=2]')
@@ -61,6 +62,7 @@ module.exports = _.assign(presteps, auth, {
             .checkModifiedInSelectorXpath('//*[contains(text(),"Awards")]/../..//div[contains(text(),"Modified:")]/../div[2]')
             .waitForElementVisible('//button[text()="Add a new candidate"]', 30000);
     },
+
     'to return everything to its original position ': function (browser) {
         browser
             .clickBySelectorXpath('//input[@id=1]')
@@ -68,8 +70,5 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('//button[@type="submit"]')
             .waitForElementVisible('//h3[text()="IndustryForum Healthcare"]', 7000)
             .checkModifiedInSelectorXpath('//*[contains(text(),"Awards")]/../..//div[contains(text(),"Modified:")]/../div[2]');
-
     },
-
-
 });
