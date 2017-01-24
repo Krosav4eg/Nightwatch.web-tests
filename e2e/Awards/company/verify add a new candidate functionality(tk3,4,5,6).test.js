@@ -30,7 +30,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//h3[contains(text(),"Candidate 1")]')
             .verify.elementPresent('//label[contains(text(),"Company Name")]')
             .verify.elementPresent('//span[contains(text(),"UNiQUARE Software Development GmbH")]')
-            .verify.elementPresent('//a[@href="http://alpha.ew.managementevents.com/EW/MasterCompany/cruII/id/100014"]')
+            .verify.elementPresent('//a[contains(text(),"(M#100014)")]')
             .verify.elementPresent('//label[contains(text(),"Country")]')
             .verify.elementPresent('//span[contains(text(),"AUSTRIA")]')
 
@@ -80,7 +80,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//h3[contains(text(),"Candidate 1")]')
             .verify.elementPresent('//label[contains(text(),"Company Name")]')
             .verify.elementPresent('//span[contains(text(),"Alcatel Austria AG ")]')
-            .verify.elementPresent('//a[@href="http://alpha.ew.managementevents.com/EW/MasterCompany/cruII/id/63459"]')
+            .verify.elementPresent('//a[contains(text(),"(M#63459)")]')
             .verify.elementPresent('//label[contains(text(),"Country")]')
             .verify.elementPresent('//span[contains(text(),"AUSTRIA")]')
 
@@ -137,9 +137,7 @@ module.exports = _.assign(presteps, auth, {
 
     'create new candidate': function (browser) {
         browser
-
             .addNewCandidate("ALVAREZ");
-
     },
 
     'created candidate is not visible': function (browser) {
@@ -148,12 +146,15 @@ module.exports = _.assign(presteps, auth, {
             .checkModifiedInSelectorXpath('//*[contains(text(),"Awards")]/../..//div[contains(text(),"Modified:")]/../div[2]')
             .verify.elementNotPresent('//h3[text()="Candidate 3"]');
     },
+
     'status switcher is "ON"': function (browser) {
         browser
             .clickBySelectorXpath('//input[@id=2]')
             .clickBySelectorXpath('//label[@btnradio="1"]')
             .verify.cssProperty('//label[@btnradio="1"]', 'background-color', 'rgba(41, 115, 207, 1)')
+
             .clickBySelectorXpath('//button[@type="submit"]')
+
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
@@ -162,7 +163,6 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//h3[text()="Candidate 2"]')
             .verify.elementPresent('//h3[text()="Candidate 3"]')
             .checkModifiedInSelectorXpath('//*[contains(text(),"Awards")]/../..//div[contains(text(),"Modified:")]/../div[2]');
-
     },
 
     'try to click on "Contact" radio button': function (browser) {
@@ -177,14 +177,12 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('//input[@id=3]')
             .waitForElementVisible('//*[contains(text(),"be changed because candidates have been selected.Please remove the existing candidates before changing the candidate type of the award.")]', 30000);
     },
+
     'delete all candidates from candidates table': function (browser) {
         browser
             .deleteCandidate()
             .deleteCandidate()
             .deleteCandidate();
-        // .verify.elementNotPresent('//h3[text()="Candidate 1"]')
-        // .verify.elementNotPresent('//h3[text()="Candidate 2"]')
-        // .verify.elementNotPresent('//h3[text()="Candidate 3"]');
     },
 });
 

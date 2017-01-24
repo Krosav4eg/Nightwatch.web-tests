@@ -11,7 +11,6 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
 
-
     'select company radio and switch ON buttons ': function (browser) {
         browser
             .selectCompanyRadioButton();
@@ -22,31 +21,32 @@ module.exports = _.assign(presteps, auth, {
             .addNewCandidate("Aalef");
 
     },
+
     'added candidate has been displayed': function (browser) {
         browser
             .useXpath()
-            .verify.elementPresent('//h4[contains(text(),"Candidates")]', 30000)
+            .verify.elementPresent('//h4[contains(text(),"Candidates")]')
 
-            .verify.elementPresent('//h3[contains(text(),"Candidate 1")]', 30000)
-            .verify.elementPresent('//label[contains(text(),"Company Name")]', 30000)
-            .verify.elementPresent('//span[contains(text(),"Aalef Oy")]', 30000)
-            .verify.elementPresent('//a[@href="http://test.ew.managementevents.com/EW/MasterCompany/cruII/id/92844"]', 30000)
-            .verify.elementPresent('//label[contains(text(),"Country")]', 30000)
+            .verify.elementPresent('//h3[contains(text(),"Candidate 1")]')
+            .verify.elementPresent('//label[contains(text(),"Company Name")]')
+            .verify.elementPresent('//span[contains(text(),"Aalef Oy")]')
+            .verify.elementPresent('//a[contains(text(),"(M#92844)")]', 30000)
+            .verify.elementPresent('//label[contains(text(),"Country")]')
 
-            .verify.elementPresent('//*[text()="Candidates"]/../..//img', 30000)
+            .verify.elementPresent('//*[text()="Candidates"]/../..//img')
 
-            .verify.elementPresent('//label[contains(text(),"Introduction")]', 30000)
-            .verify.elementPresent('//div/textarea', 30000)
+            .verify.elementPresent('//label[contains(text(),"Introduction")]')
+            .verify.elementPresent('//div/textarea')
 
-            .verify.elementPresent('//button[contains(text(),"Winner")]', 30000)
-            .verify.elementPresent('//button[contains(text(),"Delete")]', 30000)
+            .verify.elementPresent('//button[contains(text(),"Winner")]')
+            .verify.elementPresent('//button[contains(text(),"Delete")]')
 
-            .verify.elementPresent('//div[@class="form-group"]//div[contains(text(),"Modified: ")]', 30000)
-            .verify.elementPresent('//div[@class="form-group"]//div[contains(text(),"Modified by: ")]', 30000)
+            .verify.elementPresent('//div[@class="form-group"]//div[contains(text(),"Modified: ")]')
+            .verify.elementPresent('//div[@class="form-group"]//div[contains(text(),"Modified by: ")]')
 
-            .verify.elementPresent('//div[@class="form-group"]//button[text()="Save"]', 30000)
-
+            .verify.elementPresent('//div[@class="form-group"]//button[text()="Save"]')
     },
+
     'press "choose file" button': function (browser) {
         browser
             .clickBySelectorXpath('//*[text()="Candidates"]/../..//a[contains(@href,"MasterCompany")]')
@@ -78,12 +78,12 @@ module.exports = _.assign(presteps, auth, {
                     })
             })
     },
+
     'go to the candidate 1 page ': function (browser) {
         browser
             .relUrl('/event/1504/awards')
             .useXpath()
             .waitForElementVisible('//h4[contains(text(),"Event (#1504)")]', 30000);
-
     },
 
     'delete 1-st candidate': function (browser) {

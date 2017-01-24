@@ -14,14 +14,13 @@ module.exports = _.assign(presteps, auth, {
     'select company radio button ': function (browser) {
         browser
             .selectCompanyRadioButton();
-
     },
 
     'click on add a new candidate  button': function (browser) {
         browser
-            .addNewCandidate("PRS");
-
+            .addNewCandidate("PRS Prime Re Services AG");
     },
+
     'added candidate has been displayed': function (browser) {
         browser
             .useXpath()
@@ -29,9 +28,8 @@ module.exports = _.assign(presteps, auth, {
 
             .verify.elementPresent('//h3[contains(text(),"Candidate 1")]')
             .verify.elementPresent('//label[contains(text(),"Company Name")]')
-            .verify.elementPresent('//a[@href="http://test.ew.managementevents.com/EW/MasterCompany/cruII/id/84462"]')
+            .verify.elementPresent('//a[contains(text(),"(M#84462)")]')
             .verify.elementPresent('//label[contains(text(),"Country")]')
-            .verify.elementPresent('//span[contains(text(),"Switzerland")]')
 
             .verify.elementPresent('//*[text()="Candidates"]/../..//img')
 
@@ -45,12 +43,11 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//div[@class="form-group"]//div[contains(text(),"Modified by: ")]')
 
             .verify.elementPresent('//div[@class="form-group"]//button[text()="Save"]')
-
     },
+
     'click on casterContact ID': function (browser) {
         browser
-            .clickBySelectorXpath('//a[@href="http://test.ew.managementevents.com/EW/MasterCompany/cruII/id/84462"]', 30000)
-
+            .clickBySelectorXpath('//a[contains(text(),"(M#84462)")]', 30000)
     },
 
     'check contact information': function (browser) {
@@ -74,8 +71,8 @@ module.exports = _.assign(presteps, auth, {
             .relUrl('/event/1502/awards')
             .useXpath()
             .waitForElementVisible('//h4[contains(text(),"Event (#1502)")]', 30000);
-
     },
+
     'enter introduction': function (browser) {
         browser
             .moveToElement('//me-event-candidates-form//button[text()="Save"]', 100, 100)
@@ -85,8 +82,8 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('//div[contains(text(),"Award saved successfully")]', 30000)
             .checkModifiedInSelectorXpath('//*[contains(text(),"Awards")]/../..//div[contains(text(),"Modified:")]/../div[2]')
             .verify.valueContains('//textarea', 'Very important information');
-
     },
+
     'refresh page and verify in introduction field': function (browser) {
         browser
             .refresh()
@@ -95,14 +92,10 @@ module.exports = _.assign(presteps, auth, {
 
             .waitForElementVisible('//textarea', 30000)
             .verify.valueContains('//textarea', 'Very important information');
-
     },
 
     'delete candidate': function (browser) {
         browser
             .deleteCandidate();
     },
-
-
-})
-;
+});
