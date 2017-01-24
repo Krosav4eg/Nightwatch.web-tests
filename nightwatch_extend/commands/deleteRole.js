@@ -13,6 +13,5 @@ module.exports.command = function(text) {
         .click('(//*[@class="btn btn-danger"])[1]')
         .acceptAlert()
         .pause(2000);
-
     return this;
 };
