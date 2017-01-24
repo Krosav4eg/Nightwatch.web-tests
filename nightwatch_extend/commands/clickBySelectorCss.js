@@ -5,10 +5,10 @@
  */
 module.exports.command = function(selector) {
     this.useCss()
-        .waitForElementVisible(selector, 2000)
+        .waitForElementVisible(selector, 10000)
         .click(selector)
         .waitForElementNotVisible('#thisIsMainLoader', 100000)
-        .pause(1000);
+        .pause(3000);
 
     return this;
 };
