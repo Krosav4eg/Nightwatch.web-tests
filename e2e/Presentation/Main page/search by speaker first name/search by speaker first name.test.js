@@ -14,22 +14,18 @@ module.exports = _.assign(presteps, auth, {
         browser
             .useXpath()
             .getLocationInView("//tr/th[9]", function (result) {
-                this.assert.equal(typeof result, "object")
-                this.assert.equal(result.status, 0)
-                this.assert.equal(result.value.x, 1350)
-                this.assert.equal(result.value.y, 522)
+                this.verify.equal(typeof result, "object")
+                this.verify.equal(result.status, 0)
+                this.verify.equal(result.value.x, 1350)
+                this.verify.equal(result.value.y, 522)
                 this.setValue('//tr/td[9]/input[@type="text"]', ['her', browser.Keys.ENTER])
                     .useCss()
                     .waitForElementNotVisible('#thisIsMainLoader', 30000)
                     .useXpath()
-                    .waitForElementVisible('//tr[1]/td[9]/span/ul/li[text()="             Herbert           "]', 5000)
-                    .assert.elementPresent('//tr[1]/td[9]/span/ul/li[text()="             Herbert           "]')
-                    .assert.elementPresent('//tr[1]/td[9]/span/ul/li[2][text()="             Sandra           "]')
-                    .assert.elementPresent('//tr[3]/td[9]/span/ul/li[text()="             Herbert           "]')
-
+                    .waitForElementVisible('//tr[1]/td[9]/span/ul/li[contains(text(),"Herbert")]', 5000)
+                    .verify.elementPresent('//tr[1]/td[9]/span/ul/li[contains(text(),"Herbert")]')
+                    .verify.elementPresent('//tr[1]/td[9]/span/ul/li[2][contains(text(),"Sandra")]')
+                    .verify.elementPresent('//tr[3]/td[9]/span/ul/li[contains(text(),"Herbert")]')
             });
-
     },
-
-
 });

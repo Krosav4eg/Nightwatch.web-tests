@@ -12,17 +12,9 @@ module.exports = _.assign(presteps, auth, {
     },
     'select by organizer up': function (browser) {
         browser
+            .clickBySelectorXpath('//tr/th[3]')
             .useXpath()
-            .waitForElementVisible('//tr/th[3]', 30000)
-            .click('//tr/th[3]')
-            .useCss()
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
-            .useXpath()
-            .click('//tr/th[3]')
-            .useCss()
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
+            .clickBySelectorXpath('//tr/th[3]')
             .useXpath()
             .waitForElementVisible('//tr[1]/td[3]/span/a[text()="           VTT Technical Research Centre of Finland          "]', 5000)
             .assert.elementPresent('//tr[1]/td[3]/span/a[text()="           VTT Technical Research Centre of Finland          "]')

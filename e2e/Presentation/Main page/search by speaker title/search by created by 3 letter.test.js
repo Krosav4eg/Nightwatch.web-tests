@@ -10,25 +10,22 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
+
     'select by speaker last name down': function (browser) {
         browser
             .useXpath()
             .getLocationInView("//tr/th[10]", function (result) {
-                this.assert.equal(typeof result, "object")
-                this.assert.equal(result.status, 0)
-                this.assert.equal(result.value.x, 1350)
-                this.assert.equal(result.value.y, 522)
+                this.verify.equal(typeof result, "object")
+                this.verify.equal(result.status, 0)
+                this.verify.equal(result.value.x, 1350)
+                this.verify.equal(result.value.y, 522)
                 this.setValue('//tr/td[10]/input[@type="text"]', ['ges', browser.Keys.ENTER])
                     .useCss()
                     .waitForElementNotVisible('#thisIsMainLoader', 30000)
                     .useXpath()
-                    .waitForElementVisible('//tr[2]/td[10]/span/ul/li[text()="             Geschäftsführer           "]', 5000)
-                    .assert.elementPresent('//tr[2]/td[10]/span/ul/li[text()="             Geschäftsführer           "]')
-                    .assert.elementPresent('//tr[5]/td[10]/span/ul/li[text()="             Geschäftsführer           "]')
-                   
+                    .waitForElementVisible('//tr[2]/td[10]/span/ul/li[contains(text(),"Geschäftsführer")]', 5000)
+                    .verify.elementPresent('//tr[2]/td[10]/span/ul/li[contains(text(),"Geschäftsführer")]')
+                    .verify.elementPresent('//tr[5]/td[10]/span/ul/li[contains(text(),"Geschäftsführer")]')
             });
-
     },
-
-
 });
