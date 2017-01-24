@@ -4,13 +4,13 @@ var auth = require('./../../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
 
-
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/212/event-participant-roles')
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
+
     'click delete and cancel ': function (browser) {
         browser
             .useXpath()
@@ -18,19 +18,13 @@ module.exports = _.assign(presteps, auth, {
             .click('//button[@class="btn btn-danger"]')
             .dismissAlert()
             .pause(1500)
-            .assert.elementPresent('//a[@href="/delegates/edit/116561"]')
-            .assert.elementPresent('//span[text()="       Ingo     "]')
-
-
+            .verify.elementPresent('//a[@href="/delegates/edit/116561"]')
+            .verify.elementPresent('//span[contains(text(),"Ingo")]')
     },
+
     'click add new role ': function (browser) {
         browser
-            .useXpath()
-            .waitForElementVisible('//button[text()="Add new role"]', 3000)
-            .click('//button[text()="Add new role"]')
+            .clickBySelectorXpath('//button[text()="Add new role"]')
             .waitForElementVisible('//h4[text()="Event Participant Role"]', 3000)
-
     },
-
-
 });

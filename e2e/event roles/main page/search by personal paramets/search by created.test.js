@@ -14,15 +14,11 @@ module.exports = _.assign(presteps, auth, {
         browser
             .useXpath()
             .waitForElementVisible('//h1[text()="Event role"]', 3000)
-            .waitForElementVisible('//tr[1]/td[9]/input[@type="text"]', 3000)
-            .setValue('//tr[1]/td[9]/input[@type="text"]', ['2016-12-07 15:18:48', browser.Keys.ENTER])
+            .setValueByXpath('//tr[1]/td[9]/input[@type="text"]', ['2016-12-07 15:18:48', browser.Keys.ENTER])
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 3000)
             .waitForElementNotVisible('#thisIsMainLoader', 3000)
             .useXpath()
-            .waitForElementVisible('//span[text()="       2016-12-07 15:18:48     "]', 3000);
-
+            .waitForElementVisible('//span[contains(text(), "2016-12-07 15:18:48")]', 3000);
     },
-
-
 });

@@ -10,48 +10,40 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
-    'search by full name of function title ': function (browser) {
+
+    'search by last full name ': function (browser) {
         browser
             .useXpath()
             .waitForElementVisible('//h1[text()="Event role"]', 3000)
-            .waitForElementVisible('//tr[1]/td[6]/input[@type="text"]', 3000)
-            .setValue('//tr[1]/td[6]/input[@type="text"]', ['Geschäftsführer', browser.Keys.ENTER])
+            .setValueByXpath('//tr[1]/td[4]/input[@type="text"]', ['Alphéus', browser.Keys.ENTER])
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 3000)
             .waitForElementNotVisible('#thisIsMainLoader', 3000)
             .useXpath()
-            .waitForElementVisible('//span[text()="       Geschäftsführer     "]', 3000)
-
+            .waitForElementVisible('//a[contains(text(), "Alphéus")]', 3000)
     },
-    'search by 1-st letters of function title ': function (browser) {
+
+    'search by 3 letters last name ': function (browser) {
         browser
             .useXpath()
             .waitForElementVisible('//h1[text()="Event role"]', 3000)
-            .waitForElementVisible('//tr[1]/td[6]/input[@type="text"]', 3000)
-            .clearValue('//tr[1]/td[6]/input[@type="text"]')
-            .setValue('//tr[1]/td[6]/input[@type="text"]', ['G', browser.Keys.ENTER])
+            .setValueByXpath('//tr[1]/td[4]/input[@type="text"]', ['Alp', browser.Keys.ENTER])
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 3000)
             .waitForElementNotVisible('#thisIsMainLoader', 3000)
             .useXpath()
-            .waitForElementVisible('//span[text()="       Geschäftsführer     "]', 3000)
-
+            .waitForElementVisible('//a[contains(text(), "Alphéus")]', 3000)
     },
-    'search by 3 letter of function title ': function (browser) {
+
+    'search by 1 letters last name ': function (browser) {
         browser
             .useXpath()
             .waitForElementVisible('//h1[text()="Event role"]', 3000)
-            .waitForElementVisible('//tr[1]/td[6]/input[@type="text"]', 3000)
-            .clearValue('//tr[1]/td[6]/input[@type="text"]')
-            .setValue('//tr[1]/td[6]/input[@type="text"]', ['Ges', browser.Keys.ENTER])
+            .setValueByXpath('//tr[1]/td[4]/input[@type="text"]', ['A', browser.Keys.ENTER])
             .useCss()
             .waitForElementVisible('#thisIsMainLoader', 3000)
             .waitForElementNotVisible('#thisIsMainLoader', 3000)
             .useXpath()
-            .waitForElementVisible('//span[text()="       Geschäftsführer     "]', 3000)
-
+            .waitForElementVisible('//a[contains(text(), "Alphéus")]', 3000)
     },
-
-
-
 });
