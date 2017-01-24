@@ -11,7 +11,6 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
 
-
     'select company radio and switch ON buttons ': function (browser) {
         browser
             .selectCompanyRadioButton();
@@ -20,8 +19,8 @@ module.exports = _.assign(presteps, auth, {
     'create new candidate': function (browser) {
         browser
             .addNewCandidate("Aalef");
-
     },
+
     'added candidate has been displayed': function (browser) {
         browser
             .useXpath()
@@ -47,6 +46,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//div[@class="form-group"]//button[text()="Save"]', 30000)
 
     },
+
     'press "choose file" button': function (browser) {
         browser
             .clickBySelectorXpath('//*[text()="Candidates"]/../..//a[contains(@href,"MasterCompany")]')
@@ -78,12 +78,12 @@ module.exports = _.assign(presteps, auth, {
                     })
             })
     },
+
     'go to the candidate 1 page ': function (browser) {
         browser
             .relUrl('/event/1504/awards')
             .useXpath()
             .waitForElementVisible('//h4[contains(text(),"Event (#1504)")]', 30000);
-
     },
 
     'delete 1-st candidate': function (browser) {

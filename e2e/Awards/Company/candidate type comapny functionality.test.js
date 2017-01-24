@@ -10,6 +10,7 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
+
     'check awards page info': function (browser) {
         browser
             .useXpath()
@@ -32,27 +33,26 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//button[@type="submit"]')
 
             .verify.elementPresent('//h4[text()="Candidates"]');
-
     },
+
     'verify status switcher': function (browser) {
         browser
             .waitForElementVisible('//label[@btnradio="0"]', 7000)
             .verify.cssProperty('//label[@btnradio="0"]', 'background-color', 'rgba(231, 60, 60, 1)');
-
     },
+
     'select on in status switcher': function (browser) {
         browser
-            .waitForElementVisible('//label[@btnradio="1"]', 7000)
             .clickBySelectorXpath('//label[@btnradio="1"]')
             .verify.cssProperty('//label[@btnradio="1"]', 'background-color', 'rgba(41, 115, 207, 1)');
     },
-
 
     'set values into the input fields': function (browser) {
         browser
             .setValueByXpath('//div[1]/div/input[1][@type="text"]','The best of the best')
             .setValueByXpath('//div[2]/div/input[1][@type="text"]','The best of the best 2')
     },
+
     'select company radio button ': function (browser) {
         browser
             .clickBySelectorXpath('//input[@id=2]')
@@ -61,6 +61,7 @@ module.exports = _.assign(presteps, auth, {
             .checkModifiedInSelectorXpath('//*[contains(text(),"Awards")]/../..//div[contains(text(),"Modified:")]/../div[2]')
             .waitForElementVisible('//button[text()="Add a new candidate"]', 30000);
     },
+
     'to return everything to its original position ': function (browser) {
         browser
             .clickBySelectorXpath('//input[@id=1]')
@@ -68,8 +69,5 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('//button[@type="submit"]')
             .waitForElementVisible('//h3[text()="IndustryForum Healthcare"]', 7000)
             .checkModifiedInSelectorXpath('//*[contains(text(),"Awards")]/../..//div[contains(text(),"Modified:")]/../div[2]');
-
     },
-
-
 });

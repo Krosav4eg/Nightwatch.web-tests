@@ -20,7 +20,5 @@ module.exports = _.assign(presteps, auth, {
         browser
             .clickBySelectorXpath('//input[@id=1]')
             .clickBySelectorXpath('//button[@type="submit"]');
-
     },
-
 });

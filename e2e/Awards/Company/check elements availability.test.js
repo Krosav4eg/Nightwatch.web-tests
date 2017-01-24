@@ -20,6 +20,7 @@ module.exports = _.assign(presteps, auth, {
         browser
             .addNewCandidate('Krankenhaus');
     },
+
     'added candidate has been displayed': function (browser) {
         browser
             .useXpath()
@@ -44,14 +45,10 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//div[@class="form-group"]//div[contains(text(),"Modified by: ")]', 30000)
 
             .verify.elementPresent('//div[@class="form-group"]//button[text()="Save"]', 30000)
-
     },
 
     'delete candidate': function (browser) {
         browser
             .deleteCandidate();
     },
-
-
-})
-;
+});
