@@ -10,14 +10,14 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
+
     'check event data': function (browser) {
         browser
             .useXpath()
             .waitForElementVisible('//h4[text()="Event (#212)"]', 3000)
-            .assert.elementPresent('//h3[text()="IndustryForum Energy"]')
-            .assert.elementPresent('//div[text()="Local name: StrategyCircle Energie"]')
-            .assert.elementPresent('//div[text()="Dates: 2012-05-09 08:00:00 - 2012-05-10 18:00:00"]')
-            .assert.elementPresent('//div[text()="Venue: , "]');
+            .verify.elementPresent('//h3[text()="IndustryForum Energy"]')
+            .verify.elementPresent('//div[text()="Local name: StrategyCircle Energie"]')
+            .verify.elementPresent('//div[text()="Dates: 2012-05-09 08:00:00 - 2012-05-10 18:00:00"]')
+            .verify.elementPresent('//div[text()="Venue: , "]');
     },
-
 });

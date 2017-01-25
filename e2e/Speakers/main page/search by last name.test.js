@@ -10,25 +10,20 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
+
     'check event data': function (browser) {
         browser
             .useXpath()
             .waitForElementVisible('//h4[text()="Event (#212)"]', 3000)
-            .assert.elementPresent('//h3[text()="IndustryForum Energy"]')
-            .assert.elementPresent('//div[text()="Local name: StrategyCircle Energie"]')
-            .assert.elementPresent('//div[text()="Dates: 2012-05-09 08:00:00 - 2012-05-10 18:00:00"]')
-            .assert.elementPresent('//div[text()="Venue: , "]');
     },
+
     'search by last name ': function (browser) {
         browser
-            .waitForElementVisible('//tr[1]/td[3]/input[@type="text"]', 3000)
-            .setValue('//tr[1]/td[3]/input[@type="text"]', ['Vekve', browser.Keys.ENTER])
+            .setValueByXpath('//tr[1]/td[3]/input[@type="text"]', ['Vekve', browser.Keys.ENTER])
             .useCss()
-            .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
-            .waitForElementVisible('//tr[1]/td[3]/span/a[text()="           Vekve         "]', 7000);
-
+            .waitForElementVisible('//tr[1]/td[3]/span/a', 3000)
+            .verify.containsText("//tr[1]/td[3]/span/a", "Vekve")
     },
-
 });

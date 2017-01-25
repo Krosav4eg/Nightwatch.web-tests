@@ -7,7 +7,8 @@ module.exports.command = function(selector) {
     this.useXpath()
         .waitForElementVisible(selector, 10000)
         .click(selector)
-        .waitForElementNotVisible('//*[@id="thisIsMainLoader"]', 100000);
+        .waitForElementNotVisible('//*[@id="thisIsMainLoader"]', 100000)
+        .pause(2000);
 
     return this;
 };
