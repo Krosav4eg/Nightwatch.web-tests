@@ -15,10 +15,6 @@ module.exports = _.assign(presteps, auth, {
         browser
             .useXpath()
             .waitForElementVisible('//h4[text()="Event (#212)"]', 3000)
-            .verify.elementPresent('//h3[text()="IndustryForum Energy"]')
-            .verify.elementPresent('//div[text()="Local name: StrategyCircle Energie"]')
-            .verify.elementPresent('//div[text()="Dates: 2012-05-09 08:00:00 - 2012-05-10 18:00:00"]')
-            .verify.elementPresent('//div[text()="Venue: , "]');
     },
 
     'choose all people in the list': function (browser) {
