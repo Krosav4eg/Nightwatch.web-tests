@@ -33,7 +33,7 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
             .moveToElement('//*[text()="Candidate 1"]/../../../../../..//button[text()="Winner"]', 30, 30)
-            .click('//*[text()="Candidate 1"]/../../../../../..//button[text()="Winner"]')
+            .clickBySelectorXpath('//*[text()="Candidate 1"]/../../../../../..//button[text()="Winner"]')
             .verify.cssProperty('//button[text()="Winner"]', 'background-color', 'rgba(108, 166, 50, 1)')
             .waitForElementVisible('//*[text()="Candidate 1"]/../../../../../..//textarea[@ngcontrol="winnerDescription"]', 30000);
     },
@@ -60,7 +60,7 @@ module.exports = _.assign(presteps, auth, {
 
     'press winner button in Candidate 1 again ': function (browser) {
         browser
-            .click('//*[text()="Candidate 1"]/../../../../../..//button[text()="Winner"]')
+            .clickBySelectorXpath('//*[text()="Candidate 1"]/../../../../../..//button[text()="Winner"]')
             .clickBySelectorXpath('//*[text()="Candidate 1"]/../../../../../..//button[text()="Save"]')
             .waitForElementVisible('//div[text()="Award saved successfully"]', 30000)
             .verify.cssProperty('//button[text()="Winner"]', 'background-color', 'rgba(79, 142, 220, 1)')
@@ -70,8 +70,7 @@ module.exports = _.assign(presteps, auth, {
 
     'press winner button in Candidate once more ': function (browser) {
         browser
-            .click('//*[text()="Candidate 1"]/../../../../../..//button[text()="Winner"]')
-            .pause(1500)
+            .clickBySelectorXpath('//*[text()="Candidate 1"]/../../../../../..//button[text()="Winner"]')
             .waitForElementVisible('//*[text()="Candidate 1"]/../../../../../..//textarea[@ngcontrol="winnerDescription"]', 30000)
             .verify.cssProperty('//button[text()="Winner"]', 'background-color', 'rgba(108, 166, 50, 1)')
             .verify.valueContains('//*[text()="Candidate 1"]/../../../../../..//textarea[@ngcontrol="winnerDescription"]', 'test winner description')
@@ -80,8 +79,7 @@ module.exports = _.assign(presteps, auth, {
 
     'press winner button in Candidate 2 ': function (browser) {
         browser
-            .click('//*[text()="Candidate 2"]/../../../../../..//button[text()="Winner"]')
-            .pause(1500)
+            .clickBySelectorXpath('//*[text()="Candidate 2"]/../../../../../..//button[text()="Winner"]')
             .waitForElementVisible('//*[text()="Candidate 2"]/../../../../../..//textarea[@ngcontrol="winnerDescription"]', 30000)
             .verify.cssProperty('//*[text()="Candidate 2"]/../../../../../..//button[text()="Winner"]', 'background-color', 'rgba(108, 166, 50, 1)')
             .clickBySelectorXpath('//*[text()="Candidate 2"]/../../../../../..//button[text()="Save"]');
@@ -95,7 +93,6 @@ module.exports = _.assign(presteps, auth, {
             .moveToElement('//*[text()="Candidate 2"]/../../../../../..//button[text()="Winner"]', 30, 30)
             .verify.valueContains('//*[text()="Candidate 2"]/../../../../../..//textarea[@ngcontrol="winnerDescription"]', 'test winner description_2')
             .checkModifiedInSelectorXpath('//*[contains(text(),"Awards")]/../..//div[contains(text(),"Modified:")]/../div[2]')
-            // .pause(1655);
             .refresh();
     },
 

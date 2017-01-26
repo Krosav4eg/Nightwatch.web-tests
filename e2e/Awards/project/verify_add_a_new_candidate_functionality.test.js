@@ -31,14 +31,11 @@ module.exports = _.assign(presteps, auth, {
 
     'status switcher is on': function (browser) {
         browser
-            .waitForElementVisible('//label[@btnradio="1"]', 30000)
-            .click('//label[@btnradio="1"]')
+            .clickBySelectorXpath('//label[@btnradio="1"]')
             .verify.cssProperty('//label[@btnradio="1"]', 'background-color', 'rgba(79, 142, 220, 1)')
-            .pause(1000)
 
             .clickBySelectorXpath('//button[text()="Save"]')
             .waitForElementVisible('//div[text()="Award saved successfully"]', 30000);
-
     },
 
     'added candidate is displayed': function (browser) {
@@ -58,7 +55,6 @@ module.exports = _.assign(presteps, auth, {
 
             .verify.elementPresent('//label[text()="Introduction"]')
             .verify.elementPresent('//*[text()="Candidate 2"]/../../../../../..//textarea[@ngcontrol="introduction"]');
-
     },
 
     'add 3-th candidate ': function (browser) {
@@ -85,13 +81,11 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementNotPresent('//h3[text()="Candidate 1"]')
             .verify.elementNotPresent('//h3[text()="Candidate 2"]')
             .verify.elementNotPresent('//h3[text()="Candidate 3"]')
-            .pause(1500)
-            .click('//label[@btnradio="0"]')
+            .clickBySelectorXpath('//label[@btnradio="0"]')
             .clickBySelectorXpath('//button[text()="Save"]')
 
             .useXpath()
             .waitForElementVisible('//div[text()="Award saved successfully"]', 20000)
             .verify.cssProperty('//label[@btnradio="0"]', 'background-color', 'rgba(231, 60, 60, 1)');
     },
-
 });

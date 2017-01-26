@@ -28,7 +28,7 @@ module.exports = _.assign(presteps, auth, {
 
     'click on winner button in Candidate 1 ': function (browser) {
         browser
-            .click('//*[text()="Candidate 1"]/../../../../../..//button[text()="Winner"]')
+            .clickBySelectorXpath('//*[text()="Candidate 1"]/../../../../../..//button[text()="Winner"]')
             .pause(1500)
             .verify.cssProperty('//button[text()="Winner"]', 'background-color', 'rgba(108, 166, 50, 1)')
             .waitForElementVisible('//*[text()="Candidate 1"]/../../../../../..//textarea[@ngcontrol="winnerDescription"]', 30000);

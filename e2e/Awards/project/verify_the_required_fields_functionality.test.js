@@ -24,59 +24,53 @@ module.exports = _.assign(presteps, auth, {
 
             .verify.elementPresent('//label[contains(text(), "Project local name ")]')
             .verify.elementPresent('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="localName"]')
-            .click('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="localName"]')
+            .clickBySelectorXpath('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="localName"]')
 
             .verify.elementPresent('//label[contains(text(), "Project English name ")]')
             .verify.elementPresent('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="englishName"]')
-            .click('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="englishName"]')
+            .clickBySelectorXpath('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="englishName"]')
 
-            .waitForElementVisible('//p[text()="               Project local name is required.             "]', 10000)
+            .verify.containsText('//*[contains(text(), "Project local name")]/..', 'Project local name is required.')
 
             .verify.elementPresent('//label[contains(text(), "Country")]')
             .verify.elementPresent('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="country"]')
-            .click('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="country"]')
+            .clickBySelectorXpath('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="country"]')
 
-            .waitForElementVisible('//p[text()="               Project English name is required.             "]', 10000)
+            .verify.containsText('//*[contains(text(), "Project English name")]/..', 'Project English name is required.')
 
             .verify.elementPresent('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="englishName"]')
-            .click('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="englishName"]')
 
-            .waitForElementVisible('//p[text()="               Country is required             "]', 10000)
+            .verify.containsText('//*[contains(text(), "Country")]/..', 'Country is required')
             .refresh();
 
     },
 
     'click Save button': function (browser) {
         browser
-            .waitForElementVisible('//*[text()="Candidate 1"]/../../../../../..//button[text()="Save"]', 20000)
-            .click('//*[text()="Candidate 1"]/../../../../../..//button[text()="Save"]')
+            .clickBySelectorXpath('//*[text()="Candidate 1"]/../../../../../..//button[text()="Save"]')
 
-            .waitForElementVisible('//p[text()="               Project local name is required.             "]', 30000)
-
-            .waitForElementVisible('//p[text()="               Project English name is required.             "]', 30000)
-
-            .waitForElementVisible('//p[text()="               Country is required             "]', 30000);
+            .verify.containsText('//*[contains(text(), "Project English name")]/..', 'Project English name is required.')
+            .verify.containsText('//*[contains(text(), "Project English name")]/..', 'Project English name is required.')
+            .verify.containsText('//*[contains(text(), "Country")]/..', 'Country is required')
     },
 
     'enter the local name': function (browser) {
         browser
             .setValueByXpath('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="localName"]', 'Тестовый проект_2')
 
-            .waitForElementVisible('//*[text()="Candidate 1"]/../../../../../..//button[text()="Save"]', 30000)
-            .click('//*[text()="Candidate 1"]/../../../../../..//button[text()="Save"]')
+            .clickBySelectorXpath('//*[text()="Candidate 1"]/../../../../../..//button[text()="Save"]')
 
-            .waitForElementVisible('//p[text()="               Project English name is required.             "]', 30000)
-            .waitForElementVisible('//p[text()="               Country is required             "]', 30000);
+            .verify.containsText('//*[contains(text(), "Project English name")]/..', 'Project English name is required.')
+            .verify.containsText('//*[contains(text(), "Country")]/..', 'Country is required');
     },
 
     'enter the English name': function (browser) {
         browser
             .setValueByXpath('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="englishName"]', 'Test Project_2')
 
-            .waitForElementVisible('//*[text()="Candidate 1"]/../../../../../..//button[text()="Save"]', 30000)
-            .click('//*[text()="Candidate 1"]/../../../../../..//button[text()="Save"]')
+            .clickBySelectorXpath('//*[text()="Candidate 1"]/../../../../../..//button[text()="Save"]')
 
-            .waitForElementVisible('//p[text()="               Country is required             "]', 30000);
+            .verify.containsText('//*[contains(text(), "Country")]/..', 'Country is required');
     },
 
     'enter the country': function (browser) {

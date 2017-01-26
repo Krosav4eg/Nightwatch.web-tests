@@ -45,15 +45,14 @@ module.exports = _.assign(presteps, auth, {
 
     'change the candidate type try to click on "Contact" radio button': function (browser) {
         browser
-            .waitForElementVisible('//input[@id=1]', 30000)
+            .sendKeys('//input[@id=1]',  browser.Keys.HOME)
             .click('//input[@id=1]')
             .waitForElementVisible('//*[contains(text(),"be changed because candidates have been selected.Please remove the existing candidates before changing the candidate type of the award.")]', 30000);
     },
 
     'change the candidate type try to click on "Company" radio button': function (browser) {
         browser
-            .waitForElementVisible('//input[@id=2]', 30000)
-            .click('//input[@id=2]')
+            .clickBySelectorXpath('//input[@id=2]')
             .waitForElementVisible('//*[contains(text(),"be changed because candidates have been selected.Please remove the existing candidates before changing the candidate type of the award.")]', 30000);
     },
 
@@ -64,8 +63,7 @@ module.exports = _.assign(presteps, auth, {
 
     'change the candidate type click on "Contact" radio button': function (browser) {
         browser
-            .waitForElementVisible('//input[@id=1]', 30000)
-            .click('//input[@id=1]')
+            .clickBySelectorXpath('//input[@id=1]')
 
             .clickBySelectorXpath('//button[@type="submit"]')
 

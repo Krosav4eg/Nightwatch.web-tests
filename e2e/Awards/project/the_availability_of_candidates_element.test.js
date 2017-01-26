@@ -35,9 +35,10 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//*[text()="Candidate 1"]/../../../../../..//textarea[@ngcontrol="introduction"]')
 
             .verify.elementPresent('//input[@id="myUnit"]')
-            .verify.elementPresent('//p[text()="Image format: .jpg, image size min. 800x400px"]')
+            .verify.containsText("//p", "Image format: .jpg, image size min. 800x400px")
 
-            .verify.elementPresent('//img[@src="http://alpha.master-api.managementevents.com/frontend/web/images/no-image.png"]', 30000)
+            .verify.elementPresent('//img[@id="logo"]')
+            .verify.attributeContains('//img[@id="logo"]', 'src', 'master-api.managementevents.com/frontend/web/images/no-image.png')
 
             .verify.elementPresent('//*[text()="Candidate 1"]/../../../../../..//button[text()="Save"]')
             .verify.elementPresent('//*[text()="Candidate 1"]/../../../../../..//button[text()="Delete"]')
