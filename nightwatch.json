@@ -2,7 +2,6 @@
   "src_folders" : ["e2e"],
   "output_folder" : "reports",
   "custom_commands_path" : "nightwatch_extend/commands",
-  
 
   "globals_path" : "",
   "live_output ": true,
@@ -20,7 +19,7 @@
 
   "test_settings" : {
     "default" : {
-      "filter" : "**/*.test.js",
+      "filter" : "**/*.e.js",
 
       "selenium_host": "127.0.0.1",
       "selenium_port": 4444,

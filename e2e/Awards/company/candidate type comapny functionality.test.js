@@ -10,6 +10,7 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
+
     'check awards page info': function (browser) {
         browser
             .useXpath()
@@ -32,8 +33,8 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//button[@type="submit"]')
 
             .verify.elementPresent('//h4[text()="Candidates"]');
-
     },
+
     'verify status switcher': function (browser) {
         browser
             .waitForElementVisible('//label[@btnradio="0"]', 7000)
