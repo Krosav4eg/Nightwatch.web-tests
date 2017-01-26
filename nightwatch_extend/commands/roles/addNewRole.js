@@ -7,11 +7,11 @@ module.exports.command = function(text) {
     var locatorTextInput = '//*[contains(text(),"' + text + '")]';
     this.useCss()
         .clickBySelectorXpath('//button[text()="Add new role"]')
-        .clickBySelectorCss('#eventRoleId')
-        .clickBySelectorXpath('(//option[contains(text(),"Awards candidate")])[2]')
-        .clickBySelectorCss('#eventParticipantId')
+        .clickBySelectorXpath('//*[contains(text(), "Event Role")]/..//option[text()="Awards candidate"]')
+        .useCss()
+        .clickBySelectorCss('#eventParticipant')
         .sendKeys('.auto-complete input', text)
-        .pause(3000)
+        .pause(2000)
         .clickBySelectorXpath(locatorTextInput)
         .pause(2000)
         .clickBySelectorXpath('//button[text()="Save"]');

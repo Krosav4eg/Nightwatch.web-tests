@@ -24,7 +24,7 @@ module.exports = _.assign(presteps, auth, {
             .relUrl('/event/1485/awards')
     },
 
-    'Check elements availability': function (browser) {
+    'check elements availability': function (browser) {
         browser
             .useXpath()
 
@@ -35,13 +35,12 @@ module.exports = _.assign(presteps, auth, {
 
             .waitForElementVisible('//div[@class="toast-content"]', 10000)
 
-
             .waitForElementVisible('//*[text()="Candidates"]/../..', 10000)
             .verify.containsText('//*[text()="Candidates"]/../..', "Candidate 1")
             .verify.containsText('//*[text()="Candidates"]/../..', "Candidate 2");
     },
 
-    'Click on [Winner] button': function (browser) {
+    'click on [Winner] button': function (browser) {
         browser
             .clickBySelectorXpath('(//button[text()="Winner"])[1]')
             .clickBySelectorXpath('(//*[text()="Candidates"]/../..//button[text()="Save"])[1]')
@@ -56,7 +55,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.cssProperty('(//button[text()="Winner"])[1]', 'background-color', 'rgba(133, 199, 68, 1)');
     },
 
-    'Click save': function (browser) {
+    'click save': function (browser) {
         browser
             .clickBySelectorXpath('(//*[text()="Candidates"]/../..//button[text()="Save"])[1]')
 
@@ -66,7 +65,7 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('//div[@class="toast-content"]');
     },
 
-    'Press on [Winner] button twice': function (browser) {
+    'press on [Winner] button twice': function (browser) {
         browser
             .clickBySelectorXpath('(//button[text()="Winner"])[1]')
             .clickBySelectorXpath('(//*[text()="Candidates"]/../..//button[text()="Save"])[1]')
@@ -83,7 +82,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.cssProperty('(//button[text()="Winner"])[1]', 'background-color', 'rgba(133, 199, 68, 1)');
     },
 
-    'Click on [Winner] button in Candidate 2': function (browser) {
+    'click on [Winner] button in Candidate 2': function (browser) {
         browser
             .clickBySelectorXpath('(//button[text()="Winner"])[2]')
             .clickBySelectorXpath('(//*[text()="Candidates"]/../..//button[text()="Save"])[2]')
@@ -94,7 +93,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.cssProperty('(//button[text()="Winner"])[1]', 'background-color', 'rgba(79, 142, 220, 1)');
     },
 
-    'Enter description ': function (browser) {
+    'enter description ': function (browser) {
         browser
             .setValueByXpath('(//textarea[@ngcontrol="winnerDescription"])[1]', "test test test")
             .clickBySelectorXpath('(//*[text()="Candidates"]/../..//button[text()="Save"])[2]')
@@ -118,12 +117,13 @@ module.exports = _.assign(presteps, auth, {
             .relUrl('/event/1485/event-participant-roles')
     },
 
-    'Delete role 1': function (browser) {
+    'delete role 1': function (browser) {
         browser
-            .deleteRole("Awards candidate");
+            .deleteRole("Awards candidate")
+            .refresh()
     },
 
-    'Delete role 2': function (browser) {
+    'delete role 2': function (browser) {
         browser
             .deleteRole("Awards candidate");
     },

@@ -18,7 +18,7 @@ module.exports = _.assign(presteps, auth, {
 
     'click on add a new candidate  button': function (browser) {
         browser
-            .addNewCandidate("PRS Prime Re Services AG");
+            .addNewCandidate("PRS Prime");
     },
 
     'added candidate has been displayed': function (browser) {
