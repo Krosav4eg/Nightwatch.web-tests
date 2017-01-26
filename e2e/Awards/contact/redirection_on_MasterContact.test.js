@@ -22,7 +22,7 @@ module.exports = _.assign(presteps, auth, {
             .relUrl('/event/1489/awards')
     },
 
-    'Click on MasterContact ID': function (browser) {
+    'click on MasterContact ID': function (browser) {
         browser
             .useXpath()
 
@@ -45,7 +45,7 @@ module.exports = _.assign(presteps, auth, {
                 browser.switchWindow(handle);})
     },
 
-    'Enter "Introduction"': function (browser) {
+    'enter "Introduction"': function (browser) {
         browser
             .setValueByCss('textarea[ngcontrol="introduction"]', "Test introduction")
             .clickBySelectorXpath('//*[text()="Candidates"]/../..//button[text()="Save"]')
@@ -56,7 +56,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.valueContains('//textarea[@ngcontrol="introduction"]', 'Test introduction');
     },
 
-    'Click on [Edit candidates]': function (browser) {
+    'click on [Edit candidates]': function (browser) {
         browser
             .clickBySelectorXpath('//a[@href="/event/1489/event-participant-roles"]/button')
             .pause(1000)
@@ -71,7 +71,7 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('//a[@href="EventRoleStatsIndex"]')
     },
 
-    'Delete role': function (browser) {
+    'delete role': function (browser) {
         browser
             .deleteRole("Awards candidate");
     },

@@ -46,7 +46,7 @@ module.exports = _.assign(presteps, auth, {
             .relUrl('/event/1484/awards')
     },
 
-    'Check elements availability': function (browser) {
+    'check elements availability': function (browser) {
         browser
             .useXpath()
             .waitForElementVisible('//*[@class="panel panel-primary"]/div/h4[contains(text(),"Event")]', 10000)
@@ -90,14 +90,8 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('//a[@href="EventRoleStatsIndex"]')
     },
 
-    'Delete role': function (browser) {
+    'delete role': function (browser) {
         browser
-            .clickBySelectorXpath('(//select[@class="ng-untouched ng-pristine ng-valid"])[1]')
-            .clickBySelectorXpath('//option[contains(text(),"Awards candidate")]')
-            .pause(2000)
-
-            .click('(//*[@class="btn btn-danger"])[1]')
-            .acceptAlert()
-            .pause(2000);
+            .deleteRole("Awards candidate");
     },
 });

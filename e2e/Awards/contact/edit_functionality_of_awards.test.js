@@ -22,7 +22,7 @@ module.exports = _.assign(presteps, auth, {
             .relUrl('/event/1482/awards')
     },
 
-    'Awards functionality': function (browser) {
+    'awards functionality': function (browser) {
         browser
             .setValueByCss('input[ngcontrol="awardTitleEnglish"]', "Test awardTitleEnglish")
             .setValueByCss('input[ngcontrol="awardTitleLocal"]', "Test awardTitleLocal")
@@ -42,7 +42,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.containsText('//*[contains(text(),"Awards")]/../..//div[contains(text(),"Modified by:")]/../div[2]', 'Xsolve Test User');
     },
 
-    'Change Award Click on "Off" switcher': function (browser) {
+    'change Award Click on "Off" switcher': function (browser) {
         browser
             .setValueByCss('input[ngcontrol="awardTitleLocal"]', "Test awardTitleLocal 2")
             .clickBySelectorXpath('//label[text()="Off"]')
@@ -59,7 +59,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.cssProperty('//*[@class="btn ng-untouched ng-pristine ng-valid btn-danger"]', 'background-color', 'rgba(231, 60, 60, 1)');
     },
 
-    'Click on "On" switcher ': function (browser) {
+    'click on "On" switcher ': function (browser) {
         browser
             .clickBySelectorXpath('//label[text()="On"]')
             .clickBySelectorXpath('//*[text()="Awards"]/../..//button[text()="Save"]')
@@ -73,7 +73,7 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('//a[@href="EventRoleStatsIndex"]')
     },
 
-    'Delete role': function (browser) {
+    'delete role': function (browser) {
         browser
             .deleteRole("Awards candidate");
     },
