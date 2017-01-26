@@ -35,6 +35,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//label[contains(text(), "Country")]')
             .verify.elementPresent('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="country"]')
             .clickBySelectorXpath('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="country"]')
+            .clickBySelectorXpath('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="englishName"]')
 
             .verify.containsText('//*[contains(text(), "Project English name")]/..', 'Project English name is required.')
 

@@ -61,7 +61,8 @@ module.exports = _.assign(presteps, auth, {
             .verify.valueContains('//input[@ngcontrol="englishName"]', 'Test Project_10')
             .verify.valueContains('//textarea[@ngcontrol="introduction"]', 'new new test intro description')
             .verify.valueContains('//input[@id="country"]', 'Russia')
-            .checkModifiedInSelectorXpath('//*[contains(text(),"Awards")]/../..//div[contains(text(),"Modified:")]/../div[2]');
+            .checkModifiedInSelectorXpath('//*[contains(text(),"Awards")]/../..//div[contains(text(),"Modified:")]/../div[2]')
+            .pause(1000);
     },
 
     'delete candidate': function (browser) {
