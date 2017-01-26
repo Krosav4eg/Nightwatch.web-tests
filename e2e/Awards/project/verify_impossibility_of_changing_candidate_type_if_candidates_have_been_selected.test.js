@@ -66,8 +66,11 @@ module.exports = _.assign(presteps, auth, {
         browser
             .waitForElementVisible('//input[@id=1]', 30000)
             .click('//input[@id=1]')
+
             .clickBySelectorXpath('//button[@type="submit"]')
+
             .waitForElementVisible('//div[text()="Company deleted successfully"]', 3000)
+
             .verify.elementNotPresent('//h3[text()="Candidate 1"]')
             .verify.attributeEquals('//input[@id=1]', 'checked', 'true');
     },
