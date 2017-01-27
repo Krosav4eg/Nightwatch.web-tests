@@ -58,8 +58,6 @@ module.exports = _.assign(presteps, auth, {
                 this.verify.equal(typeof result, "object")
                 this.verify.equal(result.status, 0)
                 this.verify.equal(result.value.x, 1350)
-                //this.verify.equal(result.value.y, 592)
-                this.verify.equal(result.value.y, 572)
                 this.clickBySelectorXpath('//tr/th[10][contains(text(), "Created by")]')
             });
     },

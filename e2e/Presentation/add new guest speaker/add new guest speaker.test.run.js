@@ -1,6 +1,6 @@
 var _ = require('lodash');
-var presteps = require('./../presteps/presteps.js');
-var auth = require('./../presteps/auth.js');
+var presteps = require('./../../presteps/presteps.js');
+var auth = require('./../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
 
@@ -123,8 +123,8 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('//input[@id="country"]', 3000)
             .waitForElementVisible('//input[@id="mobile"]', 3000)
             .waitForElementVisible('//input[@id="email"]', 3000)
-            .waitForElementVisible('//modal[@class="modal fade in"]//button[1][text()="Save"]', 3000)
-            .click('//modal[@class="modal fade in"]//button[1][text()="Save"]')
+
+            .clickBySelectorXpath('//modal[@class="modal fade in"]//button[1][text()="Save"]')
             .waitForElementVisible('//p[contains(text(),"Last Name is required")]', 5000)
             .waitForElementVisible('//p[contains(text(),"First Name is required")]', 5000)
             .verify.elementNotPresent('//p[contains(text(),"Academic Title is required")]')
