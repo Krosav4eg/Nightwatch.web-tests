@@ -19,7 +19,6 @@ module.exports = _.assign(presteps, auth, {
             .dismissAlert()
             .pause(1500)
             .verify.elementPresent('//a[@href="/delegates/edit/116561"]')
-            .verify.elementPresent('//span[contains(text(),"Ingo")]')
     },
 
     'click add new role ': function (browser) {

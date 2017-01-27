@@ -58,25 +58,17 @@ module.exports = _.assign(presteps, auth, {
                 this.verify.equal(typeof result, "object")
                 this.verify.equal(result.status, 0)
                 this.verify.equal(result.value.x, 1350)
-                this.verify.equal(result.value.y, 592)
+                //this.verify.equal(result.value.y, 592)
+                this.verify.equal(result.value.y, 572)
                 this.clickBySelectorXpath('//tr/th[10][contains(text(), "Created by")]')
             });
     },
 
-    'Action Up Down ': function (browser) {
+    'action Up Down ': function (browser) {
         browser
             .useXpath()
-            .getLocationInView('//tr/th[11][contains(text(), "Action")]', function (result) {
-                this.verify.equal(typeof result, "object")
-                this.verify.equal(result.status, 0)
-                this.verify.equal(result.value.x, 1398)
-                this.verify.equal(result.value.y, 592)
-                // this.click('//tr/th[11][contains(text(), "Action")]')
-                //     .useCss()
-                //     .waitForElementVisible('#thisIsMainLoader', 30000)
-                //     .waitForElementNotVisible('#thisIsMainLoader', 30000)
-                //     .useXpath()
-            });
+            .moveToElement('//tr/th[11]', 1298, 597)
+            .verify.containsText("//tr/th[11]", "Action");
     },
 });
 
