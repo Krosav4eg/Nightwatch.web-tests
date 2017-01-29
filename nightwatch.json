@@ -1,7 +1,8 @@
 {
   "src_folders" : ["e2e"],
   "output_folder" : "reports",
-  "custom_commands_path" : ["nightwatch_extend/commands", "nightwatch_extend/commands/awards", "nightwatch_extend/commands/roles" ],
+  "custom_commands_path" : ["nightwatch_extend/commands", "nightwatch_extend/commands/awards", "nightwatch_extend/commands/roles",
+    "nightwatch_extend/commands/agenda" ],
 
   "globals_path" : "",
   "live_output ": true,
@@ -19,11 +20,11 @@
 
   "test_settings" : {
     "default" : {
-      "filter" : "**/*.run.js",
+      "filter" : "**/*.test.js",
 
       "selenium_host": "127.0.0.1",
       "selenium_port": 4444,
-      "launch_url" : "http://alpha.skynet.managementevents.com",
+      "launch_url" : "http://test.skynet.managementevents.com",
       "silent": true,
       "screenshots" : {
         "enabled" : true,
