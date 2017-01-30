@@ -25,11 +25,11 @@ module.exports = _.assign(presteps, auth, {
             .setValueByCss('#containerEndHour input', '')
             .clickBySelectorCss('input#subHeading')
             .useXpath()
-            .verify.elementPresent('//p[text()=" End Hour is required.           "]')
+            .verify.containsText("//*[contains(text(), 'End time')]/../..", "End Hour is required")
             .useCss()
             .setValueByCss('#containerEndHour input', ['00:00', browser.Keys.ENTER])
             .useXpath()
-            .verify.elementPresent('//p[text()=" Date should be between 08:00 and 23:59           "]')
+            .verify.containsText("//*[contains(text(), 'End time')]/../..", "Date should be between 08:00 and 23:59")
             .clickBySelectorXpath('//modal[@class="modal fade in"]//button[1][@class="btn btn-default pull-right"]');
     },
 

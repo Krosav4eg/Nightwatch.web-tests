@@ -32,7 +32,7 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorCss('input#subHeading')
 
             .useXpath()
-            .verify.elementPresent('//p[text()=" Heading is required.           "]')
+            .verify.containsText("(//*[contains(text(), 'Heading')]/../..)[1]", "Heading is required")
             .clickBySelectorXpath('//modal[@class="modal fade in"]//button[1][@class="btn btn-default pull-right"]');
     },
 
@@ -44,7 +44,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.containsText('//h4[contains(text(),"Container form")]', 'Container form')
             .clickBySelectorXpath('//form/div[2]/div/div/button[contains(text(),"Save")]')
 
-            .verify.elementPresent('//p[text()=" Heading is required.           "]')
+            .verify.containsText("(//*[contains(text(), 'Heading')]/../..)[1]", "Heading is required")
 
             .clickBySelectorXpath('//modal[@class="modal fade in"]//form/div[2]/div/div/button[contains(text(),"Cancel")]')
             .useCss()
