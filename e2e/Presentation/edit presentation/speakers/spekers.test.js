@@ -6,7 +6,7 @@ module.exports = _.assign(presteps, auth, {
 
     'redirection to agenda': function (browser) {
         browser
-            .relUrl('/event/212/presentations')
+            .relUrl('/event/219/presentations')
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
@@ -14,64 +14,34 @@ module.exports = _.assign(presteps, auth, {
     'check event data': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//h4[text()="Event (#212)"]', 3000)
-            .verify.elementPresent('//h3[text()="IndustryForum Energy"]')
-            .verify.elementPresent('//div[text()="Local name: StrategyCircle Energie"]')
-            .verify.elementPresent('//div[text()="Dates: 2012-05-09 08:00:00 - 2012-05-10 18:00:00"]')
-            .verify.elementPresent('//div[text()="Venue: , "]');
+            .waitForElementVisible('//h4[text()="Event (#219)"]', 3000)
     },
 
     'check information about speaker in the presentations page': function (browser) {
         browser
-            .waitForElementVisible('//a[@href="/presentations/edit/3696"]', 3000)
-            .waitForElementVisible('//tr[1]/td[2]/span[contains(text(),"Delegate")]', 3000)
-            .waitForElementVisible('//tr[1]/td[3]/span/span[contains(text(),"Management Events")]', 3000)
-            .waitForElementVisible('//tr[1]/td[4]/span[contains(text(),"Panel discussion")]', 3000)
-            .waitForElementVisible('//tr[1]/td[5]/span/div[contains(text(),"Heading")]', 3000)
-            .waitForElementVisible('//tr[1]/td[5]/span/div[contains(text(),"Heading")]/ul/li[1]/span[contains(text(),"Sub heading 1")]', 30000)
-            .waitForElementVisible('//tr[1]/td[5]/span/div[contains(text(),"Heading")]/ul/li[2]/span[contains(text(),"Sub heading 2")]', 30000)
-            .waitForElementVisible('//tr[1]/td[5]/span/div[contains(text(),"Heading")]/ul/li[3]/span[contains(text(),"Sub heading 3")]', 30000)
-            .waitForElementVisible('//tr[1]/td[7]/span/ul/li[1][contains(text(),"Mainova AG")]', 3000)
-            .waitForElementVisible('//tr[1]/td[7]/span/ul/li[2][contains(text(),":em engineering methods AG")]', 3000)
-            .waitForElementVisible('//tr[1]/td[8]/span/ul/li[2][contains(text(),"Nikolay")]', 3000)
-            .waitForElementVisible('//tr[1]/td[9]/span/ul/li[2][contains(text(),"Hodosov")]', 3000)
-            .waitForElementVisible('//tr[1]/td[9]/span/ul/li[1][contains(text(),"Philipp")]', 3000)
-            .waitForElementVisible('//tr[1]/td[10]/span/ul/li[1][contains(text(),"Bereichsleiter IT")]', 3000)
-            .waitForElementVisible('//tr[1]/td[10]/span/ul/li[2][contains(text(),"Function Title")]', 3000)
-            .waitForElementVisible('//tr[1]/td[11]/span/ul/li[1][contains(text(),"p.luebcke@mainova.de")]', 3000)
-            .waitForElementVisible('//tr[1]/td[11]/span/ul/li[2][contains(text(),"go@go.go")]', 3000)
-            .waitForElementVisible('//tr[1]/td[12]/span/ul/li[1][contains(text(),"+49151 46756613")]', 3000)
-            .waitForElementVisible('//tr[1]/td[12]/span/ul/li[2][contains(text(),"4790992788")]', 3000);
+            .waitForElementVisible('//a[@href="/presentations/edit/1025"]', 3000)
+            .verify.containsText("//tr[1]/td[2]/span", "Delegate")
+            .verify.containsText("//tr[1]/td[3]/span/span", "Management Events")
+            .verify.containsText("//tr[1]/td[4]/span", "Keynote")
+            .verify.containsText("//tr[1]/td[7]/span/ul/li[1]", "Fachhochschule Kaiserslautern")
+            .verify.containsText("//tr[1]/td[8]/span/ul/li[1]", "Speck")
+            .verify.containsText("//tr[1]/td[9]/span/ul/li[1]", "Hendrik")
+            .verify.containsText("//tr[1]/td[10]/span/ul/li[1]", "Professor")
+            .verify.containsText("//tr[1]/td[11]/span/ul/li[1]", "hendrik.speck@fh-kl.de")
+            .verify.containsText("//tr[1]/td[12]/span/ul/li[1]", "0176 2122 9880");
     },
 
     'check information about speaker in the edit presentation (#3696)': function (browser) {
         browser
-            .click('//a[@href="/presentations/edit/3696"]')
-            .useCss()
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
-            .useXpath()
-            .waitForElementVisible('//h1[text()="Edit Presentation (#3696)"]', 3000)
-            .waitForElementVisible('//a[@href="/presentations/3696/master-contact/416319"]', 3000)
-            .waitForElementVisible('//a[@href="/presentations/3696/master-contact/492275"]', 3000)
-            .waitForElementVisible('//tr[1]/td[2]/span[contains(text(),"Delegate")]', 3000)
-            .waitForElementVisible('//tr[2]/td[2]/span[contains(text(),"Guest Speaker")]', 3000)
-            .waitForElementVisible('//tr[1]/td[3]/span[contains(text(),"Mainova AG")]', 3000)
-            .waitForElementVisible('//tr[2]/td[3]/span[contains(text(),":em engineering methods AG")]', 3000)
-            .waitForElementVisible('//tr[1]/td[4]/span[contains(text(),"Lübcke")]', 3000)
-            .waitForElementVisible('//tr[2]/td[4]/span[contains(text(),"Nikolay")]', 3000)
-            .waitForElementVisible('//tr[1]/td[5]/span[contains(text(),"Philipp")]', 3000)
-            .waitForElementVisible('//tr[2]/td[5]/span[contains(text(),"Hodosov")]', 3000)
-            .waitForElementVisible('//tr[2]/td[6]/span[contains(text(),"Academic Title")]', 3000)
-            .waitForElementVisible('//tr[1]/td[7]/span[contains(text(),"Bereichsleiter IT")]', 3000)
-            .waitForElementVisible('//tr[2]/td[7]/span[contains(text(),"Function Title")]', 3000)
-            .waitForElementVisible('//tr[1]/td[8]/span[contains(text(),"p.luebcke@mainova.de")]', 3000)
-            .waitForElementVisible('//tr[2]/td[8]/span[contains(text(),"go@go.go")]', 3000)
-            .waitForElementVisible('//tr[1]/td[9]/span[contains(text(),"Delegate")]', 3000)
-            .waitForElementVisible('//tr[2]/td[9]/span[contains(text(),"Delegate")]', 3000)
-            .waitForElementVisible('//tr[3]/td[9]/span[contains(text(),"Delegate")]', 3000)
-            .waitForElementVisible('//tr[2]/td[10]/span/button[@class="btn btn-danger"]', 3000)
-            .waitForElementVisible('//tr[3]/td[10]/span/button[@class="btn btn-danger"]', 3000);
+            .clickBySelectorXpath('//a[@href="/presentations/edit/1025"]')
+            .verify.containsText("//tr[1]/td[2]/span", "Delegate")
+            .verify.containsText("//tr[1]/td[3]/span", "Fachhochschule Kaiserslautern")
+            .verify.containsText("//tr[1]/td[4]/span", "Speck")
+            .verify.containsText("//tr[1]/td[5]/span", "Hendrik")
+            .verify.containsText("//tr[1]/td[6]/span", "Prof.")
+            .verify.containsText("//tr[1]/td[7]/span", "Professor")
+            .verify.containsText("//tr[1]/td[8]/span", "hendrik.speck@fh-kl.de")
+            .verify.containsText("//tr[1]/td[9]/span", "Delegate");
 
     },
     // 'add new speaker': function (browser) {
