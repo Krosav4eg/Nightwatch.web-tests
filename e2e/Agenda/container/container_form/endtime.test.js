@@ -24,7 +24,8 @@ module.exports = _.assign(presteps, auth, {
     'blank click Save': function (browser) {
         browser
             .clickBySelectorXpath('//form/div[2]/div/div/button[contains(text(),"Save")]')
-            .verify.elementPresent('//p[text()=" End Hour is required.           "]')
+
+            .verify.containsText("//*[contains(text(), 'End time')]/../..", "End Hour is required")
             .clickBySelectorXpath('//modal[@class="modal fade in"]//button[1][@class="btn btn-default pull-right"]');
     },
 
@@ -36,7 +37,7 @@ module.exports = _.assign(presteps, auth, {
             .setValueByCss('#containerEndHour input', ['00:00', browser.Keys.ENTER])
 
             .useXpath()
-            .waitForElementVisible('//p[text()=" Date should be between 08:00 and 18:00           "]', 30000)
+            .verify.containsText("//*[contains(text(), 'End time')]/../..", "Date should be between 08:00 and 18:00")
             .clickBySelectorXpath('//modal[@class="modal fade in"]//button[1][@class="btn btn-default pull-right"]');
     },
 
@@ -66,8 +67,7 @@ module.exports = _.assign(presteps, auth, {
 
     'that information message appears': function (browser) {
         browser
-            .verify.elementPresent('//div[text()=" You don`t have any elements into container                 "]');
-
+           .verify.elementPresent('//div[text()=" You don`t have any elements into container                 "]');
     },
 
     'delete container': function (browser) {
