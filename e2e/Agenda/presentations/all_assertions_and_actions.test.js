@@ -204,7 +204,6 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('(//span[text()="       Igor     "])[1]')
             .verify.elementPresent('(//span[text()="       margareta.hulden@suojkjkjminencorp.com     "])[1]')
             .verify.elementPresent('(//span[text()="       Delegate     "])[5]')
-
     },
 
     'delete just added new a candidate': function (browser) {
