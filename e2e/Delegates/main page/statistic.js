@@ -4,7 +4,7 @@ var auth = require('./../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
 
-    'redirection to agenda': function (browser) {
+    'redirection to delegates': function (browser) {
         browser
             .relUrl('/event/212/delegates')
             .waitForElementVisible('#thisIsMainLoader', 30000)
