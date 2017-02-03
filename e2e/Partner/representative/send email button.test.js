@@ -53,13 +53,12 @@ module.exports = _.assign(presteps, auth, {
 
     'choose template': function (browser) {
         browser
-            .clickBySelectorXpath('//option[@value=572]')
+            .clickBySelectorXpath('//option[@value=328]')
 
-            .verify.valueContains('//*[contains(text(), "From Email:")]/../div/input', '{{EventVersion.PMResponsible.Email}}')
-            .verify.valueContains('//*[contains(text(), "From Name")]/../div/input', '{{EventVersion.PMResponsible.FirstName}} {{EventVersion.PMResponsible.LastName}}')
-            .verify.valueContains('//*[contains(text(), "Reply-To Email:")]/../div/input', '{{EventVersion.PMResponsible.Email}}')
-            .verify.valueContains('//*[contains(text(), "Subject:")]/../div/input', '{{Contact.FirstName}}, send out your meeting request')
-
+            .verify.valueContains('//*[contains(text(), "From Email:")]/../div/input', 'test@gmail.com')
+            .verify.valueContains('//*[contains(text(), "From Name")]/../div/input', 'Test')
+            .verify.valueContains('//*[contains(text(), "Reply-To Email:")]/../div/input', 'test@gmail.com')
+            .verify.valueContains('//*[contains(text(), "Subject:")]/../div/input', 'Test')
     },
 
     'verify send email button': function (browser) {
@@ -71,17 +70,15 @@ module.exports = _.assign(presteps, auth, {
             .verify.containsText('//div[@class="toast-message"]', 'The email template was sent successfully.')
             .clickBySelectorXpath('//div[@class="toast-content"]')
 
-            .useXpath()
             .moveToElement('//tr[1]/td[13]/span', 5340, 640)
             .containsCurrentDataInSelectorXpath('//tr[2]/td[13]/span')
-            .verify.containsText('//tr[2]/td[13]', 'Growth Session / link to ME Sales Managers');
+            .verify.containsText('//tr[2]/td[13]', 'Test');
     },
 
     'verify cancel  button': function (browser) {
         browser
-            //.clickBySelectorXpath('(//input[@type="checkbox"])[2]')
             .clickBySelectorXpath('//a[text()="Send email"]')
-            .clickBySelectorXpath('//option[@value=572]')
+            .clickBySelectorXpath('//option[@value=328]')
 
             .clickBySelectorXpath('//*[text()="Select E-mail template"]/../../..//button[@class="btn btn-default"]')
     },

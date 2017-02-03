@@ -61,4 +61,26 @@ module.exports = _.assign(presteps, auth, {
             .verify.containsText('//div[@class="toast-message"]', '***')
             .clickBySelectorXpath('//div[@class="toast-content"]')
     },
+
+    'Add company': function (browser) {
+        browser
+            .clickBySelectorXpath('(//button[text()="Add company"])[1]')
+
+            .verify.containsText('//h4[@class="modal-title"]', 'Select event participant company')
+            .verify.containsText('//*[contains(text(), "Company / Search")]/../div', "")
+
+            .clickBySelectorXpath('//input[@class="form-control autocomplete-input ng-pristine ng-valid ng-touched"]')
+            .useCss()
+            .sendKeys('.auto-complete input', "ClinArt Mena")
+            .pause(1000)
+            .clickBySelectorXpath('//*[contains(text(),"ClinArt Mena")]')
+            .pause(1000)
+
+            .clickBySelectorXpath('(//button[text()="Add company"])[2]')
+
+            .waitForElementVisible('//div[@class="toast-content"]', 10000)
+            .verify.containsText('//div[@class="toast-title"]', 'Success')
+            .verify.containsText('//div[@class="toast-message"]', '***')
+            .clickBySelectorXpath('//div[@class="toast-content"]')
+    },
 });

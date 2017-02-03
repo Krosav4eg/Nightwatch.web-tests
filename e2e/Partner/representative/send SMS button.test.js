@@ -33,33 +33,35 @@ module.exports = _.assign(presteps, auth, {
 
     'verify cancel  button': function (browser) {
         browser
-            .clickBySelectorXpath('//option[@value=586]')
+            .clickBySelectorXpath('//option[@value=292]')
 
-            .clickBySelectorXpath('(//*[text()="Select SMS template"]/../../..//button[@class="btn btn-default"])[2]')
+            .clickBySelectorXpath('//modal[@style="display: inline;"]//h4/../../..//button[@class="btn btn-default"]')
     },
 
     'verify send  button': function (browser) {
         browser
-            .clickBySelectorXpath('//option[@value=586]')
+            .clickBySelectorXpath('//a[text()="Send SMS"]')
+            .clickBySelectorXpath('//option[@value=292]')
 
-            .verify.valueContains('//textarea[@class="form-control ng-untouched ng-pristine ng-valid"]', 'Test')
-            .clickBySelectorXpath('(//*[text()="Select SMS template"]/../../..//button[@class="btn btn-primary"])[2]')
+            .verify.valueContains('//textarea[@class="form-control ng-untouched ng-pristine ng-valid"]', 'Testing')
+            .clickBySelectorXpath('//modal[@style="display: inline;"]//h4/../../..//button[@class="btn btn-primary"]')
 
             .waitForElementVisible('//div[@class="toast-content"]', 10000)
-            .verify.containsText('//div[@class="toast-title"]', 'Success!')
+            .verify.containsText('//div[@class="toast-title"]', 'Success')
             .verify.containsText('//div[@class="toast-message"]', 'The SMS template was sent successfully.')
             .clickBySelectorXpath('//div[@class="toast-content"]')
 
             .moveToElement('//tr[1]/td[14]/span', 1340, 640)
-            .verify.containsText('//tr[1]/td[14]/span', 'Growth Session / link to ME Sales Managers');
+            .containsCurrentDataInSelectorXpath('//tr[1]/td[14]/span')
+            .verify.containsText('//tr[1]/td[14]/span', 'Testing SMS');
     },
 
     'press when all partner was choosen': function (browser) {
         browser
-            .clickBySelectorXpath('(//input[@type="checkbox"])[1]')
+            .click('(//input[@type="checkbox"])[1]')
             .clickBySelectorXpath('//a[text()="Send SMS"]')
 
             .verify.elementNotPresent('//textarea[@class="form-control ng-untouched ng-pristine ng-valid"]')
-            .verify.valueContains('//*[contains(text(), "Template")]/../div/select', null)
+            .verify.valueContains('//*[contains(text(), "Template")]/../div/select', "")
     },
 });

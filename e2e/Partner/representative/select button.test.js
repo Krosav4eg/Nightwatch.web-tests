@@ -46,7 +46,6 @@ module.exports = _.assign(presteps, auth, {
 
     'choose all': function (browser) {
         browser
-            //.clickBySelectorXpath('(//input[@type="checkbox"])[1]')
             .clickBySelectorXpath('//*[@class="btn btn-default btn-primary clear-selection-btn-margin"]')
 
             .elements('css selector','input[type="checkbox"]', function (result) {

@@ -31,7 +31,7 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('//option[contains(text(), "Confirmed Rebook")]')
             .clickBySelectorXpath('//option[contains(text(), "Late cancellation")]')
             .clickBySelectorXpath('//option[contains(text(), "No show")]')
-            .clickBySelectorXpath('//option[contains(text(), "Prospect")]')
+            //.clickBySelectorXpath('//option[contains(text(), "Prospect")]')
             .clickBySelectorXpath('//option[contains(text(), "Unconfirmed")]')
             .clickBySelectorXpath('//option[contains(text(), "Unconfirmed Rebook")]')
             .clickBySelectorXpath('//option[contains(text(), "Confirmed")]')
@@ -40,7 +40,7 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('//option[contains(text(), "Group 1 - orange")]')
             .clickBySelectorXpath('//option[contains(text(), "[No group]")]')
 
-            .verify.containsText('//*[contains(text(), "Availability From")]/../div/span', '2015-03-04 08:00:00')
+            .verify.containsText('//*[contains(text(), "Availability From")]/../div/span', '2015-03-04 12:00:00')
             .verify.containsText('//*[contains(text(), "Availability To")]/../div/span', '2015-03-04 18:00:00');
     },
 
