@@ -6,16 +6,17 @@ module.exports = _.assign(presteps, auth, {
 
     'redirection to delegates': function (browser) {
         browser
-            .relUrl('/event/212/delegates')
+            .relUrl('/event/200/delegates')
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
 
-    'check event groups data': function (browser) {
+    'search by last name ': function (browser) {
         browser
-            .useXpath()
-            .verify.elementPresent('//p[contains(text(),"Group 1 - orange - 21")]')
-            .verify.elementPresent('//p[contains(text(),"Group 2 - violet - 21")]')
-            .verify.elementPresent('//p[contains(text(),"No group - 42 ")]')
+            .setValueByXpath('(//tr/td[2]/input)[1]',['Schritt', browser.Keys.ENTER])
+            .verify.elementPresent('//tr[1]/td[2]/span/a[contains(text(),"Schritt")]')
+
+            .verify.elementPresent('//h4[contains(text(),"Delegates 0/1")]');
     },
+
 });
