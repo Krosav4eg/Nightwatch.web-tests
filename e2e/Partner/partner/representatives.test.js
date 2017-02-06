@@ -24,30 +24,31 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('(//label[contains(text(),"Contact / Search")])[2]');
     },
 
-    // 'information': function (browser) {
-    //     browser
-    //         .useXpath()
-    //         .verify.elementPresent('//a[contains(text(),"Möller Markus")]')
-    //         .verify.elementPresent('(//td[contains(text(),"Confirmed")])[1]')
-    //         .verify.elementPresent('//div[contains(text(),"markus.moeller@bblaw.com")]')
-    //         .verify.elementPresent('//div[contains(text(),"+49 160 6751398")]')
-    //
-    //         .clickBySelectorXpath('//a[contains(text(),"Möller Markus")]')
-    //         .window_handles(function (result) {
-    //             var handle = result.value[1];
-    //             browser.switchWindow(handle)
-    //                 .verify.urlContains("http://alpha.ew.managementevents.com/EW/MasterContact/cruII/id/283126")
-    //                 .verify.valueContains('//input[@value="Möller"]', 'Möller')
-    //                 .verify.valueContains('//input[@value="Markus"]', 'Markus')
-    //                 .verify.valueContains('//input[@value="markus.moeller@bblaw.com"]', 'markus.moeller@bblaw.com')
-    //                 .verify.valueContains('//input[@value="+49 160 6751398"]', '+49 160 6751398')
-    //
-    //             browser.closeWindow(handle);
-    //             handle = result.value[0];
-    //             browser.switchWindow(handle);
-    //         })
-    // },
-    //
+    'information': function (browser) {
+        browser
+            .useXpath()
+            .verify.elementPresent('//a[contains(text(),"Möller Markus")]')
+            .verify.elementPresent('(//td[contains(text(),"Confirmed")])[1]')
+            .verify.elementPresent('//div[contains(text(),"markus.moeller@bblaw.com")]')
+            .verify.elementPresent('//div[contains(text(),"+49 160 6751398")]')
+
+            .clickBySelectorXpath('//a[contains(text(),"Möller Markus")]')
+            .window_handles(function (result) {
+                var handle = result.value[1];
+                browser.switchWindow(handle)
+                    .verify.urlContains("http://alpha.ew.managementevents.com/EW/MasterContact/cruII/id/283126")
+                    .waitForElementVisible('//h4[contains(text(),"Person   - Möller Markus (#283126)")]',10000)
+                    .verify.valueContains('//input[@value="Möller"]', 'Möller')
+                    .verify.valueContains('//input[@value="Markus"]', 'Markus')
+                    .verify.valueContains('//input[@value="markus.moeller@bblaw.com"]', 'markus.moeller@bblaw.com')
+                    .verify.valueContains('//input[@value="+49 160 6751398"]', '+49 160 6751398')
+
+                browser.closeWindow(handle);
+                handle = result.value[0];
+                browser.switchWindow(handle);
+            })
+    },
+
     'action': function (browser) {
         browser
             .clickBySelectorXpath('(//button[contains(text(),"Cancel")])[1]')
