@@ -17,28 +17,6 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//h4[text()="Event Participant Role"]');
     },
 
-    'drop down list verify': function (browser) {
-        browser
-            .clickBySelectorXpath('(//select)[4]')
-
-            .verify.containsText('(//select)[4]/option[1]', 'Select Event Role')
-            .verify.containsText('(//option[@value="3"])[3]', 'Advisory board member')
-            .verify.containsText('(//option[@value="4"])[3]', 'Awards candidate')
-            .verify.containsText('(//option[@value="5"])[3]', 'Case / expert speaker')
-            .verify.containsText('(//option[@value="6"])[3]', 'Chairman')
-            .verify.containsText('(//option[@value="7"])[2]', 'Cross-function keynote speaker')
-            .verify.containsText('(//option[@value="8"])[2]', 'Debate speaker')
-            .verify.containsText('(//option[@value="9"])[2]', 'FishBowl speaker')
-            .verify.containsText('(//option[@value="10"])[2]', 'Group discussion initiator')
-            .verify.containsText('(//option[@value="11"])[2]', 'Host delegate')
-            .verify.containsText('(//option[@value="12"])[2]', 'Keynote speaker')
-            .verify.containsText('(//option[@value="13"])[2]', 'Panel speaker')
-            .verify.containsText('(//option[@value="14"])[2]', 'Leadership speaker')
-            .verify.containsText('(//option[@value="15"])[2]', 'Testimonial')
-
-            .clickBySelectorXpath('(//select)[4]');
-    },
-
     'create advisory board member role': function (browser) {
         browser
             .clickBySelectorXpath('(//input[@placeholder="Choose participant (min 3 chars)"])[1]')
@@ -409,7 +387,7 @@ module.exports = _.assign(presteps, auth, {
             .moveToElement('(//tr[1]/th[2])[1]', 10, 10)
 
             .clickBySelectorXpath('(//option[@value="15"])[1]')
-            .verify.containsText('//tr[3]/td[2]/span', 'Leadership speaker')
+            .verify.containsText('//tr[3]/td[2]/span', 'Testimonial')
             .verify.containsText('//tr[3]/td[4]', 'Funke')
             .verify.containsText('//tr[3]/td[5]', 'Boris')
 
@@ -424,4 +402,27 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementNotPresent('//tr[3]/td[5]');
     },
 
+    'drop down list verify': function (browser) {
+        browser
+            .clickBySelectorXpath('//button[text()="Add new role"]')
+            .verify.elementPresent('//h4[text()="Event Participant Role"]')
+            .clickBySelectorXpath('(//select)[4]')
+
+            .verify.containsText('(//select)[4]/option[1]', 'Select Event Role')
+            .verify.containsText('(//option[@value="3"])[3]', 'Advisory board member')
+            .verify.containsText('(//option[@value="4"])[3]', 'Awards candidate')
+            .verify.containsText('(//option[@value="5"])[3]', 'Case / expert speaker')
+            .verify.containsText('(//option[@value="6"])[3]', 'Chairman')
+            .verify.containsText('(//option[@value="7"])[2]', 'Cross-function keynote speaker')
+            .verify.containsText('(//option[@value="8"])[2]', 'Debate speaker')
+            .verify.containsText('(//option[@value="9"])[2]', 'FishBowl speaker')
+            .verify.containsText('(//option[@value="10"])[2]', 'Group discussion initiator')
+            .verify.containsText('(//option[@value="11"])[2]', 'Host delegate')
+            .verify.containsText('(//option[@value="12"])[2]', 'Keynote speaker')
+            .verify.containsText('(//option[@value="13"])[2]', 'Panel speaker')
+            .verify.containsText('(//option[@value="14"])[2]', 'Leadership speaker')
+            .verify.containsText('(//option[@value="15"])[2]', 'Testimonial')
+
+            .clickBySelectorXpath('(//select)[4]');
+    },
 });
