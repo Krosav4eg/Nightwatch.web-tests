@@ -14,8 +14,7 @@ module.exports = _.assign(presteps, auth, {
     'check event data': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//h4[contains(text(), "Event (#212)")]', 3000)
-            .waitForElementVisible('//h4/span[contains(text(), "15")]', 3000);
+            .waitForElementVisible('//h4[contains(text(), "Event (#212)")]', 3000);
     },
 
     'drop down list verify': function (browser) {
@@ -60,9 +59,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//tr[9]/td[11]')
             .verify.elementPresent('//tr[10]/td[11]')
             .verify.elementPresent('//tr[12]/td[11]')
-            .verify.elementPresent('//tr[13]/td[11]')
-            .verify.elementPresent('//tr[14]/td[11]')
-            .verify.elementPresent('//tr[15]/td[11]');
+            .verify.elementPresent('//tr[13]/td[11]');
     },
 
     'check Hosted table host role': function (browser) {
@@ -97,21 +94,17 @@ module.exports = _.assign(presteps, auth, {
     'check Case / expert speaker': function (browser) {
         browser
             .clickBySelectorXpath('(//option[@value="5"])[2]')
-            .verify.elementPresent('//h4/span[contains(text(), "4")]')
+            .verify.elementPresent('//h4/span[contains(text(), "3")]')
 
-            .verify.containsText("(//tr[1]/td[11]/span/ul/li)[3]", "Case / expert speaker")
+            .verify.containsText("(//tr[1]/td[11]/span/ul/li)[1]", "Case / expert speaker")
             .verify.containsText("//tr[2]/td[11]/span/ul/li", "Case / expert speaker")
-            .verify.containsText("//tr[3]/td[11]/span/ul/li", "Case / expert speaker")
-            .verify.containsText("//tr[4]/td[11]/span/ul/li", "Case / expert speaker");
+            .verify.containsText("//tr[3]/td[11]/span/ul/li", "Case / expert speaker");
     },
 
     'check Chairman': function (browser) {
         browser
             .clickBySelectorXpath('(//option[@value="6"])[2]')
-            .verify.elementPresent('//h4/span[contains(text(), "2")]')
-
-            .verify.containsText("(//tr[1]/td[11]/span/ul/li)[4]", "Chairman")
-            .verify.containsText("//tr[2]/td[11]/span/ul/li", "Chairman");
+            .verify.elementPresent('//h4/span[contains(text(), "0")]');
     },
 
     'check Cross-function keynote speaker': function (browser) {
@@ -119,19 +112,18 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('(//option[@value="7"])[2]')
             .verify.elementPresent('//h4/span[contains(text(), "1")]')
 
-            .verify.containsText("(//tr[1]/td[11]/span/ul/li)[5]", "Cross-function keynote speaker");
+            .verify.containsText("(//tr[1]/td[11]/span/ul/li)[3]", "Cross-function keynote speaker");
     },
 
     'check Debate speaker': function (browser) {
         browser
             .clickBySelectorXpath('(//option[@value="8"])[2]')
-            .verify.elementPresent('//h4/span[contains(text(), "5")]')
+            .verify.elementPresent('//h4/span[contains(text(), "4")]')
 
             .verify.containsText("(//tr[1]/td[11]/span/ul/li)[1]", "Debate speaker")
-            .verify.containsText("(//tr[2]/td[11]/span/ul/li)[6]", "Debate speaker")
-            .verify.containsText("(//tr[3]/td[11]/span/ul/li)[2]", "Debate speaker")
-            .verify.containsText("(//tr[4]/td[11]/span/ul/li)[1]", "Debate speaker")
-            .verify.containsText("(//tr[5]/td[11]/span/ul/li)[1]", "Debate speaker");
+            .verify.containsText("(//tr[2]/td[11]/span/ul/li)[2]", "Debate speaker")
+            .verify.containsText("(//tr[3]/td[11]/span/ul/li)[4]", "Debate speaker")
+            .verify.containsText("(//tr[4]/td[11]/span/ul/li)[1]", "Debate speaker");
     },
 
     'check FishBowl speaker': function (browser) {
@@ -139,7 +131,7 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('(//option[@value="9"])[2]')
             .verify.elementPresent('//h4/span[contains(text(), "1")]')
 
-            .verify.containsText("(//tr[1]/td[11]/span/ul/li)[7]", "FishBowl speaker");
+            .verify.containsText("(//tr[1]/td[11]/span/ul/li)[5]", "FishBowl speaker");
     },
 
     'check Group discussion initiator': function (browser) {
@@ -147,17 +139,16 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('(//option[@value="10"])[2]')
             .verify.elementPresent('//h4/span[contains(text(), "2")]')
 
-            .verify.containsText("(//tr[1]/td[11]/span/ul/li)[8]", "Group discussion initiator")
-            .verify.containsText("(//tr[2]/td[11]/span/ul/li)[3]", "Group discussion initiator");
+            .verify.containsText("(//tr[1]/td[11]/span/ul/li)[3]", "Group discussion initiator")
+            .verify.containsText("(//tr[2]/td[11]/span/ul/li)[6]", "Group discussion initiator");
     },
 
     'check Host delegate': function (browser) {
         browser
             .clickBySelectorXpath('(//option[@value="11"])[2]')
-            .verify.elementPresent('//h4/span[contains(text(), "2")]')
+            .verify.elementPresent('//h4/span[contains(text(), "1")]')
 
-            .verify.containsText("(//tr[1]/td[11]/span/ul/li)[2]", "Host delegate")
-            .verify.containsText("(//tr[2]/td[11]/span/ul/li)[9]", "Host delegate");
+            .verify.containsText("(//tr[1]/td[11]/span/ul/li)[7]", "Host delegate");
     },
 
     'check Keynote speaker': function (browser) {
@@ -175,7 +166,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//h4/span[contains(text(), "7")]')
 
             .verify.containsText("(//tr[1]/td[11]/span/ul/li)[1]", "Panel speaker")
-            .verify.containsText("(//tr[2]/td[11]/span/ul/li)[10]", "Panel speaker")
+            .verify.containsText("(//tr[2]/td[11]/span/ul/li)[1]", "Panel speaker")
             .verify.containsText("(//tr[3]/td[11]/span/ul/li)[1]", "Panel speaker")
             .verify.containsText("(//tr[4]/td[11]/span/ul/li)[1]", "Panel speaker")
             .verify.containsText("(//tr[5]/td[11]/span/ul/li)[3]", "Panel speaker")
@@ -188,8 +179,8 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('(//option[@value="14"])[2]')
             .verify.elementPresent('//h4/span[contains(text(), "2")]')
 
-            .verify.containsText("(//tr[1]/td[11]/span/ul/li)[11]", "Leadership speaker")
-            .verify.containsText("(//tr[2]/td[11]/span/ul/li)[4]", "Leadership speaker");
+            .verify.containsText("(//tr[1]/td[11]/span/ul/li)[4]", "Leadership speaker")
+            .verify.containsText("(//tr[2]/td[11]/span/ul/li)[8]", "Leadership speaker");
     },
 
     'check Testimonial': function (browser) {
@@ -197,8 +188,8 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('(//option[@value="15"])[2]')
             .verify.elementPresent('//h4/span[contains(text(), "2")]')
 
-            .verify.containsText("(//tr[1]/td[11]/span/ul/li)[12]", "Testimonial")
-            .verify.containsText("(//tr[2]/td[11]/span/ul/li)[5]", "Testimonial");
+            .verify.containsText("(//tr[1]/td[11]/span/ul/li)[5]", "Testimonial")
+            .verify.containsText("(//tr[2]/td[11]/span/ul/li)[10]", "Testimonial");
     },
 
     'check Lunch host': function (browser) {
