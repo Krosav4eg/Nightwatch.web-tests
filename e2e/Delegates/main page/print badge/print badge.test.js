@@ -14,16 +14,13 @@ module.exports = _.assign(presteps, auth, {
     'click print badge button': function (browser) {
         browser
             .clickBySelectorXpath('(//tr/td/input[@type="checkbox"])[1]')
-            .verify.elementPresent('//h4[contains(text(),"Delegates 1/66")]')
             .clickBySelectorXpath('//span[contains(text(),"Print badge")]')
-            .clickBySelectorXpath('//*[text()="Candidates"]/../..//a[contains(@href,"MasterCompany")]')
             .pause(1000)
             .closeWindow()
             .window_handles(function (result) {
                 var handle = result.value[0];
                 browser.switchWindow(handle)
-                    
+                    .verify.urlContains("data:application/pdf;base64,");
             })
     },
-
 });
