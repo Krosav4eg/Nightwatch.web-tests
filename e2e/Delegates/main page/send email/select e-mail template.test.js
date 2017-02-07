@@ -92,6 +92,7 @@ module.exports = _.assign(presteps, auth, {
             .setValueByXpath('//input[@ngcontrol="fromName"]', 'Feedback-AUTO')
             .setValueByXpath('//input[@ngcontrol="replyToEmail"]', 'test@mmm.com')
             .setValueByXpath('//input[@ngcontrol="contentSubject"]', 'AutoTest')
+
             .clickBySelectorXpath('(//button[contains(text(),"Save")])[1]')
             .clickBySelectorXpath('(//button[contains(text(),"Save")])[2]')
 
