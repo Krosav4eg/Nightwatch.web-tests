@@ -105,4 +105,11 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//p[contains(text(),"Confirmed: 5")]')
             .verify.elementPresent('//p[contains(text(),"Confirmed Rebook: 2")]');
     },
+
+    'verifying fields Availability From and Availability To': function (browser) {
+        browser
+            .clickBySelectorXpath('//a[contains(text(),"Unkel")]')
+            .verify.elementPresent('//span[contains(text(),"2009-05-27 08:00:00")]')
+            .verify.elementPresent('//span[contains(text(),"2009-05-28 18:00:00")]')
+    },
 });
