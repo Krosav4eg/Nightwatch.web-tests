@@ -1,37 +1,37 @@
 {
-  "src_folders" : ["e2e"],
-  "output_folder" : "reports",
-  "custom_commands_path" : ["nightwatch_extend/commands", "nightwatch_extend/commands/awards", "nightwatch_extend/commands/roles",
-    "nightwatch_extend/commands/agenda" ],
-
-  "globals_path" : "",
+  "src_folders": [
+    "e2e"
+  ],
+  "output_folder": "reports",
+  "custom_commands_path": [
+    "nightwatch_extend/commands",
+    "nightwatch_extend/commands/awards",
+    "nightwatch_extend/commands/roles",
+    "nightwatch_extend/commands/agenda"
+  ],
+  "globals_path": "",
   "live_output ": true,
   "detailed_output": true,
-
   "globals": {
     "waitForConditionTimeout": 30000,
     "abortOnAssertionFailure": true
   },
-
   "test_workers": {
     "enabled": true,
     "workers": 3
   },
-
-  "test_settings" : {
-    "default" : {
-
-      "filter" : "**/*.test.js",
-
+  "test_settings": {
+    "default": {
+      "filter": "**/*.test.js",
       "selenium_host": "127.0.0.1",
       "selenium_port": 4444,
-      "launch_url" : "http://alpha.skynet.managementevents.com",
+      "launch_url": "http://test.skynet.managementevents.com",
       "silent": true,
-      "screenshots" : {
-        "enabled" : true,
-        "on_failure" : true,
-        "on_error" : true,
-        "path" : "screens"
+      "screenshots": {
+        "enabled": true,
+        "on_failure": true,
+        "on_error": true,
+        "path": "screens"
       },
       "desiredCapabilities": {
         "browserName": "chrome",
