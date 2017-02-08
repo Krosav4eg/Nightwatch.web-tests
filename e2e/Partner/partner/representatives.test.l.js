@@ -11,17 +11,19 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
 
-    'participation info': function (browser) {
+    'participation info not visible': function (browser) {
         browser
             .useXpath()
             .verify.elementPresent('//div[contains(text(),"Representatives")]')
 
             .clickBySelectorXpath('(//h4/a/div)[6]')
-            .expect.element('(//label[contains(text(),"Contact / Search")])[2]').to.not.be.visible
+            .expect.element('(//label[contains(text(),"Contact / Search")])[2]').to.not.be.visible;
+    },
 
+    'participation info visible': function (browser) {
         browser
             .clickBySelectorXpath('(//h4/a/div)[6]')
-            .verify.elementPresent('(//label[contains(text(),"Contact / Search")])[2]');
+            .expect.element('(//label[contains(text(),"Contact / Search")])[2]').to.be.visible;
     },
 
     'information': function (browser) {
@@ -37,7 +39,7 @@ module.exports = _.assign(presteps, auth, {
                 var handle = result.value[1];
                 browser.switchWindow(handle)
                     .verify.urlContains("http://alpha.ew.managementevents.com/EW/MasterContact/cruII/id/283126")
-                    .waitForElementVisible('//h4[contains(text(),"Person   - Möller Markus (#283126)")]',10000)
+                    .waitForElementVisible('//h4[contains(text(),"Person   - Möller Markus (#283126)")]', 10000)
                     .verify.valueContains('//input[@value="Möller"]', 'Möller')
                     .verify.valueContains('//input[@value="Markus"]', 'Markus')
                     .verify.valueContains('//input[@value="markus.moeller@bblaw.com"]', 'markus.moeller@bblaw.com')
@@ -47,7 +49,8 @@ module.exports = _.assign(presteps, auth, {
                 handle = result.value[0];
                 browser.switchWindow(handle);
             })
-    },
+    }
+    ,
 
     'action': function (browser) {
         browser
@@ -61,7 +64,8 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('(//div)[208]')
             .verify.elementPresent('(//select)[3]')
             .verify.elementPresent('(//button[contains(text(),"Replace")])[1]');
-    },
+    }
+    ,
 
     'search': function (browser) {
         browser
@@ -70,6 +74,8 @@ module.exports = _.assign(presteps, auth, {
             .pause(3000)
             .clickBySelectorXpath('//*[contains(text(),"Thomas Bula")]');
 
-    },
+    }
+    ,
 
-});
+})
+;
