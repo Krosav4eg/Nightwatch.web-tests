@@ -26,7 +26,19 @@ module.exports = _.assign(presteps, auth, {
                 for (var countVerify = 1; countVerify > count; countVerify++) {
                     var selector = '(//input[@type="checkbox"])[' + count + ']';
                     this.verify.attributeEquals(selector, 'checked', 'true');
-                    this.verify.cssProperty('(//tr[@class="hover participation-status-other select"])', 'background-color', 'rgba(5, 158, 255, 1)');
+                }
+            });
+    },
+
+    'unselected  all': function (browser) {
+        browser
+            .clickBySelectorXpath('//*[@class="btn btn-default btn-primary clear-selection-btn-margin"]')
+
+            .elements('css selector', 'input[type="checkbox"]', function (result) {
+                var count = result.value.length;
+                for (var countVerify = 1; countVerify > count; countVerify++) {
+                    var selector = '(//input[@type="checkbox"])[' + count + ']';
+                    this.expect.element(selector).to.not.be.selected;
                 }
             });
     },
@@ -114,7 +126,7 @@ module.exports = _.assign(presteps, auth, {
 
     'check that number of result is correct': function (browser) {
         browser
-            .verify.elementPresent('//h4[contains(text(),"Delegates 4/32")]');
+            .verify.elementPresent('//h4[contains(text(),"Delegates 4/27")]');
     },
 
 });
