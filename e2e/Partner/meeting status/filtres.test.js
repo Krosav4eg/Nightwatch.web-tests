@@ -20,7 +20,6 @@ module.exports = _.assign(presteps, auth, {
             .verify.containsText('//tr[3]/td[2]/span', 'Confirmed')
             .verify.containsText('//tr[4]/td[2]/span', 'Confirmed')
             .verify.containsText('//tr[5]/td[2]/span', 'Confirmed')
-
     },
 
     'choose Show cancelled': function (browser) {
@@ -43,7 +42,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.containsText('//tr[5]/td[2]/span', 'Confirmed')
     },
 
-    'choose Show only active': function (browser) {
+    'click Reset ': function (browser) {
         browser
             .clickBySelectorXpath('//option[@value=2]')
             .clickBySelectorXpath('//button[@class="btn btn-default btn-block filter-button-margins"]')

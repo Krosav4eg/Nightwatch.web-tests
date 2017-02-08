@@ -31,7 +31,6 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('//option[contains(text(), "Confirmed Rebook")]')
             .clickBySelectorXpath('//option[contains(text(), "Late cancellation")]')
             .clickBySelectorXpath('//option[contains(text(), "No show")]')
-            //.clickBySelectorXpath('//option[contains(text(), "Prospect")]')
             .clickBySelectorXpath('//option[contains(text(), "Unconfirmed")]')
             .clickBySelectorXpath('//option[contains(text(), "Unconfirmed Rebook")]')
             .clickBySelectorXpath('//option[contains(text(), "Confirmed")]')

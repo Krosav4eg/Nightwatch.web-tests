@@ -13,12 +13,12 @@ module.exports = _.assign(presteps, auth, {
 
     'search by company Blank': function (browser) {
         browser
-            .setValueByXpath('//tr[1]/td[2]/input[@type="text"]', ['Crayon UAE', browser.Keys.ENTER])
+            .setValueByXpath('//tr[1]/td[2]/input[@type="text"]', ['Symantec UAE', browser.Keys.ENTER])
 
-            .verify.containsText('//tr[1]/td[2]/span', 'Crayon UAE')
+            .verify.containsText('//tr[1]/td[2]/span', 'Symantec UAE')
     },
 
-    'Cancel participation': function (browser) {
+    'Cancel participation click Close': function (browser) {
         browser
             .moveToElement('//tr/td[13]', 1298, 597)
             .clickBySelectorXpath('(//button[contains(text(), "Cancel participation")])[1]')
@@ -31,7 +31,37 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('(//button[contains(text(), "Cancel participation")])[1]')
             .clickBySelectorXpath('//button[text()="No"]')
 
-            .verify.containsText('//tr[1]/td[2]/span', 'Crayon UAE')
+            .verify.containsText('//tr[1]/td[2]/span', 'Symantec UAE')
+    },
+
+    'participation click Yes': function (browser) {
+        browser
+            .moveToElement('//tr/td[13]', 1298, 597)
+            .clickBySelectorXpath('(//button[contains(text(), "Cancel participation")])[1]')
+            .clickBySelectorXpath('//button[text()="Yes"]')
+
+            .refresh()
+
+            .setValueByXpath('//tr[1]/td[2]/input[@type="text"]', ['Symantec UAE', browser.Keys.ENTER])
+
+            .verify.elementPresent('//*[contains(text(), "No results found")]')
+    },
+
+    'edit status': function (browser) {
+        browser
+
+            .relUrl('/event/2/partners/8')
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
+            .clickBySelectorXpath('(//option[@value=1])[1]')
+            .click('(//*[text()="Save"])[1]')
+            .waitForElementVisible('//div[@class="toast-content"]', 10000)
+
+            .relUrl('/event/2/partners')
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
+
+            .setValueByXpath('//tr[1]/td[2]/input[@type="text"]', ['Symantec UAE', browser.Keys.ENTER])
+
+            .verify.containsText('//tr[1]/td[2]/span', 'Symantec UAE')
     },
 
 });

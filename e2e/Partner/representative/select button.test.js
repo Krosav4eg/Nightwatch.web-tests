@@ -37,21 +37,21 @@ module.exports = _.assign(presteps, auth, {
 
             .elements('css selector','input[type="checkbox"]', function (result) {
                  var count = result.value.length;
-                 for(var countVerify = 1; countVerify > count; countVerify++ ){
-                     var selector = '(//input[@type="checkbox"])[' + count + ']';
+                 for(var countVerify = 1; countVerify < count; countVerify++ ){
+                     var selector = '(//input[@type="checkbox"])[' + countVerify + ']';
                      this.verify.attributeEquals(selector, 'checked', 'true');
                  }
             });
     },
 
-    'choose all': function (browser) {
+    'cancel all': function (browser) {
         browser
             .clickBySelectorXpath('//*[@class="btn btn-default btn-primary clear-selection-btn-margin"]')
 
             .elements('css selector','input[type="checkbox"]', function (result) {
                 var count = result.value.length;
-                for(var countVerify = 1; countVerify > count; countVerify++ ){
-                    var selector = '(//input[@type="checkbox"])[' + count + ']';
+                for(var countVerify = 1; countVerify < count; countVerify++ ){
+                    var selector = '(//input[@type="checkbox"])[' + countVerify + ']';
                     this.expect.element(selector).to.not.be.selected;
                 }
             });
