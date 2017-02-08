@@ -37,7 +37,6 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'crop the picture (+/- or via scroll on the mouse)': function (browser) {
-        console.log(__dirname);
         browser
 
             .setValueByXpath('//input[@id="myUnit"]', __dirname + '/wallpaper-19201080.jpg')
