@@ -45,11 +45,7 @@ module.exports = _.assign(presteps, auth, {
 
             .verify.elementPresent('//h4[contains(text(),"Delegates 0/2")]')
             .verify.elementPresent('//tr[1]/td[2]/span')
-            .verify.elementPresent('//tr[2]/td[2]/span')
-            .verify.elementNotPresent('//tr[3]/td[2]/span')
-            .verify.elementNotPresent('//tr[4]/td[2]/span')
-            .verify.elementNotPresent('//tr[5]/td[2]/span')
-            .verify.elementNotPresent('//tr[6]/td[2]/span');
+            .verify.elementPresent('//tr[2]/td[2]/span');
     },
 
     'choose group 2': function (browser) {
@@ -60,9 +56,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//tr[1]/td[2]/span')
             .verify.elementPresent('//tr[2]/td[2]/span')
             .verify.elementPresent('//tr[3]/td[2]/span')
-            .verify.elementPresent('//tr[4]/td[2]/span')
-            .verify.elementNotPresent('//tr[5]/td[2]/span')
-            .verify.elementNotPresent('//tr[6]/td[2]/span');
+            .verify.elementPresent('//tr[4]/td[2]/span');
     },
 
     'choose no group': function (browser) {
