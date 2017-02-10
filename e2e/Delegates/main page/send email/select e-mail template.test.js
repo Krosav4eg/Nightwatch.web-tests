@@ -14,7 +14,7 @@ module.exports = _.assign(presteps, auth, {
     'check that when you open select E-mail template page template field is blank': function (browser) {
         browser
             .clickBySelectorXpath('(//tr/td/input[@type="checkbox"])[1]')
-            .verify.elementPresent('//h4[contains(text(),"Delegates 1/39")]')
+            .verify.elementPresent('//h4[contains(text(),"Delegates 1/40")]')
             .clickBySelectorXpath('//button[contains(text(),"Send email")]')
 
             .verify.elementPresent('//h4[contains(text(),"Select E-mail template")]')
@@ -42,7 +42,8 @@ module.exports = _.assign(presteps, auth, {
             .verify.containsText('(//option)[27]', '')
             .verify.containsText('(//option)[28]', 'asdas')
             .verify.containsText('(//option)[29]', 'Test')
-            .verify.containsText('(//option)[30]', 'Testyhh')
+            .verify.containsText('(//option)[30]', 'Testing 56')
+            .verify.containsText('(//option)[31]', 'Testyhh')
 
     },
 
@@ -94,6 +95,8 @@ module.exports = _.assign(presteps, auth, {
             .setValueByXpath('//input[@ngcontrol="contentSubject"]', 'AutoTest')
 
             .clickBySelectorXpath('(//button[contains(text(),"Save")])[1]')
+
+            .verify.elementPresent('//span[contains(text(),"Words: 7")]')
             .clickBySelectorXpath('(//button[contains(text(),"Save")])[2]')
 
             .relUrl('/event/212/delegates')
@@ -102,7 +105,7 @@ module.exports = _.assign(presteps, auth, {
 
             .useXpath()
             .clickBySelectorXpath('(//tr/td/input[@type="checkbox"])[1]')
-            .verify.elementPresent('//h4[contains(text(),"Delegates 1/39")]')
+            .verify.elementPresent('//h4[contains(text(),"Delegates 1/40")]')
             .clickBySelectorXpath('//button[contains(text(),"Send email")]')
 
             .clickBySelectorXpath('(//option[contains(text(),"Test1")])[1]')
@@ -168,10 +171,10 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('(//tr/td/input[@type="checkbox"])[2]')
             .clickBySelectorXpath('//button[contains(text(),"Send email")]')
 
-            .verify.valueContains('//*[contains(text(), "From Email")]/../div/input', null)
-            .verify.valueContains('//*[contains(text(), "From Name")]/../div/input', null)
-            .verify.valueContains('//*[contains(text(), "Reply-To Email:")]/../div/input', null)
-            .verify.valueContains('//*[contains(text(), "Subject:")]/../div/input', null);
+            .verify.valueContains('//*[contains(text(), "From Email")]/../div/input', '')
+            .verify.valueContains('//*[contains(text(), "From Name")]/../div/input', '')
+            .verify.valueContains('//*[contains(text(), "Reply-To Email:")]/../div/input', '')
+            .verify.valueContains('//*[contains(text(), "Subject:")]/../div/input', '');
     },
 
 });

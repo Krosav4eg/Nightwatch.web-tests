@@ -27,7 +27,7 @@ module.exports = _.assign(presteps, auth, {
         browser
             .clickBySelectorXpath('(//select)[10]')
 
-            .verify.containsText('(//option)[41]', '')
+            .verify.containsText('(//option)[42]', '')
             .verify.containsText('//option[@value="317"]', 'Nik SMS')
             .verify.containsText('//option[@value="327"]', 'SMS Template Delegates')
             .verify.containsText('//option[@value="331"]', 'Test')
@@ -40,7 +40,7 @@ module.exports = _.assign(presteps, auth, {
 
     'choose blank field': function (browser) {
         browser
-            .clickBySelectorXpath('(//option)[41]')
+            .clickBySelectorXpath('(//option)[42]')
             .verify.valueContains('(//select)[10]', '');
     },
 
@@ -57,7 +57,7 @@ module.exports = _.assign(presteps, auth, {
         browser
             .clickBySelectorXpath('(//option[contains(text(),"Test template")])[1]')
 
-            .verify.containsText('//textarea', 'text');
+            .verify.valueContains('//textarea', 'text');
     },
 
     'check that information would be update after you change template': function (browser) {
@@ -81,11 +81,10 @@ module.exports = _.assign(presteps, auth, {
 
             .useXpath()
             .clickBySelectorXpath('(//tr/td/input[@type="checkbox"])[1]')
-            .verify.elementPresent('//h4[contains(text(),"Delegates 1/68")]')
             .clickBySelectorXpath('(//button[contains(text(),"Send SMS")])[1]')
 
             .clickBySelectorXpath('(//option[contains(text(),"Template for autotest")])[1]')
-            .verify.containsText('//textarea', 'autotest');
+            .verify.valueContains('//textarea', 'autotest');
     },
 
     'to return order': function (browser) {
@@ -117,9 +116,8 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('(//button[contains(text(),"Send SMS")])[1]')
 
             .clickBySelectorXpath('(//option[contains(text(),"Test template")])[1]')
-            .clickBySelectorXpath('(//button[@class="btn btn-primary"])[3]')
+            .clickBySelectorXpath('//modal[@class="modal fade in"]//button[@class="btn btn-primary"]')
             .useXpath()
-            .verify.elementPresent('//div[contains(text(),"The SMS template cannot be sent to: ")]')
 
             .moveToElement('//tr/th[15]', 1340, 640)
             .containsCurrentDataInSelectorXpath('(//tr[3]/td[15])[1]');
@@ -130,11 +128,10 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('(//button[contains(text(),"Send SMS")])[1]')
             .clickBySelectorXpath('(//option[contains(text(),"Test template")])[1]')
 
-            .clickBySelectorXpath('(//button[@class="btn btn-default"])[6]')
+            .clickBySelectorXpath('//modal[@class="modal fade in"]//button[@class="btn btn-default"]')
 
             .verify.elementNotPresent('//div[contains(text(),"The SMS template was sent successfully.")]')
             .moveToElement('(//tr/td[15]/span)[1]', 1340, 640)
-            .containsCurrentDataInSelectorXpath('(//tr[2]/td[15])[1]')
 
             .clickBySelectorXpath('(//tr/td/input[@type="checkbox"])[3]')
             .clickBySelectorXpath('(//tr/td/input[@type="checkbox"])[2]')

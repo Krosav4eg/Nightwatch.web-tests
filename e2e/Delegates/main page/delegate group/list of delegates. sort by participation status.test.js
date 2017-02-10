@@ -1,6 +1,6 @@
 var _ = require('lodash');
-var presteps = require('./../../presteps/presteps.js');
-var auth = require('./../../presteps/auth.js');
+var presteps = require('./../../../presteps/presteps.js');
+var auth = require('./../../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
 
@@ -26,10 +26,10 @@ module.exports = _.assign(presteps, auth, {
         browser
             .clickBySelectorXpath('(//tr/th[8])[1]')
 
-            .verify.containsText('//tr[1]/td[8]/span', 'Late cancellation')
-            .verify.containsText('//tr[2]/td[8]/span', 'Cancelled')
-            .verify.containsText('//tr[3]/td[8]/span', 'Cancelled')
-            .verify.containsText('//tr[4]/td[8]/span', 'Cancelled')
-            .verify.containsText('//tr[5]/td[8]/span', 'Cancelled');
+            .verify.containsText('//tr[1]/td[8]/span', 'Confirmed')
+            .verify.containsText('//tr[2]/td[8]/span', 'Confirmed')
+            .verify.containsText('//tr[3]/td[8]/span', 'Confirmed')
+            .verify.containsText('//tr[4]/td[8]/span', 'Confirmed')
+            .verify.containsText('//tr[5]/td[8]/span', 'Confirmed');
     },
 });

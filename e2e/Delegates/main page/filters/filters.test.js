@@ -20,7 +20,7 @@ module.exports = _.assign(presteps, auth, {
     'choose Show cancelled': function (browser) {
         browser
             .clickBySelectorXpath('(//option[@value=2])[1]')
-            .verify.elementPresent('//h4[contains(text(),"Delegates 0/96")]')
+            .verify.elementPresent('//h4[contains(text(),"Delegates 0/95")]')
             .verify.cssProperty('(//tr[@class="hover participation-status-cancelled"])[1]', 'background-color', 'rgba(255, 80, 80, 1)')
             .verify.cssProperty('(//tr[@class="hover participation-status-cancelled"])[2]', 'background-color', 'rgba(255, 80, 80, 1)')
             .verify.cssProperty('(//tr[@class="hover participation-status-cancelled"])[3]', 'background-color', 'rgba(255, 80, 80, 1)')
@@ -36,6 +36,6 @@ module.exports = _.assign(presteps, auth, {
     'choose Show only confirmed': function (browser) {
         browser
             .clickBySelectorXpath('//option[@value=0]')
-            .verify.elementPresent('//h4[contains(text(),"Delegates 0/67")]');
+            .verify.elementPresent('//h4[contains(text(),"Delegates 0/68")]');
     },
 });
