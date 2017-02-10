@@ -15,10 +15,6 @@ module.exports = _.assign(presteps, auth, {
         browser
             .useXpath()
             .waitForElementVisible('//h4[text()="Event (#212)"]', 3000)
-            .verify.elementPresent('//h3[text()="IndustryForum Energy"]')
-            .verify.elementPresent('//div[text()="Local name: StrategyCircle Energie"]')
-            .verify.elementPresent('//div[text()="Dates: 2012-05-09 08:00:00 - 2012-05-10 18:00:00"]')
-            .verify.elementPresent('//div[text()="Venue: , "]');
     },
 
     'go to the edit presentation': function (browser) {
@@ -36,7 +32,6 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('//span[text()="Panel discussion"]', 3000)
             .waitForElementVisible('//label[text()="Heading "]', 3000)
             .waitForElementVisible('//input[@placeholder="Heading"]', 3000)
-            //should be correct locators for input fields!!!!!!!!!!!!!!!!!!!
             .waitForElementVisible('//label[text()="Sub heading 1 "]', 3000)
             .waitForElementVisible('//label[text()="Sub heading 2 "]', 3000)
             .waitForElementVisible('//label[text()="Sub heading 3 "]', 3000)
@@ -49,7 +44,6 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('//label[text()="Modified "]', 3000)
             .waitForElementVisible('//span[text()="2016-12-07 15:47:52"]', 3000)
             .waitForElementVisible('//label[text()="Modified By "]', 3000)
-        // .waitForElementVisible('//span[text()="             Test User, Xsolve           "]', 3000)
             .waitForElementVisible('//button[text()="Cancel"]', 3000)
             .waitForElementVisible('//button[text()="Save"]', 3000);
     },

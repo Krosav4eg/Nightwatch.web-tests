@@ -32,10 +32,10 @@ module.exports = _.assign(presteps, auth, {
         browser
             .clickBySelectorXpath('//button[text()="Add speaker"]')
             .waitForElementVisible('//h4[text()="Attach Master Contact"]', 5000)
-            .clickBySelectorXpath('//button[text()="Add speaker"]')
-            .waitForElementVisible('//h4[text()="Attach Master Contact"]', 5000)
+
             .clickBySelectorXpath('//button[contains(text(),"Add new")]')
             .waitForElementVisible('//h4[text()="Add new guest speaker"]', 5000)
+
             .waitForElementVisible('//input[@id="lastName"]', 3000)
             .waitForElementVisible('//input[@id="firstName"]', 3000)
             .waitForElementVisible('//input[@id="academicTitle"]', 3000)
@@ -51,14 +51,14 @@ module.exports = _.assign(presteps, auth, {
         browser
             .clickBySelectorXpath('//input[@id="lastName"]')
             .clickBySelectorXpath('//input[@id="firstName"]')
-            .waitForElementVisible('//p[contains(text(),"Last Name is required")]', 5000);
+            .verify.containsText('//*[contains(text(), "Add new guest speaker")]/../..//*[contains(text(), "Last Name")]/..' ,"Last Name is required");
     },
 
     'first name alert message verifyion': function (browser) {
         browser
             .clickBySelectorXpath('//input[@id="firstName"]')
             .clickBySelectorXpath('//input[@id="academicTitle"]')
-            .waitForElementVisible('//p[contains(text(),"First Name is required")]', 5000);
+            .verify.containsText('//*[contains(text(), "Add new guest speaker")]/../..//*[contains(text(), "First Name")]/..' ,"First Name is required");
     },
 
     'academic title no alert message verifyion': function (browser) {
@@ -86,33 +86,32 @@ module.exports = _.assign(presteps, auth, {
         browser
             .clickBySelectorXpath('//input[@id="country"]')
             .clickBySelectorXpath('//input[@id="mobile"]')
-            .waitForElementVisible('//p[contains(text(),"Country is required")]', 5000);
+            .verify.containsText('//*[contains(text(), "Add new guest speaker")]/../..//*[contains(text(), "Country")]/..' ,"Country");
     },
 
     'mobile alert message verifyion': function (browser) {
         browser
             .clickBySelectorXpath('//input[@id="mobile"]')
             .clickBySelectorXpath('//input[@id="email"]')
-            .waitForElementVisible('//p[contains(text(),"Mobile is not valid")]', 5000);
+            .verify.containsText('//*[contains(text(), "Add new guest speaker")]/../..//*[contains(text(), "Mobile")]/..' ,"Mobile is not valid");
     },
 
     'email alert message verifyion': function (browser) {
         browser
             .clickBySelectorXpath('//input[@id="email"]')
             .clickBySelectorXpath('//input[@id="mobile"]')
-            .waitForElementVisible('//p[contains(text(),"Email is required")]', 5000);
+            .verify.containsText('//*[contains(text(), "Add new guest speaker")]/../..//*[contains(text(), "Email")]/..' ,"Email is required");
     },
 
     'blank click all alerts verifyion': function (browser) {
         browser
             .refresh()
             .useCss()
-            .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
+
             .clickBySelectorXpath('//button[text()="Add speaker"]')
             .waitForElementVisible('//h4[text()="Attach Master Contact"]', 5000)
-            .clickBySelectorXpath('//button[text()="Add speaker"]')
-            .waitForElementVisible('//h4[text()="Attach Master Contact"]', 5000)
+
             .clickBySelectorXpath('//button[contains(text(),"Add new")]')
             .waitForElementVisible('//h4[text()="Add new guest speaker"]', 5000)
             .waitForElementVisible('//input[@id="lastName"]', 3000)
@@ -125,13 +124,15 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('//input[@id="email"]', 3000)
 
             .clickBySelectorXpath('//modal[@class="modal fade in"]//button[1][text()="Save"]')
-            .waitForElementVisible('//p[contains(text(),"Last Name is required")]', 5000)
-            .waitForElementVisible('//p[contains(text(),"First Name is required")]', 5000)
+            .verify.containsText('//*[contains(text(), "Add new guest speaker")]/../..//*[contains(text(), "Last Name")]/..' ,"Last Name is required")
+            .verify.containsText('//*[contains(text(), "Add new guest speaker")]/../..//*[contains(text(), "First Name")]/..' ,"First Name is required")
+
             .verify.elementNotPresent('//p[contains(text(),"Academic Title is required")]')
             .verify.elementNotPresent('//p[contains(text(),"Functional Title is required")]')
             .verify.elementNotPresent('//p[contains(text(),"Company is required")]')
-            .waitForElementVisible('//p[contains(text(),"Country is required")]', 5000)
-            .waitForElementVisible('//p[contains(text(),"Mobile is not valid")]', 5000)
-            .waitForElementVisible('//p[contains(text(),"Email is required")]', 5000)
+
+            .verify.containsText('//*[contains(text(), "Add new guest speaker")]/../..//*[contains(text(), "Country")]/..' ,"Country is required")
+            .verify.containsText('//*[contains(text(), "Add new guest speaker")]/../..//*[contains(text(), "Mobile")]/..' ,"Mobile is not valid")
+            .verify.containsText('//*[contains(text(), "Add new guest speaker")]/../..//*[contains(text(), "Email")]/..' ,"Email is required");
     },
 });
