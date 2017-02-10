@@ -51,7 +51,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.cssProperty('(//button)[5]', 'background-color', 'rgba(241, 196, 15, 1)')
             .clickBySelectorXpath('(//button)[5]')
             .verify.containsText('(//button)[5]', 'Rebooked')
-            .verify.cssProperty('(//button)[5]', 'background-color', 'rgba(108, 166, 50, 1)')
+            .verify.cssProperty('(//button)[5]', 'background-color', 'rgba(108, 166, 50, 1)');
     },
 
 });
