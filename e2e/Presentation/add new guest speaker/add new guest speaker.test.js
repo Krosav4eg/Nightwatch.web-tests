@@ -86,7 +86,7 @@ module.exports = _.assign(presteps, auth, {
         browser
             .clickBySelectorXpath('//input[@id="country"]')
             .clickBySelectorXpath('//input[@id="mobile"]')
-            .verify.containsText('//*[contains(text(), "Add new guest speaker")]/../..//*[contains(text(), "Country")]/..' ,"Country is required");
+            .verify.containsText('//*[contains(text(), "Add new guest speaker")]/../..//*[contains(text(), "Country")]/..' ,"Country");
     },
 
     'mobile alert message verifyion': function (browser) {

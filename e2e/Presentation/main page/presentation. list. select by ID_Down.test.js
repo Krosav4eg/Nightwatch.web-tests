@@ -21,7 +21,6 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('a[href="/presentations/edit/3729"]')
             .verify.elementPresent('a[href="/presentations/edit/3733"]')
             .verify.elementPresent('a[href="/presentations/edit/3752"]')
-            .verify.elementPresent('a[href="/presentations/edit/3753"]')
             .verify.elementPresent('a[href="/presentations/edit/3756"]')
             .verify.elementPresent('a[href="/presentations/edit/3757"]')
             .verify.elementPresent('a[href="/presentations/edit/3758"]')
@@ -33,15 +32,12 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('a[href="/presentations/edit/3795"]')
             .verify.elementPresent('a[href="/presentations/edit/3810"]')
             .verify.elementPresent('a[href="/presentations/edit/3811"]')
-            .verify.elementPresent('a[href="/presentations/edit/3814"]')
-            .verify.elementPresent('a[href="/presentations/edit/3815"]')
     },
 
     'select by id up': function (browser) {
         browser
             .clickBySelectorXpath('//tr/th[1]')
             .useCss()
-            .verify.elementPresent('a[href="/presentations/edit/4067"]')
             .verify.elementPresent('a[href="/presentations/edit/4060"]')
             .verify.elementPresent('a[href="/presentations/edit/3985"]')
             .verify.elementPresent('a[href="/presentations/edit/3984"]')
@@ -54,7 +50,5 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('a[href="/presentations/edit/3818"]')
             .verify.elementPresent('a[href="/presentations/edit/3817"]')
             .verify.elementPresent('a[href="/presentations/edit/3816"]')
-            .verify.elementPresent('a[href="/presentations/edit/3815"]')
-            .verify.elementPresent('a[href="/presentations/edit/3814"]')
     },
 });

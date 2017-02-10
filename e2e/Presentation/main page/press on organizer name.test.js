@@ -16,8 +16,8 @@ module.exports = _.assign(presteps, auth, {
         browser
             .clickBySelectorXpath('//tr/th[3]')
             .clickBySelectorXpath('//tr/th[3]')
-            .clickBySelectorXpath('//tr[1]/td[3]/span/a[contains(text(),"VTT Technical Research Centre of Finland")]')
+            .clickBySelectorXpath('//tr[1]/td[3]/span/a')
             .useXpath()
-            .waitForElementVisible('//div[contains(text(),"Participation info - VTT Technical Research Centre of Finland  - (E#7589)")]', 30000)
+            .waitForElementVisible('//div[contains(text(),"Participation info - BET Büro für Energiewirtschaft und technische Planung GmbH - (E#7538)")]', 30000)
     },
 });

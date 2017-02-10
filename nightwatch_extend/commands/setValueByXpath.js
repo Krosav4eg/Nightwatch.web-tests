@@ -10,7 +10,7 @@ module.exports.command = function(selector, text) {
         .waitForElementVisible(selector, 2000)
         .clearValue(selector)
         .setValue(selector, text)
-        .pause(1000);
+        .pause(2000);
 
     return this;
 };

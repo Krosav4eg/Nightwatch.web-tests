@@ -25,9 +25,9 @@ module.exports = _.assign(presteps, auth, {
     'add button verify': function (browser) {
         browser
             .setValueByXpath('//input[@type="file"]', __dirname + '/Agenda-Elements.docx')
-            .clickBySelectorXpath('//button[text()="Upload file"]')
+            .pause(2000)
+            .clickBySelectorXpath('//*[text()="Upload file"]')
             .useXpath()
-            //.waitForElementVisible('//li[contains(text(),"Agenda-Elements.docx (999.99 kB)")]', 8000)
             .waitForElementVisible('//p[@class="btn material-delete btn-primary"]', 8000)
 
             .click('//p[@class="btn material-delete btn-primary"]')

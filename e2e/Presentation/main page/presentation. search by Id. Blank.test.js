@@ -38,6 +38,5 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('a[href="/presentations/edit/3726"]')
             .verify.elementPresent('a[href="/presentations/edit/3729"]')
             .verify.elementPresent('a[href="/presentations/edit/3752"]')
-            .verify.elementPresent('a[href="/presentations/edit/3753"]')
     },
 });

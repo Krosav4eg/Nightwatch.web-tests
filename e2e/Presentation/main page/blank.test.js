@@ -55,8 +55,6 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent("//tr[15]/td[2]/span", "Delegate")
             .verify.elementPresent("//tr[16]/td[2]/span", "Delegate")
             .verify.elementPresent("//tr[17]/td[2]/span", "Delegate")
-            .verify.elementPresent("//tr[18]/td[2]/span", "Delegate")
-            .verify.elementPresent("//tr[19]/td[2]/span", "Delegate")
     },
 
     'select by partner': function (browser) {
