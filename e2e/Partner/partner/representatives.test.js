@@ -49,9 +49,7 @@ module.exports = _.assign(presteps, auth, {
                 handle = result.value[0];
                 browser.switchWindow(handle);
             })
-    }
-    ,
-
+    },
     'action': function (browser) {
         browser
             .clickBySelectorXpath('(//button[contains(text(),"Cancel")])[1]')
@@ -64,8 +62,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('(//div)[208]')
             .verify.elementPresent('(//select)[3]')
             .verify.elementPresent('(//button[contains(text(),"Replace")])[1]');
-    }
-    ,
+    },
 
     'search': function (browser) {
         browser
@@ -74,8 +71,7 @@ module.exports = _.assign(presteps, auth, {
             .pause(3000)
             .clickBySelectorXpath('//*[contains(text(),"Thomas Bula")]');
 
-    }
-    ,
+    },
 
 })
 ;
