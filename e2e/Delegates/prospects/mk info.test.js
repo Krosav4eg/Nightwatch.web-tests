@@ -15,7 +15,6 @@ module.exports = _.assign(presteps, auth, {
         browser
             .useXpath()
             .clickBySelectorXpath('//a[contains(text(),"Prospects")]')
-            .verify.elementPresent('//h4[contains(text(),"Prospects 0/804")]')
 
             .clickBySelectorXpath('(//a[@href="/prospects/edit/431395"])[1]')
             .verify.containsText('(//h4)[1]', 'Adam Hans Georg (#431395)');
@@ -78,14 +77,14 @@ module.exports = _.assign(presteps, auth, {
 
             .useXpath()
             .clickBySelectorXpath('//a[contains(text(),"Prospects")]')
-            .verify.containsText('(//tr[1]/td[2]/span)[2]', 'Adam')
-            .verify.containsText('(//tr[1]/td[3]/span)[2]', 'Hans Georg')
-            .verify.containsText('(//tr[1]/td[4]/span)[2]', 'Leiter internationale Politik')
-            .verify.containsText('(//tr[1]/td[5]/span)[2]', 'RWE AG')
-            .verify.containsText('(//tr[1]/td[6]/span)[2]', 'hans-georg.adam@rwe.com')
-            .verify.containsText('(//tr[1]/td[7]/span)[2]', 'Germany')
+            .verify.containsText('(//tr[3]/td[2]/span)[2]', 'Adam')
+            .verify.containsText('(//tr[3]/td[3]/span)[2]', 'Hans Georg')
+            .verify.containsText('(//tr[3]/td[4]/span)[2]', 'Leiter internationale Politik')
+            .verify.containsText('(//tr[3]/td[5]/span)[2]', 'RWE AG')
+            .verify.containsText('(//tr[3]/td[6]/span)[2]', 'hans-georg.adam@rwe.com')
+            .verify.containsText('(//tr[3]/td[7]/span)[2]', 'Germany')
 
             .moveToElement('(//tr/th[10])[2]', 1340, 640)
-            .verify.containsText('(//tr[1]/td[10]/span)[2]', 'No');
+            .verify.containsText('(//tr[3]/td[10]/span)[2]', 'No');
     },
 });

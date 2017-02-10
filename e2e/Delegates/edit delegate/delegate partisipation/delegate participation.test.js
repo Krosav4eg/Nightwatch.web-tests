@@ -96,7 +96,7 @@ module.exports = _.assign(presteps, auth, {
 
     'return permanent order': function (browser) {
         browser
-            .pause(2000)
+            .pause(3000)
             .clickBySelectorXpath('//a[contains(text(),"Unkel")]')
             .verify.containsText('//select[@id="participationStatus"]', 'Confirmed')
             .clickBySelectorXpath('(//option[contains(text(),"Confirmed Rebook")])[1]')
