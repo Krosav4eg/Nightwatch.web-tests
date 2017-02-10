@@ -16,29 +16,29 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('//tr/th[6]')
             .clickBySelectorXpath('//tr/th[6]')
 
-            .verify.containsText('//tr[1]/td[6]/span', '0')
-            .verify.containsText('//tr[2]/td[6]', '0')
-            .verify.containsText('//tr[3]/td[6]', '0')
-            .verify.containsText('//tr[4]/td[6]', '0')
-            .verify.containsText('//tr[5]/td[6]', '0')
+            .verify.containsText('//tr[1]/td[6]/span', 'Yes')
+            .verify.containsText('//tr[2]/td[6]', '')
+            .verify.containsText('//tr[3]/td[6]', '')
+            .verify.containsText('//tr[4]/td[6]', '')
+            .verify.containsText('//tr[5]/td[6]', '')
     },
 
     'sort by Mettings Guarantee down': function (browser) {
         browser
             .clickBySelectorXpath('//tr/th[6]')
 
-            .verify.containsText('//tr[1]/td[6]/span', '0')
-            .verify.containsText('//tr[2]/td[6]', '0')
-            .verify.containsText('//tr[3]/td[6]', '0')
-            .verify.containsText('//tr[4]/td[6]', '0')
-            .verify.containsText('//tr[5]/td[6]', '0')
+            .verify.containsText('//tr[1]/td[6]/span', '')
+            .verify.containsText('//tr[2]/td[6]', '')
+            .verify.containsText('//tr[3]/td[6]', '')
+            .verify.containsText('//tr[4]/td[6]', '')
+            .verify.containsText('//tr[5]/td[6]', '')
     },
 
     'choose Yes': function (browser) {
         browser
             .clickBySelectorXpath('//option[text()="Yes"]')
 
-            .verify.elementPresent('//*[contains(text(), "No results found")]')
+            .verify.containsText('//tr[1]/td[6]/span', 'Yes')
     },
 
     'choose No': function (browser) {
@@ -52,10 +52,10 @@ module.exports = _.assign(presteps, auth, {
         browser
             .clickBySelectorXpath('(//option)[9]')
 
-            .verify.containsText('//tr[1]/td[6]/span', '0')
-            .verify.containsText('//tr[2]/td[6]', '0')
-            .verify.containsText('//tr[3]/td[6]', '0')
-            .verify.containsText('//tr[4]/td[6]', '0')
-            .verify.containsText('//tr[5]/td[6]', '0')
+            .verify.containsText('//tr[1]/td[6]/span', '')
+            .verify.containsText('//tr[2]/td[6]', '')
+            .verify.containsText('//tr[3]/td[6]', '')
+            .verify.containsText('//tr[4]/td[6]', '')
+            .verify.containsText('//tr[5]/td[6]', '')
     },
 });

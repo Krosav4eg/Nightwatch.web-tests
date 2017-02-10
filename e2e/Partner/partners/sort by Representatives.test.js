@@ -16,7 +16,7 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('//tr/th[5]')
             .clickBySelectorXpath('//tr/th[5]')
 
-            .verify.containsText('//tr[1]/td[5]/span', '44')
+            .verify.containsText('//tr[1]/td[5]/span', '45')
             .verify.containsText('//tr[2]/td[5]', '1')
             .verify.containsText('//tr[3]/td[5]', '0')
             .verify.containsText('//tr[4]/td[5]', '0')
@@ -36,9 +36,9 @@ module.exports = _.assign(presteps, auth, {
 
     'search by Representatives Blank': function (browser) {
         browser
-            .setValueByXpath('//tr[1]/td[5]/input[@type="text"]', ['44', browser.Keys.ENTER])
+            .setValueByXpath('//tr[1]/td[5]/input[@type="text"]', ['45', browser.Keys.ENTER])
 
-            .verify.containsText('//tr[1]/td[5]/span', '44')
+            .verify.containsText('//tr[1]/td[5]/span', '45')
     },
 
     'search by Representatives one numbers': function (browser) {

@@ -11,15 +11,15 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
     },
 
-    'verify Event Deadlines': function (browser) {
+    'verify Communication': function (browser) {
         browser
             .useXpath()
-            .verify.containsText('(//h4)[5]', "Event Deadlines")
+            .verify.containsText('(//h4)[10]', "Communication")
 
-            .clickBySelectorXpath('(//h4)[5]')
-            .expect.element('//label[text()="Partner deadline:"]').to.not.be.visible;
+            .clickBySelectorXpath('(//h4)[10]')
+            .expect.element('(//button[@class="btn btn-primary btn-lg communication-participant-btn"])[1]').to.not.be.visible;
 
-        browser.clickBySelectorXpath('(//h4)[5]')
-            .expect.element('//label[text()="Partner deadline:"]').to.be.visible;
+        browser.clickBySelectorXpath('(//h4)[10]')
+            .expect.element('(//button[@class="btn btn-primary btn-lg communication-participant-btn"])[1]').to.be.visible;
     },
 });

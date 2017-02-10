@@ -16,11 +16,11 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('//*[contains(text(), "Company name")]')
             .clickBySelectorXpath('//*[contains(text(), "Company name")]')
 
-            .verify.containsText('//tr[1]/td[2]/span', '3SC World')
-            .verify.containsText('//tr[2]/td[2]/span', '4power Infocom Free Zone Company LLC')
-            .verify.containsText('//tr[3]/td[2]/span', 'Agile Financial Technologies')
-            .verify.containsText('//tr[4]/td[2]/span', 'Al Ayoubi Technologies LLC')
-            .verify.containsText('//tr[5]/td[2]/span', 'Al Rostamani Communications')
+            .verify.containsText('//tr[1]/td[2]/span', 'Krankenhausgesellschaft Nordrhein-Westfalen e.V.')
+            .verify.containsText('//tr[2]/td[2]/span', '3SC World')
+            .verify.containsText('//tr[3]/td[2]/span', '4power Infocom Free Zone Company LLC')
+            .verify.containsText('//tr[4]/td[2]/span', 'Agile Financial Technologies')
+            .verify.containsText('//tr[5]/td[2]/span', 'Al Ayoubi Technologies LLC')
     },
 
     'sort by company down': function (browser) {

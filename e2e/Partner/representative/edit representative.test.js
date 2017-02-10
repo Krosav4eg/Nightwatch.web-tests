@@ -47,7 +47,6 @@ module.exports = _.assign(presteps, auth, {
         browser
             .clickBySelectorXpath('//button[text()="Save"]')
 
-            .waitForElementVisible('//div[@class="toast-content"]', 10000)
             .verify.containsText('//div[@class="toast-title"]', 'Success!')
             .verify.containsText('//div[@class="toast-message"]', 'Event Participant saved')
             .clickBySelectorXpath('//div[@class="toast-content"]');

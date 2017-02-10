@@ -16,7 +16,7 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('//*[contains(text(), "E#ID")]')
             .clickBySelectorXpath('//*[contains(text(), "E#ID")]')
 
-            .verify.containsText('//tr[1]/td[1]/span', '#30')
+            .verify.containsText('//tr[1]/td[1]/span', '#19468')
             .verify.containsText('//tr[2]/td[1]', '#29')
             .verify.containsText('//tr[3]/td[1]', '#28')
             .verify.containsText('//tr[4]/td[1]', '#27')
