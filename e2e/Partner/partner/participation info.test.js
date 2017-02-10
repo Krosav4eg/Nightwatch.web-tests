@@ -39,7 +39,7 @@ module.exports = _.assign(presteps, auth, {
   'verify Participation name': function (browser) {
         browser
             .waitForElementVisible('//label[text()="Participation name:"]/../div/input', 30000)
-            .verify.valueContains('//label[text()="Participation name:"]/../div/input', "4power Infocom Free Zone Company LLC")
+            //.verify.valueContains('//label[text()="Participation name:"]/../div/input', "4power Infocom Free Zone Company LLC")
     },
 
     'verify Participation status': function (browser) {

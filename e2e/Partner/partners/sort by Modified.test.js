@@ -19,11 +19,11 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('//tr/th[13]')
             .clickBySelectorXpath('//tr/th[13]')
 
-            .verify.containsText('//tr[1]/td[13]/span', '2016-07-01 15:01:16')
-            .verify.containsText('//tr[2]/td[13]', '2016-07-01 15:01:16')
-            .verify.containsText('//tr[3]/td[13]', '2016-07-01 15:01:16')
-            .verify.containsText('//tr[4]/td[13]', '2016-07-01 15:01:16')
-            .verify.containsText('//tr[5]/td[13]', '2016-07-01 15:01:15')
+            .verify.containsText('//tr[1]/td[13]/span', '2017-02-06 17:53:48')
+            .verify.containsText('//tr[2]/td[13]', '2017-02-06 11:36:35')
+            .verify.containsText('//tr[3]/td[13]', '2016-11-07 17:58:37')
+            .verify.containsText('//tr[4]/td[13]', '2016-11-04 09:26:36')
+            .verify.containsText('//tr[5]/td[13]', '2016-07-01 15:01:16')
     },
 
     'sort by Modified down': function (browser) {

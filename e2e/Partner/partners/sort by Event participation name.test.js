@@ -16,22 +16,22 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('//*[contains(text(), "Event participation name")]')
             .clickBySelectorXpath('//*[contains(text(), "Event participation name")]')
 
-            .verify.containsText('//tr[1]/td[3]/span', '3SC World')
-            .verify.containsText('//tr[2]/td[3]/span', '4power Infocom Free Zone Company LLC')
-            .verify.containsText('//tr[3]/td[3]/span', 'Agile Financial Technologies')
-            .verify.containsText('//tr[4]/td[3]/span', 'Al Ayoubi Technologies LLC')
-            .verify.containsText('//tr[5]/td[3]/span', 'Al Rostamani Communications')
+            .verify.containsText('//tr[1]/td[3]/span', 'Workspace Oy')
+            .verify.containsText('//tr[2]/td[3]/span', 'Wisdom Information Technology Solutions')
+            .verify.containsText('//tr[3]/td[3]/span', 'Westcon Middle East Free Zone Company')
+            .verify.containsText('//tr[4]/td[3]/span', 'VisionSoft Business Solutions JLT')
+            .verify.containsText('//tr[5]/td[3]/span', 'TwinMOS Technologies Middle East')
     },
 
     'sort by Participation status down': function (browser) {
         browser
             .clickBySelectorXpath('//*[contains(text(), "Event participation name")]')
 
-            .verify.containsText('//tr[1]/td[3]/span', 'Workspace Oy')
-            .verify.containsText('//tr[2]/td[3]/span', 'Wisdom Information Technology Solutions')
-            .verify.containsText('//tr[3]/td[3]/span', 'Westcon Middle East Free Zone Company')
-            .verify.containsText('//tr[4]/td[3]/span', 'VisionSoft Business Solutions JLT')
-            .verify.containsText('//tr[5]/td[3]/span', 'Villen testi')
+            .verify.containsText('//tr[1]/td[3]/span', 'Krankenhausgesellschaft Nordrhein-Westfalen e.V.')
+            .verify.containsText('//tr[2]/td[3]/span', '3SC World')
+            .verify.containsText('//tr[3]/td[3]/span', '4power Infocom Free Zone Company LLC')
+            .verify.containsText('//tr[4]/td[3]/span', 'Agile Financial Technologies')
+            .verify.containsText('//tr[5]/td[3]/span', 'Al Ayoubi Technologies LLC')
     },
 
     'search by Participation status Blank': function (browser) {
