@@ -105,7 +105,6 @@ module.exports = _.assign(presteps, auth, {
 
             .useXpath()
             .clickBySelectorXpath('(//tr/td/input[@type="checkbox"])[1]')
-            .verify.elementPresent('//h4[contains(text(),"Delegates 1/40")]')
             .clickBySelectorXpath('//button[contains(text(),"Send email")]')
 
             .clickBySelectorXpath('(//option[contains(text(),"Test1")])[1]')

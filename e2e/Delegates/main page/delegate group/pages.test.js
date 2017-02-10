@@ -13,7 +13,7 @@ module.exports = _.assign(presteps, auth, {
     'page count': function (browser) {
         browser
             .clickBySelectorXpath('(//option[@value="20"])[1]')
-
+            .pause(3000)
             .verify.elementPresent('//span[text()="1 of 3"]')
             .verify.elementPresent('//a[1][@data-page="2"]')
             .verify.elementPresent('//a[3][text()="Next"]')

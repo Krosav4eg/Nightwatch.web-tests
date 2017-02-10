@@ -90,7 +90,8 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('(//button[contains(text(),"Send SMS")])[1]')
 
             .clickBySelectorXpath('(//option[contains(text(),"Template for autotest")])[1]')
-            .verify.valueContains('modal[class="modal fade in"] textarea', 'text');
+            .useCss()
+            .verify.valueContains('modal[class="modal fade in"] textarea', 'autotest');
     },
 
     'to return order': function (browser) {

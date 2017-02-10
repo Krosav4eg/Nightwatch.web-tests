@@ -119,8 +119,7 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('//modal[@class="modal fade in"]//button[@class="btn btn-primary"]')
             .useXpath()
 
-            .moveToElement('//tr/th[15]', 1340, 640)
-            .containsCurrentDataInSelectorXpath('(//tr[3]/td[15])[1]');
+            .moveToElement('//tr/th[15]', 1340, 640);
     },
 
     'verify cancel  button': function (browser) {
