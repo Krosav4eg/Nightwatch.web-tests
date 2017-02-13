@@ -87,6 +87,11 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('//input[@type="checkbox"]')
             .clickBySelectorXpath('//modal[@class="modal fade in"]//button[contains(text(),"Save")]')
             .pause(2000)
+            .clickBySelectorXpath('//div[@class="panel panel-primary"]//button[contains(text(),"Delete")]')
+            .verify.elementPresent('(//h4[contains(text(),"Delete")])[3]')
+            .clickBySelectorXpath('//input[@type="checkbox"]')
+            .clickBySelectorXpath('//modal[@class="modal fade in"]//button[contains(text(),"Save")]')
+
             .verify.elementNotPresent('//td[contains(text(),"Schmitt Dr. Christoph")]')
             .verify.elementPresent('//div[contains(text(),"Deleted role")]');
     },
