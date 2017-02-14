@@ -108,7 +108,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('(//i[@class="fa fa-trash-o delete-element"])[5]')
 
             .verify.elementPresent('(//b[contains(text(),"Accenture A/S")])[3]')
-            .verify.elementPresent('(//i[@class="fa fa-trash-o delete-element"])[6]')
+            .verify.elementPresent('(//i[@class="fa fa-trash-o delete-element"])[6]');
     },
 
     'delete 1-to-many-placeholder panel': function (browser) {
