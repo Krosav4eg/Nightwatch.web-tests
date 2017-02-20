@@ -38,10 +38,10 @@ module.exports = _.assign(presteps, auth, {
             .useCss()
             .waitForElementVisible('select#agendaElementTypeId', 4000)
 
-            .verify.containsText('option[value="23"]', 'Hosted table placeholder ')
+            .verify.containsText('option[value="23"]', 'Hosted table placeholder')
             .verify.containsText('option[value="34"]', 'Dinner placeholder')
-            .verify.containsText('option[value="33"]', 'Group discussion placeholder')
-            .verify.containsText('option[value="32"]', 'Lunch placeholder');
+            .verify.containsText('option[value="33"]', 'Group Discussion Placeholder')
+            .verify.containsText('option[value="32"]', 'Lunch Placeholder');
     },
 
     'lunch placeholder page assertion': function (browser) {
@@ -53,7 +53,7 @@ module.exports = _.assign(presteps, auth, {
         browser
             .clickBySelectorCss('select#agendaElementTypeId')
 
-            .verify.containsText('option[value="32"]', 'Lunch placeholder')
+            .verify.containsText('option[value="32"]', 'Lunch Placeholder')
             .clickBySelectorCss('option[value="32"]')
 
             .setValueByCss('me-date-time-input#elementStartHour input.form-control.dateTimeInput.dateTimeInput', ['8:55', browser.Keys.ENTER])
@@ -71,7 +71,7 @@ module.exports = _.assign(presteps, auth, {
         browser
             .useXpath()
             .verify.elementPresent('//h5[contains(text(),"08:55 - 09:25")]')
-            .verify.elementPresent('//h5[contains(text(),"Lunch placeholder")]')
+            .verify.elementPresent('//h5[contains(text(),"Lunch Placeholder")]')
 
             .verify.elementPresent('//button[contains(text(), "Add room")]');
     },
@@ -85,9 +85,8 @@ module.exports = _.assign(presteps, auth, {
     'delete lunch panel': function (browser) {
         browser
             .clickBySelectorXpath('//a[3]/i[@class="fa fa-trash-o delete-element"]')
-
-            .waitForElementVisible('//div[text()="     Do you really want to delete element Lunch placeholder?   "]', 2000)
-            .clickBySelectorXpath('//modal[@class="modal fade in"]/div/div/modal-footer/div/button[@data-marker="me-confirm__button__button__yes"]');
+            .verify.elementPresent('//modal-content[contains(text(),"Do you really want to delete element Lunch Placeholder?")]')
+            .clickBySelectorXpath('//button[@data-marker="me-confirm__button__button__yes"]');
     },
 
     'lunch panel has been deleted': function (browser) {

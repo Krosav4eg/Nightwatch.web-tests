@@ -39,16 +39,15 @@ module.exports = _.assign(presteps, auth, {
     'attach new speaker ': function (browser) {
         browser
             .clickBySelectorXpath('//me-event-agenda-element-presentation/div/div[2]/button[text()="Attach"]')
-            .verify.elementPresent('//modal[@class="modal fade in"]//h4[text()="Add presentation to "]')
-            .clickBySelectorXpath('//modal[@class="modal fade in"]//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__1875"]')
-            .clickBySelectorXpath('//modal[@class="modal fade in"]//button[@data-marker="me-modal-attach-presentation-to-element__input__button__save"]');
+            .verify.elementPresent('//h4[text()="Add presentation to "]')
+            .clickBySelectorXpath('//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__1875"]')
+            .clickBySelectorXpath('//button[@data-marker="me-modal-attach-presentation-to-element__input__button__save"]');
     },
 
     'chosen speaker is displayed': function (browser) {
         browser
-            .verify.elementPresent('//modal[@class="modal fade in"]//td[text()="1875"]')
-            .verify.elementPresent('//modal[@class="modal fade in"]//li/b[text()="Suominen Oyj"]')
-            .verify.elementPresent('//modal[@class="modal fade in"]//li/b[text()="Norwegian Ministry of Foreign Affairs"]')
+            .verify.elementPresent('//td[text()="1875"]')
+            .verify.elementPresent('//li/b[text()="Suominen Oyj"]')
 
             .verify.elementPresent('//i[@class="fa fa-pencil edit-element"]')
             .verify.elementPresent('//i[@class="fa fa-trash-o delete-element"]')
@@ -67,11 +66,8 @@ module.exports = _.assign(presteps, auth, {
 
             .verify.elementPresent('(//td[text()="1875"])[1]')
             .verify.elementPresent('//table[@class="table-agenda"]//li/b[contains(text(), "Suominen Oyj")]')
-            .verify.elementPresent('//table[@class="table-agenda"]//li[(text()=" - Hulden Margareta             ")]')
 
-            .verify.elementPresent('//table[@class="table-agenda"]//li/b[contains(text(), "Norwegian Ministry of Foreign Affairs")]')
             .verify.elementPresent('//table[@class="table-agenda"]//li[(text()=" - Vekve Sandra             ")]')
-
 
             .verify.elementPresent('//button[@class="btn btn-primary"]/i[@class="fa fa-plus"]')
             .verify.elementPresent('//button[contains(text(), "Add room")]')
@@ -85,20 +81,12 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('//me-event-agenda-attached-presentation-list//i[@class="fa fa-pencil edit-element"]')
 
             .verify.elementPresent('//a[@href="/presentations/1875/master-contact/126606"]')
-            .verify.elementPresent('(//span[text()="       Delegate     "])[1]')
-            .verify.elementPresent('(//span[text()="       Suominen Oyj     "])[1]')
-            .verify.elementPresent('(//span[text()="       Hulden     "])[1]')
-            .verify.elementPresent('(//span[text()="       Margareta     "])[1]')
-            .verify.elementPresent('(//span[text()="       Vice President, R&D     "])[1]')
-            .verify.elementPresent('(//span[text()="       margareta.hulden@suominencorp.com     "])[1]')
-
-            .verify.elementPresent('//a[@href="/presentations/1875/master-contact/6"]')
-            .verify.elementPresent('(//span[text()="       Delegate     "])[3]')
-            .verify.elementPresent('(//span[text()="       Norwegian Ministry of Foreign Affairs     "])[1]')
-            .verify.elementPresent('(//span[text()="       Vekve     "])[1]')
-            .verify.elementPresent('(//span[text()="       Sandra     "])[1]')
-            .verify.elementPresent('(//span[text()="       Senior Adviser Information Security     "])[1]')
-            .verify.elementPresent('(//span[text()="       sandra.vekve@mfa.no     "])[1]');
+            .verify.containsText('(//tr[@class="hover"]//span)[2]', 'Delegate')
+            .verify.containsText('(//tr[@class="hover"]//span)[3]', 'Suominen Oyj')
+            .verify.containsText('(//tr[@class="hover"]//span)[4]', 'Hulden')
+            .verify.containsText('(//tr[@class="hover"]//span)[5]', 'Margareta')
+            .verify.containsText('(//tr[@class="hover"]//span)[7]', 'Vice President, R&D')
+            .verify.containsText('(//tr[@class="hover"]//span)[8]', 'margareta.hulden@suominencorp.com');
     },
 
     'input information into input fields page': function (browser) {
@@ -185,11 +173,10 @@ module.exports = _.assign(presteps, auth, {
             .setValueByXpath('//input[@id="academicTitle"]', 'academicTitle')
             .setValueByXpath('//input[@id="functionTitle"]', 'Miami Vice')
             .setValueByXpath('//input[@id="masterCompanyId"]', 'Alex Andersen')
-            .clickBySelectorXpath('//input[@id="country"]')
-            .setValueByCss('.auto-complete input', 'Russia')
-            .pause(2000)
+            .setValueByXpath('//input[@id="country"]', 'Russia')
+
             .clickBySelectorXpath('//*[contains(text(),"Russia")]')
-            .pause(2000)
+
             .setValueByXpath('//input[@id="mobile"]', '+358-503856549')
             .setValueByXpath('//input[@id="email"]', 'margareta.hulden@suojkjkjminencorp.com')
 
@@ -199,22 +186,29 @@ module.exports = _.assign(presteps, auth, {
 
     'new added speaker is displayed': function (browser) {
         browser
-            .verify.elementPresent('(//span[text()="       Guest Speaker     "])[1]')
-            .verify.elementPresent('(//span[text()="       Gorohov     "])[1]')
-            .verify.elementPresent('(//span[text()="       Igor     "])[1]')
-            .verify.elementPresent('(//span[text()="       margareta.hulden@suojkjkjminencorp.com     "])[1]')
-            .verify.elementPresent('(//span[text()="       Delegate     "])[5]')
+            .verify.elementPresent('(//a[@href])[86]')
+            .verify.containsText('//tr[2]/td[2]/span', 'Guest Speaker')
+            .verify.containsText('//tr[2]/td[4]/span', 'Gorohov')
+            .verify.containsText('//tr[2]/td[5]/span', 'Igor')
+            .verify.containsText('//tr[2]/td[6]/span', 'academicTitle')
+            .verify.containsText('//tr[2]/td[7]/span', 'Miami Vice')
+            .verify.containsText('//tr[2]/td[8]/span', 'margareta.hulden@suojkjkjminencorp.com')
+            .verify.containsText('//tr[2]/td[9]/span', 'Delegate');
+
     },
 
     'delete just added new a candidate': function (browser) {
         browser
-            .clickBySelectorXpath('(//button[@class="btn btn-danger"])[2]')
-            .clickBySelectorXpath('//modal[@class="modal fade in"]//button[@data-marker="me-confirm__button__button__yes"]')
-            .verify.elementNotPresent('(//span[text()="       Guest Speaker     "])[1]')
-            .verify.elementNotPresent('(//span[text()="       Gorohov     "])[1]')
-            .verify.elementNotPresent('(//span[text()="       Igor     "])[1]')
-            .verify.elementNotPresent('(//span[text()="       margareta.hulden@suojkjkjminencorp.com     "])[1]')
-            .verify.elementNotPresent('(//span[text()="       Delegate     "])[5]')
+            .clickBySelectorXpath('(//button[@class="btn btn-danger"])[1]')
+            .clickBySelectorXpath('//button[@data-marker="me-confirm__button__button__yes"]')
+            .verify.elementNotPresent('(//a[@href])[86]')
+            .verify.elementNotPresent('//tr[2]/td[2]/span')
+            .verify.elementNotPresent('//tr[2]/td[4]/span')
+            .verify.elementNotPresent('//tr[2]/td[5]/span')
+            .verify.elementNotPresent('//tr[2]/td[6]/span')
+            .verify.elementNotPresent('//tr[2]/td[7]/span')
+            .verify.elementNotPresent('//tr[2]/td[8]/span')
+            .verify.elementNotPresent('//tr[2]/td[9]/span');
     },
 
     'delete presentation': function (browser) {

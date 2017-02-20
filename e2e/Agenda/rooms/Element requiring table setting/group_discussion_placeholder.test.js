@@ -42,7 +42,7 @@ module.exports = _.assign(presteps, auth, {
         browser
             .useXpath()
             .verify.elementPresent('//h5[contains(text(),"08:55 - 09:25")]')
-            .verify.elementPresent('//h5[contains(text(),"Group discussion placeholder")]')
+            .verify.elementPresent('//h5[contains(text(),"Group Discussion Placeholder")]')
 
             .clickBySelectorCss('i.fa.fa-plus');
     },
@@ -50,20 +50,20 @@ module.exports = _.assign(presteps, auth, {
     'choose person in  add presentation to window': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//modal[@class="modal fade in"]//b[contains(text(),"Group discussion placeholder")]', 2000)
+            .verify.elementPresent('//b[contains(text(),"Group Discussion Placeholder")]')
 
-            .waitForElementVisible('//modal[@class="modal fade in"]//li[text()=" - Virta Kari               "]', 2000)
+            .verify.elementPresent('//b[contains(text(),"ISS Palvelut Oy")]')
             .clickBySelectorXpath('//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__1962"]')
-            .clickBySelectorXpath('//modal[@class="modal fade in"]//button[@data-marker="me-modal-attach-presentation-to-element__input__button__save"]');
+            .clickBySelectorXpath('//button[@data-marker="me-modal-attach-presentation-to-element__input__button__save"]');
     },
 
     'chosen person is appear': function (browser) {
         browser
             .useXpath()
             .verify.elementPresent('//h5[contains(text(),"08:55 - 09:25")]')
-            .verify.elementPresent('//h5[contains(text(),"Group discussion placeholder")]')
+            .verify.elementPresent('//h5[contains(text(),"Group Discussion Placeholder")]')
 
-            .verify.elementPresent('//li[text()=" - Virta Kari             "]')
+            .verify.elementPresent('//b[contains(text(),"ISS Palvelut Oy")]')
 
             .verify.elementPresent('//button[@class="btn btn-primary"]/i[@class="fa fa-plus"]')
             .verify.elementPresent('//me-event-agenda-attached-presentation-list//i[@class="fa fa-pencil edit-element"]')
@@ -74,13 +74,13 @@ module.exports = _.assign(presteps, auth, {
 
     'input room field is empty': function (browser) {
         browser
-            .verify.elementPresent('//h4[contains(text(),"Add room for Group discussion placeholder 15-04-2015 08:55:00 - 09:25:00")]')
+            .verify.elementPresent('//h4[contains(text(),"Add room for Group Discussion Placeholder 15-04-2015 09:00:00 - 10:00:00")]')
 
             .useCss()
             .verify.valueContains("input.form-control[title=Room]", "")
             .setValueByCss('input.form-control[title=Room]', 'MyRoom#3')
 
-            .clickBySelectorXpath('//modal[@class="modal fade in"]//button[@data-marker="me-event-agenda__button__save-room"]');
+            .clickBySelectorXpath('//button[@data-marker="me-event-agenda__button__save-room"]');
     },
 
     'input room is displaying': function (browser) {
@@ -90,7 +90,7 @@ module.exports = _.assign(presteps, auth, {
 
     'add room for group discussion is displayed again': function (browser) {
         browser
-            .verify.elementPresent('//h4[contains(text(),"Add room for Group discussion placeholder 15-04-2015 08:55:00 - 09:25:00")]', 2000)
+            .verify.elementPresent('//h4[contains(text(),"Add room for Group Discussion Placeholder 15-04-2015 09:00:00 - 10:00:00")]')
 
             .useCss()
             .verify.elementPresent('input.form-control[title=Room]')
@@ -119,7 +119,6 @@ module.exports = _.assign(presteps, auth, {
     'assertion for room field contains name My Room': function (browser) {
         browser
             .useCss()
-            .waitForElementVisible('input#room', 2000)
             .verify.valueContains("input#room", "MyRoom#3")
 
             .refresh()
@@ -130,14 +129,14 @@ module.exports = _.assign(presteps, auth, {
     'delete group discussion placeholder panel': function (browser) {
         browser
             .clickBySelectorXpath('//a[3]/i[@class="fa fa-trash-o delete-element"]')
-            .verify.elementPresent('//div[text()="     Do you really want to delete element Group discussion placeholder?   "]')
-            .clickBySelectorXpath('//modal[@class="modal fade in"]/div/div/modal-footer/div/button[@data-marker="me-confirm__button__button__yes"]');
+            .verify.elementPresent('//modal-content[contains(text(),"    Do you really want to delete element Group Discussion Placeholder?")]')
+            .clickBySelectorXpath('//button[@data-marker="me-confirm__button__button__yes"]');
     },
 
     'group discussion placeholder has been deleted': function (browser) {
         browser
             .useXpath()
-            .verify.elementNotPresent('//h5[contains(text(),"Group discussion placeholder")]')
+            .verify.elementNotPresent('//h5[contains(text(),"Group Discussion Placeholder")]')
             .verify.elementNotPresent('//button[contains(text(),"MyRoom#3"])');
     },
 

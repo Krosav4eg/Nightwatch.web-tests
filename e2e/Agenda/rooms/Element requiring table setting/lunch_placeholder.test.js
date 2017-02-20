@@ -44,8 +44,8 @@ module.exports = _.assign(presteps, auth, {
     'redirection after creation Dinner-placeholder': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//h5[contains(text(),"08:55 - 09:25")]', 7000)
-            .waitForElementVisible('//h5[contains(text(),"Lunch placeholder")]', 7000);
+            .verify.elementPresent('//h5[contains(text(),"08:55 - 09:25")]')
+            .verify.elementPresent('//h5[contains(text(),"Lunch Placeholder")]');
     },
 
     'click add room': function (browser) {
@@ -55,11 +55,11 @@ module.exports = _.assign(presteps, auth, {
 
     'add room for Awards Panel is displayed': function (browser) {
         browser
-            .waitForElementVisible('//h4[contains(text(),"Add room for Lunch placeholder 17-10-2013 08:55:00 - 09:25:00")]', 2000)
-            .waitForElementVisible('//modal[@class="modal fade in"]//label[contains(text(),"Room")]', 2000)
+            .verify.elementPresent('//h4[contains(text(),"Add room for Lunch Placeholder 17-10-2013 08:55:00 - 09:25:00")]')
+            .verify.elementPresent('//label[contains(text(),"Room")]')
 
             .useCss()
-            .waitForElementVisible('input.form-control[title=Room]', 2000);
+            .verify.elementPresent('input.form-control[title=Room]');
     },
 
     'room input field is empty': function (browser) {
@@ -68,7 +68,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.valueContains("input.form-control[title=Room]", "")
             .setValueByCss('input.form-control[title=Room]', 'MyRoom')
 
-            .clickBySelectorXpath('//modal[@class="modal fade in"]//button[@data-marker="me-event-agenda__button__save-room"]');
+            .clickBySelectorXpath('//button[@data-marker="me-event-agenda__button__save-room"]');
     },
 
     'created room is displaying': function (browser) {
@@ -78,9 +78,9 @@ module.exports = _.assign(presteps, auth, {
 
     'add room is displayed again': function (browser) {
         browser
-            .waitForElementVisible('//h4[contains(text(),"Add room for Lunch placeholder 17-10-2013 08:55:00 - 09:25:00")]', 3000)
+            .verify.elementPresent('//h4[contains(text(),"Add room for Lunch Placeholder 17-10-2013 08:55:00 - 09:25:00")]')
 
-            .waitForElementVisible('//button[contains(text(),"MyRoom")]', 2000)
+            .verify.elementPresent('//button[contains(text(),"MyRoom")]')
             .useCss()
             .verify.valueContains("input.form-control[title=Room]", "MyRoom")
 
@@ -106,22 +106,22 @@ module.exports = _.assign(presteps, auth, {
         browser
             .useXpath()
             .clickBySelectorXpath('//a[3]/i[@class="fa fa-trash-o delete-element"]')
-            .clickBySelectorXpath('//modal[@class="modal fade in"]/div/div/modal-footer/div/button[@data-marker="me-confirm__button__button__yes"]');
+            .clickBySelectorXpath('//button[@data-marker="me-confirm__button__button__yes"]');
     },
 
     'presentation-leaderShip has been deleted': function (browser) {
         browser
             .useXpath()
             .verify.elementNotPresent('//h5[contains(text(),"08:55 - 09:25")]')
-            .verify.elementNotPresent('//h5[contains(text(),"Lunch placeholder")]')
+            .verify.elementNotPresent('//h5[contains(text(),"Lunch Placeholder")]')
             .verify.elementNotPresent('//button[contains(text(), "MyRoom")]');
     },
 
     'delete container': function (browser) {
         browser
             .clickBySelectorXpath('//a[2]/i[@class="fa fa-trash-o delete-container"]')
-            .clickBySelectorXpath('//modal[@class="modal fade in"]/div/div/modal-footer/div/button[@data-marker="me-confirm__button__button__yes"]')
+            .clickBySelectorXpath('//button[@data-marker="me-confirm__button__button__yes"]')
             .verify.elementNotPresent('//b[contains(text(), "test1")]');
     },
-})
-;
+});
+

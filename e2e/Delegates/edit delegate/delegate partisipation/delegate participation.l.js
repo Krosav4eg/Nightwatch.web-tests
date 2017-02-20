@@ -32,6 +32,7 @@ module.exports = _.assign(presteps, auth, {
 
     'choose unconfirmed': function (browser) {
         browser
+            .setValueByXpath('(//input[@type="text"])[1]',['Unkel', browser.Keys.ENTER])
             .clickBySelectorXpath('//a[contains(text(),"Unkel")]')
             .verify.containsText('//select[@id="participationStatus"]', 'Confirmed Rebook')
             .clickBySelectorXpath('(//option[contains(text(),"Unconfirmed")])[1]')

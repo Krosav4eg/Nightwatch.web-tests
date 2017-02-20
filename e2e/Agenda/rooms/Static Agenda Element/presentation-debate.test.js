@@ -58,10 +58,10 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
             .verify.elementPresent('//h4[text()="Add presentation to "]/b[text()="Presentation / Debate"]')
 
-            .verify.elementPresent('//modal[@class="modal fade in"]//li[text()=" - Schütt Helmut               "]')
-            .clickBySelectorXpath('//modal[@class="modal fade in"]//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__932"]')
+            .verify.elementPresent('//li[text()=" - Schütt Helmut               "]')
+            .clickBySelectorXpath('//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__932"]')
 
-            .clickBySelectorXpath('//modal[@class="modal fade in"]//button[@data-marker="me-modal-attach-presentation-to-element__input__button__save"]');
+            .clickBySelectorXpath('//button[@data-marker="me-modal-attach-presentation-to-element__input__button__save"]');
     },
 
     'added person is displayed': function (browser) {
@@ -94,7 +94,7 @@ module.exports = _.assign(presteps, auth, {
             .setValueByCss('input.form-control[title=Room]', 'MyRoom#2')
 
             .useXpath()
-            .clickBySelectorXpath('//modal[@class="modal fade in"]/div/div/modal-footer/div[@class="modal-footer"]/button[2]');
+            .clickBySelectorXpath('//div[@class="modal-footer"]/button[2]');
     },
 
     'set room is displaying': function (browser) {
@@ -124,8 +124,8 @@ module.exports = _.assign(presteps, auth, {
     'delete presentation-leaderShip panel': function (browser) {
         browser
             .clickBySelectorXpath('//a[3]/i[@class="fa fa-trash-o delete-element"]')
-            .verify.elementPresent('//div[text()="     Do you really want to delete element Presentation / Debate?   "]')
-            .clickBySelectorXpath('//modal[@class="modal fade in"]/div/div/modal-footer/div/button[@data-marker="me-confirm__button__button__yes"]');
+            .verify.elementPresent('//modal-content[contains(text(),"Do you really want to delete element Presentation / Debate?")]')
+            .clickBySelectorXpath('//button[@data-marker="me-confirm__button__button__yes"]');
 
     },
 
@@ -133,7 +133,7 @@ module.exports = _.assign(presteps, auth, {
         browser
             .useXpath()
             .verify.elementNotPresent('//h5[contains(text(),"09:30 - 10:00")]')
-            .verify.elementNotPresent('//h5[contains(text(),"Presentation / Debate presentation")]')
+            .verify.elementNotPresent('//h5[contains(text(),"Presentation / Debate")]')
             .verify.elementNotPresent('//button[contains(text(), "Add room")]');
     },
 

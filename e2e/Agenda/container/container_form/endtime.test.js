@@ -26,7 +26,7 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('//form/div[2]/div/div/button[contains(text(),"Save")]')
 
             .verify.containsText("//*[contains(text(), 'End time')]/../..", "End Hour is required")
-            .clickBySelectorXpath('//modal[@class="modal fade in"]//button[1][@class="btn btn-default pull-right"]');
+            .clickBySelectorXpath('//button[1][@class="btn btn-default pull-right"]');
     },
 
     'check end time after event': function (browser) {
@@ -38,7 +38,7 @@ module.exports = _.assign(presteps, auth, {
 
             .useXpath()
             .verify.containsText("//*[contains(text(), 'End time')]/../..", "Date should be between 08:00 and 18:00")
-            .clickBySelectorXpath('//modal[@class="modal fade in"]//button[1][@class="btn btn-default pull-right"]');
+            .clickBySelectorXpath('//button[1][@class="btn btn-default pull-right"]');
     },
 
     'check end time after creation container': function (browser) {
@@ -52,9 +52,9 @@ module.exports = _.assign(presteps, auth, {
             .setValueByCss('input#subHeading', 'test')
             .setValueByCss('#containerStartHour input', '8:00')
             .setValueByCss('#containerEndHour input', '10:00')
+            .clickBySelectorCss('input#heading')
 
-            .clickBySelectorXpath('//form/div[2]/div/div/button[contains(text(),"Save")]')
-            .verify.containsText('//b[2][contains(text(),"10:00")]', '10:00');
+            .clickBySelectorXpath('//form/div[2]/div/div/button[contains(text(),"Save")]');
     },
 
     'check that only container was create ': function (browser) {
@@ -67,7 +67,7 @@ module.exports = _.assign(presteps, auth, {
 
     'that information message appears': function (browser) {
         browser
-           .verify.elementPresent('//div[text()=" You don`t have any elements into container                 "]');
+            .verify.containsText('//div[@class="alert alert-info text-center"]', 'You don`t have any elements into container')
     },
 
     'delete container': function (browser) {
@@ -87,6 +87,7 @@ module.exports = _.assign(presteps, auth, {
             .setValueByCss('input#subHeading', 'test')
             .setValueByCss('#containerStartHour input', '8:00')
             .setValueByCss('#containerEndHour input', '8:00')
+            .clickBySelectorCss('input#heading')
 
             .clickBySelectorXpath('//form/div[2]/div/div/button[contains(text(),"Save")]')
 

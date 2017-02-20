@@ -21,17 +21,17 @@ module.exports = _.assign(presteps, auth, {
             .chooseElementRequiringTableSetting();
     },
 
-    'assertion agenda element Type drop down list': function (browser) {
-        browser
-            .useCss()
-            .waitForElementVisible('select#agendaElementTypeId', 2000)
-
-            .useXpath()
-            .verify.elementPresent('//option[contains(text(),"Hosted table placeholder")]')
-            .verify.elementPresent('//option[contains(text(),"Dinner placeholder")]')
-            .verify.elementPresent('//option[contains(text(),"Group discussion placeholder")]')
-            .verify.elementPresent('//option[contains(text(),"Lunch placeholder")]');
-    },
+    // 'assertion agenda element Type drop down list': function (browser) {
+    //     browser
+    //         .useCss()
+    //         .waitForElementVisible('select#agendaElementTypeId', 2000)
+    //
+    //         .useXpath()
+    //         .verify.elementPresent('//option[contains(text(),"Hosted table placeholder")]')
+    //         .verify.elementPresent('//option[contains(text(),"Dinner placeholder")]')
+    //         .verify.elementPresent('//option[contains(text(),"Group discussion placeholder")]')
+    //         .verify.elementPresent('//option[contains(text(),"Lunch placeholder")]');
+    // },
 
     'dinner element page assertion': function (browser) {
         browser
@@ -68,8 +68,8 @@ module.exports = _.assign(presteps, auth, {
 
     'add room for Dinner placeholder is displayed': function (browser) {
         browser
-            .waitForElementVisible('//modal[@class="modal fade in"]//label[contains(text(),"Room")]', 2000)
-            .waitForElementVisible('//h4[contains(text(),"Add room for Dinner placeholder 14-11-2013 08:55:00 - 09:25:00")]', 2000);
+            .verify.elementPresent('//label[contains(text(),"Room")]')
+            .verify.elementPresent('//h4[contains(text(),"Add room for Dinner placeholder 14-11-2013 08:55:00 - 09:25:00")]');
     },
 
     'room input field is empty': function (browser) {
@@ -78,7 +78,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.valueContains("input.form-control[title=Room]", "")
             .setValueByCss('input.form-control[title=Room]', 'MyRoom')
 
-            .clickBySelectorXpath('//modal[@class="modal fade in"]//button[@data-marker="me-event-agenda__button__save-room"]');
+            .clickBySelectorXpath('//button[@data-marker="me-event-agenda__button__save-room"]');
     },
 
     'created room is displaying': function (browser) {
@@ -110,14 +110,14 @@ module.exports = _.assign(presteps, auth, {
             .refresh()
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000);
-
     },
 
     'delete dinner panel': function (browser) {
         browser
             .useXpath()
+
             .clickBySelectorXpath('//a[3]/i[@class="fa fa-trash-o delete-element"]')
-            .clickBySelectorXpath('//modal[@class="modal fade in"]/div/div/modal-footer/div/button[@data-marker="me-confirm__button__button__yes"]');
+            .clickBySelectorXpath('//button[@data-marker="me-confirm__button__button__yes"]');
     },
 
     'presentation-leaderShip has been deleted': function (browser) {

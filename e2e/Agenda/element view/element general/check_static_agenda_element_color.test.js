@@ -28,12 +28,12 @@ module.exports = _.assign(presteps, auth, {
 
             .setValueByXpath('//input[@data-marker="me-event-settings-agenda-group-qty__input__text"]', ['6', browser.Keys.ENTER])
 
-            .verify.elementPresent('//input[@data-marker="me-groups-managed-automatically__input__checkbox__1"]')
-            .verify.elementPresent('//input[@data-marker="me-groups-managed-automatically__input__checkbox__2"]')
-            .verify.elementPresent('//input[@data-marker="me-groups-managed-automatically__input__checkbox__3"]')
-            .verify.elementPresent('//input[@data-marker="me-groups-managed-automatically__input__checkbox__4"]')
-            .verify.elementPresent('//input[@data-marker="me-groups-managed-automatically__input__checkbox__5"]')
-            .verify.elementPresent('//input[@data-marker="me-groups-managed-automatically__input__checkbox__6"]')
+            // .verify.elementPresent('//input[@data-marker="me-groups-managed-automatically__input__checkbox__1"]')
+            // .verify.elementPresent('//input[@data-marker="me-groups-managed-automatically__input__checkbox__2"]')
+            // .verify.elementPresent('//input[@data-marker="me-groups-managed-automatically__input__checkbox__3"]')
+            // .verify.elementPresent('//input[@data-marker="me-groups-managed-automatically__input__checkbox__4"]')
+            // .verify.elementPresent('//input[@data-marker="me-groups-managed-automatically__input__checkbox__5"]')
+            // .verify.elementPresent('//input[@data-marker="me-groups-managed-automatically__input__checkbox__6"]')
     },
 
     'redirection to agenda page again': function (browser) {
@@ -52,7 +52,7 @@ module.exports = _.assign(presteps, auth, {
         browser
             .useXpath()
             .verify.elementPresent('//h4[contains(text(),"Element form")]')
-            .verify.elementPresent('//label[contains(text(),"           Agenda Element Entry Type ")]');
+            .verify.elementPresent('//label[contains(text(),"Agenda Element Type ")]');
     },
 
     'choose Static agenda element': function (browser) {
@@ -127,8 +127,8 @@ module.exports = _.assign(presteps, auth, {
 
     'check that the button is green when room was not chosen': function (browser) {
         browser
-            .verify.elementPresent('//button[text()="               Add room             "]')
-            .verify.cssProperty('//button[text()="               Add room             "]', 'background-color', 'rgba(133, 199, 68, 1)');
+            .verify.elementPresent('//button[contains(text(),"Add room")]')
+            .verify.cssProperty('//button[contains(text(),"Add room")]', 'background-color', 'rgba(133, 199, 68, 1)');
     },
 
     'click add room': function (browser) {
@@ -142,7 +142,7 @@ module.exports = _.assign(presteps, auth, {
             .useCss()
             .verify.valueContains("input.form-control[title=Room]", "")
             .setValueByCss('input.form-control[title=Room]', 'MyRoom')
-            .clickBySelectorXpath('//modal[@class="modal fade in"]/div/div/modal-footer/div[@class="modal-footer"]/button[2]');
+            .clickBySelectorXpath('//button[@data-marker="me-event-agenda__button__save-room"]');
     },
 
     'redirection after adding room': function (browser) {

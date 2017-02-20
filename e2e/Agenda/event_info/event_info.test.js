@@ -61,7 +61,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//h4[contains(text(),"Container form")]', 'Container form')
             .setValueByCss('#containerStartHour input', ['7:59', browser.Keys.ENTER])
             .useXpath()
-            .verify.elementPresent('//p[text()=" Date should be between 08:00 and 23:59           "]');
+            .verify.containsText("//*[contains(text(), 'Start time')]/../..", "Date should be between 08:00 and 23:59");
     },
 
     'creation container with correct time and data 1-st day event': function (browser) {
@@ -71,6 +71,7 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#containerStartHour input', 1000)
             .setValueByCss('#containerStartHour input', ['8:00', browser.Keys.ENTER])
             .setValueByCss('#containerEndHour input', '10:00')
+            .clickBySelectorCss('input#heading')
 
             .clickBySelectorXpath('//form/div[2]/div/div/button[contains(text(),"Save")]');
     },
@@ -86,12 +87,12 @@ module.exports = _.assign(presteps, auth, {
     'delete 1-st container': function (browser) {
         browser
             .clickBySelectorCss('.fa.fa-trash-o.delete-container')
-            .clickBySelectorCss('div.modal-footer>button.btn.btn-success')
+            .clickBySelectorXpath('//button[@data-marker="me-confirm__button__button__yes"]')
 
             .useXpath()
             .verify.elementNotPresent('//b[contains(text(), "new_event2016")]')
             .verify.elementNotPresent('//b[1][contains(text(),"8:00")]')
-            .verify.elementNotPresent('//b[2][contains(text(),"10:00")]')
+            .verify.elementNotPresent('//b[2][contains(text(),"10:00")]');
     },
 
     'can not create time after event': function (browser) {
@@ -103,7 +104,7 @@ module.exports = _.assign(presteps, auth, {
 
             .setValueByCss('#containerEndHour input', ['18:01', browser.Keys.ENTER])
             .useXpath()
-            .verify.elementPresent('//p[text()=" Date should be between 00:00 and 18:00           "]');
+            .verify.containsText('//p[@class="help-block"]', 'Date should be between 00:00 and 18:00');
     },
 
     'creation container with correct time and data 2-nd day event': function (browser) {

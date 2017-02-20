@@ -25,7 +25,7 @@ module.exports = _.assign(presteps, auth, {
     'Check that field is not required': function (browser) {
         browser
             .useXpath()
-            .verify.elementNotPresent('//p[text()=" Sub Heading is required.           "]');
+            .verify.elementNotPresent('//p[text()=" Sub Heading is required."]');
     },
 
     'blank click Save': function (browser) {

@@ -10,6 +10,7 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
+
     'creation new container': function (browser) {
         browser
             .containerCreationForAgenda();
@@ -17,7 +18,7 @@ module.exports = _.assign(presteps, auth, {
 
     'choose static agenda element': function (browser) {
         browser
-            .addElementButtonForAgenda()
+            .addElementButtonForAgenda();
     },
 
     'creating awards panel': function (browser) {
@@ -50,7 +51,7 @@ module.exports = _.assign(presteps, auth, {
     'add room for Awards Panel is displayed': function (browser) {
         browser
             .verify.elementPresent('//h4[contains(text(),"Add room for Awards Panel 15-03-2012 08:55:00 - 09:25:00")]')
-            .verify.elementPresent('//modal[@class="modal fade in"]//label[contains(text(),"Room")]')
+            .verify.elementPresent('//label[contains(text(),"Room")]')
 
             .useCss()
             .verify.elementPresent('input.form-control[title=Room]');
@@ -62,7 +63,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.valueContains("input.form-control[title=Room]", "")
             .setValueByCss('input.form-control[title=Room]', 'MyRoom')
 
-            .clickBySelectorXpath('//modal[@class="modal fade in"]//button[@data-marker="me-event-agenda__button__save-room"]');
+            .clickBySelectorXpath('//button[@data-marker="me-event-agenda__button__save-room"]');
     },
 
     'set room is displaying': function (browser) {
@@ -99,7 +100,7 @@ module.exports = _.assign(presteps, auth, {
     'delete award panel': function (browser) {
         browser
             .clickBySelectorXpath('//a[3]/i[@class="fa fa-trash-o delete-element"]')
-            .clickBySelectorXpath('//modal[@class="modal fade in"]/div/div/modal-footer/div/button[@data-marker="me-confirm__button__button__yes"]');
+            .clickBySelectorXpath('//button[@data-marker="me-confirm__button__button__yes"]');
     },
 
     'awards panel has been deleted': function (browser) {

@@ -10,22 +10,22 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
+
     'creation container': function (browser) {
         browser
             .containerCreationForAgenda();
     },
 
-    'click on (edit button) ': function (browser) {
+    'click on (delete button) ': function (browser) {
         browser
-            .clickBySelectorCss('i.fa.fa-pencil.edit-container')
+            .clickBySelectorCss('i.fa.fa-trash-o.delete-container')
             .useXpath()
-            .verify.elementPresent('//h4[contains(text(),"Container form")]');
+            .verify.elementPresent('//h4[contains(text(),"Confirmation")]');
     },
 
     'click NO button on form': function (browser) {
         browser
-            .waitForElementVisible('//modal[@class="modal fade in"]//button[1][@class="btn btn-default pull-right"]', 2000)
-            .clickBySelectorXpath('//modal[@class="modal fade in"]//button[1][@class="btn btn-default pull-right"]')
+            .clickBySelectorXpath('//button[@data-marker="me-confirm__button__button__no"]');
     },
 
     'no change was made assertion': function (browser) {

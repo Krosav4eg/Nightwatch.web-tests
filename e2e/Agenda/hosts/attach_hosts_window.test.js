@@ -60,36 +60,36 @@ module.exports = _.assign(presteps, auth, {
 
     'not selected speaker': function (browser) {
         browser
-            .verify.elementPresent('//modal[@class="modal fade in"]//h4[text()="Add presentation to "]', 4000)
-            .clickBySelectorXpath('//modal[@class="modal fade in"]//button[@data-marker="me-modal-attach-presentation-to-element__input__button__save"]')
+            .verify.elementPresent('//h4[contains(text(),"Add presentation to")]', 4000)
+            .clickBySelectorXpath('//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__3756"]')
+            .clickBySelectorXpath('//button[@data-marker="me-modal-attach-presentation-to-element__input__button__cancel"]')
     },
 
     'none speaker is not displayed': function (browser) {
         browser
-            .verify.elementNotPresent('//modal[@class="modal fade in"]//td[text()="629"]');
+            .verify.elementNotPresent('//modal[@class="modal fade in"]//td[text()="3756"]');
     },
 
     'attach new speaker ': function (browser) {
         browser
             .clickBySelectorXpath('//me-event-agenda-element-presentation/div/div[2]/button[text()="Attach"]')
 
-            .verify.elementPresent('//modal[@class="modal fade in"]//h4[text()="Add presentation to "]')
-            .clickBySelectorXpath('//modal[@class="modal fade in"]//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__629"]')
-            .clickBySelectorXpath('//modal[@class="modal fade in"]//button[@data-marker="me-modal-attach-presentation-to-element__input__button__save"]');
+            .verify.elementPresent('//h4[contains(text(),"Add presentation to")]')
+            .clickBySelectorXpath('//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__3756"]')
+            .clickBySelectorXpath('//button[@data-marker="me-modal-attach-presentation-to-element__input__button__save"]');
     },
 
     'chosen speaker is displayed in Element form': function (browser) {
         browser
-            .verify.elementPresent('//modal[@class="modal fade in"]//td[text()="629"]')
-            .verify.elementPresent('//li[text()=" - Klink Holger               "]')
-            .verify.elementPresent('//a[@href="/presentations/edit/629"]//i[@class="fa fa-pencil edit-element"]')
+            .verify.elementPresent('//td[text()="3756"]')
+            .verify.elementPresent('//td[text()="New Heading"]')
+            .verify.elementPresent('//b[contains(text(),"Telenor ASA")]')
+            .verify.elementPresent('//a[@href="/presentations/edit/3756"]//i[@class="fa fa-pencil edit-element"]')
             .verify.elementPresent('//tr[1]//i[@class="fa fa-trash-o delete-element"]')
             .verify.elementPresent('//i[@class="fa fa-plus"]')
 
             .clickBySelectorXpath('//option[contains(text(),"No meetings allowed")]')
-
             .clickBySelectorXpath('//div/div/div/div/button[contains(text(),"Save")]')
-
     },
     'chosen speakers is displayed in the Element form': function (browser) {
         browser
@@ -97,25 +97,25 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//h5[contains(text(),"08:00 - 09:45")]')
             .verify.elementPresent('//h5[contains(text(),"Presentation / Case")]')
 
-            .verify.elementPresent('//button[contains(text(), "       Add room     ")]')
+            .verify.elementPresent('//button[contains(text(), "Add room")]')
             .verify.elementPresent('//button[@class="btn btn-primary"]/i[@class="fa fa-plus"]')
 
-            .verify.elementPresent('//td[text()="629"]')
-            .verify.elementPresent('//div[@class=""]//tr[1]//li[text()=" - Klink Holger             "]')
-            .verify.elementPresent('//a[@href="/presentations/edit/629"]/i')
+            .verify.elementPresent('//td[text()="3756"]')
+            .verify.elementPresent('//td/ul/li/b[text()="Telenor ASA"]')
+            .verify.elementPresent('//a[@href="/presentations/edit/3756"]/i')
             .verify.elementPresent('//me-event-agenda-attached-presentation-list//i[@class="fa fa-trash-o delete-element"]');
     },
 
     'delete presentation': function (browser) {
         browser
             .clickBySelectorXpath('//i[@class="fa fa-trash-o delete-element"]')
-            .clickBySelectorXpath('//modal[@class="modal fade in"]//button[@data-marker="me-confirm__button__button__yes"]');
+            .clickBySelectorXpath('//button[@data-marker="me-confirm__button__button__yes"]');
     },
 
     'delete container': function (browser) {
         browser
             .clickBySelectorXpath('//a[2]/i[@class="fa fa-trash-o delete-container"]')
-            .clickBySelectorXpath('//modal[@class="modal fade in"]/div/div/modal-footer/div/button[@data-marker="me-confirm__button__button__yes"]')
+            .clickBySelectorXpath('//button[@data-marker="me-confirm__button__button__yes"]')
             .verify.elementNotPresent('//b[contains(text(), "test1")]');
     },
 });

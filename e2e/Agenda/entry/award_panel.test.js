@@ -10,6 +10,7 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
+
     'creation new container': function (browser) {
         browser
             .containerCreationForAgenda();
@@ -56,9 +57,9 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
             .clickBySelectorXpath('//div/div/div/div/button[contains(text(),"Save")]')
 
-            .verify.elementPresent('//p[text()=" Field is required.           "]')
-            .verify.elementPresent('//p[text()=" Start Hour is required.           "]')
-            .verify.elementPresent('//p[text()=" End Hour is required.           "]')
+            .verify.containsText('(//p[@class="help-block"])[1]','Field is required.')
+            .verify.containsText('(//p[@class="help-block"])[2]','Start Hour is required.')
+            .verify.containsText('(//p[@class="help-block"])[3]','End Hour is required.')
 
             .clickBySelectorCss('option[value="35"]');
     },
@@ -68,7 +69,8 @@ module.exports = _.assign(presteps, auth, {
             .setValueByCss('me-date-time-input#elementStartHour input.form-control.dateTimeInput.dateTimeInput', ['7:59', browser.Keys.ENTER])
 
             .useXpath()
-            .verify.elementPresent('//p[text()=" Date should be between 08:00 and 10:00           "]')
+            .verify.containsText("//*[contains(text(), 'Start time')]/../..", "Date should be between 08:00 and 10:00")
+
             .setValueByCss('me-date-time-input#elementStartHour input.form-control.dateTimeInput.dateTimeInput', ['8:00', browser.Keys.ENTER]);
     },
 
@@ -76,7 +78,7 @@ module.exports = _.assign(presteps, auth, {
         browser
             .setValueByCss('me-date-time-input#elementEnd input.form-control.dateTimeInput.dateTimeInput', ['10:01', browser.Keys.ENTER])
             .useXpath()
-            .verify.elementPresent('//p[text()=" Date should be between 08:00 and 10:00           "]')
+            .verify.containsText("//*[contains(text(), 'End time')]/../..", "Date should be between 08:00 and 10:00")
 
             .setValueByCss('me-date-time-input#elementEnd input.form-control.dateTimeInput.dateTimeInput', ['9:45', browser.Keys.ENTER])
             .clickBySelectorXpath('//option[contains(text(),"No meetings allowed")]')
@@ -135,12 +137,13 @@ module.exports = _.assign(presteps, auth, {
             .verify.containsText('//span[@class="label violetGroupColorForEvent"]', 'Group 2 - violet');
     },
 
-    'delete award panel': function (browser) {
+    'delete lunch panel': function (browser) {
         browser
             .clickBySelectorXpath('//a[3]/i[@class="fa fa-trash-o delete-element"]')
-            .waitForElementVisible('//div[text()="     Do you really want to delete element Awards Panel?   "]', 2000)
-            .clickBySelectorXpath('//modal[@class="modal fade in"]/div/div/modal-footer/div/button[@data-marker="me-confirm__button__button__yes"]');
+            .verify.elementPresent('//modal-content[contains(text(),"Do you really want to delete element Awards Panel?")]')
+            .clickBySelectorXpath('//button[@data-marker="me-confirm__button__button__yes"]');
     },
+
 
     'awards panel has been deleted': function (browser) {
         browser
