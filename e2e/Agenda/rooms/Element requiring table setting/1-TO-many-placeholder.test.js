@@ -67,7 +67,6 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorCss('div.col-sm-8.text-center>button.btn.btn-primary')
             .useXpath()
             .verify.elementPresent('//h4[contains(text(),"Add host topics to ")]')
-            //.clickBySelectorXpath('//button[@data-dismiss="modalHosts"]')
             .clickBySelectorXpath('(//div[@class="modal in fade"]//span[contains(text(),"×")])[2]')
 
             .clickBySelectorCss('input#room')

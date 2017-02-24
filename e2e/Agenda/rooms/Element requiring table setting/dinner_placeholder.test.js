@@ -21,18 +21,6 @@ module.exports = _.assign(presteps, auth, {
             .chooseElementRequiringTableSetting();
     },
 
-    // 'assertion agenda element Type drop down list': function (browser) {
-    //     browser
-    //         .useCss()
-    //         .waitForElementVisible('select#agendaElementTypeId', 2000)
-    //
-    //         .useXpath()
-    //         .verify.elementPresent('//option[contains(text(),"Hosted table placeholder")]')
-    //         .verify.elementPresent('//option[contains(text(),"Dinner placeholder")]')
-    //         .verify.elementPresent('//option[contains(text(),"Group discussion placeholder")]')
-    //         .verify.elementPresent('//option[contains(text(),"Lunch placeholder")]');
-    // },
-
     'dinner element page assertion': function (browser) {
         browser
             .agendaElementPageAssertion();

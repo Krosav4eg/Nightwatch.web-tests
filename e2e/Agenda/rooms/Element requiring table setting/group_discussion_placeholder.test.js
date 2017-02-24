@@ -74,8 +74,6 @@ module.exports = _.assign(presteps, auth, {
 
     'input room field is empty': function (browser) {
         browser
-            .verify.elementPresent('//h4[contains(text(),"Add room for Group Discussion Placeholder 15-04-2015 09:00:00 - 10:00:00")]')
-
             .useCss()
             .verify.valueContains("input.form-control[title=Room]", "")
             .setValueByCss('input.form-control[title=Room]', 'MyRoom#3')
@@ -90,8 +88,6 @@ module.exports = _.assign(presteps, auth, {
 
     'add room for group discussion is displayed again': function (browser) {
         browser
-            .verify.elementPresent('//h4[contains(text(),"Add room for Group Discussion Placeholder 15-04-2015 09:00:00 - 10:00:00")]')
-
             .useCss()
             .verify.elementPresent('input.form-control[title=Room]')
             .verify.valueContains("input.form-control[title=Room]", "MyRoom#3")
@@ -111,7 +107,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//label[text()="Attach role/presentation"]')
             .verify.elementPresent('//modal//i[@class="fa fa-plus"]')
 
-            .verify.elementPresent('//li[text()=" - Virta Kari             "]')
+            .verify.elementPresent('//li/b[contains(text(),"ISS Palvelut Oy")]')
             .verify.elementPresent('//modal//i[@class="fa fa-pencil edit-element"]')
             .verify.elementPresent('//modal//i[@class="fa fa-trash-o delete-element"]');
     },

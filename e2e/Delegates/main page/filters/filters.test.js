@@ -30,7 +30,6 @@ module.exports = _.assign(presteps, auth, {
             .verify.cssProperty('(//tr[@class="hover participation-status-cancelled"])[7]', 'background-color', 'rgba(255, 80, 80, 1)')
             .verify.cssProperty('(//tr[@class="hover participation-status-cancelled"])[8]', 'background-color', 'rgba(255, 80, 80, 1)')
             .verify.cssProperty('(//tr[@class="hover participation-status-cancelled"])[9]', 'background-color', 'rgba(255, 80, 80, 1)')
-            .verify.cssProperty('(//tr[@class="hover participation-status-cancelled"])[10]', 'background-color', 'rgba(255, 80, 80, 1)');
     },
 
     'choose Show only confirmed': function (browser) {

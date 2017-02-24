@@ -91,27 +91,27 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('//span[text()="212/IndustryForum Energy - Event settings"]', 5000);
     },
 
-    'delete all check-boxes and radio buttons': function (browser) {
-        browser
-            .verify.elementPresent('//legend[text()="Agenda"]')
-            .verify.elementPresent('//label[text()="Availability"]')
-
-            .clickBySelectorXpath('//input[@data-marker="me-event-settings-agenda-availability__input__radio__1"]')
-            .clickBySelectorXpath('//input[@data-marker="me-event-settings-agenda-blocking-delegates__input__checkbox__for-me-users"]')
-            .clickBySelectorXpath('//input[@data-marker="me-event-settings-agenda-blocking-delegates__input__checkbox__for-delegates"]')
-            .clickBySelectorXpath('//input[@data-marker="me-event-settings-agenda-blocking-solution-provider__input__checkbox__for-me-users"]')
-            .clickBySelectorXpath('//input[@data-marker="me-event-settings-agenda-blocking-solution-provider__input__checkbox__for-solution-providers"]')
-
-            .waitForElementVisible('//label[text()="Group Qty"]', 5000)
-            .setValueByXpath('//input[@data-marker="me-event-settings-agenda-group-qty__input__text"]', ['2', browser.Keys.ENTER])
-
-            .verify.elementNotPresent('//input[@data-marker="me-groups-managed-automatically__input__checkbox__3"]')
-            .verify.elementNotPresent('//input[@data-marker="me-groups-managed-automatically__input__checkbox__4"]')
-            .verify.elementNotPresent('//input[@data-marker="me-groups-managed-automatically__input__checkbox__5"]')
-            .verify.elementNotPresent('//input[@data-marker="me-groups-managed-automatically__input__checkbox__6"]')
-
-            .clickBySelectorXpath('//div[@class="panel-body"]/div//div[3]/button[2]');
-    },
+    // 'delete all check-boxes and radio buttons': function (browser) {
+    //     browser
+    //         .verify.elementPresent('//legend[text()="Agenda"]')
+    //         .verify.elementPresent('//label[text()="Availability"]')
+    //
+    //         .clickBySelectorXpath('//input[@data-marker="me-event-settings-agenda-availability__input__radio__1"]')
+    //         .clickBySelectorXpath('//input[@data-marker="me-event-settings-agenda-blocking-delegates__input__checkbox__for-me-users"]')
+    //         .clickBySelectorXpath('//input[@data-marker="me-event-settings-agenda-blocking-delegates__input__checkbox__for-delegates"]')
+    //         .clickBySelectorXpath('//input[@data-marker="me-event-settings-agenda-blocking-solution-provider__input__checkbox__for-me-users"]')
+    //         .clickBySelectorXpath('//input[@data-marker="me-event-settings-agenda-blocking-solution-provider__input__checkbox__for-solution-providers"]')
+    //
+    //         .waitForElementVisible('//label[text()="Group Qty"]', 5000)
+    //         .setValueByXpath('//input[@data-marker="me-event-settings-agenda-group-qty__input__text"]', ['2', browser.Keys.ENTER])
+    //
+    //         .verify.elementNotPresent('//input[@data-marker="me-groups-managed-automatically__input__checkbox__3"]')
+    //         .verify.elementNotPresent('//input[@data-marker="me-groups-managed-automatically__input__checkbox__4"]')
+    //         .verify.elementNotPresent('//input[@data-marker="me-groups-managed-automatically__input__checkbox__5"]')
+    //         .verify.elementNotPresent('//input[@data-marker="me-groups-managed-automatically__input__checkbox__6"]')
+    //
+    //         .clickBySelectorXpath('//div[@class="panel-body"]/div//div[3]/button[2]');
+    // },
 
     'events groups are not displayed': function (browser) {
         browser

@@ -34,8 +34,8 @@ module.exports = _.assign(presteps, auth, {
 
             .verify.containsText('//label[text()="Attach role/presentation"]', 'Attach role/presentation')
             .clickBySelectorXpath('//button[text()="Attach"]')
-            .verify.elementPresent('//h4[text()="Add presentation to "]')
-            .verify.elementPresent('//li[text()=" - Schütt Helmut               "]')
+
+            .verify.elementPresent('(//div[@class="modal in fade"]//b[contains(text(), "Daimler AG")])[1]')
 
             .clickBySelectorXpath('//button[@data-marker="me-modal-attach-presentation-to-element__input__button__cancel"]')
             .clickBySelectorXpath('//div[@class="col-sm-12 container_btn_group"]/button[2][contains(text(),"Save")]');
@@ -58,7 +58,7 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
             .verify.elementPresent('//h4[text()="Add presentation to "]/b[text()="Presentation / Debate"]')
 
-            .verify.elementPresent('//li[text()=" - Schütt Helmut               "]')
+            .verify.elementPresent('(//div[@class="modal in fade"]//b[contains(text(), "Daimler AG")])[1]')
             .clickBySelectorXpath('//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__932"]')
 
             .clickBySelectorXpath('//button[@data-marker="me-modal-attach-presentation-to-element__input__button__save"]');
@@ -70,7 +70,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//h5[contains(text(),"09:30 - 10:00")]')
             .verify.elementPresent('//h5[contains(text(),"Presentation / Debate")]')
 
-            .verify.elementPresent('//li[text()=" - Schütt Helmut             "]')
+            .verify.elementPresent('//b[contains(text(), "Daimler AG")]')
 
             .verify.elementPresent('//button[@class="btn btn-primary"]/i[@class="fa fa-plus"]')
             .verify.elementPresent('//button[contains(text(), "Add room")]')
@@ -94,7 +94,7 @@ module.exports = _.assign(presteps, auth, {
             .setValueByCss('input.form-control[title=Room]', 'MyRoom#2')
 
             .useXpath()
-            .clickBySelectorXpath('//div[@class="modal-footer"]/button[2]');
+            .clickBySelectorXpath('//button[@data-marker="me-event-agenda__button__save-room"]');
     },
 
     'set room is displaying': function (browser) {

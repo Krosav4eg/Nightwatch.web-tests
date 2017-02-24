@@ -47,9 +47,8 @@ module.exports = _.assign(presteps, auth, {
 
     'click on casterContact ID': function (browser) {
         browser
-
-            .clickBySelectorXpath('//a[@href="http://test.ew.managementevents.com/EW/MasterCompany/cruII/id/84462"]', 30000)
-            .clickBySelectorXpath('//a[contains(text(),"(M#84462)")]', 30000)
+          //  .clickBySelectorXpath('//a[@href="http://test.ew.managementevents.com/EW/MasterCompany/cruII/id/84462"]', 30000)
+            .clickBySelectorXpath('//a[contains(text(),"(M#84462)")]')
     },
 
     'check contact information': function (browser) {

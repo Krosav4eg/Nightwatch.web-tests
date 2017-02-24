@@ -14,6 +14,8 @@ module.exports = _.assign(presteps, auth, {
     'redirection master contact info': function (browser) {
         browser
             .useXpath()
+            .setValueByXpath('(//input[@type="text"])[1]',['Müller', browser.Keys.ENTER])
+
             .clickBySelectorXpath('(//a[@href="/delegates/edit/77942"])[1]')
             .verify.containsText('(//h4)[1]', 'Mario Müller (#77942)');
     },
@@ -55,6 +57,8 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
 
             .useXpath()
+            .setValueByXpath('(//input[@type="text"])[1]',['Müller', browser.Keys.ENTER])
+
             .verify.containsText('(//tr[1]/td[2]/span)[1]', 'Müller')
             .verify.containsText('(//tr[1]/td[3]/span)[1]', 'Mario')
             .verify.containsText('(//tr[1]/td[4]/span)[1]', 'Leiter Geschäftskunden Nord')

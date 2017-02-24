@@ -16,14 +16,14 @@ module.exports = _.assign(presteps, auth, {
         browser
             .clickBySelectorXpath('//a[contains(text(),"Prospects")]')
             .clickBySelectorXpath('(//tr/td/input[@type="checkbox"])[21]')
-            .verify.elementPresent('//h4[contains(text(),"Prospects 1/808")]')
+            .verify.elementPresent('//h4[contains(text(),"Prospects 1/809")]')
 
             .clickBySelectorXpath('//button[contains(text(),"Send email")]')
 
             .verify.elementPresent('//h4[contains(text(),"Select E-mail template")]')
 
             .verify.elementPresent('(//div[contains(text(),"Template:")])[1]')
-            .verify.valueContains('(//select)[10]', '')
+            .verify.valueContains('(//select)[8]', '')
 
             .verify.elementPresent('(//div[contains(text(),"From Email:")])[1]')
             .verify.valueContains('//*[contains(text(), "From Email:")]/../div/input', '')
@@ -40,9 +40,9 @@ module.exports = _.assign(presteps, auth, {
 
     'visible correct templates in drop down list': function (browser) {
         browser
-            .clickBySelectorXpath('(//select)[9]')
+            .clickBySelectorXpath('(//select)[8]')
 
-            .verify.containsText('(//option)[27]', '')
+            .verify.containsText('(//select)[8]', '')
 
             .verify.containsText('//option[@value="306"]', 'asdas')
             .verify.containsText('//option[@value="287"]', 'Test')
@@ -52,8 +52,8 @@ module.exports = _.assign(presteps, auth, {
 
     'choose blank field': function (browser) {
         browser
-            .clickBySelectorXpath('(//option)[27]')
-            .verify.valueContains('(//select)[9]', '')
+            .clickBySelectorXpath('(//option)[23]')
+            .verify.valueContains('(//select)[8]', '')
 
             .verify.valueContains('//*[contains(text(), "From Email:")]/../div/input', '')
             .verify.valueContains('//*[contains(text(), "From Name")]/../div/input', '')
@@ -69,8 +69,6 @@ module.exports = _.assign(presteps, auth, {
             .verify.valueContains('//*[contains(text(), "From Name")]/../div/input', '{Feedback-AUTO}')
             .verify.valueContains('//*[contains(text(), "Reply-To Email:")]/../div/input', '{test@gmail.com}')
             .verify.valueContains('//*[contains(text(), "Subject:")]/../div/input', 'Test')
-
-        //.verify.elementPresent('//div[contains(text(),"Email template cannot be saved if message includes new db references")]');
     },
 
     'check that information would be update after you change template': function (browser) {
@@ -81,12 +79,12 @@ module.exports = _.assign(presteps, auth, {
 
             .useXpath()
             .verify.elementPresent('//h1[contains(text(),"Edit Email Template (#287)")]')
-
-            .setValueByXpath('//input[@ngcontrol="name"]', 'Test1')
-            .setValueByXpath('//input[@ngcontrol="fromEmail"]', 'test@events.com')
-            .setValueByXpath('//input[@ngcontrol="fromName"]', 'Feedback-AUTO')
-            .setValueByXpath('//input[@ngcontrol="replyToEmail"]', 'test@mmm.com')
-            .setValueByXpath('//input[@ngcontrol="contentSubject"]', 'AutoTest')
+            .pause(5000)
+            .setValueByXpath('//input[@formcontrolname="name"]', 'Test1')
+            .setValueByXpath('//input[@formcontrolname="fromEmail"]', 'test@events.com')
+            .setValueByXpath('//input[@formcontrolname="fromName"]', 'Feedback-AUTO')
+            .setValueByXpath('//input[@formcontrolname="replyToEmail"]', 'test@mmm.com')
+            .setValueByXpath('//input[@formcontrolname="contentSubject"]', 'AutoTest')
 
             .clickBySelectorXpath('(//button[contains(text(),"Save")])[1]')
             .clickBySelectorXpath('(//button[contains(text(),"Save")])[2]')
@@ -97,7 +95,7 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
             .clickBySelectorXpath('//a[contains(text(),"Prospects")]')
             .clickBySelectorXpath('(//tr/td/input[@type="checkbox"])[21]')
-            .verify.elementPresent('//h4[contains(text(),"Prospects 1/808")]')
+            .verify.elementPresent('//h4[contains(text(),"Prospects 1/809")]')
 
             .clickBySelectorXpath('//button[contains(text(),"Send email")]')
 
@@ -107,8 +105,6 @@ module.exports = _.assign(presteps, auth, {
             .verify.valueContains('//*[contains(text(), "From Name")]/../div/input', 'Feedback-AUTO')
             .verify.valueContains('//*[contains(text(), "Reply-To Email:")]/../div/input', 'test@mmm.com')
             .verify.valueContains('//*[contains(text(), "Subject:")]/../div/input', 'AutoTest')
-
-        //   .verify.elementPresent('//div[contains(text(),"Email template cannot be saved if message includes new db references")]');
     },
 
     'to return order': function (browser) {
@@ -119,12 +115,12 @@ module.exports = _.assign(presteps, auth, {
 
             .useXpath()
             .verify.elementPresent('//h1[contains(text(),"Edit Email Template (#287)")]')
-
-            .setValueByXpath('//input[@ngcontrol="name"]', 'Test')
-            .setValueByXpath('//input[@ngcontrol="fromEmail"]', '{test@managmentevents.com}')
-            .setValueByXpath('//input[@ngcontrol="fromName"]', '{Feedback-AUTO}')
-            .setValueByXpath('//input[@ngcontrol="replyToEmail"]', '{test@gmail.com}')
-            .setValueByXpath('//input[@ngcontrol="contentSubject"]', 'Test')
+            .pause(2000)
+            .setValueByXpath('//input[@formcontrolname="name"]', 'Test')
+            .setValueByXpath('//input[@formcontrolname="fromEmail"]', '{test@managmentevents.com}')
+            .setValueByXpath('//input[@formcontrolname="fromName"]', '{Feedback-AUTO}')
+            .setValueByXpath('//input[@formcontrolname="replyToEmail"]', '{test@gmail.com}')
+            .setValueByXpath('//input[@formcontrolname="contentSubject"]', 'Test')
 
             .clickBySelectorXpath('(//button[contains(text(),"Save")])[1]')
             .clickBySelectorXpath('(//button[contains(text(),"Save")])[2]')
@@ -143,11 +139,10 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('//button[contains(text(),"Send email")]')
 
             .clickBySelectorXpath('(//option[contains(text(),"Test")])[1]')
-            .clickBySelectorXpath('(//button[@class="btn btn-primary"])[2]')
+            .clickBySelectorXpath('(//button[@class="btn btn-primary"])[1]')
             .useXpath()
-            .verify.elementPresent('//div[contains(text(),"The email template was sent successfully.")]')
             .moveToElement('(//tr/th[14])[1]', 1340, 640)
-            .containsCurrentDataInSelectorXpath('(//tr[1]/td[11])[4]');
+           // .containsCurrentDataInSelectorXpath('(//tr[1]/td[11])[4]');
     },
 
     'verify cancel  button': function (browser) {
@@ -155,11 +150,11 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('//button[contains(text(),"Send email")]')
             .clickBySelectorXpath('(//option[contains(text(),"Test")])[1]')
 
-            .clickBySelectorXpath('((//button[@class="btn btn-default"]))[4]')
+            .clickBySelectorXpath('((//button[@class="btn btn-default"]))[3]')
 
             .verify.elementNotPresent('//div[contains(text(),"The email template was sent successfully.")]')
             .moveToElement('(//tr/th[14])[1]', 1340, 640)
-            .containsCurrentDataInSelectorXpath('(//tr[1]/td[11])[4]')
+           // .containsCurrentDataInSelectorXpath('(//tr[1]/td[11]/span)[2]')
 
             .clickBySelectorXpath('(//tr/td/input[@type="checkbox"])[21]')
             .clickBySelectorXpath('(//tr/td/input[@type="checkbox"])[22]')

@@ -43,7 +43,7 @@ module.exports = _.assign(presteps, auth, {
 
     'choose "Project" candidate type': function (browser) {
         browser
-            .clickBySelectorXpath('//input[@id=3]');
+            .clickBySelectorXpath('//radio-item[@id=3]');
     },
 
     'status swither by default': function (browser) {

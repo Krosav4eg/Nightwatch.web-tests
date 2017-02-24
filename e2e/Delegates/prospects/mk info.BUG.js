@@ -16,7 +16,7 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
             .clickBySelectorXpath('//a[contains(text(),"Prospects")]')
 
-            .clickBySelectorXpath('(//a[@href="/prospects/edit/431395"])[1]')
+            .clickBySelectorXpath('(//a[@href="/prospect/edit/431395"])[1]')
             .verify.containsText('(//h4)[1]', 'Adam Hans Georg (#431395)');
     },
 

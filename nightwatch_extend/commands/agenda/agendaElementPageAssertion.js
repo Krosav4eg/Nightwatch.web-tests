@@ -16,8 +16,8 @@ module.exports.command = function () {
         .verify.containsText('(//div[@class="checkbox-item"])[2]','Group 2 - violet')
 
         .verify.elementPresent('//label[contains(text(),"Show in calendars")]', 'Show in calendars')
-        .verify.containsText('(//label)[11]','Delegates')
-        .verify.containsText('(//label)[12]','Provider representatives')
+        .verify.containsText('(//label)[9]','Delegates')
+        .verify.containsText('(//label)[10]','Provider representatives')
 
         .verify.elementPresent('//label[contains(text(),"Publish WWW")]', 'Publish WWW')
         .useCss()

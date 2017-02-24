@@ -9,7 +9,7 @@ module.exports.command = function () {
 
         .useXpath()
         .verify.elementPresent('//h4[contains(text(),"Element form")]')
-        .verify.elementPresent('//label[contains(text(),"           Agenda Element Entry Type ")]')
+        .verify.elementPresent('//label[contains(text(),"Agenda Element Entry Type")]')
         .clickBySelectorCss('select#agendaElementEntryTypeId.form-control')
 
         .useXpath()

@@ -20,9 +20,9 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//label[text()="Award title English"]')
             .verify.elementPresent('//label[text()="Candidate type"]')
 
-            .verify.elementPresent('//input[@id=1]')
-            .verify.elementPresent('//input[@id=2]')
-            .verify.elementPresent('//input[@id=3]')
+            .verify.elementPresent('//radio-item[@id=1]')
+            .verify.elementPresent('//radio-item[@id=2]')
+            .verify.elementPresent('//radio-item[@id=3]')
 
             .verify.elementPresent('//label[text()="Status"]')
 
@@ -36,7 +36,7 @@ module.exports = _.assign(presteps, auth, {
 
     'select project radio button ': function (browser) {
         browser
-            .selectProjectRadioButton()
+            .selectProjectRadioButton();
     },
 
     'add a new candidate ': function (browser) {
@@ -52,12 +52,12 @@ module.exports = _.assign(presteps, auth, {
     'new candidate has been added ': function (browser) {
         browser
             .clickNoDeleteCandidate()
-            .waitForElementVisible('//input[@ngcontrol="localName"]', 30000)
-            .verify.valueContains('//input[@ngcontrol="localName"]', 'Тестовый проект_2')
+            .waitForElementVisible('//input[@formcontrolname="localName"]', 30000)
+            .verify.valueContains('//input[@formcontrolname="localName"]', 'Тестовый проект_2')
 
-            .verify.valueContains('//input[@ngcontrol="englishName"]', 'Test Project_2')
+            .verify.valueContains('//input[@formcontrolname="englishName"]', 'Test Project_2')
 
-            .verify.valueContains('//textarea[@ngcontrol="introduction"]', 'new new test intro description')
+            .verify.valueContains('//textarea[@formcontrolname="introduction"]', 'new new test intro description')
 
             .verify.valueContains('//input[@id="country"]', 'Russia')
             .checkModifiedInSelectorXpath('//*[contains(text(),"Awards")]/../..//div[contains(text(),"Modified:")]/../div[2]')

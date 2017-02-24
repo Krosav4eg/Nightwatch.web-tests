@@ -18,7 +18,7 @@ module.exports = _.assign(presteps, auth, {
 
     'to return everything to its original position ': function (browser) {
         browser
-            .clickBySelectorXpath('//input[@id=1]')
+            .clickBySelectorXpath('//radio-item[@id=1]')
             .clickBySelectorXpath('//button[@type="submit"]');
     },
 });

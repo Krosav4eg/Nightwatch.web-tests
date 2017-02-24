@@ -11,6 +11,11 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
 
+    'chose show all in the filter': function (browser) {
+        browser
+            .clickBySelectorXpath('//select/option[contains(text(),"Show all")]');
+    },
+
     'click blank': function (browser) {
         browser
             .useXpath()
@@ -18,12 +23,12 @@ module.exports = _.assign(presteps, auth, {
 
             .clickBySelectorXpath('(//tr/td[8]/select/option)[1]')
             .verify.containsText('//tr[1]/td[8]/span', 'Confirmed')
-            .verify.containsText('//tr[2]/td[8]/span', 'Cancelled')
+            .verify.containsText('//tr[2]/td[8]/span', 'No show')
             .verify.containsText('//tr[3]/td[8]/span', 'Confirmed')
             .verify.containsText('//tr[4]/td[8]/span', 'Confirmed')
-            .verify.containsText('//tr[5]/td[8]/span', 'Cancelled')
+            .verify.containsText('//tr[5]/td[8]/span', 'Confirmed')
 
-            .verify.elementPresent('//h4[contains(text(),"Delegates 0/19")]');
+            .verify.elementPresent('//h4[contains(text(),"Delegates 0/32")]');
     },
 
     'click cancelled': function (browser) {
@@ -34,7 +39,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.containsText('//tr[3]/td[8]/span', 'Cancelled')
             .verify.containsText('//tr[4]/td[8]/span', 'Cancelled')
 
-            .verify.elementPresent('//h4[contains(text(),"Delegates 0/4")]');
+            .verify.elementPresent('//h4[contains(text(),"Delegates 0/7")]');
     },
 
     'click confirmed': function (browser) {
@@ -51,11 +56,6 @@ module.exports = _.assign(presteps, auth, {
     'click confirmed Rebook': function (browser) {
         browser
             .clickBySelectorXpath('//tr/td[8]/select/option[contains(text(),"Confirmed Rebook")]')
-            // .verify.containsText('//tr[1]/td[8]/span', 'Confirmed Rebook')
-            // .verify.containsText('//tr[2]/td[8]/span', 'Confirmed')
-            // .verify.containsText('//tr[3]/td[8]/span', 'Confirmed')
-            // .verify.containsText('//tr[4]/td[8]/span', 'Confirmed')
-
             .verify.elementPresent('//h4[contains(text(),"Delegates 0/0")]');
     },
 
@@ -63,30 +63,30 @@ module.exports = _.assign(presteps, auth, {
         browser
             .clickBySelectorXpath('//tr/td[8]/select/option[contains(text(),"Late cancellation")]')
             .verify.containsText('//tr[1]/td[8]/span', 'Late cancellation')
+            .verify.containsText('//tr[2]/td[8]/span', 'Late cancellation')
+            .verify.containsText('//tr[3]/td[8]/span', 'Late cancellation')
+            .verify.containsText('//tr[4]/td[8]/span', 'Late cancellation')
+            .verify.containsText('//tr[5]/td[8]/span', 'Late cancellation')
 
-            .verify.elementPresent('//h4[contains(text(),"Delegates 0/1")]');
+            .verify.elementPresent('//h4[contains(text(),"Delegates 0/5")]');
     },
 
     'click no show': function (browser) {
         browser
             .clickBySelectorXpath('//tr/td[8]/select/option[contains(text(),"No show")]')
-            //.verify.containsText('//tr[1]/td[8]/span', 'Late cancellation')
-            .verify.elementPresent('//h4[contains(text(),"Delegates 0/0")]');
+            .verify.containsText('//tr[1]/td[8]/span', 'No show')
+            .verify.elementPresent('//h4[contains(text(),"Delegates 0/1")]');
     },
 
     'click unconfirmed': function (browser) {
         browser
             .clickBySelectorXpath('//tr/td[8]/select/option[contains(text(),"Unconfirmed")]')
-            //.verify.containsText('//tr[1]/td[8]/span', 'Late cancellation')
             .verify.elementPresent('//h4[contains(text(),"Delegates 0/0")]');
     },
 
     'click unconfirmed rebook': function (browser) {
         browser
             .clickBySelectorXpath('//tr/td[8]/select/option[contains(text(),"Unconfirmed Rebook")]')
-            //.verify.containsText('//tr[1]/td[8]/span', 'Late cancellation')
             .verify.elementPresent('//h4[contains(text(),"Delegates 0/0")]');
     },
-
-
 });

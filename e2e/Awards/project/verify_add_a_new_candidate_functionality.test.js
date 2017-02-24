@@ -54,7 +54,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//*[text()="Candidate 2"]/../../../../../..//button[text()="Delete"]')
 
             .verify.elementPresent('//label[text()="Introduction"]')
-            .verify.elementPresent('//*[text()="Candidate 2"]/../../../../../..//textarea[@ngcontrol="introduction"]');
+            .verify.elementPresent('//*[text()="Candidate 2"]/../../../../../..//textarea[@formcontrolname="introduction"]');
     },
 
     'add 3-th candidate ': function (browser) {
@@ -68,7 +68,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//*[text()="Candidate 3"]/../../../../../..//button[text()="Delete"]')
 
             .verify.elementPresent('//label[text()="Introduction"]')
-            .verify.elementPresent('//*[text()="Candidate 3"]/../../../../../..//textarea[@ngcontrol="introduction"]');
+            .verify.elementPresent('//*[text()="Candidate 3"]/../../../../../..//textarea[@formcontrolname="introduction"]');
     },
 
     'to return everything to its original position ': function (browser) {

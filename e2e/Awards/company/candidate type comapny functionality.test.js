@@ -21,9 +21,9 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//label[text()="Award title English"]')
             .verify.elementPresent('//label[text()="Candidate type"]')
 
-            .verify.elementPresent('//input[@id=1]')
-            .verify.elementPresent('//input[@id=2]')
-            .verify.elementPresent('//input[@id=3]')
+            .verify.elementPresent('//radio-item[@id=1]')
+            .verify.elementPresent('//radio-item[@id=2]')
+            .verify.elementPresent('//radio-item[@id=3]')
 
             .verify.elementPresent('//label[text()="Status"]')
 
@@ -55,7 +55,7 @@ module.exports = _.assign(presteps, auth, {
 
     'select company radio button ': function (browser) {
         browser
-            .clickBySelectorXpath('//input[@id=2]')
+            .clickBySelectorXpath('//radio-item[@id=2]')
             .clickBySelectorXpath('//button[@type="submit"]')
             .waitForElementVisible('//div[text()="Award saved successfully"]', 30000)
             .checkModifiedInSelectorXpath('//*[contains(text(),"Awards")]/../..//div[contains(text(),"Modified:")]/../div[2]')
@@ -64,7 +64,7 @@ module.exports = _.assign(presteps, auth, {
 
     'to return everything to its original position ': function (browser) {
         browser
-            .clickBySelectorXpath('//input[@id=1]')
+            .clickBySelectorXpath('//radio-item[@id=1]')
             .clickBySelectorXpath('//label[@btnradio="0"]')
             .clickBySelectorXpath('//button[@type="submit"]')
             .waitForElementVisible('//h3[text()="IndustryForum Healthcare"]', 7000)
