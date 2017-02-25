@@ -24,9 +24,9 @@ module.exports = _.assign(presteps, auth, {
 
     'awards functionality': function (browser) {
         browser
-            .setValueByCss('input[ngcontrol="awardTitleEnglish"]', "Test awardTitleEnglish")
-            .setValueByCss('input[ngcontrol="awardTitleLocal"]', "Test awardTitleLocal")
-            .setValueByCss('input[ngcontrol="awardTitleEnglish"]', "Test awardTitleEnglish")
+            .setValueByCss('input[formcontrolname="awardTitleEnglish"]', "Test awardTitleEnglish")
+            .setValueByCss('input[formcontrolname="awardTitleLocal"]', "Test awardTitleLocal")
+            .setValueByCss('input[formcontrolname="awardTitleEnglish"]', "Test awardTitleEnglish")
             .clickBySelectorXpath('//*[@type="radio" and @id="1"]')
             .clickBySelectorXpath('//label[text()="On"]')
             .clickBySelectorXpath('//*[text()="Awards"]/../..//button[text()="Save"]')
@@ -37,14 +37,14 @@ module.exports = _.assign(presteps, auth, {
             .verify.containsText('//div[@class="toast-message"]', 'Award save')
             .clickBySelectorXpath('//div[@class="toast-content"]')
 
-            .verify.valueContains('//input[@ngcontrol="awardTitleLocal"]', 'Test awardTitleLocal')
-            .verify.valueContains('//input[@ngcontrol="awardTitleEnglish"]', 'Test awardTitleEnglish')
+            .verify.valueContains('//input[@formcontrolname="awardTitleLocal"]', 'Test awardTitleLocal')
+            .verify.valueContains('//input[@formcontrolname="awardTitleEnglish"]', 'Test awardTitleEnglish')
             .verify.containsText('//*[contains(text(),"Awards")]/../..//div[contains(text(),"Modified by:")]/../div[2]', 'Xsolve Test User');
     },
 
     'change Award Click on "Off" switcher': function (browser) {
         browser
-            .setValueByCss('input[ngcontrol="awardTitleLocal"]', "Test awardTitleLocal 2")
+            .setValueByCss('input[formcontrolname="awardTitleLocal"]', "Test awardTitleLocal 2")
             .clickBySelectorXpath('//label[text()="Off"]')
             .clickBySelectorXpath('//*[text()="Awards"]/../..//button[text()="Save"]')
             .checkModifiedInSelectorXpath('//*[contains(text(),"Awards")]/../..//div[contains(text(),"Modified:")]/../div[2]')
@@ -54,7 +54,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.containsText('//div[@class="toast-message"]', 'Award save')
             .clickBySelectorXpath('//div[@class="toast-content"]')
 
-            .verify.valueContains('//input[@ngcontrol="awardTitleLocal"]', 'Test awardTitleLocal 2')
+            .verify.valueContains('//input[@formcontrolname="awardTitleLocal"]', 'Test awardTitleLocal 2')
             .verify.elementNotPresent('//*[text()="Candidates"]/../..//*[text()="Candidate 1"]')
             .verify.cssProperty('//*[@class="btn ng-untouched ng-pristine ng-valid btn-danger"]', 'background-color', 'rgba(231, 60, 60, 1)');
     },

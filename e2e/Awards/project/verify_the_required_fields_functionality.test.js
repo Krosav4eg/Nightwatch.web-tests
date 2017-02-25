@@ -23,23 +23,23 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//h3[contains(text(), "Candidate 1")]')
 
             .verify.elementPresent('//label[contains(text(), "Project local name ")]')
-            .verify.elementPresent('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="localName"]')
-            .clickBySelectorXpath('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="localName"]')
+            .verify.elementPresent('//*[text()="Candidate 1"]/../../../..//input[@formcontrolname="localName"]')
+            .clickBySelectorXpath('//*[text()="Candidate 1"]/../../../..//input[@formcontrolname="localName"]')
 
             .verify.elementPresent('//label[contains(text(), "Project English name ")]')
-            .verify.elementPresent('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="englishName"]')
-            .clickBySelectorXpath('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="englishName"]')
+            .verify.elementPresent('//*[text()="Candidate 1"]/../../../..//input[@formcontrolname="englishName"]')
+            .clickBySelectorXpath('//*[text()="Candidate 1"]/../../../..//input[@formcontrolname="englishName"]')
 
             .verify.containsText('//*[contains(text(), "Project local name")]/..', 'Project local name is required.')
 
             .verify.elementPresent('//label[contains(text(), "Country")]')
-            .verify.elementPresent('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="country"]')
-            .clickBySelectorXpath('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="country"]')
-            .clickBySelectorXpath('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="englishName"]')
+            .verify.elementPresent('//*[text()="Candidate 1"]/../../../..//input[@formcontrolname="country"]')
+            .clickBySelectorXpath('//*[text()="Candidate 1"]/../../../..//input[@formcontrolname="country"]')
+            .clickBySelectorXpath('//*[text()="Candidate 1"]/../../../..//input[@formcontrolname="englishName"]')
 
             .verify.containsText('//*[contains(text(), "Project English name")]/..', 'Project English name is required.')
 
-            .verify.elementPresent('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="englishName"]')
+            .verify.elementPresent('//*[text()="Candidate 1"]/../../../..//input[@formcontrolname="englishName"]')
 
             .verify.containsText('//*[contains(text(), "Country")]/..', 'Country is required')
             .refresh();
@@ -57,7 +57,7 @@ module.exports = _.assign(presteps, auth, {
 
     'enter the local name': function (browser) {
         browser
-            .setValueByXpath('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="localName"]', 'Тестовый проект_2')
+            .setValueByXpath('//*[text()="Candidate 1"]/../../../..//input[@formcontrolname="localName"]', 'Тестовый проект_2')
 
             .clickBySelectorXpath('//*[text()="Candidate 1"]/../../../../../..//button[text()="Save"]')
 
@@ -67,7 +67,7 @@ module.exports = _.assign(presteps, auth, {
 
     'enter the English name': function (browser) {
         browser
-            .setValueByXpath('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="englishName"]', 'Test Project_2')
+            .setValueByXpath('//*[text()="Candidate 1"]/../../../..//input[@formcontrolname="englishName"]', 'Test Project_2')
 
             .clickBySelectorXpath('//*[text()="Candidate 1"]/../../../../../..//button[text()="Save"]')
 

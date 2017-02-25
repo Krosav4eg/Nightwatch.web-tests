@@ -95,13 +95,13 @@ module.exports = _.assign(presteps, auth, {
 
     'enter description ': function (browser) {
         browser
-            .setValueByXpath('(//textarea[@ngcontrol="winnerDescription"])[1]', "test test test")
+            .setValueByXpath('(//textarea[@formcontrolname="winnerDescription"])[1]', "test test test")
             .clickBySelectorXpath('(//*[text()="Candidates"]/../..//button[text()="Save"])[2]')
 
             .waitForElementVisible('//div[@class="toast-content"]', 10000)
             .clickBySelectorXpath('//div[@class="toast-content"]')
 
-            .verify.valueContains('(//textarea[@ngcontrol="winnerDescription"])[1]', 'test test test')
+            .verify.valueContains('(//textarea[@formcontrolname="winnerDescription"])[1]', 'test test test')
 
             .clickBySelectorXpath('(//button[text()="Winner"])[2]')
             .clickBySelectorXpath('(//*[text()="Candidates"]/../..//button[text()="Save"])[2]')

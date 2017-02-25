@@ -47,13 +47,13 @@ module.exports = _.assign(presteps, auth, {
 
     'enter "Introduction"': function (browser) {
         browser
-            .setValueByCss('textarea[ngcontrol="introduction"]', "Test introduction")
+            .setValueByCss('textarea[formcontrolname="introduction"]', "Test introduction")
             .clickBySelectorXpath('//*[text()="Candidates"]/../..//button[text()="Save"]')
 
             .waitForElementVisible('//div[@class="toast-content"]', 10000)
             .verify.containsText('//div[@class="toast-title"]', 'Success')
 
-            .verify.valueContains('//textarea[@ngcontrol="introduction"]', 'Test introduction');
+            .verify.valueContains('//textarea[@formcontrolname="introduction"]', 'Test introduction');
     },
 
     'click on [Edit candidates]': function (browser) {
