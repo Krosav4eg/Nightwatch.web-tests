@@ -14,17 +14,17 @@ module.exports = _.assign(presteps, auth, {
     'choose "Project" candidate type': function (browser) {
         browser
             .useXpath()
-            .clickBySelectorXpath('//input[@id=3]');
+            .clickBySelectorXpath('//radio-item[@id=3]');
     },
 
     'choose "Company" candidate type': function (browser) {
         browser
-            .clickBySelectorXpath('//input[@id=2]');
+            .clickBySelectorXpath('//radio-item[@id=2]');
     },
 
     'choose "Contact" candidate type': function (browser) {
         browser
-            .clickBySelectorXpath('//input[@id=1]');
+            .clickBySelectorXpath('//radio-item[@id=1]');
     },
 
     'click Save button ': function (browser) {

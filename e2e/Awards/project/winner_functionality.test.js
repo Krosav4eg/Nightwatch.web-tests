@@ -46,7 +46,7 @@ module.exports = _.assign(presteps, auth, {
 
     'enter winners description ': function (browser) {
         browser
-            .setValueByXpath('//*[text()="Candidate 1"]/../../../../../..//textarea[@ngcontrol="winnerDescription"]', 'test winner description')
+            .setValueByXpath('//*[text()="Candidate 1"]/../../../../../..//textarea[@formcontrolname="winnerDescription"]', 'test winner description')
             .clickBySelectorXpath('//*[text()="Candidate 1"]/../../../../../..//button[text()="Save"]')
             .waitForElementVisible('//div[text()="Award saved successfully"]', 30000)
             .verify.valueContains('//*[text()="Candidate 1"]/../../../../../..//textarea[@formcontrolname="winnerDescription"]', 'test winner description')
