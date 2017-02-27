@@ -70,8 +70,6 @@ module.exports = _.assign(presteps, auth, {
             .setValueByCss('.auto-complete input', 'Thomas Bula')
             .pause(3000)
             .clickBySelectorXpath('//*[contains(text(),"Thomas Bula")]');
-
     },
-
 })
 ;

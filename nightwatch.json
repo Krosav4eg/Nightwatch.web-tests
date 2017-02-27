@@ -23,10 +23,10 @@
   },
   "test_settings": {
     "default": {
-      "filter": "**/*.run.js",
+      "filter": "Awards/**/*.test.js",
       "selenium_host": "127.0.0.1",
       "selenium_port": 4444,
-      "launch_url": "http://edu.skynet.managementevents.com",
+      "launch_url": "http://alpha.skynet.managementevents.com",
       "silent": true,
       "screenshots": {
         "enabled": true,
@@ -37,7 +37,12 @@
       "desiredCapabilities": {
         "browserName": "chrome",
         "javascriptEnabled": true,
-        "acceptSslCerts": true
+        "acceptSslCerts": true,
+        "chromeOptions": {
+          "args": [
+            "ash-touch-hud"
+          ]
+        }
       }
     }
   }
