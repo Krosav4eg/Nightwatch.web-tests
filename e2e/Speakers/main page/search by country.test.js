@@ -19,11 +19,11 @@ module.exports = _.assign(presteps, auth, {
 
     'search by country ': function (browser) {
         browser
-            .setValueByXpath('//tr[1]/td[8]/input[@type="text"]', ['Norway', browser.Keys.ENTER])
+            .setValueByXpath('//tr[1]/td[8]/input[@type="text"]', ['Germany', browser.Keys.ENTER])
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
             .waitForElementVisible('//tr[1]/td[8]/span', 3000)
-            .verify.containsText("//tr[1]/td[8]/span", "Norway")
+            .verify.containsText("//tr[1]/td[8]/span", "Germany")
     },
 });

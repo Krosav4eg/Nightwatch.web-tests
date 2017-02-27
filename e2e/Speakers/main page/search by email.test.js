@@ -19,11 +19,11 @@ module.exports = _.assign(presteps, auth, {
 
     'search by email ': function (browser) {
         browser
-            .setValueByXpath('//tr[1]/td[6]/input[@type="text"]', ['joerg.hermsmeier@ewe.de', browser.Keys.ENTER])
+            .setValueByXpath('//tr[1]/td[6]/input[@type="text"]', ['holger.kink@rwe.com', browser.Keys.ENTER])
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
             .waitForElementVisible('//tr[1]/td[6]/span', 3000)
-            .verify.containsText("//tr[1]/td[6]/span", "joerg.hermsmeier@ewe.de")
+            .verify.containsText("//tr[1]/td[6]/span", "holger.kink@rwe.com")
     },
 });

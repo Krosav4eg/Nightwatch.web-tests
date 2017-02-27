@@ -19,9 +19,9 @@ module.exports = _.assign(presteps, auth, {
 
     'search by company ': function (browser) {
         browser
-            .setValueByXpath('//tr[1]/td[2]/input[@type="text"]', ['Telenor', browser.Keys.ENTER])
+            .setValueByXpath('//tr[1]/td[2]/input[@type="text"]', ['Group Business', browser.Keys.ENTER])
             .useXpath()
             .waitForElementVisible('//tr[1]/td[2]/span', 3000)
-            .verify.containsText("//tr[1]/td[2]/span", "Telenor ASA")
+            .verify.containsText("//tr[1]/td[2]/span", "RWE Group Business Services GmbH")
     },
 });

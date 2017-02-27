@@ -6,7 +6,7 @@ module.exports = _.assign(presteps, auth, {
 
     'redirection to agenda': function (browser) {
         browser
-            .relUrl('/event/212/speakers')
+            .relUrl('/event/214/speakers')
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
@@ -14,7 +14,7 @@ module.exports = _.assign(presteps, auth, {
     'check event data': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//h4[text()="Event (#212)"]', 3000)
+            .waitForElementVisible('//h4[text()="Event (#214)"]', 3000)
     },
 
     'search by country ': function (browser) {
