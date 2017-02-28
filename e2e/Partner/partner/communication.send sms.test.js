@@ -21,10 +21,10 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('(//button[@class="btn btn-primary btn-lg communication-participant-btn"])[2]')
             .clickBySelectorXpath("(//button[text()='Send'])[2]")
 
-            .waitForElementVisible('//div[@class="toast-content"]', 10000)
-            .verify.containsText('//div[@class="toast-title"]', 'Info!')
-            .verify.containsText('//div[@class="toast-message"]', 'You need to chose Cms Template and recipients')
-            .clickBySelectorXpath('//div[@class="toast-content"]');
+            .waitForElementVisible('//div[@class="simple-notification toast-notification alert"]', 10000)
+            .verify.containsText('//div[@class="sn-title"]', 'Info!')
+            .verify.containsText('//div[@class="sn-content"]', 'You need to chose Cms Template and recipients')
+            .clickBySelectorXpath('//div[@class="simple-notification toast-notification alert"]')
     },
 
     'cancel send sms block': function (browser) {
@@ -36,17 +36,23 @@ module.exports = _.assign(presteps, auth, {
         browser
             .clickBySelectorXpath('(//button[@class="btn btn-primary btn-lg communication-participant-btn"])[2]')
 
-            .clickBySelectorXpath('//input[@type="checkbox"]')
-            .clickBySelectorXpath('//option[@value="292"]')
+            .clickBySelectorXpath('(//input[@type="checkbox"])[1]')
 
-            .verify.valueContains('(//textarea[@class="form-control ng-untouched ng-pristine ng-valid"])[2]', 'Testing')
+            .clickBySelectorXpath('//option[@value="575"]')
+            .verify.valueContains('(//textarea[@class="form-control ng-untouched ng-pristine ng-valid"])[2]', 'This is the link to your meeting service: {{Partner.Link.Agenda-AUTO}}')
+
+            .clickBySelectorXpath('//option[@value="97"]')
+            .verify.valueContains('(//textarea[@class="form-control ng-untouched ng-pristine ng-valid"])[2]', 'We have booked a new meeting for you. You can check your meetings from here from your mobile service')
+
+            .clickBySelectorXpath('//option[@value="575"]')
+            .verify.valueContains('(//textarea[@class="form-control ng-untouched ng-pristine ng-valid"])[2]', 'This is the link to your meeting service: {{Partner.Link.Agenda-AUTO}}')
 
             .clickBySelectorXpath("(//button[text()='Send'])[2]")
 
-            .waitForElementVisible('//div[@class="toast-content"]', 10000)
-            .verify.containsText('//div[@class="toast-title"]', 'Success')
-            .verify.containsText('//div[@class="toast-message"]', 'The SMS template was sent successfully.')
-            .clickBySelectorXpath('//div[@class="toast-content"]')
+            .waitForElementVisible('//div[@class="simple-notification toast-notification success"]', 10000)
+            .verify.containsText('//div[@class="sn-title"]', 'Success')
+            .verify.containsText('//div[@class="sn-content"]', 'The SMS template was sent successfully.')
+            .clickBySelectorXpath('//div[@class="simple-notification toast-notification success"]')
 
             .verify.containsText('(//*[@class="col-lg-8 communication-participant-text"]/p)[2]', "Testing SMS")
             .verify.containsText('(//*[@class="col-lg-8 communication-participant-text"]/p)[2]', "Rehab E.M. Abdullah")
