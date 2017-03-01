@@ -40,7 +40,8 @@
         "acceptSslCerts": true,
         "chromeOptions": {
           "args": [
-            "ash-touch-hud"
+            "ash-touch-hud",
+            "material-hybrid"
           ]
         }
       }
