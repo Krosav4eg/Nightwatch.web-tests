@@ -28,9 +28,9 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
             .clickBySelectorXpath('//form/div[2]/div/div/button[contains(text(),"Save")]')
 
-            .verify.elementPresent('//p[text()=" Start Hour is required.           "]')
+            .verify.containsText("//*[contains(text(), 'Start time')]/../..", "Start Hour is required")
 
-            .clickBySelectorXpath('//modal[@class="modal fade in"]//button[1][@class="btn btn-default pull-right"]');
+            .clickBySelectorXpath('//button[1][@class="btn btn-default pull-right"]');
     },
 
     'can not create time before event': function (browser) {
@@ -42,8 +42,8 @@ module.exports = _.assign(presteps, auth, {
             .setValueByCss('#containerStartHour input', ['7:00', browser.Keys.ENTER])
 
             .useXpath()
-            .waitForElementVisible('//p[text()=" Date should be between 08:00 and 18:00           "]', 30000)
-            .clickBySelectorXpath('//modal[@class="modal fade in"]//button[1][@class="btn btn-default pull-right"]');
+            .verify.containsText("//*[contains(text(), 'Start time')]/../..", "Date should be between 08:00 and 18:00")
+            .clickBySelectorXpath('//button[1][@class="btn btn-default pull-right"]');
     },
 
     'creation container': function (browser) {

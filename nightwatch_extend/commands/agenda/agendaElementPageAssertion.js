@@ -10,13 +10,14 @@ module.exports.command = function () {
         .verify.elementPresent('//label[contains(text(),"Meeting allowed")]', 'Meeting allowed')
 
         .verify.elementPresent('//label[contains(text(),"Groups Used")]', 'Groups Used')
+
         .verify.elementPresent('//label[contains(text(),"Event Groups")]', 'Event Groups')
-        .verify.elementPresent('//div[text()="               Group 1 - orange             "]')
-        .verify.elementPresent('//div[text()="               Group 2 - violet             "]')
+        .verify.containsText('(//div[@class="checkbox-item"])[1]','Group 1 - orange')
+        .verify.containsText('(//div[@class="checkbox-item"])[2]','Group 2 - violet')
 
         .verify.elementPresent('//label[contains(text(),"Show in calendars")]', 'Show in calendars')
-        .verify.elementPresent('//label[text()="               Delegates             "]')
-        .verify.elementPresent('//label[text()="               Provider representatives             "]')
+        .verify.containsText('(//label)[9]','Delegates')
+        .verify.containsText('(//label)[10]','Provider representatives')
 
         .verify.elementPresent('//label[contains(text(),"Publish WWW")]', 'Publish WWW')
         .useCss()

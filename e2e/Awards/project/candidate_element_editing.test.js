@@ -28,12 +28,12 @@ module.exports = _.assign(presteps, auth, {
 
     'change all fields': function (browser) {
         browser
-            .setValueByXpath('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="localName"]', 'Тестовый проект_10')
-            .setValueByXpath('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="englishName"]', 'Test Project_10')
-            .waitForElementVisible('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="country"]', 30000)
-            .click('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="country"]')
+            .setValueByXpath('//*[text()="Candidate 1"]/../../../..//input[@formcontrolname="localName"]', 'Тестовый проект_10')
+            .setValueByXpath('//*[text()="Candidate 1"]/../../../..//input[@formcontrolname="englishName"]', 'Test Project_10')
+            .waitForElementVisible('//*[text()="Candidate 1"]/../../../..//input[@formcontrolname="country"]', 30000)
+            .click('//*[text()="Candidate 1"]/../../../..//input[@formcontrolname="country"]')
             .useCss()
-            .setValueByCss('.auto-complete input', "Russia")
+            .setValueByCss('input[id="country"]', "Russia")
             .pause(3000)
             .useXpath()
             .clickBySelectorXpath('//*[contains(text(),"Russia")]')
@@ -47,8 +47,7 @@ module.exports = _.assign(presteps, auth, {
         browser
             .waitForElementVisible('//*[text()="Candidate 1"]/../../../../../..//button[text()="Save"]', 30000)
             .clickBySelectorXpath('//*[text()="Candidate 1"]/../../../../../..//button[text()="Save"]')
-            .waitForElementVisible('//div[text()="Award saved successfully"]', 30000)
-            .verify.valueContains('//*[text()="Candidate 1"]/../../../../../..//textarea[@ngcontrol="introduction"]', 'new new test intro description')
+            .verify.valueContains('//*[text()="Candidate 1"]/../../../../../..//textarea[@formcontrolname="introduction"]', 'new new test intro description')
             .pause(1500);
     },
 
@@ -56,10 +55,10 @@ module.exports = _.assign(presteps, auth, {
         browser
             .refresh()
             .clickNoDeleteCandidate()
-            .waitForElementVisible('//input[@ngcontrol="localName"]', 30000)
-            .verify.valueContains('//input[@ngcontrol="localName"]', 'Тестовый проект_10')
-            .verify.valueContains('//input[@ngcontrol="englishName"]', 'Test Project_10')
-            .verify.valueContains('//textarea[@ngcontrol="introduction"]', 'new new test intro description')
+            .waitForElementVisible('//input[@formcontrolname="localName"]', 30000)
+            .verify.valueContains('//input[@formcontrolname="localName"]', 'Тестовый проект_10')
+            .verify.valueContains('//input[@formcontrolname="englishName"]', 'Test Project_10')
+            .verify.valueContains('//textarea[@formcontrolname="introduction"]', 'new new test intro description')
             .verify.valueContains('//input[@id="country"]', 'Russia')
             .checkModifiedInSelectorXpath('//*[contains(text(),"Awards")]/../..//div[contains(text(),"Modified:")]/../div[2]')
             .pause(1000);

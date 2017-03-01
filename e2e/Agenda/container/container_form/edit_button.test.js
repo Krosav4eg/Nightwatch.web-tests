@@ -38,7 +38,7 @@ module.exports = _.assign(presteps, auth, {
         browser
             .clickBySelectorCss('i.fa.fa-pencil.edit-container')
 
-            .clickBySelectorXpath('//modal[@class="modal fade in"]//button[1][@class="btn btn-default pull-right"]')
+            .clickBySelectorXpath('//button[1][@class="btn btn-default pull-right"]')
 
             .verify.elementPresent('//b[contains(text(), "test1")]')
             .verify.elementPresent('//b[1][contains(text(),"8:00")]', '8:00')

@@ -26,9 +26,11 @@ module.exports = _.assign(presteps, auth, {
 
     'click NO button': function (browser) {
         browser
-            .clickBySelectorCss('div.modal-footer>button.btn.btn-danger')
+            .clickBySelectorXpath('//button[@data-marker="me-confirm__button__button__no"]')
             .useXpath()
-            .verify.elementPresent('//b[contains(text(), "test1")]');
+            .verify.elementPresent('//b[1][contains(text(),"8:00")]')
+            .verify.elementPresent('//b[2][contains(text(),"10:00")]')
+            .verify.elementPresent('//b[contains(text(),"test1")]');
     },
 
     'click OK button': function (browser) {

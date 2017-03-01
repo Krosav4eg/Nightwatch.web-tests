@@ -35,7 +35,7 @@ module.exports = _.assign(presteps, auth, {
             .moveToElement('//*[text()="Candidate 1"]/../../../../../..//button[text()="Winner"]', 30, 30)
             .clickBySelectorXpath('//*[text()="Candidate 1"]/../../../../../..//button[text()="Winner"]')
             .verify.cssProperty('//button[text()="Winner"]', 'background-color', 'rgba(108, 166, 50, 1)')
-            .waitForElementVisible('//*[text()="Candidate 1"]/../../../../../..//textarea[@ngcontrol="winnerDescription"]', 30000);
+            .waitForElementVisible('//*[text()="Candidate 1"]/../../../../../..//textarea[@formcontrolname="winnerDescription"]', 30000);
     },
 
     'click Save button ': function (browser) {
@@ -46,10 +46,10 @@ module.exports = _.assign(presteps, auth, {
 
     'enter winners description ': function (browser) {
         browser
-            .setValueByXpath('//*[text()="Candidate 1"]/../../../../../..//textarea[@ngcontrol="winnerDescription"]', 'test winner description')
+            .setValueByXpath('//*[text()="Candidate 1"]/../../../../../..//textarea[@formcontrolname="winnerDescription"]', 'test winner description')
             .clickBySelectorXpath('//*[text()="Candidate 1"]/../../../../../..//button[text()="Save"]')
             .waitForElementVisible('//div[text()="Award saved successfully"]', 30000)
-            .verify.valueContains('//*[text()="Candidate 1"]/../../../../../..//textarea[@ngcontrol="winnerDescription"]', 'test winner description')
+            .verify.valueContains('//*[text()="Candidate 1"]/../../../../../..//textarea[@formcontrolname="winnerDescription"]', 'test winner description')
             .pause(1500);
     },
 
@@ -64,34 +64,34 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('//*[text()="Candidate 1"]/../../../../../..//button[text()="Save"]')
             .waitForElementVisible('//div[text()="Award saved successfully"]', 30000)
             .verify.cssProperty('//button[text()="Winner"]', 'background-color', 'rgba(79, 142, 220, 1)')
-            .verify.elementNotPresent('//*[text()="Candidate 1"]/../../../../../..//textarea[@ngcontrol="winnerDescription"]')
+            .verify.elementNotPresent('//*[text()="Candidate 1"]/../../../../../..//textarea[@formcontrolname="winnerDescription"]')
             .pause(1500);
     },
 
     'press winner button in Candidate once more ': function (browser) {
         browser
             .clickBySelectorXpath('//*[text()="Candidate 1"]/../../../../../..//button[text()="Winner"]')
-            .waitForElementVisible('//*[text()="Candidate 1"]/../../../../../..//textarea[@ngcontrol="winnerDescription"]', 30000)
+            .waitForElementVisible('//*[text()="Candidate 1"]/../../../../../..//textarea[@formcontrolname="winnerDescription"]', 30000)
             .verify.cssProperty('//button[text()="Winner"]', 'background-color', 'rgba(108, 166, 50, 1)')
-            .verify.valueContains('//*[text()="Candidate 1"]/../../../../../..//textarea[@ngcontrol="winnerDescription"]', 'test winner description')
+            .verify.valueContains('//*[text()="Candidate 1"]/../../../../../..//textarea[@formcontrolname="winnerDescription"]', 'test winner description')
             .pause(1500);
     },
 
     'press winner button in Candidate 2 ': function (browser) {
         browser
             .clickBySelectorXpath('//*[text()="Candidate 2"]/../../../../../..//button[text()="Winner"]')
-            .waitForElementVisible('//*[text()="Candidate 2"]/../../../../../..//textarea[@ngcontrol="winnerDescription"]', 30000)
+            .waitForElementVisible('//*[text()="Candidate 2"]/../../../../../..//textarea[@formcontrolname="winnerDescription"]', 30000)
             .verify.cssProperty('//*[text()="Candidate 2"]/../../../../../..//button[text()="Winner"]', 'background-color', 'rgba(108, 166, 50, 1)')
             .clickBySelectorXpath('//*[text()="Candidate 2"]/../../../../../..//button[text()="Save"]');
     },
 
     'enter winners description for 2-nd candidate': function (browser) {
         browser
-            .setValueByXpath('//*[text()="Candidate 2"]/../../../../../..//textarea[@ngcontrol="winnerDescription"]', 'test winner description_2')
+            .setValueByXpath('//*[text()="Candidate 2"]/../../../../../..//textarea[@formcontrolname="winnerDescription"]', 'test winner description_2')
             .clickBySelectorXpath('//*[text()="Candidate 2"]/../../../../../..//button[text()="Save"]')
             .waitForElementVisible('//div[text()="Award saved successfully"]', 30000)
             .moveToElement('//*[text()="Candidate 2"]/../../../../../..//button[text()="Winner"]', 30, 30)
-            .verify.valueContains('//*[text()="Candidate 2"]/../../../../../..//textarea[@ngcontrol="winnerDescription"]', 'test winner description_2')
+            .verify.valueContains('//*[text()="Candidate 2"]/../../../../../..//textarea[@formcontrolname="winnerDescription"]', 'test winner description_2')
             .checkModifiedInSelectorXpath('//*[contains(text(),"Awards")]/../..//div[contains(text(),"Modified:")]/../div[2]')
             .refresh();
     },

@@ -24,13 +24,13 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//h3[text()="Candidate 1"]')
 
             .verify.elementPresent('//label[text()="Project local name "]', 30000)
-            .verify.elementPresent('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="localName"]', 30000)
+            .verify.elementPresent('//*[text()="Candidate 1"]/../../../..//input[@formcontrolname="localName"]', 30000)
 
             .verify.elementPresent('//label[text()="Project English name "]', 30000)
-            .verify.elementPresent('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="englishName"]', 30000)
+            .verify.elementPresent('//*[text()="Candidate 1"]/../../../..//input[@formcontrolname="englishName"]', 30000)
 
             .verify.elementPresent('//label[text()="Country "]', 30000)
-            .verify.elementPresent('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="country"]', 30000)
+            .verify.elementPresent('//*[text()="Candidate 1"]/../../../..//input[@formcontrolname="country"]', 30000)
 
             .verify.elementPresent('//input[@id="myUnit"]', 30000)
             .verify.elementPresent('//p[text()="Image format: .jpg, image size min. 800x400px"]', 30000);
@@ -45,24 +45,24 @@ module.exports = _.assign(presteps, auth, {
             .getElementSize('//img[@class="cropImage"]', function (result) {
                 this.verify.equal(typeof result, "object");
                 this.verify.equal(result.status, 0);
-                this.verify.equal(result.value.width, 495);
-                this.verify.equal(result.value.height, 278)
+                this.verify.equal(result.value.width, 800);
+                this.verify.equal(result.value.height, 450)
             })
             .clickBySelectorXpath('//img[@class="cropImage"]')
-            .waitForElementVisible('//div[@class="cropControls"]', 30000)
-            .clickBySelectorXpath('//button[@class="cropZoomIn"]')
+            .clickBySelectorXpath('//div[@class="cropControls"]')
+            .clickBySelectorXpath('//a[@class="cropZoomIn"]')
             .getElementSize('//img[@class="cropImage"]', function (result) {
                 this.verify.equal(typeof result, "object");
                 this.verify.equal(result.status, 0);
-                this.verify.equal(result.value.width, 519);
-                this.verify.equal(result.value.height, 292)
+                this.verify.equal(result.value.width, 859);
+                this.verify.equal(result.value.height, 482)
             })
-            .clickBySelectorXpath('//button[@class="cropZoomOut"]')
+            .clickBySelectorXpath('//a[@class="cropZoomOut"]')
             .getElementSize('//img[@class="cropImage"]', function (result) {
                 this.verify.equal(typeof result, "object");
                 this.verify.equal(result.status, 0);
-                this.verify.equal(result.value.width, 495);
-                this.verify.equal(result.value.height, 278)
+                this.verify.equal(result.value.width, 800);
+                this.verify.equal(result.value.height, 450)
             })
     },
 
@@ -79,8 +79,8 @@ module.exports = _.assign(presteps, auth, {
             .getElementSize('//img[@id="logo"]', function (result) {
                 this.verify.equal(typeof result, "object");
                 this.verify.equal(result.status, 0);
-                this.verify.equal(result.value.width, 287);
-                this.verify.equal(result.value.height, 143);
+                this.verify.equal(result.value.width, 291);
+                this.verify.equal(result.value.height, 146);
             })
     },
 

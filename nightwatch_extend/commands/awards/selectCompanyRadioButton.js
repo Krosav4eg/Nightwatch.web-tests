@@ -5,7 +5,7 @@
  */
 module.exports.command = function () {
     this
-        .clickBySelectorXpath('//input[@id=2]')
+        .clickBySelectorXpath('//radio-item[@id=2]')
 
         .clickBySelectorXpath('//label[@btnradio="1"]')
 

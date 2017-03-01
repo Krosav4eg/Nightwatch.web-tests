@@ -30,8 +30,8 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorCss('option[value="19"]')
 
             .clickBySelectorXpath('//div/div/div/div/button[contains(text(),"Save")]')
-            .verify.elementPresent('//p[text()=" Start Hour is required.           "]')
-            .verify.elementPresent('//p[text()=" End Hour is required.           "]');
+            .verify.containsText("//*[contains(text(), 'Start time')]/../..", "Start Hour is required")
+            .verify.containsText("//*[contains(text(), 'End time')]/../..", "End Hour is required");
     },
 
     'start time can not be before set time ': function (browser) {
@@ -39,7 +39,7 @@ module.exports = _.assign(presteps, auth, {
             .setValueByCss('me-date-time-input#elementStartHour input.form-control.dateTimeInput.dateTimeInput', ['7:59', browser.Keys.ENTER])
 
             .useXpath()
-            .verify.elementPresent('//p[text()=" Date should be between 08:00 and 10:00           "]')
+            .verify.containsText("//*[contains(text(), 'Start time')]/../..", "Date should be between 08:00 and 10:00")
             .setValueByCss('me-date-time-input#elementStartHour input.form-control.dateTimeInput.dateTimeInput', ['8:00', browser.Keys.ENTER]);
     },
 
@@ -48,10 +48,10 @@ module.exports = _.assign(presteps, auth, {
             .setValueByCss('me-date-time-input#elementEnd input.form-control.dateTimeInput.dateTimeInput', ['10:01', browser.Keys.ENTER])
 
             .useXpath()
-            .verify.elementPresent('//p[text()=" Date should be between 08:00 and 10:00           "]')
+            .verify.containsText("//*[contains(text(), 'End time')]/../..", "Date should be between 08:00 and 10:00")
 
             .setValueByCss('me-date-time-input#elementEnd input.form-control.dateTimeInput.dateTimeInput', ['9:45', browser.Keys.ENTER])
-            .clickBySelectorXpath('//option[contains(text(),"No meetings allowed")]')
+            .clickBySelectorXpath('//option[contains(text(),"No meetings allowed")]');
     },
 
     'click on attach button': function (browser) {
@@ -68,8 +68,8 @@ module.exports = _.assign(presteps, auth, {
 
     'the person is displayed': function (browser) {
         browser
-            .verify.elementPresent('//li[text()=" - Hannula Panu             "]')
-            .verify.elementPresent('(//b[contains(text(),"Musti Group Oy")])[1]')
+            .verify.containsText('(//table[@class="table table-striped"]//li)[1]','Hannula Panu')
+            .verify.elementPresent('(//b[contains(text(),"Musti ja Mirri Group Oy")])[1]')
 
             .verify.elementPresent('//i[@class="fa fa-pencil edit-element"]')
             .verify.elementPresent('//i[@class="fa fa-trash-o delete-element"]')
@@ -83,9 +83,12 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
             .verify.elementPresent('//h5[contains(text(),"08:00 - 09:45")]')
             .verify.elementPresent('//h5[contains(text(),"Presentation / Chairman")]')
+
+            .verify.elementPresent('(//b[contains(text(),"Musti ja Mirri Group Oy")])[1]')
+            .verify.containsText('(//table[@class="table table-striped"]//li)[1]','Hannula Panu')
+
             .verify.elementPresent('//button[contains(text(), "Add room")]')
-            .verify.elementPresent('(//b[contains(text(),"Musti Group Oy")])[1]')
-            .verify.elementPresent('//li[text()=" - Hannula Panu             "]')
+
             .verify.elementPresent('//button[@class="btn btn-primary"]/i[@class="fa fa-plus"]')
             .verify.elementPresent('//me-event-agenda-attached-presentation-list//i[@class="fa fa-pencil edit-element"]')
             .verify.elementPresent('//me-event-agenda-attached-presentation-list//i[@class="fa fa-trash-o delete-element"]');
@@ -124,25 +127,24 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
             .verify.containsText('//span[@class="label orangeGroupColorForEvent"]', 'Group 1 - orange')
 
-            .waitForElementVisible('//span[@class="label violetGroupColorForEvent"]', 2000)
             .verify.containsText('//span[@class="label violetGroupColorForEvent"]', 'Group 2 - violet')
 
             .verify.elementPresent('//h5[contains(text(),"08:00 - 09:45")]')
             .verify.elementPresent('//h5[contains(text(),"Presentation / Chairman")]')
             .verify.elementPresent('//button[contains(text(), "Add room")]')
 
-            .verify.elementPresent('(//b[contains(text(),"Musti Group Oy")])[1]')
-            .verify.elementPresent('//li[text()=" - Hannula Panu             "]')
+            .verify.containsText('(//table[@class="table table-striped"]//li)[1]','Hannula Panu')
+            .verify.elementPresent('(//b[contains(text(),"Musti ja Mirri Group Oy")])[1]')
 
             .verify.elementPresent('//button[@class="btn btn-primary"]/i[@class="fa fa-plus"]')
             .verify.elementPresent('//me-event-agenda-attached-presentation-list//i[@class="fa fa-pencil edit-element"]')
-            .verify.elementPresent('//me-event-agenda-attached-presentation-list//i[@class="fa fa-trash-o delete-element"]');
+            .verify.elementPresent('//me-event-agenda-attached-presentation-list//i[@class="fa fa-trash-o delete-element"]')
     },
 
     'delete award panel': function (browser) {
         browser
             .clickBySelectorXpath('//a[3]/i[@class="fa fa-trash-o delete-element"]')
-            .clickBySelectorXpath('//modal[@class="modal fade in"]/div/div/modal-footer/div/button[@data-marker="me-confirm__button__button__yes"]');
+            .clickBySelectorXpath('//button[@data-marker="me-confirm__button__button__yes"]');
     },
 
     'presentation/chairman has been deleted': function (browser) {
@@ -156,7 +158,7 @@ module.exports = _.assign(presteps, auth, {
     'delete container': function (browser) {
         browser
             .clickBySelectorXpath('//a[2]/i[@class="fa fa-trash-o delete-container"]')
-            .clickBySelectorXpath('//modal[@class="modal fade in"]/div/div/modal-footer/div/button[@data-marker="me-confirm__button__button__yes"]')
+            .clickBySelectorXpath('//button[@data-marker="me-confirm__button__button__yes"]')
             .verify.elementNotPresent('//b[contains(text(), "test1")]');
     },
 });

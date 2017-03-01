@@ -23,22 +23,22 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//h3[text()="Candidate 1"]')
 
             .verify.elementPresent('//label[text()="Project local name "]')
-            .verify.elementPresent('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="localName"]')
+            .verify.elementPresent('//*[text()="Candidate 1"]/../../../..//input[@formcontrolname="localName"]')
 
             .verify.elementPresent('//label[text()="Project English name "]')
-            .verify.elementPresent('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="englishName"]')
+            .verify.elementPresent('//*[text()="Candidate 1"]/../../../..//input[@formcontrolname="englishName"]')
 
             .verify.elementPresent('//label[text()="Country "]')
-            .verify.elementPresent('//*[text()="Candidate 1"]/../../../..//input[@ngcontrol="country"]')
+            .verify.elementPresent('//*[text()="Candidate 1"]/../../../..//input[@formcontrolname="country"]')
 
             .verify.elementPresent('//label[text()="Introduction"]')
-            .verify.elementPresent('//*[text()="Candidate 1"]/../../../../../..//textarea[@ngcontrol="introduction"]')
+            .verify.elementPresent('//*[text()="Candidate 1"]/../../../../../..//textarea[@formcontrolname="introduction"]')
 
             .verify.elementPresent('//input[@id="myUnit"]')
             .verify.containsText("//p", "Image format: .jpg, image size min. 800x400px")
 
             .verify.elementPresent('//img[@id="logo"]')
-            .verify.attributeContains('//img[@id="logo"]', 'src', 'master-api.managementevents.com/frontend/web/images/no-image.png')
+            .verify.attributeContains('//img[@id="logo"]', 'src', 'https://s3-eu-west-1.amazonaws.com/managementevents-app/images/no-image.png')
 
             .verify.elementPresent('//*[text()="Candidate 1"]/../../../../../..//button[text()="Save"]')
             .verify.elementPresent('//*[text()="Candidate 1"]/../../../../../..//button[text()="Delete"]')

@@ -71,8 +71,8 @@ module.exports = _.assign(presteps, auth, {
     'delete 1-TO-1 Placeholder panel': function (browser) {
         browser
             .clickBySelectorXpath('//a[3]/i[@class="fa fa-trash-o delete-element"]')
-            .waitForElementVisible('//div[text()="     Do you really want to delete element 1-TO-1 Placeholder?   "]', 2000)
-            .clickBySelectorXpath('//modal[@class="modal fade in"]/div/div/modal-footer/div/button[@data-marker="me-confirm__button__button__yes"]');
+            .verify.elementPresent('//modal-content[contains(text(),"Do you really want to delete element 1-TO-1 Placeholder?")]')
+            .clickBySelectorXpath('//button[@data-marker="me-confirm__button__button__yes"]');
     },
 
     '1-TO-1 Placeholder has been deleted': function (browser) {

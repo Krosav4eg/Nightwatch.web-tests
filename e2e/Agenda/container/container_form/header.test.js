@@ -33,7 +33,7 @@ module.exports = _.assign(presteps, auth, {
 
             .useXpath()
             .verify.containsText("(//*[contains(text(), 'Heading')]/../..)[1]", "Heading is required")
-            .clickBySelectorXpath('//modal[@class="modal fade in"]//button[1][@class="btn btn-default pull-right"]');
+            .clickBySelectorXpath('//button[1][@class="btn btn-default pull-right"]');
     },
 
     'blank.click Save': function (browser) {
@@ -46,8 +46,8 @@ module.exports = _.assign(presteps, auth, {
 
             .verify.containsText("(//*[contains(text(), 'Heading')]/../..)[1]", "Heading is required")
 
-            .clickBySelectorXpath('//modal[@class="modal fade in"]//form/div[2]/div/div/button[contains(text(),"Cancel")]')
-            .useCss()
-            .waitForElementNotVisible('div.modal-content', 4000);
+            .clickBySelectorXpath('//button[1][@class="btn btn-default pull-right"]')
+
+            .verify.elementNotPresent('//b[contains(text(), "test1")]');
     },
 });

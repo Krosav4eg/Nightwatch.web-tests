@@ -32,13 +32,13 @@ module.exports = _.assign(presteps, auth, {
     'assertion elements type in drop down list': function (browser) {
         browser
             .useCss()
-            .clickBySelectorCss('select#agendaElementTypeId', 5000)
+            .clickBySelectorCss('select#agendaElementTypeId')
 
             .useXpath()
             .verify.elementPresent('//option[contains(text(),"Hosted table placeholder")]')
             .verify.elementPresent('//option[contains(text(),"Dinner placeholder")]')
-            .verify.elementPresent('//option[contains(text(),"Group discussion placeholder")]')
-            .verify.elementPresent('//option[contains(text(),"Lunch placeholder")]');
+            .verify.elementPresent('//option[contains(text(),"Group Discussion Placeholder")]')
+            .verify.elementPresent('//option[contains(text(),"Lunch Placeholder")]');
     },
 
     'creating 1-TO-1 placeholder panel': function (browser) {
@@ -62,12 +62,12 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//label[contains(text(),"1 TO MANY MEETING hosts")]')
             .verify.elementPresent('//label[contains(text(),"Table size")]')
             .useCss()
-            .verify.elementPresent('input[ngcontrol="tableSize"]')
+            .verify.elementPresent('input[id="tableSize"]')
 
             .clickBySelectorCss('div.col-sm-8.text-center>button.btn.btn-primary')
             .useXpath()
             .verify.elementPresent('//h4[contains(text(),"Add host topics to ")]')
-            .clickBySelectorXpath('//button[@data-dismiss="modalHosts"]')
+            .clickBySelectorXpath('(//div[@class="modal in fade"]//span[contains(text(),"×")])[2]')
 
             .clickBySelectorCss('input#room')
             .clickBySelectorXpath('//div[@class="col-sm-12 container_btn_group"]/button[2][contains(text(),"Save")]');
@@ -76,8 +76,8 @@ module.exports = _.assign(presteps, auth, {
     'redirection after creation 1-TO-many-placeholder': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//h5[contains(text(),"08:55 - 09:25")]', 5000)
-            .waitForElementVisible('//h5[contains(text(),"Hosted table placeholder")]', 2000)
+            .verify.elementPresent('//h5[contains(text(),"08:55 - 09:25")]', 5000)
+            .verify.elementPresent('//h5[contains(text(),"Hosted table placeholder")]', 2000)
 
             .clickBySelectorCss('i.fa.fa-plus');
     },
@@ -85,7 +85,7 @@ module.exports = _.assign(presteps, auth, {
     'Add host topics to 1-TO-MANY Placeholder is displayed': function (browser) {
         browser
             .useXpath()
-            .verify.elementPresent('//b[contains(text(),"Hosted table placeholder")]', 2000)
+            .verify.elementPresent('//b[contains(text(),"Hosted table placeholder")]')
 
             .refresh()
             .useCss()
@@ -96,7 +96,7 @@ module.exports = _.assign(presteps, auth, {
     'delete 1-to-many-placeholder panel': function (browser) {
         browser
             .clickBySelectorXpath('//a[3]/i[@class="fa fa-trash-o delete-element"]')
-            .clickBySelectorXpath('//modal[@class="modal fade in"]/div/div/modal-footer/div/button[@data-marker="me-confirm__button__button__yes"]')
+            .clickBySelectorXpath('//button[@data-marker="me-confirm__button__button__yes"]')
     },
 
     '1-to-many-placeholder has been deleted': function (browser) {

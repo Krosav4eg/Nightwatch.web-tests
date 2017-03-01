@@ -64,12 +64,13 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('//button[text()="Add company"]')
             .waitForElementVisible('//div[text()="Please select a company"]', 30000)
     },
+
     'enter alcatel in the autocomplete to displaying companies': function (browser) {
         browser
             .refresh()
             .addNewCandidate("Alcatel");
-
     },
+
     'added second candidate has been displayed': function (browser) {
         browser
             .useXpath()
@@ -77,7 +78,7 @@ module.exports = _.assign(presteps, auth, {
 
             .verify.elementPresent('//h3[contains(text(),"Candidate 1")]')
             .verify.elementPresent('//label[contains(text(),"Company Name")]')
-            .verify.elementPresent('//span[contains(text(),"Alcatel Austria AG ")]')
+            .verify.containsText('(//span[@class="control-text"])[3]','Alcatel Austria AG')
             .verify.elementPresent('//a[contains(text(),"(M#63459)")]')
             .verify.elementPresent('//label[contains(text(),"Country")]')
             .verify.elementPresent('//span[contains(text(),"AUSTRIA")]')
@@ -96,12 +97,14 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//div[@class="form-group"]//button[text()="Save"]')
 
     },
+
     'click on add new candidate button again': function (browser) {
         browser
             .clickBySelectorXpath('//button[text()="Add a new candidate"]')
             .verify.elementNotPresent('//button[text()="Add company"]')
             .verify.elementNotPresent('//input[@value-property-name="companyId"]');
     },
+
     'set values into the input fields': function (browser) {
         browser
             .setValueByXpath('//div[1]/div/input[1][@type="text"]', 'The best of the best')
@@ -115,9 +118,9 @@ module.exports = _.assign(presteps, auth, {
 
     'select "company" candidate type': function (browser) {
         browser
-            .waitForElementVisible('//input[@id=2]', 7000)
-            .clickBySelectorXpath('//input[@id=2]');
+            .clickBySelectorXpath('//radio-item[@id=2]');
     },
+
     'click save button ': function (browser) {
         browser
             .clickBySelectorXpath('//button[@type="submit"]')
@@ -147,7 +150,7 @@ module.exports = _.assign(presteps, auth, {
 
     'status switcher is "ON"': function (browser) {
         browser
-            .clickBySelectorXpath('//input[@id=2]')
+            .clickBySelectorXpath('//radio-item[@id=2]')
             .clickBySelectorXpath('//label[@btnradio="1"]')
             .verify.cssProperty('//label[@btnradio="1"]', 'background-color', 'rgba(41, 115, 207, 1)')
 
@@ -165,15 +168,15 @@ module.exports = _.assign(presteps, auth, {
 
     'try to click on "Contact" radio button': function (browser) {
         browser
-            .clickBySelectorXpath('//input[@id=1]')
-            .waitForElementVisible('//*[contains(text(),"be changed because candidates have been selected.Please remove the existing candidates before changing the candidate type of the award.")]', 30000);
+            .clickBySelectorXpath('//radio-item[@id=1]')
+            .verify.elementPresent('//*[contains(text(),"be changed because candidates have been selected.Please remove the existing candidates before changing the candidate type of the award.")]');
 
     },
 
     'try to click on "Project" radio button': function (browser) {
         browser
-            .clickBySelectorXpath('//input[@id=3]')
-            .waitForElementVisible('//*[contains(text(),"be changed because candidates have been selected.Please remove the existing candidates before changing the candidate type of the award.")]', 30000);
+            .clickBySelectorXpath('//radio-item[@id=3]')
+            .verify.elementPresent('//*[contains(text(),"be changed because candidates have been selected.Please remove the existing candidates before changing the candidate type of the award.")]');
     },
 
     'delete all candidates from candidates table': function (browser) {

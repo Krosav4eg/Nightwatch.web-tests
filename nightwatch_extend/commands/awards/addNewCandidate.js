@@ -8,7 +8,7 @@ module.exports.command = function(text) {
     this.useCss()
         .clickBySelectorCss('button[class="row-fluid btn btn-default"]')
         .clickBySelectorCss('input[value-property-name="companyId"]')
-        .sendKeys('.auto-complete input', text)
+        .sendKeys('input[value-property-name="companyId"]', text)
         .pause(3000)
         .clickBySelectorXpath(locatorTextInput)
         .pause(3000)

@@ -14,7 +14,7 @@ module.exports.command = function () {
         .verify.elementPresent('//*[text()="Candidate 1"]/../../../../../..//button[text()="Delete"]')
 
         .verify.elementPresent('//label[text()="Introduction"]')
-        .verify.elementPresent('//*[text()="Candidate 1"]/../../../../../..//textarea[@ngcontrol="introduction"]');
+        .verify.elementPresent('//*[text()="Candidate 1"]/../../../../../..//textarea[@formcontrolname="introduction"]');
 
     return this;
 };

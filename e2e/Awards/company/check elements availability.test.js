@@ -18,7 +18,7 @@ module.exports = _.assign(presteps, auth, {
 
     'click on add a new candidate  button': function (browser) {
         browser
-            .addNewCandidate('Krankenhaus');
+            .addNewCandidate('Zscaler');
     },
 
     'added candidate has been displayed': function (browser) {
@@ -28,8 +28,8 @@ module.exports = _.assign(presteps, auth, {
 
             .verify.elementPresent('//h3[contains(text(),"Candidate 1")]')
             .verify.elementPresent('//label[contains(text(),"Company Name")]')
-            .verify.elementPresent('//span[contains(text(),"Allgemeines Krankenhaus Celle")]')
-            .verify.elementPresent('//a[contains(text(),"(M#22280)")]')
+            .verify.elementPresent('//span[contains(text(),"Zscaler ")]')
+            .verify.elementPresent('//a[contains(text(),"(M#63417)")]')
             .verify.elementPresent('//label[contains(text(),"Country")]')
             .verify.elementPresent('//span[contains(text(),"Germany")]')
 
