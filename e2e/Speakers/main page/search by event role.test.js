@@ -17,6 +17,26 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('//h4[contains(text(), "Event (#214)")]', 3000);
     },
 
+    'sort by event roles up': function (browser) {
+        browser
+            .useXpath()
+            .moveToElement('//tr[1]/th[11]', 1298, 597)
+            .clickBySelectorXpath('//tr[1]/th[11]')
+            .waitForElementVisible('//tr[1]/td[11]/span/ul/li[contains(text(),"Debate speaker")]', 30000)
+            .verify.elementPresent('//tr[2]/td[11]/span/ul/li[contains(text(),"Group discussion initiator")]')
+            .verify.elementPresent('//tr[2]/td[11]/span/ul/li[contains(text(),"Host delegate")]')
+            .verify.elementPresent('//tr[3]/td[11]/span/ul/li[contains(text(),"Host delegate")]')
+    },
+
+    'sort by event roles down': function (browser) {
+        browser
+            .moveToElement('//tr[1]/th[11]', 1298, 597)
+            .clickBySelectorXpath('//tr[1]/th[11]')
+            .waitForElementVisible('//tr[1]/td[11]/span/ul/li[contains(text(),"Keynote speaker")]', 30000)
+            .verify.elementPresent('//tr[2]/td[11]/span/ul/li[contains(text(),"Keynote speaker")]')
+            .verify.elementPresent('//tr[3]/td[11]/span/ul/li[contains(text(),"Host delegate")]')
+    },
+
     'drop down list verify': function (browser) {
         browser
             .moveToElement('(//tr[1]/td[11])[1]', 1298, 597)
@@ -132,8 +152,8 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('(//option[@value="11"])[2]')
             .verify.elementPresent('//h4/span[contains(text(), "2")]')
 
-            .verify.containsText("(//tr[1]/td[11]/span/ul/li)[2]", "Host delegate")
-            .verify.containsText("(//tr[2]/td[11]/span/ul/li)[1]", "Host delegate");
+            .verify.containsText("(//tr[1]/td[11]/span/ul/li)[1]", "Host delegate")
+            .verify.containsText("(//tr[2]/td[11]/span/ul/li)[2]", "Host delegate");
     },
 
     'check Keynote speaker': function (browser) {
@@ -141,9 +161,9 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('(//option[@value="12"])[2]')
             .verify.elementPresent('//h4/span[contains(text(), "3")]')
 
-            .verify.containsText("(//tr[1]/td[11]/span/ul/li)[2]", "Keynote speaker")
+            .verify.containsText("(//tr[1]/td[11]/span/ul/li)[1]", "Keynote speaker")
             .verify.containsText("(//tr[2]/td[11]/span/ul/li)[1]", "Keynote speaker")
-            .verify.containsText("(//tr[3]/td[11]/span/ul/li)[1]", "Keynote speaker");
+            .verify.containsText("(//tr[3]/td[11]/span/ul/li)[2]", "Keynote speaker");
     },
 
     'check Panel': function (browser) {

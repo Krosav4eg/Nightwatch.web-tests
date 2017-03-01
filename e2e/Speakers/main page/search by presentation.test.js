@@ -17,10 +17,32 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('//h4[text()="Event (#214)"]', 3000)
     },
 
+    'sort by presentation type up': function (browser) {
+        browser
+            .useXpath()
+            .moveToElement('//tr[1]/th[10]', 1298, 597)
+            .clickBySelectorXpath('//tr[1]/th[10]')
+            .verify.containsText('//tr[1]/td[10]/span/ul/li', 'Debate')
+            .verify.containsText('//tr[2]/td[10]/span/ul/li', 'Group discussion initiation')
+            .verify.containsText('//tr[3]/td[10]/span/ul/li', 'Keynote')
+            .verify.containsText('//tr[4]/td[10]/span/ul/li', 'Keynote')
+            .verify.containsText('//tr[5]/td[10]/span/ul/li', 'Keynote')
+    },
+
+    'sort by presentation type down': function (browser) {
+        browser
+            .moveToElement('//tr[1]/th[10]', 1298, 597)
+            .clickBySelectorXpath('//tr[1]/th[10]')
+            .verify.containsText('//tr[2]/td[10]/span/ul/li', 'Keynote')
+            .verify.containsText('//tr[3]/td[10]/span/ul/li', 'Keynote')
+            .verify.containsText('//tr[4]/td[10]/span/ul/li', 'Group discussion initiation')
+            .verify.containsText('//tr[5]/td[10]/span/ul/li', 'Debate')
+    },
+
     'check case-parallel presentations': function (browser) {
         browser
             .useXpath()
-            .moveToElement('//*[contains(text(),"Panel discussion")]', 2000, 195)
+            .moveToElement('//tr[1]/th[10]', 1298, 597)
             .clickBySelectorXpath('//option[text()="Case - parallel"]')
 
             .verify.elementPresent('//*[contains(text(),"No results found")]')

@@ -17,6 +17,24 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('//h4[text()="Event (#214)"]', 3000)
     },
 
+    'sort by last name up': function (browser) {
+        browser
+            .clickBySelectorXpath('//tr[1]/th[3]')
+            .verify.containsText("//tr[1]/td[3]/span/a", "Spindler")
+            .verify.containsText("//tr[2]/td[3]/span/a", "Ruhnau")
+            .verify.containsText("//tr[3]/td[3]/span/a", "Dachs")
+            .verify.containsText("//tr[4]/td[3]/span/a", "Bairlein")
+    },
+
+    'sort by last name down': function (browser) {
+        browser
+            .clickBySelectorXpath('//tr[1]/th[3]')
+            .verify.containsText("//tr[1]/td[3]/span/a", "Babeck")
+            .verify.containsText("//tr[2]/td[3]/span/a", "Bairlein")
+            .verify.containsText("//tr[3]/td[3]/span/a", "Dachs")
+            .verify.containsText("//tr[4]/td[3]/span/a", "Ruhnau")
+    },
+
     'search by last name ': function (browser) {
         browser
             .setValueByXpath('//tr[1]/td[3]/input[@type="text"]', ['Dachs', browser.Keys.ENTER])
