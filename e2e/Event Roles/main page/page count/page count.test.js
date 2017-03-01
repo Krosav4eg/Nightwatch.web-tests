@@ -18,7 +18,9 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//h3[text()="IndustryForum Energy"]')
             .verify.elementPresent('//div[text()="Local name: StrategyCircle Energie"]')
             .verify.elementPresent('//div[text()="Dates: 2012-05-09 08:00:00 - 2012-05-10 18:00:00"]')
-            .verify.elementPresent('//div[text()="Venue: , "]');
+            .verify.elementPresent('//div[text()="Venue: , "]')
+
+            .verify.containsText('//li[@class="active"]/a', 'Event Roles');
     },
 
     'page count': function (browser) {
