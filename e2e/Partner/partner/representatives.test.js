@@ -26,11 +26,21 @@ module.exports = _.assign(presteps, auth, {
             .expect.element('(//label[contains(text(),"Contact / Search")])[2]').to.be.visible;
     },
 
-    'information': function (browser) {
+    'add contact': function (browser) {
         browser
             .useXpath()
+            .moveToElement('(//label[contains(text(),"Contact / Search")])[2]', 500, 800)
+
+            .clickBySelectorXpath('(//input[@placeholder="Search contact"])[2]')
+            .setValueByCss('.auto-complete input', 'Möller')
+            .pause(3000)
+            .clickBySelectorXpath('//*[contains(text(),"Möller")]')
+            .clickBySelectorXpath('(//button[contains(text(),"Save")])[6]');
+    },
+
+    'information': function (browser) {
+        browser
             .verify.elementPresent('//a[contains(text(),"Möller Markus")]')
-            .verify.elementPresent('(//td[contains(text(),"Confirmed")])[1]')
             .verify.elementPresent('//div[contains(text(),"markus.moeller@bblaw.com")]')
             .verify.elementPresent('//div[contains(text(),"+49 160 6751398")]')
 
@@ -50,6 +60,7 @@ module.exports = _.assign(presteps, auth, {
                 browser.switchWindow(handle);
             })
     },
+
     'action': function (browser) {
         browser
             .clickBySelectorXpath('(//button[contains(text(),"Cancel")])[1]')
@@ -64,6 +75,18 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('(//button[contains(text(),"Replace")])[1]');
     },
 
+    'delete contact': function (browser) {
+        browser
+            .clickBySelectorXpath('(//button[contains(text(),"Cancel")])[1]')
+
+            .verify.elementPresent('(//h4[contains(text(),"Delete contact")])[2]')
+            .clickBySelectorXpath('(//button[contains(text(),"Yes")])[2]')
+
+            .verify.elementNotPresent('//a[contains(text(),"Möller Markus")]')
+            .verify.elementNotPresent('//div[contains(text(),"markus.moeller@bblaw.com")]')
+            .verify.elementNotPresent('//div[contains(text(),"+49 160 6751398")]');
+    },
+
     'search': function (browser) {
         browser
             .clickBySelectorXpath('(//input[@placeholder="Search contact"])[2]')
@@ -71,5 +94,10 @@ module.exports = _.assign(presteps, auth, {
             .pause(3000)
             .clickBySelectorXpath('//*[contains(text(),"Thomas Bula")]');
     },
+<<<<<<< HEAD
 })
 ;
+=======
+
+});
+>>>>>>> b926e39163209331c4099746b886e7085d4bd873
