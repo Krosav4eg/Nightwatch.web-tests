@@ -28,6 +28,7 @@
     "nightwatch-html-reporter": "^1.0.8"
   },
   "devDependencies": {
+    "html-dnd": "^1.1.0",
     "nightwatch": "^0.9.9",
     "selenium-standalone": "^5.8.0"
   }
