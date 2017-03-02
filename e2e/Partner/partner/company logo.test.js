@@ -47,7 +47,7 @@ module.exports = _.assign(presteps, auth, {
 
             .clickBySelectorXpath('(//button[text()="Save changes"])[2]')
 
-            .waitForElementVisible('//div[@class="toast-content"]', 10000)
+            .waitForElementVisible('//div[@class="simple-notification toast-notification alert"]', 10000)
             .verify.containsText('//div[@class="toast-title"]', 'Warning!')
             .verify.containsText('//div[@class="toast-message"]', 'Please upload updated print logo as well!')
             .clickBySelectorXpath('//div[@class="toast-content"]')

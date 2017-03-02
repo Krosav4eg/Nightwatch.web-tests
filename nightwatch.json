@@ -19,11 +19,11 @@
   },
   "test_workers": {
     "enabled": true,
-    "workers": 3
+    "workers": 4
   },
   "test_settings": {
     "default": {
-      "filter": "**/*.2.js",
+      "filter": "**/*.test.js",
       "selenium_host": "127.0.0.1",
       "selenium_port": 4444,
       "launch_url": "http://alpha.skynet.managementevents.com",

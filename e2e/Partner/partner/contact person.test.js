@@ -14,18 +14,18 @@ module.exports = _.assign(presteps, auth, {
     'verify Contact person': function (browser) {
         browser
             .useXpath()
-            .verify.containsText('(//h4)[6]', "Contact person")
+            .verify.containsText('(//*[@class="panel-title card-title"])[6]', "Contact person")
 
-            .clickBySelectorXpath('(//h4)[6]')
+            .clickBySelectorXpath('(//*[@class="panel-title card-title"])[6]')
             .expect.element('//a[text()="To App"]').to.not.be.visible;
 
-        browser.clickBySelectorXpath('(//h4)[6]')
+        browser.clickBySelectorXpath('(//*[@class="panel-title card-title"])[6]')
             .expect.element('//a[text()="To App"]').to.be.visible;
     },
 
     'search Contact person': function (browser) {
         browser
-            .addContactPerson('Rehab', '1');
+            .addContactPerson('Benno Engelmann', '1');
     },
 
     'verify grid Contact person': function (browser) {

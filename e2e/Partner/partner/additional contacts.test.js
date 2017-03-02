@@ -14,12 +14,12 @@ module.exports = _.assign(presteps, auth, {
     'participation info': function (browser) {
         browser
             .useXpath()
-            .verify.containsText('(//h4/a/div)[7]', "Additional contacts")
-            .clickBySelectorXpath('(//h4/a/div)[7]')
+            .verify.containsText('(//*[@class="panel-title card-title"])[9]', "Additional contacts")
+            .clickBySelectorXpath('(//*[@class="panel-title card-title"])[9]')
             .expect.element('//*[text()="Email"]/../../../tbody/tr/td/button').to.not.be.visible;
 
         browser
-            .clickBySelectorXpath('(//h4/a/div)[7]')
+            .clickBySelectorXpath('(//*[@class="panel-title card-title"])[9]')
             .expect.element('//*[text()="Email"]/../../../tbody/tr/td/button').to.be.visible;
     },
 
@@ -32,8 +32,8 @@ module.exports = _.assign(presteps, auth, {
             .pause(2000)
             .clickBySelectorXpath('//*[text()="Email"]/../../../tbody/tr/td/button')
 
-            .verify.elementPresent('(//div[@class="panel panel-primary accordion-panel-view"]//button[contains(text(),"Delete")])[2]')
-            .verify.elementPresent('(//div[@class="panel panel-primary accordion-panel-view"]//button[contains(text(),"Edit")])')
+            .verify.elementPresent('(//div[@class="panel-collapse collapse in show"]//button[contains(text(),"Delete")])[1]')
+            .verify.elementPresent('(//div[@class="panel-collapse collapse in show"]//button[contains(text(),"Edit")])[1]')
 
             .verify.elementPresent('(//input[@type="email"])[2]')
             .verify.elementPresent('(//button[contains(text(),"Add")])[1]')
@@ -47,10 +47,10 @@ module.exports = _.assign(presteps, auth, {
 
     'delete button': function (browser) {
         browser
-            .clickBySelectorXpath('(//div[@class="panel panel-primary accordion-panel-view"]//button[contains(text(),"Delete")])[2]')
+            .clickBySelectorXpath('(//div[@class="panel-collapse collapse in show"]//button[contains(text(),"Delete")])[1]')
             .verify.elementPresent('//div[contains(text(),"Additional contact person email deleted successfully")]')
 
-            .clickBySelectorXpath('(//div[@class="panel panel-primary accordion-panel-view"]//button[contains(text(),"Delete")])[2]')
+            .clickBySelectorXpath('(//div[@class="panel-collapse collapse in show"]//button[contains(text(),"Delete")])[1]')
             .verify.elementNotPresent('(//input[@type="email"])[2]')
             .verify.elementPresent('//div[contains(text(),"Additional contact person email deleted successfully")]');
     },

@@ -15,7 +15,7 @@ module.exports = _.assign(presteps, auth, {
         browser
             .clickBySelectorXpath('//option[@value=1]')
 
-            .verify.containsText('//tr[1]/td[2]/span', 'Unconfirmed')
+            .verify.containsText('//tr[1]/td[2]/span', 'Confirmed')
             .verify.containsText('//tr[2]/td[2]/span', 'Confirmed')
             .verify.containsText('//tr[3]/td[2]/span', 'Confirmed')
             .verify.containsText('//tr[4]/td[2]/span', 'Confirmed')
@@ -26,16 +26,14 @@ module.exports = _.assign(presteps, auth, {
         browser
             .clickBySelectorXpath('//option[@value=2]')
 
-            .verify.containsText('//tr[1]/td[2]/span', 'Cancelled')
-            .verify.containsText('//tr[2]/td[2]/span', 'Cancelled')
-            .verify.containsText('//tr[3]/td[2]/span', 'Cancelled')
+            .verify.elementPresent('//*[contains(text(), "No results found")]')
     },
 
     'choose Show only active': function (browser) {
         browser
             .clickBySelectorXpath('//option[@value=0]')
 
-            .verify.containsText('//tr[1]/td[2]/span', 'Unconfirmed')
+            .verify.containsText('//tr[1]/td[2]/span', 'Confirmed')
             .verify.containsText('//tr[2]/td[2]/span', 'Confirmed')
             .verify.containsText('//tr[3]/td[2]/span', 'Confirmed')
             .verify.containsText('//tr[4]/td[2]/span', 'Confirmed')
@@ -47,7 +45,7 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('//option[@value=2]')
             .clickBySelectorXpath('//button[@class="btn btn-default btn-block filter-button-margins"]')
 
-            .verify.containsText('//tr[1]/td[2]/span', 'Unconfirmed')
+            .verify.containsText('//tr[1]/td[2]/span', 'Confirmed')
             .verify.containsText('//tr[2]/td[2]/span', 'Confirmed')
             .verify.containsText('//tr[3]/td[2]/span', 'Confirmed')
             .verify.containsText('//tr[4]/td[2]/span', 'Confirmed')

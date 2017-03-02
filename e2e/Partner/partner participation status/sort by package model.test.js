@@ -23,9 +23,9 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//*[contains(text(), "No results found")]')
 
             .clickBySelectorXpath('(//option)[1]')
-            .verify.containsText('//tr[1]/td[1]/span', 'Al Ryan Gate Computer Trading LLC')
-            .verify.containsText('//tr[2]/td[1]/span', 'Al Rostamani Communications')
-            .verify.containsText('//tr[3]/td[1]/span', 'ats Computer Accessories & Technical Services')
+            .verify.containsText('//tr[1]/td[1]/span', 'Beta Information Technology Company')
+            .verify.containsText('//tr[2]/td[1]/span', 'Crayon UAE')
+            .verify.containsText('//tr[3]/td[1]/span', 'FujiSoft Technology LLC')
     },
 
 });

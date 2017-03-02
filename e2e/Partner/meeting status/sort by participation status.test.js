@@ -27,7 +27,7 @@ module.exports = _.assign(presteps, auth, {
         browser
             .clickBySelectorXpath('//*[contains(text(), "Participation status")]')
 
-            .verify.containsText('//tr[1]/td[2]/span', 'Unconfirmed')
+            .verify.containsText('//tr[1]/td[2]/span', 'Confirmed')
             .verify.containsText('//tr[2]/td[2]/span', 'Confirmed')
             .verify.containsText('//tr[3]/td[2]/span', 'Confirmed')
             .verify.containsText('//tr[4]/td[2]/span', 'Confirmed')
@@ -38,7 +38,7 @@ module.exports = _.assign(presteps, auth, {
         browser
             .clickBySelectorXpath('//option[text()="Unconfirmed"]')
 
-            .verify.containsText('//tr[1]/td[2]/span', 'Unconfirmed')
+            .verify.elementPresent('//*[contains(text(), "No results found")]')
     },
 
     'choose Confirmed (rebook)': function (browser) {

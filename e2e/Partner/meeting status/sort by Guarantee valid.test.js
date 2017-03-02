@@ -16,7 +16,7 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('//tr/th[6]')
             .clickBySelectorXpath('//tr/th[6]')
 
-            .verify.containsText('//tr[1]/td[6]/span', 'Yes')
+            .verify.containsText('//tr[1]/td[6]/span', '')
             .verify.containsText('//tr[2]/td[6]', '')
             .verify.containsText('//tr[3]/td[6]', '')
             .verify.containsText('//tr[4]/td[6]', '')
@@ -38,7 +38,7 @@ module.exports = _.assign(presteps, auth, {
         browser
             .clickBySelectorXpath('//option[text()="Yes"]')
 
-            .verify.containsText('//tr[1]/td[6]/span', 'Yes')
+            .verify.elementPresent('//*[contains(text(), "No results found")]')
     },
 
     'choose No': function (browser) {

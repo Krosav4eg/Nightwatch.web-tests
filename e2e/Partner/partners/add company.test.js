@@ -17,10 +17,10 @@ module.exports = _.assign(presteps, auth, {
 
             .clickBySelectorXpath('(//button[text()="Add company"])[2]')
 
-            .waitForElementVisible('//div[@class="toast-content"]', 10000)
-            .verify.containsText('//div[@class="toast-title"]', 'Error')
-            .verify.containsText('//div[@class="toast-message"]', 'Please select a company')
-            .clickBySelectorXpath('//div[@class="toast-content"]')
+            .waitForElementVisible('//div[@class="simple-notification toast-notification error"]', 10000)
+            .verify.containsText('//div[@class="sn-title"]', 'Error')
+            .verify.containsText('//div[@class="sn-content"]', 'Please select a company')
+            .clickBySelectorXpath('//div[@class="simple-notification toast-notification error"]')
 
             .clickBySelectorXpath('//button[text()="Cancel"]')
     },
@@ -56,9 +56,9 @@ module.exports = _.assign(presteps, auth, {
 
             .clickBySelectorXpath('(//button[text()="Add company"])[2]')
 
-            .waitForElementVisible('//div[@class="toast-content"]', 10000)
-            .verify.containsText('//div[@class="toast-title"]', 'Error')
-            .verify.containsText('//div[@class="toast-message"]', 'Company already registered to event')
-            .clickBySelectorXpath('//div[@class="toast-content"]')
+            .waitForElementVisible('//div[@class="simple-notification toast-notification error"]', 10000)
+            .verify.containsText('//div[@class="sn-title"]', 'Error')
+            .verify.containsText('//div[@class="sn-content"]', 'Please select a company')
+            .clickBySelectorXpath('//div[@class="simple-notification toast-notification error"]')
     },
 });

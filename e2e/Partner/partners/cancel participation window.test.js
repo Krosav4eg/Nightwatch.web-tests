@@ -23,10 +23,10 @@ module.exports = _.assign(presteps, auth, {
             .moveToElement('//tr/td[13]', 1298, 597)
             .clickBySelectorXpath('(//button[contains(text(), "Cancel participation")])[1]')
 
-            .verify.containsText('(//h4[@class="modal-title"])[2]', 'Cancel participation')
-            .verify.containsText('(//div[@class="form-group"])[2]', 'Are you sure you want to cancel this participation?')
+            .verify.containsText('(//h4[@class="modal-title"])[1]', 'Cancel participation')
+            .verify.containsText('(//div[@class="form-group"])[1]', 'Are you sure you want to cancel this participation?')
 
-            .clickBySelectorXpath('(//button[@aria-label="Close"]/span)[2]')
+            .clickBySelectorXpath('(//button[@aria-label="Close"]/span)[1]')
 
             .clickBySelectorXpath('(//button[contains(text(), "Cancel participation")])[1]')
             .clickBySelectorXpath('//button[text()="No"]')
@@ -54,7 +54,7 @@ module.exports = _.assign(presteps, auth, {
             .pause(3000)
             .clickBySelectorXpath('(//option[@value=1])[1]')
             .click('(//*[text()="Save"])[1]')
-            .waitForElementVisible('//div[@class="toast-content"]', 10000)
+            .waitForElementVisible('//div[@class="simple-notification toast-notification success"]', 10000)
 
             .relUrl('/event/2/partners')
             .pause(4000)

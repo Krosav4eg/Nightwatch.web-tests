@@ -39,7 +39,7 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('//option[contains(text(), "Group 1 - orange")]')
             .clickBySelectorXpath('//option[contains(text(), "[No group]")]')
 
-            .verify.containsText('//*[contains(text(), "Availability From")]/../div/span', '2015-03-04 12:00:00')
+            .verify.containsText('//*[contains(text(), "Availability From")]/../div/span', '2015-03-04 8:00:00')
             .verify.containsText('//*[contains(text(), "Availability To")]/../div/span', '2015-03-04 18:00:00');
     },
 
@@ -47,9 +47,10 @@ module.exports = _.assign(presteps, auth, {
         browser
             .clickBySelectorXpath('//button[text()="Save"]')
 
-            .verify.containsText('//div[@class="toast-title"]', 'Success!')
-            .verify.containsText('//div[@class="toast-message"]', 'Event Participant saved')
-            .clickBySelectorXpath('//div[@class="toast-content"]');
+            .waitForElementVisible('//div[@class="simple-notification toast-notification success"]', 10000)
+            .verify.containsText('//div[@class="sn-title"]', 'Success')
+            .verify.containsText('//div[@class="sn-content"]', 'Event Participant saved')
+            .clickBySelectorXpath('//div[@class="simple-notification toast-notification success"]')
     },
 
     'click by canceled button': function (browser) {

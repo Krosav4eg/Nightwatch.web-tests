@@ -14,12 +14,12 @@ module.exports = _.assign(presteps, auth, {
     'verify Communication': function (browser) {
         browser
             .useXpath()
-            .verify.containsText('(//h4)[10]', "Communication")
+            .verify.containsText('(//*[@class="panel-title card-title"])[10]', "Communication")
 
-            .clickBySelectorXpath('(//h4)[10]')
-            .expect.element('(//button[@class="btn btn-primary btn-lg communication-participant-btn"])[1]').to.not.be.visible;
+            .clickBySelectorXpath('(//*[@class="panel-title card-title"])[10]')
+            .expect.element('(//button[@class="btn btn-primary btn-lg btn-block"])[1]').to.not.be.visible;
 
-        browser.clickBySelectorXpath('(//h4)[10]')
-            .expect.element('(//button[@class="btn btn-primary btn-lg communication-participant-btn"])[1]').to.be.visible;
+        browser.clickBySelectorXpath('(//*[@class="panel-title card-title"])[10]')
+            .expect.element('(//button[@class="btn btn-primary btn-lg btn-block"])[1]').to.be.visible;
     },
 });

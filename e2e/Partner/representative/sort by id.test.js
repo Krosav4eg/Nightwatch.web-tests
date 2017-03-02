@@ -16,11 +16,10 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('//*[contains(text(), "E#Id")]')
             .clickBySelectorXpath('//*[contains(text(), "E#Id")]')
 
-            .verify.containsText('//tr[1]/td[2]/span', '#137118')
-            .verify.containsText('//tr[2]/td[2]', '#50775')
-            .verify.containsText('//tr[3]/td[2]', '#50774')
-            .verify.containsText('//tr[4]/td[2]', '#50773')
-            .verify.containsText('//tr[5]/td[2]', '#50772')
+            .verify.containsText('//tr[1]/td[2]', '#50775')
+            .verify.containsText('//tr[2]/td[2]', '#50774')
+            .verify.containsText('//tr[3]/td[2]', '#50773')
+            .verify.containsText('//tr[4]/td[2]', '#50772')
     },
 
     'sort by E#ID down': function (browser) {
@@ -36,14 +35,7 @@ module.exports = _.assign(presteps, auth, {
 
     'search by E#ID. Blank': function (browser) {
         browser
-            .setValueByXpath('//tr[1]/td[2]/input[@type="text"]', ['#50', browser.Keys.ENTER])
-
-            .verify.containsText('//tr[1]/td[2]/span', '#50729')
-    },
-
-    'search by E#ID. one numbers': function (browser) {
-        browser
-            .setValueByXpath('//tr[1]/td[2]/input[@type="text"]', ['#5', browser.Keys.ENTER])
+            .setValueByXpath('//tr[1]/td[2]/input[@type="text"]', ['50729', browser.Keys.ENTER])
 
             .verify.containsText('//tr[1]/td[2]/span', '#50729')
     },

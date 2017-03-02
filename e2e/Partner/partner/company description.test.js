@@ -14,13 +14,13 @@ module.exports = _.assign(presteps, auth, {
     'verify Logo info': function (browser) {
         browser
             .useXpath()
-            .verify.containsText('(//h4/a/div)[4]', "Company description & logos")
+            .verify.containsText('(//*[@class="panel-title card-title"])[5]', "Company description & logos")
 
-            .clickBySelectorXpath('(//h4/a/div)[4]')
-            .expect.element('//button[text()="Save changes"]').to.not.be.visible;
+            .clickBySelectorXpath('(//*[@class="panel-title card-title"])[5]')
+            .expect.element('(//button[text()="Save changes"])[1]').to.not.be.visible;
 
-        browser.clickBySelectorXpath('(//h4/a/div)[4]')
-            .expect.element('//button[text()="Save changes"]').to.be.visible;
+        browser.clickBySelectorXpath('(//*[@class="panel-title card-title"])[5]')
+            .expect.element('(//button[text()="Save changes"])[1]').to.be.visible;
 
     },
 
@@ -31,38 +31,37 @@ module.exports = _.assign(presteps, auth, {
 
             .clickBySelectorXpath('(//button[text()="Save changes"])[1]')
 
-            .waitForElementVisible('//div[@class="toast-content"]', 10000)
-            .verify.containsText('//div[@class="toast-title"]', 'Success!')
-            .verify.containsText('//div[@class="toast-message"]', 'Description saved successfully')
-            .clickBySelectorXpath('//div[@class="toast-content"]')
+            .waitForElementVisible('//div[@class="simple-notification toast-notification success"]', 10000)
+            .verify.containsText('//div[@class="sn-title"]', 'Success!')
+            .verify.containsText('//div[@class="sn-content"]', 'Description saved successfully')
 
-            .clearValue('//*[@ngcontrol="participantCompanyDescription"]/div/textarea')
+            .clearValue('//*[@formcontrolname="participantCompanyDescription"]/div/textarea')
             .pause(2000)
 
-            .sendKeys('//*[@ngcontrol="participantCompanyDescription"]/div/textarea', "test")
-            .verify.valueContains('//*[@ngcontrol="participantCompanyDescription"]/div/textarea', "test")
+            .sendKeys('//*[@formcontrolname="participantCompanyDescription"]/div/textarea', "test")
+            .verify.valueContains('//*[@formcontrolname="participantCompanyDescription"]/div/textarea', "test")
 
             for(var count = 0; count<500; count++){
-                browser.sendKeys('//*[@ngcontrol="participantCompanyDescription"]/div/textarea', "test");
+                browser.sendKeys('//*[@formcontrolname="participantCompanyDescription"]/div/textarea', "test");
             }
 
             browser
                 .pause(2000)
-                .verify.valueContains('//*[@ngcontrol="participantCompanyDescription"]/div/textarea', "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest")
+                .verify.valueContains('//*[@formcontrolname="participantCompanyDescription"]/div/textarea', "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest")
                 .clickBySelectorXpath('(//button[text()="Save changes"])[1]')
 
-                .waitForElementVisible('//div[@class="toast-content"]', 10000)
-                .verify.containsText('//div[@class="toast-title"]', 'Success!')
-                .verify.valueContains('//*[@ngcontrol="participantCompanyDescription"]/div/textarea', "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest")
+                .waitForElementVisible('//div[@class="simple-notification toast-notification success"]', 10000)
+                .verify.containsText('//div[@class="sn-title"]', 'Success!')
+                .verify.valueContains('//*[@formcontrolname="participantCompanyDescription"]/div/textarea', "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest")
 
 
-                .clearValue('//*[@ngcontrol="participantCompanyDescription"]/div/textarea')
-                .sendKeys('//*[@ngcontrol="participantCompanyDescription"]/div/textarea', "qwer")
+                .clearValue('//*[@formcontrolname="participantCompanyDescription"]/div/textarea')
+                .sendKeys('//*[@formcontrolname="participantCompanyDescription"]/div/textarea', "qwer")
                 .clickBySelectorXpath('(//button[text()="Save changes"])[1]')
 
-                .waitForElementVisible('//div[@class="toast-content"]', 10000)
-                .verify.containsText('//div[@class="toast-title"]', 'Success!')
+                .waitForElementVisible('//div[@class="simple-notification toast-notification success"]', 10000)
+                .verify.containsText('//div[@class="sn-title"]', 'Success!')
 
-                .verify.valueContains('//*[@ngcontrol="participantCompanyDescription"]/div/textarea', "qwer")
+                .verify.valueContains('//*[@formcontrolname="participantCompanyDescription"]/div/textarea', "qwer")
     },
 });
