@@ -19,7 +19,7 @@ module.exports = _.assign(presteps, auth, {
 
     'redirection to awards': function (browser) {
         browser
-            .relUrl('/event/1489/awards')
+            .relUrl('/event/1489/awards');
     },
 
     'click on MasterContact ID': function (browser) {
@@ -27,11 +27,11 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
 
             .waitForElementVisible('//*[text()="Candidates"]/../..', 10000)
-            .clickBySelectorXpath('//*[@type="radio" and @id="1"]')
+            .clickBySelectorXpath('//*[@id="1"]')
             .clickBySelectorXpath('//label[text()="On"]')
             .clickBySelectorXpath('//*[text()="Awards"]/../..//button[text()="Save"]')
 
-            .waitForElementVisible('//div[@class="toast-content"]', 10000)
+            .verify.elementPresent('//div[contains(text(),"Award saved successfully")]')
 
             .clickBySelectorXpath('//*[text()="Candidates"]/../..//a[contains(@href,"MasterContact")]')
             .pause(1000)
@@ -50,8 +50,8 @@ module.exports = _.assign(presteps, auth, {
             .setValueByCss('textarea[formcontrolname="introduction"]', "Test introduction")
             .clickBySelectorXpath('//*[text()="Candidates"]/../..//button[text()="Save"]')
 
-            .waitForElementVisible('//div[@class="toast-content"]', 10000)
-            .verify.containsText('//div[@class="toast-title"]', 'Success')
+            .verify.elementPresent('//div[contains(text(),"Award saved successfully")]')
+            .clickBySelectorXpath('//div[contains(text(),"Award saved successfully")]')
 
             .verify.valueContains('//textarea[@formcontrolname="introduction"]', 'Test introduction');
     },
@@ -68,7 +68,7 @@ module.exports = _.assign(presteps, auth, {
 
     'redirection to role': function (browser) {
         browser
-            .clickBySelectorXpath('//a[@href="EventRoleStatsIndex"]')
+            .clickBySelectorXpath('(//a[@id="EventRoleStatsIndex"])[2]')
     },
 
     'delete role': function (browser) {

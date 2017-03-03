@@ -12,9 +12,9 @@ module.exports.command = function(text) {
         .clickBySelectorCss('#eventParticipant')
         .useXpath()
         .sendKeys('//input[@id="eventParticipant"]', text)
-        .pause(2000)
+        .pause(10000)
         .clickBySelectorXpath(locatorTextInput)
-        .pause(2000)
+        .pause(10000)
         .clickBySelectorXpath('//button[text()="Save"]');
 
     return this;
