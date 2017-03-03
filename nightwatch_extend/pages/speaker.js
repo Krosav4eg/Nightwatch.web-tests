@@ -599,6 +599,10 @@ module.exports = {
                         selector: '//modal[@class="modal fade in"]//option[1]',
                         locateStrategy: 'xpath'
                     },
+                    any310Option: {
+                        selector: '//modal[@class="modal fade in"]//option[@value="310"]',
+                        locateStrategy: 'xpath'
+                    },
                     templateField: {
                         selector: '//div[contains(text(),"Template:")]',
                         locateStrategy: 'xpath'
@@ -625,6 +629,10 @@ module.exports = {
                     },
                     submitButton: {
                         selector: '//button[text()="Send Email"]',
+                        locateStrategy: 'xpath'
+                    },
+                    sendSuccessfully: {
+                        selector: '//div[text()="The email template was sent successfully."]',
                         locateStrategy: 'xpath'
                     },
                 }

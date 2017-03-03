@@ -39,29 +39,23 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'template is selected': function (browser) {
-        browser
-            .clickBySelectorXpath('//modal[@class="modal fade in"]//option[@value="310"]')
-            .waitForElementVisible('//me-cms-content-select-list/div[@class="row"]/div[1][@class="col-sm-12"]/div[2]/div[1]/div[2]/input[@disabled]', 5000)
-            .verify.valueContains('//me-cms-content-select-list/div[@class="row"]/div[1][@class="col-sm-12"]/div[2]/div[1]/div[2]/input[@disabled]', 'gbhn@nam.com')
-            .verify.elementPresent('//div[contains(text(),"From Name:")]')
-            .verify.elementPresent('//me-cms-content-select-list/div[@class="row"]/div[1][@class="col-sm-12"]/div[2]/div[2]/div[2]/input[@disabled]')
-            .verify.valueContains('//me-cms-content-select-list/div[@class="row"]/div[1][@class="col-sm-12"]/div[2]/div[2]/div[2]/input[@disabled]', 'Kate')
-            .verify.elementPresent('//div[contains(text(),"Reply-To Email:")]')
-            .verify.elementPresent('//me-cms-content-select-list/div[@class="row"]/div[1][@class="col-sm-12"]/div[2]/div[3]/div[2]/input[@disabled]')
-            .verify.valueContains('//me-cms-content-select-list/div[@class="row"]/div[1][@class="col-sm-12"]/div[2]/div[3]/div[2]/input[@disabled]', 'frerfgb@mail.com')
-            .verify.elementPresent('//div[contains(text(),"Subject:")]')
-            .verify.elementPresent('//me-cms-content-select-list/div[@class="row"]/div[1][@class="col-sm-12"]/div[2]/div[4]/div[2]/input[@disabled]')
-            .verify.valueContains('//me-cms-content-select-list/div[@class="row"]/div[1][@class="col-sm-12"]/div[2]/div[4]/div[2]/input[@disabled]', 'resttgytygh')
-            .verify.elementPresent('//p[text()="rgfiugnjitgyhtyh"]')
-            .verify.elementPresent('//button[text()="Cancel"]')
-            .verify.elementPresent('//button[text()="Send Email"]')
+        var sendEmailSection = browser.page.speaker().section.sendEmail;
+        sendEmailSection
+            .clickBySelector('@any310Option')
 
-            .clickBySelectorXpath('//button[text()="Send Email"]')
-            .waitForElementVisible('//div[text()="The email template was sent successfully."]',4000);
+            .verify.elementPresent('@templateField')
+            .verify.valueContains('@fromEmailInput', 'gbhn@nam.com')
+            .verify.valueContains('@fromNameInput', 'Kate')
+            .verify.valueContains('@replyToEmailInput', 'frerfgb@mail.com')
+            .verify.valueContains('@subjectInput', 'resttgytygh')
+
+            .clickBySelector('@submitButton')
+            .waitForElementVisible('@sendSuccessfully',4000);
     },
 
     'check edit email template ': function (browser) {
-        browser
+        var sendEmailSection = browser.page.speaker().section.sendEmail;
+        sendEmailSection
             .relUrl('/email-templates/edit/310')
 
             .verify.valueContains('//input[@ngcontrol="name"]', 'Testyhh')
