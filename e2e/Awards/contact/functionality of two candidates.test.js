@@ -15,8 +15,9 @@ module.exports = _.assign(presteps, auth, {
     'add new role': function (browser) {
         browser
             .addNewRole("Alveid")
-            .pause(1000)
-            .addNewRole("Gloppen");
+            .pause(3000)
+            .addNewRole("Gloppen")
+            .pause(3000);
     },
 
     'redirection to awards': function (browser) {
@@ -29,11 +30,11 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
 
             .waitForElementVisible('//*[text()="Candidates"]/../..', 10000)
-            .clickBySelectorXpath('//*[@type="radio" and @id="1"]')
+            .clickBySelectorXpath('//*[@id="1"]')
             .clickBySelectorXpath('//label[text()="On"]')
             .clickBySelectorXpath('//*[text()="Awards"]/../..//button[text()="Save"]')
 
-            .waitForElementVisible('//div[@class="toast-content"]', 10000)
+            .verify.elementPresent('//div[contains(text(),"Award saved successfully")]')
 
             .waitForElementVisible('//*[text()="Candidates"]/../..', 10000)
             .verify.containsText('//*[text()="Candidates"]/../..', "Candidate 1")
@@ -45,8 +46,8 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('(//button[text()="Winner"])[1]')
             .clickBySelectorXpath('(//*[text()="Candidates"]/../..//button[text()="Save"])[1]')
 
-            .waitForElementVisible('//div[@class="toast-content"]', 10000)
-            .clickBySelectorXpath('//div[@class="toast-content"]')
+            .verify.elementPresent('//div[contains(text(),"Award saved successfully")]')
+
             .verify.cssProperty('(//button[text()="Winner"])[1]', 'background-color', 'rgba(133, 199, 68, 1)')
 
             .refresh()
@@ -59,10 +60,8 @@ module.exports = _.assign(presteps, auth, {
         browser
             .clickBySelectorXpath('(//*[text()="Candidates"]/../..//button[text()="Save"])[1]')
 
-            .waitForElementVisible('//div[@class="toast-content"]', 10000)
-            .verify.containsText('//div[@class="toast-title"]', 'Success')
-            .verify.containsText('//div[@class="toast-message"]', 'Award save')
-            .clickBySelectorXpath('//div[@class="toast-content"]');
+            .verify.elementPresent('//div[contains(text(),"Award saved successfully")]')
+            .clickBySelectorXpath('//div[contains(text(),"Award saved successfully")]');
     },
 
     'press on [Winner] button twice': function (browser) {
@@ -70,15 +69,15 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('(//button[text()="Winner"])[1]')
             .clickBySelectorXpath('(//*[text()="Candidates"]/../..//button[text()="Save"])[1]')
 
-            .waitForElementVisible('//div[@class="toast-content"]', 10000)
-            .clickBySelectorXpath('//div[@class="toast-content"]')
+            .verify.elementPresent('//div[contains(text(),"Award saved successfully")]')
+            .clickBySelectorXpath('//div[contains(text(),"Award saved successfully")]')
             .verify.cssProperty('(//button[text()="Winner"])[1]', 'background-color', 'rgba(79, 142, 220, 1)')
 
             .clickBySelectorXpath('(//button[text()="Winner"])[1]')
             .clickBySelectorXpath('(//*[text()="Candidates"]/../..//button[text()="Save"])[1]')
 
-            .waitForElementVisible('//div[@class="toast-content"]', 10000)
-            .clickBySelectorXpath('//div[@class="toast-content"]')
+            .verify.elementPresent('//div[contains(text(),"Award saved successfully")]')
+            .clickBySelectorXpath('//div[contains(text(),"Award saved successfully")]')
             .verify.cssProperty('(//button[text()="Winner"])[1]', 'background-color', 'rgba(133, 199, 68, 1)');
     },
 
@@ -87,8 +86,8 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('(//button[text()="Winner"])[2]')
             .clickBySelectorXpath('(//*[text()="Candidates"]/../..//button[text()="Save"])[2]')
 
-            .waitForElementVisible('//div[@class="toast-content"]', 10000)
-            .clickBySelectorXpath('//div[@class="toast-content"]')
+            .verify.elementPresent('//div[contains(text(),"Award saved successfully")]')
+            .clickBySelectorXpath('//div[contains(text(),"Award saved successfully")]')
             .verify.cssProperty('(//button[text()="Winner"])[2]', 'background-color', 'rgba(133, 199, 68, 1)')
             .verify.cssProperty('(//button[text()="Winner"])[1]', 'background-color', 'rgba(79, 142, 220, 1)');
     },
@@ -98,15 +97,15 @@ module.exports = _.assign(presteps, auth, {
             .setValueByXpath('(//textarea[@formcontrolname="winnerDescription"])[1]', "test test test")
             .clickBySelectorXpath('(//*[text()="Candidates"]/../..//button[text()="Save"])[2]')
 
-            .waitForElementVisible('//div[@class="toast-content"]', 10000)
-            .clickBySelectorXpath('//div[@class="toast-content"]')
+            .verify.elementPresent('//div[contains(text(),"Award saved successfully")]')
+            .clickBySelectorXpath('//div[contains(text(),"Award saved successfully")]')
 
             .verify.valueContains('(//textarea[@formcontrolname="winnerDescription"])[1]', 'test test test')
 
             .clickBySelectorXpath('(//button[text()="Winner"])[2]')
             .clickBySelectorXpath('(//*[text()="Candidates"]/../..//button[text()="Save"])[2]')
-            .waitForElementVisible('//div[@class="toast-content"]', 10000)
-            .clickBySelectorXpath('//div[@class="toast-content"]')
+            .verify.elementPresent('//div[contains(text(),"Award saved successfully")]')
+            .clickBySelectorXpath('//div[contains(text(),"Award saved successfully")]')
 
             .verify.cssProperty('(//button[text()="Winner"])[2]', 'background-color', 'rgba(79, 142, 220, 1)')
             .verify.cssProperty('(//button[text()="Winner"])[1]', 'background-color', 'rgba(79, 142, 220, 1)');
@@ -130,7 +129,7 @@ module.exports = _.assign(presteps, auth, {
 
     'redirection to Awards after delete': function (browser) {
         browser
-            .clickBySelectorXpath('//a[@href="EventAwardIndex"]')
+            .clickBySelectorXpath('(//a[@id="EventAwardIndex"])[2]')
     },
 
     'verify Delete role': function (browser) {

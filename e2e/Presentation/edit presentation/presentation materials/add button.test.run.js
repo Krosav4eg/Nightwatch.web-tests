@@ -19,15 +19,16 @@ module.exports = _.assign(presteps, auth, {
 
     'go to the edit presentation': function (browser) {
         browser
-            .clickBySelectorXpath('//a[@href="/presentations/edit/3696"]')
+            .clickBySelectorXpath('//a[@href="/presentations/edit/628"]')
     },
 
     'add button verify': function (browser) {
         browser
-            .setValueByXpath('//input[@type="file"]', __dirname + '/Agenda-Elements.docx')
+            .setValueByXpath('//input[@type="file"]', __dirname + '/Event-Agenda.docx')
             .pause(2000)
             .clickBySelectorXpath('//*[text()="Upload file"]')
             .useXpath()
+            .verify.containsText('//li[@class="list-group-item list-material-item"]', 'Event-Agenda.docx (351.29 kB)')
             .waitForElementVisible('//p[@class="btn material-delete btn-primary"]', 8000)
 
             .click('//p[@class="btn material-delete btn-primary"]')
@@ -35,12 +36,12 @@ module.exports = _.assign(presteps, auth, {
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
-            .verify.elementNotPresent('//li[contains(text(),"Agenda-Elements.docx (999.99 kB)")]')
+            .verify.elementNotPresent('//li[contains(text(),"Event-Agenda.docx (351.29 kB)")]')
 
             .setValueByXpath('//input[@type="file"]', __dirname + '/Event-Agenda.docx')
             .clickBySelectorXpath('//button[text()="Upload file"]')
             .useXpath()
-            .waitForElementVisible('//li[contains(text(),"Event-Agenda.docx (351.29 kB)")]', 8000)
+            .verify.containsText('//li[@class="list-group-item list-material-item"]', 'Event-Agenda.docx (351.29 kB)')
             .waitForElementVisible('//p[@class="btn material-delete btn-primary"]', 8000)
 
             .click('//p[@class="btn material-delete btn-primary"]')
