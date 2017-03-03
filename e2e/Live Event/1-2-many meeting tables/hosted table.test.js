@@ -20,7 +20,7 @@ module.exports = _.assign(presteps, auth, {
 
     'verify amount of seats in the table': function (browser) {
         browser
-            .elements('xpath','(//*[@class="table table-bordered"])[1]/tbody/tr', function (result) {
+            .elements('xpath', '(//*[@class="table table-bordered"])[1]/tbody/tr', function (result) {
                 var count = result.value.length;
                 this
                     .useXpath()
@@ -30,7 +30,7 @@ module.exports = _.assign(presteps, auth, {
 
     'verify Amount of people in table': function (browser) {
         browser
-            .elements('xpath','(//*[@class="table table-bordered"])[1]/tbody/tr[@class]', function (result) {
+            .elements('xpath', '(//*[@class="table table-bordered"])[1]/tbody/tr[@class]', function (result) {
                 var count = result.value.length;
                 this
                     .useXpath()
