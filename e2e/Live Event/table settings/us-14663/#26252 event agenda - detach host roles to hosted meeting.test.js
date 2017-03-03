@@ -10,11 +10,11 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
-    //
-    // 'creation new container': function (browser) {
-    //     browser
-    //         .containerCreationForAgenda();
-    // },
+
+    'creation new container': function (browser) {
+        browser
+            .containerCreationForAgenda();
+    },
 
     'add element button': function (browser) {
         browser
@@ -50,7 +50,7 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorCss('div.col-sm-8.text-center>button.btn.btn-primary')
             .pause(1000)
             .useXpath()
-        //  .verify.elementPresent('(//h4[contains(text(),"Add host topics to ")])[2]')
+            .verify.elementPresent('(//h4[contains(text(),"Add host topics to ")])[2]')
             .clickBySelectorXpath('(//input[@type="checkbox"])[15]')
 
             .clickBySelectorXpath('(//button[@class="btn btn-primary pull-left"])[2]');
@@ -84,7 +84,7 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
             .click('(//i[@class="fa fa-trash-o delete-element"])[3]')
             .pause(2000)
-            .verify.containsText('(//modal[@class="modal fade in"]//div[@class="modal-body"])[2]','Do you really want to detach current host with topic?')
+            .verify.containsText('(//modal[@class="modal fade in"]//div[@class="modal-body"])[2]', 'Do you really want to detach current host with topic?')
             .pause(1000)
             .click('//modal[@class="modal fade in"]//button[@data-marker="me-confirm__button__button__yes"]')
             .verify.elementNotPresent('(//b[contains(text(),"NetApp Denmark ApS")])[2]')
@@ -98,7 +98,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//h5[contains(text(),"Hosted table placeholder")]')
 
             .verify.elementPresent('(//b[contains(text(),"NetApp Denmark ApS")])[1]')
-            .verify.containsText('//span/br[1]','Hvilke krav stilles der til fremtidens datacenter  ? Hvilke krav stiller I ? Hvilke krav bør I stille ?');
+            .verify.containsText('//span/br[1]', 'Hvilke krav stilles der til fremtidens datacenter  ? Hvilke krav stiller I ? Hvilke krav bør I stille ?');
     },
 
     'click delete button for host again': function (browser) {
@@ -109,7 +109,7 @@ module.exports = _.assign(presteps, auth, {
             .useXpath()
             .click('(//i[@class="fa fa-trash-o delete-element"])[3]')
             .pause(2000)
-            .verify.containsText('(//modal[@class="modal fade in"]//div[@class="modal-body"])[2]','Do you really want to detach current host with topic?')
+            .verify.containsText('(//modal[@class="modal fade in"]//div[@class="modal-body"])[2]', 'Do you really want to detach current host with topic?')
             .pause(1000)
             .click('//modal[@class="modal fade in"]//button[@data-marker="me-confirm__button__button__yes"]')
             .verify.elementNotPresent('(//b[contains(text(),"NetApp Denmark ApS")])[2]')
