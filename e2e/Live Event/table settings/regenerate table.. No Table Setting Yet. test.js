@@ -20,4 +20,12 @@ module.exports = _.assign(presteps, auth, {
             .setValueByXpath('(//*[text()="Lunch  1"]/../../../div/label/input)[2]', "9")
             .clickBySelectorXpath('//button[text()="(Re)Generate"]')
     },
+
+    'verify add new table': function (browser) {
+        browser
+            .elements('css selector','.table.table-bordered', function (result) {
+                var count = result.value.length;
+                this.verify.equal(count, 31);
+            })
+    },
 });
