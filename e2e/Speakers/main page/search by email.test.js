@@ -7,41 +7,40 @@ module.exports = _.assign(presteps, auth, {
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/212/speakers')
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
 
     'check event data': function (browser) {
-        browser
-            .useXpath()
-            .waitForElementVisible('//h4[text()="Event (#212)"]', 3000)
+        var eventSection = browser.page.speaker().section.event;
+        eventSection
+            .waitForElementVisible('@totalName212', 3000);
     },
 
     'sort by email up': function (browser) {
-        browser
-            .clickBySelectorXpath('//tr[1]/th[6]')
-            .useXpath()
-            .verify.containsText("//tr[1]/td[6]/span", "boris.funke@citiworks.de")
-            .verify.containsText("//tr[2]/td[6]/span", "holger.kink@rwe.com")
-            .verify.containsText("//tr[3]/td[6]/span", "ingo.alpheus@rwe.com")
+        var emailColumnSection = browser.page.speaker().section.emailColumn;
+        emailColumnSection
+            .clickBySelector('@nameColumn')
+
+            .verify.containsText("@firstRow", "boris.funke@citiworks.de")
+            .verify.containsText("@secondRow", "holger.kink@rwe.com")
+            .verify.containsText("@thirdRow", "ingo.alpheus@rwe.com")
     },
 
     'sort by email down': function (browser) {
-        browser
-            .clickBySelectorXpath('//tr[1]/th[6]')
-            .useXpath()
-            .verify.containsText("//tr[1]/td[6]/span", "ingo.alpheus@rwe.com")
-            .verify.containsText("//tr[2]/td[6]/span", "holger.kink@rwe.com")
-            .verify.containsText("//tr[3]/td[6]/span", "boris.funke@citiworks.de");
+        var emailColumnSection = browser.page.speaker().section.emailColumn;
+        emailColumnSection
+            .clickBySelector('@nameColumn')
+
+            .verify.containsText("@firstRow", "ingo.alpheus@rwe.com")
+            .verify.containsText("@secondRow", "holger.kink@rwe.com")
+            .verify.containsText("@thirdRow", "boris.funke@citiworks.de");
     },
 
     'search by email ': function (browser) {
-        browser
-            .setValueByXpath('//tr[1]/td[6]/input[@type="text"]', ['holger.kink@rwe.com', browser.Keys.ENTER])
-            .useCss()
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
-            .useXpath()
-            .waitForElementVisible('//tr[1]/td[6]/span', 3000)
-            .verify.containsText("//tr[1]/td[6]/span", "holger.kink@rwe.com")
+        var emailColumnSection = browser.page.speaker().section.emailColumn;
+        emailColumnSection
+            .setValueBySelector('@seachColumn', ['holger.kink@rwe.com', browser.Keys.ENTER])
+
+            .waitForElementVisible('@firstRow', 3000)
+            .verify.containsText("@firstRow", "holger.kink@rwe.com")
     },
 });

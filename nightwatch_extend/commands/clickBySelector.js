@@ -4,7 +4,6 @@
  * @returns {Object}
  */
 module.exports.command = function(selector) {
-    this.useXpath()
     this
         .waitForElementVisible(selector, 10000)
         .click(selector)

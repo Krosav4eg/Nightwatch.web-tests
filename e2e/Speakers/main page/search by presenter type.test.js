@@ -7,50 +7,54 @@ module.exports = _.assign(presteps, auth, {
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/214/speakers')
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
     
     'check event data': function (browser) {
-        browser
-            .useXpath()
-            .waitForElementVisible('//h4[text()="Event (#214)"]', 3000)
+        var eventSection = browser.page.speaker().section.event;
+        eventSection
+            .waitForElementVisible('@totalName214', 3000);
     },
 
     'sort by presenter type up': function (browser) {
-        browser
-            .useXpath()
-            .moveToElement('//tr[1]/th[12]', 1298, 597)
-            .clickBySelectorXpath('//tr[1]/th[12]')
-            .verify.containsText('//tr[1]/td[12]/span/ul/li/span', 'Delegate')
-            .verify.containsText('//tr[3]/td[12]/span/ul/li/span', 'Delegate')
-            .verify.containsText('//tr[4]/td[12]/span/ul/li/span', 'Delegate')
+        var presenterTypeSection = browser.page.speaker().section.presenterTypeColumn;
+
+        presenterTypeSection
+            .moveToElement('@nameColumn', 1298, 597)
+            .clickBySelector('@nameColumn')
+            .verify.containsText('@firstRow', 'Delegate')
+            .verify.containsText('@thirdRow', 'Delegate')
+            .verify.containsText('@fourthRow', 'Delegate')
     },
 
     'sort by presenter type down': function (browser) {
-        browser
-            .moveToElement('//tr[1]/th[12]', 1298, 597)
-            .clickBySelectorXpath('//tr[1]/th[12]')
-            .verify.containsText('//tr[3]/td[12]/span/ul/li', 'Delegate')
-            .verify.containsText('//tr[4]/td[12]/span/ul/li', 'Delegate')
-            .verify.containsText('//tr[5]/td[12]/span/ul/li', 'Delegate')
+        var presenterTypeSection = browser.page.speaker().section.presenterTypeColumn;
+
+        presenterTypeSection
+            .moveToElement('@nameColumn', 1298, 597)
+            .clickBySelector('@sortColumn')
+            .verify.containsText('@thirdRow', 'Delegate')
+            .verify.containsText('@fourthRow', 'Delegate')
+            .verify.containsText('@fifthRow', 'Delegate')
     },
 
     'check delegate type': function (browser) {
-        browser
-            .useXpath()
-            .moveToElement('//tr[1]/td[12]', 1298, 597)
-            .clickBySelectorXpath('//option[text()="Delegate"]')
-            .verify.containsText("//tr[1]/td[12]/span/ul/li", "Delegate")
-            .verify.containsText("//tr[2]/td[12]/span/ul/li", "Delegate")
-            .verify.containsText("//tr[3]/td[12]/span/ul/li", "Delegate")
-            .verify.containsText("//tr[4]/td[12]/span/ul/li", "Delegate")
-            .verify.containsText("//tr[5]/td[12]/span/ul/li", "Delegate")
+        var presenterTypeSection = browser.page.speaker().section.presenterTypeColumn;
+
+        presenterTypeSection
+            .moveToElement('@nameColumn', 1298, 597)
+            .clickBySelector('@delegateOption')
+            .verify.containsText("@firstRow", "Delegate")
+            .verify.containsText("@secondRow", "Delegate")
+            .verify.containsText("@thirdRow", "Delegate")
+            .verify.containsText("@fourthRow", "Delegate")
+            .verify.containsText("@fifthRow", "Delegate")
     },
 
     'check partner type': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[text()="Partner"]')
-            .verify.elementPresent('//*[contains(text(),"No results found")]')
+        var presenterTypeSection = browser.page.speaker().section.presenterTypeColumn;
+
+        presenterTypeSection
+            .clickBySelector('@partnerOption')
+            .verify.elementPresent('@noResultsFound')
     },
 });

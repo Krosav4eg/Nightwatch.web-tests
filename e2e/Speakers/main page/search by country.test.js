@@ -7,41 +7,39 @@ module.exports = _.assign(presteps, auth, {
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/2473/speakers')
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
     
     'check event data': function (browser) {
-        browser
-            .useXpath()
-            .waitForElementVisible('//h4[text()="Event (#2473)"]', 3000)
+        var eventSection = browser.page.speaker().section.event;
+        eventSection
+            .waitForElementVisible('@totalName2473', 3000);
     },
 
     'sort by country up': function (browser) {
-        browser
-            .clickBySelectorXpath('//tr[1]/th[8]')
-            .useXpath()
-            .verify.containsText("//tr[1]/td[8]/span", "Finland")
-            .verify.containsText("//tr[2]/td[8]/span", "Finland")
-            .verify.containsText("//tr[3]/td[8]/span", "Singapore")
+        var countryColumnSection = browser.page.speaker().section.countryColumn;
+        countryColumnSection
+            .clickBySelector('@nameColumn')
+             .verify.containsText("@firstRow", "Finland")
+            .verify.containsText("@secondRow", "Finland")
+            .verify.containsText("@thirdRow", "Singapore")
     },
 
     'sort by country down': function (browser) {
-        browser
-            .clickBySelectorXpath('//tr[1]/th[8]')
-            .useXpath()
-            .verify.containsText("//tr[1]/td[8]/span", "Singapore")
-            .verify.containsText("//tr[2]/td[8]/span", "Finland")
-            .verify.containsText("//tr[3]/td[8]/span", "Finland")
+        var countryColumnSection = browser.page.speaker().section.countryColumn;
+        countryColumnSection
+            .clickBySelector('@nameColumn')
+
+            .verify.containsText("@firstRow", "Singapore")
+            .verify.containsText("@secondRow", "Finland")
+            .verify.containsText("@thirdRow", "Finland")
     },
 
     'search by country ': function (browser) {
-        browser
-            .setValueByXpath('//tr[1]/td[8]/input[@type="text"]', ['Finland', browser.Keys.ENTER])
-            .useCss()
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
-            .useXpath()
-            .waitForElementVisible('//tr[1]/td[8]/span', 3000)
-            .verify.containsText("//tr[1]/td[8]/span", "Finland")
+        var countryColumnSection = browser.page.speaker().section.countryColumn;
+        countryColumnSection
+            .setValueBySelector('@seachColumn', ['Finland', browser.Keys.ENTER])
+
+            .waitForElementVisible('@firstRow', 3000)
+            .verify.containsText("@firstRow", "Finland")
     },
 });

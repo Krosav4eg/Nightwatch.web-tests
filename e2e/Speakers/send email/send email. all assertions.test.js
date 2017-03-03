@@ -7,42 +7,35 @@ module.exports = _.assign(presteps, auth, {
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/212/speakers')
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
 
     'check event data': function (browser) {
-        browser
-            .useXpath()
-            .waitForElementVisible('//h4[text()="Event (#212)"]', 3000)
+        var eventSection = browser.page.speaker().section.event;
+        eventSection
+            .waitForElementVisible('@totalName212', 3000);
     },
 
     'select receivers ': function (browser) {
-        browser
-            .clickBySelectorXpath('//thead/tr[1]/th[1]')
+        var checkBoxSection = browser.page.speaker().section.checkBox;
+        checkBoxSection
+            .clickBySelector('@allcheckBox')
     },
 
     'template blank template': function (browser) {
-        browser
-            .clickBySelectorXpath('//a[text()="Send email"]')
-            .waitForElementVisible('//h4[text()="Select email template"]', 3000)
-            .clickBySelectorXpath('//modal[@class="modal fade in"]//option[1]')
+        var sendEmailSection = browser.page.speaker().section.sendEmail;
+        sendEmailSection
+            .clickBySelector('@sendEmailButton')
 
-            .verify.elementPresent('//div[contains(text(),"Template:")]')
-            .verify.elementPresent('//div[contains(text(),"From Email:")]')
-            .verify.elementPresent('//me-cms-content-select-list/div[@class="row"]/div[1][@class="col-sm-12"]/div[2]/div[1]/div[2]/input[@disabled]')
-            .verify.valueContains('//me-cms-content-select-list/div[@class="row"]/div[1][@class="col-sm-12"]/div[2]/div[1]/div[2]/input[@disabled]', '')
-            .verify.elementPresent('//div[contains(text(),"From Name:")]')
-            .verify.elementPresent('//me-cms-content-select-list/div[@class="row"]/div[1][@class="col-sm-12"]/div[2]/div[2]/div[2]/input[@disabled]')
-            .verify.valueContains('//me-cms-content-select-list/div[@class="row"]/div[1][@class="col-sm-12"]/div[2]/div[2]/div[2]/input[@disabled]', '')
-            .verify.elementPresent('//div[contains(text(),"Reply-To Email:")]')
-            .verify.elementPresent('//me-cms-content-select-list/div[@class="row"]/div[1][@class="col-sm-12"]/div[2]/div[3]/div[2]/input[@disabled]')
-            .verify.valueContains('//me-cms-content-select-list/div[@class="row"]/div[1][@class="col-sm-12"]/div[2]/div[3]/div[2]/input[@disabled]', '')
-            .verify.elementPresent('//div[contains(text(),"Subject:")]')
-            .verify.elementPresent('//me-cms-content-select-list/div[@class="row"]/div[1][@class="col-sm-12"]/div[2]/div[4]/div[2]/input[@disabled]')
-            .verify.valueContains('//me-cms-content-select-list/div[@class="row"]/div[1][@class="col-sm-12"]/div[2]/div[4]/div[2]/input[@disabled]', '')
-            .verify.elementPresent('//button[text()="Cancel"]')
-            .verify.elementPresent('//button[text()="Send Email"]');
+            .waitForElementVisible('@nameWindowSendEmail', 3000)
+            .clickBySelector('@firstOption')
+
+            .verify.elementPresent('@templateField')
+            .verify.valueContains('@fromEmailInput', '')
+            .verify.valueContains('@fromNameInput', '')
+            .verify.valueContains('@replyToEmailInput', '')
+            .verify.valueContains('@subjectInput', '')
+            .verify.elementPresent('@cancelButton')
+            .verify.elementPresent('@submitButton');
     },
 
     'template is selected': function (browser) {
@@ -70,10 +63,7 @@ module.exports = _.assign(presteps, auth, {
     'check edit email template ': function (browser) {
         browser
             .relUrl('/email-templates/edit/310')
-            .useCss()
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
-            .useXpath()
+
             .verify.valueContains('//input[@ngcontrol="name"]', 'Testyhh')
             .verify.valueContains('//input[@ngcontrol="fromEmail"]', 'gbhn@nam.com')
             .verify.valueContains('//input[@ngcontrol="fromName"]', 'Kate')

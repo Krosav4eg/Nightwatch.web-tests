@@ -4,23 +4,22 @@ var auth = require('./../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
 
-    'redirection to agenda': function (browser) {
+    'redirection to speaker': function (browser) {
         browser
             .relUrl('/event/214/speakers');
     },
 
     'check event data': function (browser) {
         var eventSection = browser.page.speaker().section.event;
-
         eventSection
-            .waitForElementVisible('@totalName', 3000);
+            .waitForElementVisible('@totalName214', 3000);
     },
 
     'sort by title up': function (browser) {
         var titleColumnSection = browser.page.speaker().section.titleColumn;
 
         titleColumnSection
-            .clickBySelectorXpath('@sortColumn')
+            .clickBySelector('@nameColumn')
             .verify.containsText('@firstRow', "Geschäftsführer")
             .verify.containsText("@secondRow", "Head of Global Construction")
             .verify.containsText("@thirdRow", "Senior Principal Engineer, Corporate Technology")
@@ -31,7 +30,7 @@ module.exports = _.assign(presteps, auth, {
         var titleColumnSection = browser.page.speaker().section.titleColumn;
 
         titleColumnSection
-            .clickBySelectorXpath('@sortColumn')
+            .clickBySelector('@nameColumn')
 
             .verify.containsText("@firstRow", "Vorstand Industrie")
             .verify.containsText("@secondRow", "Vice President Sales China and Mongolia")
@@ -42,7 +41,7 @@ module.exports = _.assign(presteps, auth, {
         var titleColumnSection = browser.page.speaker().section.titleColumn;
 
         titleColumnSection
-            .setValueByXpath('@seachColumn', ['Geschäftsführer', browser.Keys.ENTER])
+            .setValueBySelector('@seachColumn', ['Geschäftsführer', browser.Keys.ENTER])
             .verify.containsText("@firstRow", "Geschäftsführer");
     },
 });

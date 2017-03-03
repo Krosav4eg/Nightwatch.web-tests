@@ -7,39 +7,41 @@ module.exports = _.assign(presteps, auth, {
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/212/speakers')
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
     
     'check event data': function (browser) {
-        browser
-            .useXpath()
-            .waitForElementVisible('//h4[text()="Event (#212)"]', 3000)
+        var eventSection = browser.page.speaker().section.event;
+        eventSection
+            .waitForElementVisible('@totalName212', 3000);
     },
 
     'page count 20': function (browser) {
-        browser
-            .clickBySelectorXpath('//div/select/option[@value="20"]')
-            .verify.elementPresent('//span[text()="1 of 2"]')
-            .verify.elementPresent('//a[text()="Next"]')
-            .verify.elementPresent('//a[text()="Last"]');
+        var pageCountSection = browser.page.speaker().section.pageCount;
+        pageCountSection
+            .clickBySelector('@show20RowsOption')
+
+            .verify.elementPresent('@currentPage')
+            .verify.elementPresent('@nextPage')
+            .verify.elementPresent('@lastPage');
     },
 
     'page count 50': function (browser) {
-        browser
-            .clickBySelectorXpath('//div/select/option[@value="50"]')
-            .useXpath()
-            .waitForElementVisible('//span[text()="1 of 1"]', 3000)
-            .verify.elementNotPresent('//a[text()="Next"]')
-            .verify.elementNotPresent('//a[text()="Last"]');
+        var pageCountSection = browser.page.speaker().section.pageCount;
+        pageCountSection
+            .clickBySelector('@show50RowsOption')
+
+            .verify.elementPresent('@owePage')
+            .verify.elementNotPresent('@nextPage')
+            .verify.elementNotPresent('@lastPage');
     },
 
     'page count 100': function (browser) {
-        browser
-            .clickBySelectorXpath('//div/select/option[@value="100"]')
-            .useXpath()
-            .waitForElementVisible('//span[text()="1 of 1"]', 3000)
-            .verify.elementNotPresent('//a[text()="Next"]')
-            .verify.elementNotPresent('//a[text()="Last"]');
+        var pageCountSection = browser.page.speaker().section.pageCount;
+        pageCountSection
+            .clickBySelector('@show100RowsOption')
+
+            .verify.elementPresent('@owePage')
+            .verify.elementNotPresent('@nextPage')
+            .verify.elementNotPresent('@lastPage');
     },
 });

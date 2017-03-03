@@ -7,41 +7,42 @@ module.exports = _.assign(presteps, auth, {
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/214/speakers')
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
 
     'check event data': function (browser) {
-        browser
-            .useXpath()
-            .waitForElementVisible('//h4[text()="Event (#214)"]', 3000)
+        var eventSection = browser.page.speaker().section.event;
+        eventSection
+            .waitForElementVisible('@totalName214', 3000);
     },
 
     'sort by last name up': function (browser) {
-        browser
-            .clickBySelectorXpath('//tr[1]/th[3]')
-            .verify.containsText("//tr[1]/td[3]/span/a", "Spindler")
-            .verify.containsText("//tr[2]/td[3]/span/a", "Ruhnau")
-            .verify.containsText("//tr[3]/td[3]/span/a", "Dachs")
-            .verify.containsText("//tr[4]/td[3]/span/a", "Bairlein")
+        var lastNameColumnSection = browser.page.speaker().section.lastNameColumn;
+        lastNameColumnSection
+            .clickBySelector('@nameColumn')
+
+            .verify.containsText("@firstRow", "Spindler")
+            .verify.containsText("@secondRow", "Ruhnau")
+            .verify.containsText("@thirdRow", "Dachs")
+            .verify.containsText("@fourthRow", "Bairlein")
     },
 
     'sort by last name down': function (browser) {
-        browser
-            .clickBySelectorXpath('//tr[1]/th[3]')
-            .verify.containsText("//tr[1]/td[3]/span/a", "Babeck")
-            .verify.containsText("//tr[2]/td[3]/span/a", "Bairlein")
-            .verify.containsText("//tr[3]/td[3]/span/a", "Dachs")
-            .verify.containsText("//tr[4]/td[3]/span/a", "Ruhnau")
+        var lastNameColumnSection = browser.page.speaker().section.lastNameColumn;
+        lastNameColumnSection
+            .clickBySelector('@nameColumn')
+
+            .verify.containsText("@firstRow", "Babeck")
+            .verify.containsText("@secondRow", "Bairlein")
+            .verify.containsText("@thirdRow", "Dachs")
+            .verify.containsText("@fourthRow", "Ruhnau")
     },
 
     'search by last name ': function (browser) {
-        browser
-            .setValueByXpath('//tr[1]/td[3]/input[@type="text"]', ['Dachs', browser.Keys.ENTER])
-            .useCss()
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
-            .useXpath()
-            .waitForElementVisible('//tr[1]/td[3]/span/a', 3000)
-            .verify.containsText("//tr[1]/td[3]/span/a", "Dachs")
+        var lastNameColumnSection = browser.page.speaker().section.lastNameColumn;
+        lastNameColumnSection
+            .setValueBySelector('@seachColumn', ['Dachs', browser.Keys.ENTER])
+
+            .waitForElementVisible('@firstRow', 3000)
+            .verify.containsText("@firstRow", "Dachs")
     },
 });
