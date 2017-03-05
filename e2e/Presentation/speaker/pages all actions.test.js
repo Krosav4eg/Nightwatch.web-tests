@@ -59,6 +59,7 @@ module.exports = _.assign(presteps, auth, {
 
             .verify.elementPresent('//button[text()="Cancel"]')
             .verify.elementPresent('//button[text()="Save"]');
+        
     },
 
     'page count': function (browser) {
