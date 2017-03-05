@@ -2,7 +2,6 @@ var _ = require('lodash');
 var presteps = require('./../../presteps/presteps.js');
 var auth = require('./../../presteps/auth.js');
 
-
 module.exports = _.assign(presteps, auth, {
 
     'redirection to agenda': function (browser) {
@@ -12,12 +11,13 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
 
-    'select press on organizer name': function (browser) {
+    'search by 3 letters': function (browser) {
         browser
-            .clickBySelectorXpath('//tr/th[3]')
-            .clickBySelectorXpath('//tr/th[3]')
-            .clickBySelectorXpath('//tr[1]/td[3]/span/a')
+            .setValueByXpath('//tr/td[7]/input[@type="text"]', ['RWE ', browser.Keys.ENTER])
+            .useCss()
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
-            .waitForElementVisible('//div[contains(text(),"Participation info - BET Büro für Energiewirtschaft und technische Planung GmbH - (E#7538)")]', 30000)
+            .verify.containsText('//tr[1]/td[7]/span/ul/li','RWE GBS GmbH')
+            .verify.elementPresent('//tr[2]/td[7]/span/ul/li','RWE Group Business Services GmbH');
     },
 });

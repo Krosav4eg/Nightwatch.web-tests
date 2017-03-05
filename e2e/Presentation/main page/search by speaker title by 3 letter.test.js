@@ -1,6 +1,6 @@
 var _ = require('lodash');
-var presteps = require('./../../../presteps/presteps.js');
-var auth = require('./../../../presteps/auth.js');
+var presteps = require('./../../presteps/presteps.js');
+var auth = require('./../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
 
@@ -14,17 +14,16 @@ module.exports = _.assign(presteps, auth, {
     'select by speaker last name down': function (browser) {
         browser
             .useXpath()
-            .getLocationInView("//tr/th[8]", function (result) {
+            .getLocationInView("//tr/th[10]", function (result) {
                 this.verify.equal(typeof result, "object")
                 this.verify.equal(result.status, 0)
                 this.verify.equal(result.value.x, 1350)
-                this.verify.equal(result.value.y, 522)
-                this.setValue('//tr/td[8]/input[@type="text"]', ['web', browser.Keys.ENTER])
+                this.verify.equal(result.value.y, 421)
+                this.setValue('//tr/td[10]/input[@type="text"]', ['ges', browser.Keys.ENTER])
                     .useCss()
                     .waitForElementNotVisible('#thisIsMainLoader', 30000)
                     .useXpath()
-                    .waitForElementVisible('//tr[1]/td[8]/span/ul/li[contains(text(),"Weber")]', 5000)
-                    .verify.elementPresent('//tr[1]/td[8]/span/ul/li[contains(text(),"Weber")]')
+                    .verify.elementPresent('//tr[1]/td[10]/span/ul/li[contains(text(),"Geschäftsführer")]');
             });
     },
 });

@@ -11,10 +11,11 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
 
-    'select by id up': function (browser) {
+    'select by id blank': function (browser) {
         browser
-            .clickBySelectorXpath('//tr/th[1]')
+            .setValueByXpath('//tr/td[1]/input[@type="text"]', ['', browser.Keys.ENTER])
             .useCss()
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .verify.elementPresent('a[href="/presentations/edit/628"]')
             .verify.elementPresent('a[href="/presentations/edit/629"]')
             .verify.elementPresent('a[href="/presentations/edit/5712"]')
@@ -28,20 +29,19 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('a[href="/presentations/edit/5720"]');
     },
 
-    'select by id down': function (browser) {
+    'select by id blank 3 number': function (browser) {
         browser
-            .clickBySelectorXpath('//tr/th[1]')
+            .setValueByXpath('//tr/td[1]/input[@type="text"]', ['#57', browser.Keys.ENTER])
             .useCss()
-            .verify.elementPresent('a[href="/presentations/edit/5720"]')
-            .verify.elementPresent('a[href="/presentations/edit/5719"]')
-            .verify.elementPresent('a[href="/presentations/edit/5718"]')
-            .verify.elementPresent('a[href="/presentations/edit/5717"]')
-            .verify.elementPresent('a[href="/presentations/edit/5716"]')
-            .verify.elementPresent('a[href="/presentations/edit/5715"]')
-            .verify.elementPresent('a[href="/presentations/edit/5714"]')
-            .verify.elementPresent('a[href="/presentations/edit/5713"]')
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .verify.elementPresent('a[href="/presentations/edit/5712"]')
-            .verify.elementPresent('a[href="/presentations/edit/628"]')
-            .verify.elementPresent('a[href="/presentations/edit/629"]');
+            .verify.elementPresent('a[href="/presentations/edit/5713"]')
+            .verify.elementPresent('a[href="/presentations/edit/5714"]')
+            .verify.elementPresent('a[href="/presentations/edit/5715"]')
+            .verify.elementPresent('a[href="/presentations/edit/5716"]')
+            .verify.elementPresent('a[href="/presentations/edit/5717"]')
+            .verify.elementPresent('a[href="/presentations/edit/5718"]')
+            .verify.elementPresent('a[href="/presentations/edit/5719"]')
+            .verify.elementPresent('a[href="/presentations/edit/5720"]');
     },
 });
