@@ -7,109 +7,120 @@ module.exports = _.assign(presteps, auth, {
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/214/speakers')
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
     
     'check event data': function (browser) {
-        browser
-            .useXpath()
-            .waitForElementVisible('//h4[text()="Event (#214)"]', 3000)
+        var eventSection = browser.page.speaker().section.event;
+        eventSection
+            .waitForElementVisible('@totalName214', 3000);
     },
 
     'sort by presentation type up': function (browser) {
-        browser
-            .useXpath()
-            .moveToElement('//tr[1]/th[10]', 1298, 597)
-            .clickBySelectorXpath('//tr[1]/th[10]')
-            .verify.containsText('//tr[1]/td[10]/span/ul/li', 'Debate')
-            .verify.containsText('//tr[2]/td[10]/span/ul/li', 'Group discussion initiation')
-            .verify.containsText('//tr[3]/td[10]/span/ul/li', 'Keynote')
-            .verify.containsText('//tr[4]/td[10]/span/ul/li', 'Keynote')
-            .verify.containsText('//tr[5]/td[10]/span/ul/li', 'Keynote')
+        var presentationTypeSection = browser.page.speaker().section.presentationTypeColumn;
+
+        presentationTypeSection
+            .moveToElement('@nameColumn', 1298, 597)
+            .clickBySelector('@nameColumn')
+
+            .verify.containsText('@firstRow', 'Debate')
+            .verify.containsText('@secondRow', 'Group discussion initiation')
+            .verify.containsText('@thirdRow', 'Keynote')
+            .verify.containsText('@fourthRow', 'Keynote')
+            .verify.containsText('@fifthRow', 'Keynote')
     },
 
     'sort by presentation type down': function (browser) {
-        browser
-            .moveToElement('//tr[1]/th[10]', 1298, 597)
-            .clickBySelectorXpath('//tr[1]/th[10]')
-            .verify.containsText('//tr[2]/td[10]/span/ul/li', 'Keynote')
-            .verify.containsText('//tr[3]/td[10]/span/ul/li', 'Keynote')
-            .verify.containsText('//tr[4]/td[10]/span/ul/li', 'Group discussion initiation')
-            .verify.containsText('//tr[5]/td[10]/span/ul/li', 'Debate')
+        var presentationTypeSection = browser.page.speaker().section.presentationTypeColumn;
+
+        presentationTypeSection
+            .moveToElement('@nameColumn', 1298, 597)
+            .clickBySelector('@nameColumn')
+            .verify.containsText('@secondRow', 'Keynote')
+            .verify.containsText('@thirdRow', 'Keynote')
+            .verify.containsText('@fourthRow', 'Group discussion initiation')
+            .verify.containsText('@fifthRow', 'Debate')
     },
 
     'check case-parallel presentations': function (browser) {
-        browser
-            .useXpath()
-            .moveToElement('//tr[1]/th[10]', 1298, 597)
-            .clickBySelectorXpath('//option[text()="Case - parallel"]')
+        var presentationTypeSection = browser.page.speaker().section.presentationTypeColumn;
 
-            .verify.elementPresent('//*[contains(text(),"No results found")]')
+        presentationTypeSection
+            .moveToElement('@nameColumn', 1298, 597)
+            .clickBySelector('@caseParallelOption')
+            .verify.elementPresent('@noResultsFound')
     },
 
     'check whole-audience presentations': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[text()="Case - whole audience"]')
+        var presentationTypeSection = browser.page.speaker().section.presentationTypeColumn;
 
-            .verify.elementPresent('//*[contains(text(),"No results found")]')
+        presentationTypeSection
+            .clickBySelector('@caseWholeAudienceOption')
+            .verify.elementPresent('@noResultsFound')
     },
 
     'check case presentations': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[text()="Case presentation"]')
+        var presentationTypeSection = browser.page.speaker().section.presentationTypeColumn;
 
-            .verify.elementPresent('//*[contains(text(),"No results found")]')
+        presentationTypeSection
+            .clickBySelector('@casePresentationOption')
+            .verify.elementPresent('@noResultsFound')
     },
 
     'check chairman speach': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[text()="Chairman speech"]')
+        var presentationTypeSection = browser.page.speaker().section.presentationTypeColumn;
 
-            .verify.elementPresent('//*[contains(text(),"No results found")]')
+        presentationTypeSection
+            .clickBySelector('@chairmanSpeechOption')
+            .verify.elementPresent('@noResultsFound')
     },
 
     'check Cross-function keynote': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[text()="Cross-function keynote"]')
+        var presentationTypeSection = browser.page.speaker().section.presentationTypeColumn;
 
-            .verify.elementPresent('//*[contains(text(),"No results found")]')
+        presentationTypeSection
+            .clickBySelector('@crossFunctionKeynoteOption')
+            .verify.elementPresent('@noResultsFound')
     },
 
     'check debate': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[text()="Debate"]')
+        var presentationTypeSection = browser.page.speaker().section.presentationTypeColumn;
 
-            .waitForElementVisible('//tr[1]/td[10]/span/ul/li', 3000)
-            .verify.containsText("//tr[1]/td[10]/span/ul/li", "Debate")
+        presentationTypeSection
+            .clickBySelector('@debateOption')
+            .waitForElementVisible('@firstRow', 3000)
+            .verify.containsText("@firstRow", "Debate")
     },
 
     'check FishBowl': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[text()="FishBowl"]')
+        var presentationTypeSection = browser.page.speaker().section.presentationTypeColumn;
 
-            .verify.elementPresent('//*[contains(text(),"No results found")]')
+        presentationTypeSection
+            .clickBySelector('@fishBowlOption')
+            .verify.elementPresent('@noResultsFound')
     },
 
     'check group discussion initiation': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[text()="Group discussion initiation"]')
-            .useXpath()
-            .waitForElementVisible('//tr[1]/td[10]/span/ul/li', 3000)
-            .verify.containsText("//tr[1]/td[10]/span/ul/li", "Group discussion initiation")
+        var presentationTypeSection = browser.page.speaker().section.presentationTypeColumn;
+
+        presentationTypeSection
+            .clickBySelector('@groupDiscussionInitiationOption')
+            .waitForElementVisible('@firstRow', 3000)
+            .verify.containsText("@firstRow", "Group discussion initiation")
     },
 
     'check group leadership presentation': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[text()="Leadership presentation"]')
+        var presentationTypeSection = browser.page.speaker().section.presentationTypeColumn;
 
-            .verify.elementPresent('//*[contains(text(),"No results found")]')
+        presentationTypeSection
+            .clickBySelector('@leadershipPresentationOption')
+            .verify.elementPresent('@noResultsFound')
     },
 
     'check group panel discussion': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[text()="Panel discussion"]')
+        var presentationTypeSection = browser.page.speaker().section.presentationTypeColumn;
 
-            .verify.elementPresent('//*[contains(text(),"No results found")]')
+        presentationTypeSection
+            .clickBySelector('@panelDiscussionOption')
+            .verify.elementPresent('@noResultsFound')
     },
 });

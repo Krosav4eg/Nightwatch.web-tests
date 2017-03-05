@@ -4,39 +4,44 @@ var auth = require('./../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
 
-    'redirection to agenda': function (browser) {
+    'redirection to speaker': function (browser) {
         browser
-            .relUrl('/event/214/speakers')
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000);
+            .relUrl('/event/214/speakers');
     },
 
     'check event data': function (browser) {
-        browser
-            .useXpath()
-            .waitForElementVisible('//h4[text()="Event (#214)"]', 3000)
+        var eventSection = browser.page.speaker().section.event;
+        eventSection
+            .waitForElementVisible('@totalName214', 3000);
     },
 
     'sort by title up': function (browser) {
-        browser
-            .clickBySelectorXpath('//tr[1]/th[5]')
-            .verify.containsText("//tr[1]/td[5]/span", "Geschäftsführer")
-            .verify.containsText("//tr[2]/td[5]/span", "Head of Global Construction")
-            .verify.containsText("//tr[3]/td[5]/span", "Senior Principal Engineer, Corporate Technology")
-            .verify.containsText("//tr[4]/td[5]/span", "Vice President Sales China and Mongolia");
+        var titleColumnSection = browser.page.speaker().section.titleColumn;
+
+        titleColumnSection
+            .clickBySelector('@nameColumn')
+            .verify.containsText('@firstRow', "Geschäftsführer")
+            .verify.containsText("@secondRow", "Head of Global Construction")
+            .verify.containsText("@thirdRow", "Senior Principal Engineer, Corporate Technology")
+            .verify.containsText("@fourthRow", "Vice President Sales China and Mongolia");
     },
 
     'sort by title down': function (browser) {
-        browser
-            .clickBySelectorXpath('//tr[1]/th[5]')
-            .verify.containsText("//tr[1]/td[5]/span", "Vorstand Industrie")
-            .verify.containsText("//tr[2]/td[5]/span", "Vice President Sales China and Mongolia")
-            .verify.containsText("//tr[3]/td[5]/span", "Senior Principal Engineer, Corporate Technology");
+        var titleColumnSection = browser.page.speaker().section.titleColumn;
+
+        titleColumnSection
+            .clickBySelector('@nameColumn')
+
+            .verify.containsText("@firstRow", "Vorstand Industrie")
+            .verify.containsText("@secondRow", "Vice President Sales China and Mongolia")
+            .verify.containsText("@thirdRow", "Senior Principal Engineer, Corporate Technology");
     },
 
     'search by title ': function (browser) {
-        browser
-            .setValueByXpath('//tr[1]/td[5]/input[@type="text"]', ['Geschäftsführer', browser.Keys.ENTER])
-            .verify.containsText("//tr[1]/td[5]/span", "Geschäftsführer");
+        var titleColumnSection = browser.page.speaker().section.titleColumn;
+
+        titleColumnSection
+            .setValueBySelector('@seachColumn', ['Geschäftsführer', browser.Keys.ENTER])
+            .verify.containsText("@firstRow", "Geschäftsführer");
     },
 });

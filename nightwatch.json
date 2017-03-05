@@ -10,6 +10,7 @@
     "nightwatch_extend/commands/agenda",
     "nightwatch_extend/commands/partner"
   ],
+  "page_objects_path" : "nightwatch_extend/pages",
   "globals_path": "",
   "live_output ": true,
   "detailed_output": true,
@@ -23,7 +24,7 @@
   },
   "test_settings": {
     "default": {
-      "filter": "**/*.run.js",
+      "filter": "**/*.test.js",
       "selenium_host": "127.0.0.1",
       "selenium_port": 4444,
       "launch_url": "http://alpha.skynet.managementevents.com",

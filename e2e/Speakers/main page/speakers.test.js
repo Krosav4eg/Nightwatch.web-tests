@@ -4,31 +4,34 @@ var auth = require('./../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
 
-    'redirection to agenda': function (browser) {
+    'redirection to speaker': function (browser) {
         browser
-            .relUrl('/event/212/speakers')
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000);
+            .relUrl('/event/212/speakers');
     },
 
     'check event data': function (browser) {
-        browser
-            .useXpath()
-            .waitForElementVisible('//h4[text()="Event (#212)"]', 3000)
+        var eventSection = browser.page.speaker().section.event;
+
+        eventSection
+            .waitForElementVisible('@totalName212', 6000);
     },
 
     'choose all people in the list': function (browser) {
-        browser
-            .clickBySelectorXpath('//thead/tr[1]/th[1]')
-            .verify.attributeEquals('//table/tbody/tr[1]/td[1]/input', 'checked', 'true')
-            .verify.attributeEquals('//table/tbody/tr[2]/td[1]/input', 'checked', 'true')
-            .verify.attributeEquals('//table/tbody/tr[3]/td[1]/input', 'checked', 'true')
+        var checkBoxSection = browser.page.speaker().section.checkBox;
+
+        checkBoxSection
+            .clickBySelector('@allcheckBox')
+            .verify.attributeEquals('@firstcheckBox', 'checked', 'true')
+            .verify.attributeEquals('@secondcheckBox', 'checked', 'true')
+            .verify.attributeEquals('@thirdcheckBox', 'checked', 'true')
     },
 
     'choose one person from the list': function (browser) {
-        browser
-            .clickBySelectorXpath('//thead/tr[1]/th[1]')
-            .clickBySelectorXpath('//table/tbody/tr[1]/td[1]/input')
-            .verify.attributeEquals('//table/tbody/tr[1]/td[1]/input', 'checked', 'true');
+        var checkBoxSection = browser.page.speaker().section.checkBox;
+
+        checkBoxSection
+            .clickBySelector('@allcheckBox')
+            .clickBySelector('@firstcheckBox')
+            .verify.attributeEquals('@firstcheckBox', 'checked', 'true');
     },
 });
