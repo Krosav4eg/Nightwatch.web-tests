@@ -4,60 +4,43 @@ var auth = require('./../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
 
-    'redirection to agenda': function (browser) {
+    'redirection to presentations': function (browser) {
         browser
-            .relUrl('/event/2008/presentations')
+            .relUrl('/event/212/presentations')
             .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
-    'check event data': function (browser) {
-        browser
-            .useXpath()
-            .waitForElementVisible('//h4[text()="Event (#2008)"]', 3000)
-            .assert.elementPresent('//h3[text()="NeedSeeker 18.5.2016"]')
-            .assert.elementPresent('//div[text()="Local name: NeedSeeker 18.5.2016"]')
-            .assert.elementPresent('//div[text()="Dates: 2016-05-18 08:00:00 - 2016-05-18 13:00:00"]')
-            .assert.elementPresent('//div[text()="Venue: Tapahtumakeskus Telakka, Helsinki"]');
-    },
+
     'go to the edit presentation': function (browser) {
         browser
-            .waitForElementVisible('//a[@href="/presentations/edit/3732"]', 3000)
-            .click('//a[@href="/presentations/edit/3732"]')
-            .useCss()
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
-            .useXpath()
-            .waitForElementVisible('//h1[text()="Edit Presentation (#3732)"]', 3000);
+            .clickBySelectorXpath('//a[@href="/presentations/edit/629"]')
 
+            .useCss()
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
+
+            .useXpath()
+            .verify.elementPresent('//h1[text()="Edit Presentation (#629)"]');
     },
 
     'sort by first name up': function (browser) {
         browser
-            .waitForElementVisible('//me-event-presentation-speaker-list//th[5][contains(text(),"First Name")]', 5000)
-            .click('//me-event-presentation-speaker-list//th[5][contains(text(),"First Name")]')
-            .useCss()
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
-            .useXpath()
-            .waitForElementVisible('//tr[1]/td[5]/span[text()="       Oddvar Eirik     "]', 5000)
-            .waitForElementVisible('//tr[2]/td[5]/span[text()="       Olavi     "]', 30000)
-            .waitForElementVisible('//tr[3]/td[5]/span[text()="       Potapoff     "]', 30000);
+            .clickBySelectorXpath('//me-event-presentation-speaker-list//th[5]')
 
+            .useCss()
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
+
+            .useXpath()
+            .verify.containsText('//tr[1]/td[5]/span','Holger');
     },
 
-    'sort by last name down': function (browser) {
+    'sort by first name down': function (browser) {
         browser
-            .waitForElementVisible('//me-event-presentation-speaker-list//th[5][contains(text(),"First Name")]', 30000)
-            .click('//me-event-presentation-speaker-list//th[5][contains(text(),"First Name")]')
+            .clickBySelectorXpath('//me-event-presentation-speaker-list//th[5]')
+
             .useCss()
-            .waitForElementVisible('#thisIsMainLoader', 30000)
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
+
             .useXpath()
-            .waitForElementVisible('//tr[1]/td[5]/span[text()="       Potapoff     "]', 30000)
-            .waitForElementVisible('//tr[2]/td[5]/span[text()="       Olavi     "]', 30000)
-            .waitForElementVisible('//tr[3]/td[5]/span[text()="       Oddvar Eirik     "]', 30000);
-
+            .verify.containsText('//tr[1]/td[5]/span','Holger');
     },
-
-
 });

@@ -1,6 +1,6 @@
 var _ = require('lodash');
-var presteps = require('./../../../presteps/presteps.js');
-var auth = require('./../../../presteps/auth.js');
+var presteps = require('./../../presteps/presteps.js');
+var auth = require('./../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
 
@@ -18,15 +18,15 @@ module.exports = _.assign(presteps, auth, {
                 this.verify.equal(typeof result, "object")
                 this.verify.equal(result.status, 0)
                 this.verify.equal(result.value.x, 1298)
-                this.verify.equal(result.value.y, 522)
+                this.verify.equal(result.value.y, 421)
                 this.clickBySelectorXpath('//tr/th[11]')
                     .clickBySelectorXpath('//tr/th[11]')
-
                     .useXpath()
-                    .waitForElementVisible('//tr/td[11]/span/ul/li[1][contains(text(),"p.luebcke@mainova.de")]', 5000)
-                    .verify.elementPresent('//tr/td[11]/span/ul/li[1][contains(text(),"p.luebcke@mainova.de")]')
-                    .verify.elementPresent('//tr[1]/td[11]/span/ul/li[contains(text(),"go@go.go")]')
-                    .verify.elementPresent('//tr[1]/td[11]/span/ul/li[contains(text(),"Sergey_Potapof@mail.ru")]')
+                    .verify.elementPresent('//tr/td[11]/span/ul/li[1][contains(text(),"ingo.alpheus@rwe.com")]')
+                    .verify.elementPresent('//tr[2]/td[11]/span/ul/li[1][contains(text(),"holger.kink@rwe.com")]')
+                    .verify.elementPresent('//tr[3]/td[11]/span/ul/li[1][contains(text(),"boris.funke@citiworks.de")]')
+                    .verify.elementPresent('//tr[4]/td[11]/span/ul/li[1][contains(text(),"boris.funke@citiworks.de")]')
+                    .verify.elementPresent('//tr[5]/td[11]/span/ul/li[1][contains(text(),"boris.funke@citiworks.de")]')
             });
     },
 
@@ -34,10 +34,11 @@ module.exports = _.assign(presteps, auth, {
         browser
             .useXpath()
             .clickBySelectorXpath('//tr/th[11]')
-            .waitForElementVisible('//tr[1]/td[11]/span', 5000)
-            .verify.elementPresent('//tr[1]/td[11]/span')
-            .verify.elementPresent('//tr[2]/td[11]/span')
-            .verify.elementPresent('//tr[3]/td[11]/span')
-            .verify.elementPresent('//tr[4]/td[11]/span');
+
+            .verify.elementPresent('//tr[1]/td[11]/span/ul/li[1][contains(text(),"boris.funke@citiworks.de")]')
+            .verify.elementPresent('//tr[2]/td[11]/span/ul/li[1][contains(text(),"boris.funke@citiworks.de")]')
+            .verify.elementPresent('//tr[3]/td[11]/span/ul/li[1][contains(text(),"boris.funke@citiworks.de")]')
+            .verify.elementPresent('//tr[4]/td[11]/span/ul/li[1][contains(text(),"boris.funke@citiworks.de")]')
+            .verify.elementPresent('//tr[5]/td[11]/span/ul/li[1][contains(text(),"boris.funke@citiworks.de")]');
     },
 });

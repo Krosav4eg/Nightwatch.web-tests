@@ -1,6 +1,6 @@
 var _ = require('lodash');
-var presteps = require('./../../../presteps/presteps.js');
-var auth = require('./../../../presteps/auth.js');
+var presteps = require('./../../presteps/presteps.js');
+var auth = require('./../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
 
@@ -13,7 +13,7 @@ module.exports = _.assign(presteps, auth, {
     
     'search by created by 3 numbers': function (browser) {
         browser
-            .setValueBySelectorXpath('//tr/td[3]/input[@type="text"]', ['man', browser.Keys.ENTER])
+            .setValueByXpath('//tr/td[3]/input[@type="text"]', ['man', browser.Keys.ENTER])
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
@@ -27,20 +27,12 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//tr[8]/td[3]/span/span[contains(text(),"Management Events")]')
             .verify.elementPresent('//tr[9]/td[3]/span/span[contains(text(),"Management Events")]')
             .verify.elementPresent('//tr[10]/td[3]/span/span[contains(text(),"Management Events")]')
-            .verify.elementPresent('//tr[11]/td[3]/span/span[contains(text(),"Management Events")]')
-            .verify.elementPresent('//tr[12]/td[3]/span/span[contains(text(),"Management Events")]')
-            .verify.elementPresent('//tr[13]/td[3]/span/span[contains(text(),"Management Events")]')
-            .verify.elementPresent('//tr[14]/td[3]/span/span[contains(text(),"Management Events")]')
-            .verify.elementPresent('//tr[15]/td[3]/span/span[contains(text(),"Management Events")]')
-            .verify.elementPresent('//tr[16]/td[3]/span/span[contains(text(),"Management Events")]')
-            .verify.elementPresent('//tr[17]/td[3]/span/span[contains(text(),"Management Events")]')
-            .verify.elementPresent('//tr[18]/td[3]/span/span[contains(text(),"Management Events")]')
-            .verify.elementPresent('//tr[19]/td[3]/span/span[contains(text(),"Management Events")]')
+            .verify.elementPresent('//tr[11]/td[3]/span/span[contains(text(),"Management Events")]');
     },
 
     'search by created by blank': function (browser) {
         browser
-            .setValueBySelectorXpath('//tr/td[3]/input[@type="text"]', ['', browser.Keys.ENTER])
+            .setValueByXpath('//tr/td[3]/input[@type="text"]', ['', browser.Keys.ENTER])
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
@@ -51,18 +43,9 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//tr[5]/td[3]/span/span[contains(text(),"Management Events")]')
             .verify.elementPresent('//tr[6]/td[3]/span/span[contains(text(),"Management Events")]')
             .verify.elementPresent('//tr[7]/td[3]/span/span[contains(text(),"Management Events")]')
-            .verify.elementPresent('//tr[8]/td[3]/span/a[contains(text(),"Ferranti Computer Systems")]')
-            .verify.elementPresent('//tr[9]/td[3]/span/a[contains(text(),"Ferranti Computer Systems")]')
-            .verify.elementPresent('//tr[10]/td[3]/span/a[contains(text(),"Ferranti Computer Systems")]')
-            .verify.elementPresent('//tr[11]/td[3]/span/a[contains(text(),"Ferranti Computer Systems")]')
-            .verify.elementPresent('//tr[12]/td[3]/span/a[contains(text(),"Ferranti Computer Systems")]')
-            .verify.elementPresent('//tr[13]/td[3]/span/a[contains(text(),"Ferranti Computer Systems")]')
-            .verify.elementPresent('//tr[14]/td[3]/span/a[contains(text(),"Ferranti Computer Systems")]')
-            .verify.elementPresent('//tr[15]/td[3]/span/a[contains(text(),"Ferranti Computer Systems")]')
-            .verify.elementPresent('//tr[16]/td[3]/span/span[contains(text(),"Management Events")]')
-            .verify.elementPresent('//tr[17]/td[3]/span/span[contains(text(),"Management Events")]')
-            .verify.elementPresent('//tr[18]/td[3]/span/span[contains(text(),"Management Events")]')
-            .verify.elementPresent('//tr[19]/td[3]/span/span[contains(text(),"Management Events")]')
-            .verify.elementPresent('//tr[20]/td[3]/span/span[contains(text(),"Management Events")]');
+            .verify.elementPresent('//tr[8]/td[3]/span/span[contains(text(),"Management Events")]')
+            .verify.elementPresent('//tr[9]/td[3]/span/span[contains(text(),"Management Events")]')
+            .verify.elementPresent('//tr[10]/td[3]/span/span[contains(text(),"Management Events")]')
+            .verify.elementPresent('//tr[11]/td[3]/span/span[contains(text(),"Management Events")]');
     },
 });

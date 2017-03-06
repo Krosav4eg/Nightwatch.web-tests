@@ -1,6 +1,6 @@
 var _ = require('lodash');
-var presteps = require('./../../../presteps/presteps.js');
-var auth = require('./../../../presteps/auth.js');
+var presteps = require('./../../presteps/presteps.js');
+var auth = require('./../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
 
@@ -18,27 +18,34 @@ module.exports = _.assign(presteps, auth, {
                 this.verify.equal(typeof result, "object")
                 this.verify.equal(result.status, 0)
                 this.verify.equal(result.value.x, 1350)
-                this.verify.equal(result.value.y, 522)
+                this.verify.equal(result.value.y, 421)
                 this.clickBySelectorXpath('//tr/th[12]')
-                    .clickBySelectorXpath('//tr/th[12]')
-
                     .useXpath()
-                    .waitForElementVisible('//tr[1]/td[12]/span/ul/li[contains(text(),"4915254617454")]', 5000)
-                    .verify.elementPresent('//tr[1]/td[12]/span/ul/li[contains(text(),"4915254617454")]')
-                    .verify.elementPresent('//tr[2]/td[12]/span/ul/li[contains(text(),"+49151 46756613")]')
-                    .verify.elementPresent('//tr[2]/td[12]/span/ul/li[contains(text(),"4790992788")]')
-                    .verify.elementPresent('//tr[2]/td[12]/span/ul/li[contains(text(),"0978544488")]')
+                    .verify.elementPresent('//tr[1]/td[12]/span/ul/li[contains(text(),"")]')
+                    .verify.elementPresent('//tr[2]/td[12]/span/ul/li[contains(text(),"")]')
+                    .verify.elementPresent('//tr[3]/td[12]/span/ul/li[contains(text(),"")]')
+                    .verify.elementPresent('//tr[4]/td[12]/span/ul/li[contains(text(),"")]')
+                    .verify.elementPresent('//tr[5]/td[12]/span/ul/li[contains(text(),"")]')
+                    .verify.elementPresent('//tr[6]/td[12]/span/ul/li[contains(text(),"")]')
+                    .verify.elementPresent('//tr[7]/td[12]/span/ul/li[contains(text(),"")]')
+                    .verify.elementPresent('//tr[8]/td[12]/span/ul/li[contains(text(),"")]')
+                    .verify.elementPresent('//tr[9]/td[12]/span/ul/li[contains(text(),"")]')
+                    .verify.elementPresent('//tr[10]/td[12]/span/ul/li[contains(text(),"+49 162 2565252")]')
+                    .verify.elementPresent('//tr[11]/td[12]/span/ul/li[contains(text(),"+49 1622850155")]');
             });
     },
 
-    'select by speaker email up': function (browser) {
+    'select by speaker email down': function (browser) {
         browser
             .useXpath()
             .clickBySelectorXpath('//tr/th[12]')
-            .waitForElementVisible('//tr[1]/td[12]/span', 5000)
-            .verify.elementPresent('//tr[1]/td[12]/span')
-            .verify.elementPresent('//tr[2]/td[12]/span')
-            .verify.elementPresent('//tr[3]/td[12]/span')
-            .verify.elementPresent('//tr[4]/td[12]/span');
+            .verify.elementPresent('//tr[1]/td[12]/span/ul/li[contains(text(),"+49 1622850155")]')
+            .verify.elementPresent('//tr[2]/td[12]/span/ul/li[contains(text(),"+49 162 2565252")]')
+            .verify.elementPresent('//tr[3]/td[12]/span/ul/li[contains(text(),"")]')
+            .verify.elementPresent('//tr[4]/td[12]/span/ul/li[contains(text(),"")]')
+            .verify.elementPresent('//tr[5]/td[12]/span/ul/li[contains(text(),"")]')
+            .verify.elementPresent('//tr[6]/td[12]/span/ul/li[contains(text(),"")]')
+            .verify.elementPresent('//tr[7]/td[12]/span/ul/li[contains(text(),"")]')
+            .verify.elementPresent('//tr[8]/td[12]/span/ul/li[contains(text(),"")]');
     },
 });

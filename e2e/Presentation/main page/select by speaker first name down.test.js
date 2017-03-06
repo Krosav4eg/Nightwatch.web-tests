@@ -1,6 +1,6 @@
 var _ = require('lodash');
-var presteps = require('./../../../presteps/presteps.js');
-var auth = require('./../../../presteps/auth.js');
+var presteps = require('./../../presteps/presteps.js');
+var auth = require('./../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
 
@@ -11,23 +11,23 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
     
-    'select by speaker last name down': function (browser) {
+    'select by speaker last name up': function (browser) {
         browser
             .useXpath()
-            .getLocationInView("//tr/th[9]", function (result) {
+            .getLocationInView('//tr/th[9]', function (result) {
                 this.verify.equal(typeof result, "object")
                 this.verify.equal(result.status, 0)
                 this.verify.equal(result.value.x, 1350)
-                this.verify.equal(result.value.y, 522)
+                this.verify.equal(result.value.y, 421)
                 this.clickBySelectorXpath('//tr/th[9]')
-                    .clickBySelectorXpath('//tr/th[9]')
 
                     .useXpath()
-                    .waitForElementVisible('//tr[1]/td[9]/span/ul/li[contains(text(),"Herbert")]', 5000)
-                    .verify.elementPresent('//tr[1]/td[9]/span/ul/li[contains(text(),"Herbert")]')
-                    .verify.elementPresent('//tr[1]/td[9]/span/ul/li[contains(text(),"Sandra")]')
-                    .verify.elementPresent('//tr[2]/td[9]/span/ul/li[contains(text(),"Sandra")]')
-                    .verify.elementPresent('//tr[2]/td[9]/span/ul/li[contains(text(),"Olav")]')
+                    .verify.containsText('//tr[1]/td[9]/span','Boris')
+                    .verify.containsText('//tr[2]/td[9]/span','Boris')
+                    .verify.containsText('//tr[3]/td[9]/span','Boris')
+                    .verify.containsText('//tr[4]/td[9]/span','Boris')
+                    .verify.containsText('//tr[5]/td[9]/span','Boris')
+                    .verify.containsText('//tr[6]/td[9]/span','Boris');
             });
     },
 
@@ -35,12 +35,12 @@ module.exports = _.assign(presteps, auth, {
         browser
             .useXpath()
             .clickBySelectorXpath('//tr/th[9]')
-            .waitForElementVisible('//tr[1]/td[9]/span', 5000)
-            .verify.elementPresent('//tr[1]/td[9]/span')
-            .verify.elementPresent('//tr[1]/td[9]/span')
-            .verify.elementPresent('//tr[1]/td[9]/span')
-            .verify.elementPresent('//tr[2]/td[9]/span')
-            .verify.elementPresent('//tr[3]/td[9]/span')
-            .verify.elementPresent('//tr[4]/td[9]/span');
+            .useXpath()
+            .verify.containsText('//tr[1]/td[9]/span','Ingo')
+            .verify.containsText('//tr[2]/td[9]/span','Holger')
+            .verify.containsText('//tr[3]/td[9]/span','Boris')
+            .verify.containsText('//tr[4]/td[9]/span','Boris')
+            .verify.containsText('//tr[5]/td[9]/span','Boris')
+            .verify.containsText('//tr[6]/td[9]/span','Boris');
     },
 });

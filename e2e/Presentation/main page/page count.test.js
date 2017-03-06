@@ -13,10 +13,10 @@ module.exports = _.assign(presteps, auth, {
     'page count': function (browser) {
         browser
             .clickBySelectorXpath('//option[1][@value="20"]')
-            .waitForElementVisible('//span[text()="1 of 2"]', 5000)
-            .waitForElementVisible('//a[1][@data-page="2"]', 5000)
-            .waitForElementVisible('//a[2][text()="Next"]', 5000)
-            .waitForElementVisible('//a[3][text()="Last"]', 5000)
+            .waitForElementVisible('//span[text()="1 of 1"]', 5000)
+            //.waitForElementVisible('//a[1][@data-page="2"]', 5000)
+            // .waitForElementVisible('//a[2][text()="Next"]', 5000)
+            // .waitForElementVisible('//a[3][text()="Last"]', 5000)
             .clickBySelectorXpath('//option[2][@value="50"]')
             .useXpath()
             .waitForElementVisible('//span[text()="1 of 1"]', 5000)

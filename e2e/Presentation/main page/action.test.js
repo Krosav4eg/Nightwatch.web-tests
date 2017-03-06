@@ -19,26 +19,26 @@ module.exports = _.assign(presteps, auth, {
 
     'pess on id': function (browser) {
         browser
-            .clickBySelectorXpath('//a[@href="/presentations/edit/3696"]')
+            .clickBySelectorXpath('//a[@href="/presentations/edit/628"]')
     },
 
      'press on organizer name': function (browser) {
         browser
-            .clickBySelectorXpath('//a[@href="/presentations/3696/master-contact/492282"]')
+            .clickBySelectorXpath('//a[@href="/presentations/628/master-contact/95857"]')
             .useXpath()
             .waitForElementVisible('//h1[text()="Master Contact Edit"]', 3000)
-            .waitForElementVisible('//h4[text()="Master Contact(#492282)"]', 3000)
+            .waitForElementVisible('//h4[text()="Master Contact(#95857)"]', 3000)
     },
 
     'check information about organizer ': function (browser) {
         browser
-            .verify.valueContains('//input[@id="lastName"]','Sergey')
-            .verify.valueContains('//input[@id="firstName"]','Potapoff')
-            .verify.valueContains('//input[@id="academicTitle"]','Academic ')
-            .verify.valueContains('//input[@id="functionTitle"]','Function ')
-            .verify.valueContains('//input[@id="masterCompanyId"]','')
-            .verify.valueContains('//input[@id="country"]','Ukraine')
-            .verify.valueContains('//input[@id="mobile"]','0978544488')
-            .verify.valueContains('//input[@id="email"]','Sergey_Potapof@mail.ru')
+            .verify.valueContains('//input[@id="lastName"]','Alphéus')
+            .verify.valueContains('//input[@id="firstName"]','Ingo')
+            .verify.valueContains('//input[@id="academicTitle"]','')
+            .verify.valueContains('//input[@id="functionTitle"]','Geschäftsführer')
+            .verify.valueContains('//input[@id="masterCompanyId"]','RWE GBS GmbH')
+            .verify.valueContains('//input[@id="country"]','Germany')
+            .verify.valueContains('//input[@id="mobile"]','+49 162 2565252')
+            .verify.valueContains('//input[@id="email"]','ingo.alpheus@rwe.com')
     },
 });
