@@ -1,14 +1,12 @@
 var _ = require('lodash');
-var presteps = require('./../presteps/presteps.js');
-var auth = require('./../presteps/auth.js');
+var presteps = require('./../../presteps/presteps.js');
+var auth = require('./../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
 
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/events/2316/helpdesk')
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
 
     'choose Uitto': function (browser) {

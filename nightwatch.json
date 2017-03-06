@@ -24,7 +24,7 @@
   },
   "test_settings": {
     "default": {
-      "filter": "**/*.test.js",
+      "filter": "**/*.3.js",
       "selenium_host": "127.0.0.1",
       "selenium_port": 4444,
       "launch_url": "http://alpha.skynet.managementevents.com",
