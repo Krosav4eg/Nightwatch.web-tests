@@ -94,10 +94,5 @@ module.exports = _.assign(presteps, auth, {
             .pause(3000)
             .clickBySelectorXpath('//*[contains(text(),"Thomas Bula")]');
     },
-<<<<<<< HEAD
 })
 ;
-=======
-
-});
->>>>>>> b926e39163209331c4099746b886e7085d4bd873
