@@ -54,12 +54,24 @@ module.exports = {
                     selector: '//*[@id="containerStartHour"]/input',
                     locateStrategy: 'xpath'
                 },
+                massegeStartTimeError: {
+                    selector: "//*[contains(text(), 'Start time')]/../..",
+                    locateStrategy: 'xpath'
+                },
                 endTimeInput: {
                     selector: '//*[@id="containerEndHour"]/input',
                     locateStrategy: 'xpath'
                 },
+                massegeEndTimeError: {
+                    selector: "//*[contains(text(), 'End time')]/../..",
+                    locateStrategy: 'xpath'
+                },
                 saveButton: {
                     selector: '//form/div[2]/div/div/button[contains(text(),"Save")]',
+                    locateStrategy: 'xpath'
+                },
+                cancelButton: {
+                    selector: '//form/div[2]/div/div/button[contains(text(),"Cancel")]',
                     locateStrategy: 'xpath'
                 },
                 startTime: {
