@@ -4,7 +4,6 @@
 module.exports.command = function () {
     this
         .useCss()
-        .waitForElementVisible('button.btn.btn-primary.btn-block', 30000)
         .clickBySelectorCss('button.btn.btn-primary.btn-block')
 
         .useXpath()
