@@ -10,36 +10,25 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'blank click another field': function (browser) {
-        browser
-            .clickBySelectorCss('button.btn.btn-primary.btn-block')
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
+            .clickBySelector('@addCotainerButton')
 
-            .useXpath()
-            .verify.elementPresent('//h4[contains(text(), "Container form")]')
+            .verify.elementPresent('@totalNameContainer')
 
-            .clickBySelectorCss('input#subHeading')
-            .clickBySelectorCss('input#heading');
+            .clickBySelector('@subHeadingInput')
+            .clickBySelector('@headingInput');
     },
 
     'Check that field is not required': function (browser) {
-        browser
-            .useXpath()
-            .verify.elementNotPresent('//p[text()=" Sub Heading is required."]');
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
+            .verify.elementNotPresent('@massegeSubHeadingInputError');
     },
 
     'blank click Save': function (browser) {
-        browser
-            .clickBySelectorXpath('//form/div[2]/div/div/button[contains(text(),"Save")]');
-    },
-
-    'creation container': function (browser) {
-        var agendaPage = browser.page.agenda();
-        agendaPage.
-        containerCreation();
-    },
-
-    'delete container': function (browser) {
-        var agendaPage = browser.page.agenda();
-        agendaPage
-            .containerDelete();
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
+            .clickBySelector('@saveButton');
     },
 });

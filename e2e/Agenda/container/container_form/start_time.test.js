@@ -10,49 +10,35 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'Check that field is required = blank click another field ': function (browser) {
-        browser
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
+            .clickBySelector('@addCotainerButton')
 
-            .clickBySelectorCss('button.btn.btn-primary.btn-block')
-            .useXpath()
-            .verify.containsText('//h4[contains(text(),"Container form")]', 'Container form')
+            .verify.elementPresent('@totalNameContainer')
 
-            .useCss()
-            .clickBySelectorCss('#containerStartHour')
-            .clickBySelectorCss('input#subHeading');
+            .clickBySelector('@startTimeInput')
+            .clickBySelector('@subHeadingInput');
     },
 
     'blank click Save': function (browser) {
-        browser
-            .useXpath()
-            .clickBySelectorXpath('//form/div[2]/div/div/button[contains(text(),"Save")]')
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
+            .clickBySelector('@saveButton')
 
-            .verify.containsText("//*[contains(text(), 'Start time')]/../..", "Start Hour is required")
+            .verify.containsText("@massegeStartTimeError", "Start Hour is required")
 
-            .clickBySelectorXpath('//button[1][@class="btn btn-default pull-right"]');
+            .clickBySelector('@cancelButton');
     },
 
     'can not create time before event': function (browser) {
-        browser
-            .clickBySelectorCss('button.btn.btn-primary.btn-block')
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
+            .clickBySelector('@addCotainerButton')
 
-            .useXpath()
-            .verify.containsText('//h4[contains(text(),"Container form")]', 'Container form')
-            .setValueByCss('#containerStartHour input', ['7:00', browser.Keys.ENTER])
+            .verify.elementPresent('@totalNameContainer')
+            .setValueBySelector('@startTimeInput', ['7:00', browser.Keys.ENTER])
 
-            .useXpath()
-            .verify.containsText("//*[contains(text(), 'Start time')]/../..", "Date should be between 08:00 and 18:00")
-            .clickBySelectorXpath('//button[1][@class="btn btn-default pull-right"]');
-    },
-
-    'creation container': function (browser) {
-        var agendaPage = browser.page.agenda();
-        agendaPage.
-            containerCreation();
-    },
-
-    'delete container': function (browser) {
-        var agendaPage = browser.page.agenda();
-        agendaPage
-            .containerDelete();
+            .verify.containsText("@massegeStartTimeError", "Date should be between 08:00 and 18:00")
+            .clickBySelector('@cancelButton');
     },
 });

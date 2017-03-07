@@ -54,12 +54,20 @@ module.exports = {
                     selector: '//*[@id="containerStartHour"]/input',
                     locateStrategy: 'xpath'
                 },
-                massegeStartTimeError: {
-                    selector: "//*[contains(text(), 'Start time')]/../..",
-                    locateStrategy: 'xpath'
-                },
                 endTimeInput: {
                     selector: '//*[@id="containerEndHour"]/input',
+                    locateStrategy: 'xpath'
+                },
+                massegeHeadingInputError: {
+                    selector: '(//*[contains(text(), "Heading")]/../..)[1]',
+                    locateStrategy: 'xpath'
+                },
+                massegeSubHeadingInputError: {
+                    selector: '//p[text()=" Sub Heading is required."]',
+                    locateStrategy: 'xpath'
+                },
+                massegeStartTimeError: {
+                    selector: "//*[contains(text(), 'Start time')]/../..",
                     locateStrategy: 'xpath'
                 },
                 massegeEndTimeError: {
@@ -82,8 +90,16 @@ module.exports = {
                     selector: '//b[2][contains(text(),"10:00")]',
                     locateStrategy: 'xpath'
                 },
+                end8Time: {
+                    selector: '//b[2][contains(text(),"8:00")]',
+                    locateStrategy: 'xpath'
+                },
                 textInContainer: {
                     selector: '//b[contains(text(),"test1")]',
+                    locateStrategy: 'xpath'
+                },
+                textAutotest5InContainer: {
+                    selector: '//b[contains(text(),"autotest5")]',
                     locateStrategy: 'xpath'
                 },
                 savedContainer: {
@@ -112,6 +128,10 @@ module.exports = {
                 },
                 editButton: {
                     selector: '//i[@class="fa fa-pencil edit-container"]',
+                    locateStrategy: 'xpath'
+                },
+                alertInfo: {
+                    selector: '//div[@class="alert alert-info text-center"]',
                     locateStrategy: 'xpath'
                 }
             }

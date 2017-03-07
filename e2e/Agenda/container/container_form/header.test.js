@@ -9,45 +9,30 @@ module.exports = _.assign(presteps, auth, {
             .relUrl('/event/221/agenda')
     },
 
-    'check save button': function (browser) {
-        var agendaPage = browser.page.agenda();
-        agendaPage.
-            containerCreation();
-    },
-
-    'delete container': function (browser) {
-        var agendaPage = browser.page.agenda();
-        agendaPage
-            .containerDelete();
-    },
-
     'Check that field is required = blank click another field': function (browser) {
-        browser
-            .clickBySelectorCss('button.btn.btn-primary.btn-block')
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
+            .clickBySelector('@addCotainerButton')
 
-            .useXpath()
-            .verify.containsText('//h4[contains(text(),"Container form")]', 'Container form')
+            .verify.elementPresent('@totalNameContainer')
 
-            .clickBySelectorCss('input#heading')
-            .clickBySelectorCss('input#subHeading')
+            .clickBySelector('@headingInput')
+            .clickBySelector('@subHeadingInput')
 
-            .useXpath()
-            .verify.containsText("(//*[contains(text(), 'Heading')]/../..)[1]", "Heading is required")
-            .clickBySelectorXpath('//button[1][@class="btn btn-default pull-right"]');
+            .verify.containsText("@massegeHeadingInputError", "Heading is required")
+            .clickBySelector('@cancelButton');
     },
 
     'blank.click Save': function (browser) {
-        browser
-            .clickBySelectorCss('button.btn.btn-primary.btn-block')
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
+            .clickBySelector('@addCotainerButton')
 
-            .useXpath()
-            .verify.containsText('//h4[contains(text(),"Container form")]', 'Container form')
-            .clickBySelectorXpath('//form/div[2]/div/div/button[contains(text(),"Save")]')
+            .verify.elementPresent('@totalNameContainer')
+            .clickBySelector('@saveButton')
 
-            .verify.containsText("(//*[contains(text(), 'Heading')]/../..)[1]", "Heading is required")
+            .verify.containsText("@massegeHeadingInputError", "Heading is required")
 
-            .clickBySelectorXpath('//button[1][@class="btn btn-default pull-right"]')
-
-            .verify.elementNotPresent('//b[contains(text(), "test1")]');
+            .clickBySelector('@cancelButton');
     },
 });

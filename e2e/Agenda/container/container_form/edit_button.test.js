@@ -40,7 +40,7 @@ module.exports = _.assign(presteps, auth, {
         addCotainerPage
             .clickBySelector('@editButton')
 
-            .clickBySelector('//button[1][@class="btn btn-default pull-right"]')
+            .clickBySelector('@cancelButton')
 
             .verify.elementPresent('@startTime')
             .verify.elementPresent('@endTime')

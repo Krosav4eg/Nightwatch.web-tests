@@ -10,95 +10,103 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'Check that field is required = blank click another field': function (browser) {
-        browser
-            .clickBySelectorCss('button.btn.btn-primary.btn-block')
-            .useXpath()
-            .verify.elementPresent('//h4[contains(text(),"Container form")]')
-            .useCss()
-            .clickBySelectorCss('#containerEndHour')
-            .clickBySelectorCss('input#subHeading');
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
+            .clickBySelector('@addCotainerButton')
+
+            .verify.elementPresent('@totalNameContainer')
+            .clickBySelector('@endTimeInput')
+            .clickBySelector('@subHeadingInput');
     },
 
     'blank click Save': function (browser) {
-        browser
-            .clickBySelectorXpath('//form/div[2]/div/div/button[contains(text(),"Save")]')
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
+            .clickBySelector('@saveButton')
 
-            .verify.containsText("//*[contains(text(), 'End time')]/../..", "End Hour is required")
-            .clickBySelectorXpath('//button[1][@class="btn btn-default pull-right"]');
+            .verify.containsText("@massegeEndTimeError", "End Hour is required")
+            .clickBySelector('@cancelButton');
     },
 
     'check end time after event': function (browser) {
-        browser
-            .clickBySelectorCss('button.btn.btn-primary.btn-block')
-            .useXpath()
-            .verify.elementPresent('//h4[contains(text(),"Container form")]')
-            .setValueByCss('#containerEndHour input', ['00:00', browser.Keys.ENTER])
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
+            .clickBySelector('@addCotainerButton')
 
-            .useXpath()
-            .verify.containsText("//*[contains(text(), 'End time')]/../..", "Date should be between 08:00 and 18:00")
-            .clickBySelectorXpath('//button[1][@class="btn btn-default pull-right"]');
+            .verify.elementPresent('@totalNameContainer')
+
+            .setValueBySelector('@endTimeInput', ['00:00', browser.Keys.ENTER])
+
+            .verify.containsText("@massegeEndTimeError", "Date should be between 08:00 and 18:00")
+            .clickBySelector('@cancelButton');
     },
 
     'check end time after creation container': function (browser) {
-        browser
-            .clickBySelectorCss('button.btn.btn-primary.btn-block')
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
+            .clickBySelector('@addCotainerButton')
 
-            .useXpath()
-            .verify.containsText('//h4[contains(text(),"Container form")]', 'Container form')
+            .verify.elementPresent('@totalNameContainer')
 
-            .setValueByCss('input#heading', 'autotest5')
-            .setValueByCss('input#subHeading', 'test')
-            .setValueByCss('#containerStartHour input', '8:00')
-            .setValueByCss('#containerEndHour input', '10:00')
-            .clickBySelectorCss('input#heading')
+            .setValueBySelector('@headingInput', 'autotest5')
+            .setValueBySelector('@subHeadingInput', 'test')
+            .setValueBySelector('@startTimeInput', '8:00')
+            .setValueBySelector('@endTimeInput', '10:00')
+            .clickBySelector('@headingInput')
 
-            .clickBySelectorXpath('//form/div[2]/div/div/button[contains(text(),"Save")]');
+            .clickBySelector('@saveButton');
     },
 
     'check that only container was create ': function (browser) {
-        browser
-            .verify.elementPresent('//b[contains(text(), "autotest5")]')
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
+            .verify.elementPresent('@textAutotest5InContainer')
 
-            .verify.containsText('//b[1][contains(text(),"8:00")]', '8:00')
-            .verify.containsText('//b[2][contains(text(),"10:00")]', '10:00');
+            .verify.elementPresent('@startTime')
+            .verify.elementPresent('@endTime');
     },
 
     'that information message appears': function (browser) {
-        browser
-            .verify.containsText('//div[@class="alert alert-info text-center"]', 'You don`t have any elements into container')
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
+            .verify.containsText('@alertInfo', 'You don`t have any elements into container')
     },
 
     'delete container': function (browser) {
-        browser
-            .deleteContainerForAgenda()
-            .verify.elementNotPresent('//b[contains(text(), "autotest5")]');
+        var agendaPage = browser.page.agenda();
+        agendaPage
+            .containerDelete();
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
+            .verify.elementNotPresent('@textAutotest5InContainer');
     },
 
     'container without time 8:00-8:00': function (browser) {
-        browser
-            .clickBySelectorCss('button.btn.btn-primary.btn-block')
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
+            .clickBySelector('@addCotainerButton')
 
-            .useXpath()
-            .verify.containsText('//h4[contains(text(),"Container form")]', 'Container form')
+            .verify.elementPresent('@totalNameContainer')
 
-            .setValueByCss('input#heading', 'autotest5 ')
-            .setValueByCss('input#subHeading', 'test')
-            .setValueByCss('#containerStartHour input', '8:00')
-            .setValueByCss('#containerEndHour input', '8:00')
-            .clickBySelectorCss('input#heading')
+            .setValueBySelector('@headingInput', 'autotest5')
+            .setValueBySelector('@subHeadingInput', 'test')
+            .setValueBySelector('@startTimeInput', '8:00')
+            .setValueBySelector('@endTimeInput', '8:00')
+            .clickBySelector('@headingInput')
 
-            .clickBySelectorXpath('//form/div[2]/div/div/button[contains(text(),"Save")]')
+            .clickBySelector('@saveButton')
 
-            .useXpath()
-            .verify.elementPresent('//b[contains(text(), "autotest5")]')
-            .verify.containsText('//b[1][contains(text(),"8:00")]', '8:00')
-            .verify.containsText('//b[2][contains(text(),"8:00")]', '8:00');
+            .verify.elementPresent('@textAutotest5InContainer')
+            .verify.containsText('@startTime', '8:00')
+            .verify.containsText('@end8Time', '8:00');
     },
 
     'remove container': function (browser) {
-        browser
-            .deleteContainerForAgenda()
-
-            .verify.elementNotPresent('//b[contains(text(), "autotest5")]');
+        var agendaPage = browser.page.agenda();
+        agendaPage
+            .containerDelete();
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
+            .verify.elementNotPresent('@textAutotest5InContainer');
     },
 });
