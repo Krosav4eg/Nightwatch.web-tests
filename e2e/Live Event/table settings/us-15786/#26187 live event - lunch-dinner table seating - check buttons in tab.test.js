@@ -27,28 +27,15 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('//span[contains(text(),"Table setting")]');
     },
 
-    'check Statistics displayed below the Table setting tab header': function (browser) {
+    'inspect buttons displayed.': function (browser) {
         browser
             .clickBySelectorXpath('//a[@href="#table-setting-10679"]')
 
-            .verify.elementPresent('//abbr[contains(text(),"Delegates in tables:")]')
-            .verify.containsText('(//p)[1]','113')
+            .verify.elementPresent('//button[contains(text(),"Add new table")]')
+            .verify.elementPresent('//button[contains(text(),"Place orphans to table")]')
+            .verify.elementPresent('//button[contains(text(),"Regenerate tables")]')
 
-            .verify.elementPresent('//abbr[contains(text(),"Delegates not in tables:")]')
-            .verify.containsText('(//p)[2]','10')
-
-            .verify.elementPresent('//abbr[contains(text(),"Representatives in tables:")]')
-            .verify.containsText('(//p)[3]','23')
-
-            .verify.elementPresent('//abbr[contains(text(),"Representatives not in tables:")]')
-            .verify.containsText('(//p)[4]','2')
-
-            .verify.elementPresent('//abbr[contains(text(),"Hosted tables")]')
-            .verify.containsText('(//p)[5]','8')
-
-            .verify.elementPresent('//abbr[contains(text(),"Extra tables:")]')
-            .verify.containsText('(//p)[6]','7')
-
+            .verify.elementPresent('(//button[contains(text(),"Save seating")])[1]')
     },
 });
 
