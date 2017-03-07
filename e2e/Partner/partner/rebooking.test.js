@@ -7,8 +7,6 @@ module.exports = _.assign(presteps, auth, {
     'redirection to rebooking': function (browser) {
         browser
             .relUrl('/event/212/partners/7588')
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
 
     'rebooking comment field': function (browser) {

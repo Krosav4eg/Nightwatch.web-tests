@@ -7,8 +7,6 @@ module.exports = _.assign(presteps, auth, {
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/2472/agenda')
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
     'add attach': function (browser) {
         browser

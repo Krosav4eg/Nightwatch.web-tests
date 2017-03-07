@@ -7,8 +7,6 @@ module.exports = _.assign(presteps, auth, {
     'redirection to delegates': function (browser) {
         browser
             .relUrl('/event/1000/delegates')
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
 
     'choose one delegate from the list': function (browser) {

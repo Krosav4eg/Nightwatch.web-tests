@@ -7,8 +7,6 @@ module.exports = _.assign(presteps, auth, {
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/222/agenda')
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
 
     'Check that field is required = blank click another field ': function (browser) {
@@ -47,18 +45,14 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'creation container': function (browser) {
-        browser
-            .containerCreationForAgenda();
-    },
-
-    'check start time after creation container': function (browser) {
-        browser
-            .useXpath()
-            .verify.containsText('//b[1][contains(text(),"8:00")]', '8:00');
+        var agendaPage = browser.page.agenda();
+        agendaPage.
+            containerCreation();
     },
 
     'delete container': function (browser) {
-        browser
-            .deleteContainerForAgenda();
+        var agendaPage = browser.page.agenda();
+        agendaPage
+            .containerDelete();
     },
 });

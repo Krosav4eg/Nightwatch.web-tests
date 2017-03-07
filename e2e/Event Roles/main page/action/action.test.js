@@ -7,8 +7,6 @@ module.exports = _.assign(presteps, auth, {
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/212/event-participant-roles')
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
 
     'click delete and cancel ': function (browser) {

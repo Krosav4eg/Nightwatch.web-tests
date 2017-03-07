@@ -7,13 +7,12 @@ module.exports = _.assign(presteps, auth, {
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/224/agenda')
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
 
     'container creation': function (browser) {
-        browser
-            .containerCreationForAgenda();
+        var agendaPage = browser.page.agenda();
+        agendaPage.
+            containerCreation();
     },
 
     'check alert message': function (browser) {
@@ -34,7 +33,8 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'click OK button': function (browser) {
-        browser
-            .deleteContainerForAgenda();
+        var agendaPage = browser.page.agenda();
+        agendaPage
+            .containerDelete();
     },
 });

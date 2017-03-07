@@ -7,8 +7,6 @@ module.exports = _.assign(presteps, auth, {
     'redirection to representatives': function (browser) {
         browser
             .relUrl('/event/212/delegates')
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
 
     'click print badge button': function (browser) {

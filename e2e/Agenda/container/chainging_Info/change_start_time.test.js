@@ -12,7 +12,7 @@ module.exports = _.assign(presteps, auth, {
     'creation container': function (browser) {
         var agendaPage = browser.page.agenda();
         agendaPage.
-        containerCreation();
+            containerCreation();
     },
 
     'delete start time': function (browser) {

@@ -7,8 +7,6 @@ module.exports = _.assign(presteps, auth, {
     'redirection to delegates': function (browser) {
         browser
             .relUrl('/event/2008/delegates')
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
 
     'check that when you open select sms template page template field is blank': function (browser) {

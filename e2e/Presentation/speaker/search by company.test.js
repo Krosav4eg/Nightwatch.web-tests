@@ -7,7 +7,6 @@ module.exports = _.assign(presteps, auth, {
     'redirection to presentations': function (browser) {
         browser
             .relUrl('/event/2008/presentations')
-            .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
 
     'go to the edit presentation': function (browser) {

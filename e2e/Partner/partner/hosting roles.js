@@ -7,8 +7,6 @@ module.exports = _.assign(presteps, auth, {
     'redirection to hosting roles': function (browser) {
         browser
             .relUrl('/event/150/partners/7588')
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
 
     'check hosting roles content': function (browser) {

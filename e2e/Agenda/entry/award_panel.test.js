@@ -7,13 +7,12 @@ module.exports = _.assign(presteps, auth, {
     'redirection to agenda': function (browser) {
         browser
             .relUrl('/event/229/agenda')
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
 
     'creation new container': function (browser) {
-        browser
-            .containerCreationForAgenda();
+        var agendaPage = browser.page.agenda();
+        agendaPage.
+            containerCreation();
     },
 
     'click on add element button': function (browser) {
@@ -153,7 +152,8 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementNotPresent('//button[contains(text(), "Add room")]');
     },
     'delete container': function (browser) {
-        browser
-            .deleteContainerForAgenda();
+        var agendaPage = browser.page.agenda();
+        agendaPage
+            .containerDelete();
     },
 });

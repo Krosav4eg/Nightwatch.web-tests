@@ -7,8 +7,6 @@ module.exports = _.assign(presteps, auth, {
     'redirection to table-settings': function (browser) {
         browser
             .relUrl('/events/2316/table-settings/3')
-            .waitForElementVisible('#thisIsMainLoader', 80000)
-            .waitForElementNotVisible('#thisIsMainLoader', 80000);
     },
 
     'regenerator table': function (browser) {

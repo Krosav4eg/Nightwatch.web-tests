@@ -125,6 +125,112 @@ module.exports = {
                     locateStrategy: 'xpath'
                 },
             }
+        },
+        informationDelegate: {
+            selector: '//div[@class="modal-content"]',
+            locateStrategy: 'xpath',
+            elements: {
+                called: {
+                    selector: '//b[text()="Called"]/../../div[2]',
+                    locateStrategy: 'xpath'
+                },
+                calledButton: {
+                    selector: '//b[text()="Called"]/../../div/button',
+                    locateStrategy: 'xpath'
+                },
+                availability: {
+                    selector: '//b[text()="Availability"]/../../div[2]',
+                    locateStrategy: 'xpath'
+                },
+                availabilityEditLink: {
+                    selector: '//b[text()="Availability"]/../../div/a',
+                    locateStrategy: 'xpath'
+                },
+
+                participationStatus:{
+                    selector: 'select[formcontrolname="participationStatus"]',
+                    locateStrategy: 'css selector'
+                },
+                cancelledOption: {
+                    selector: '//select[@formcontrolname="participationStatus"]//option[text()="Cancelled"]',
+                    locateStrategy: 'xpath'
+                },
+                confirmedOption: {
+                    selector: '//select[@formcontrolname="participationStatus"]//option[text()="Confirmed"]',
+                    locateStrategy: 'xpath'
+                },
+                confirmedRebookOption: {
+                    selector: '//select[@formcontrolname="participationStatus"]//option[text()="Confirmed Rebook"]',
+                    locateStrategy: 'xpath'
+                },
+                lateCancellationOption: {
+                    selector: '//select[@formcontrolname="participationStatus"]//option[text()="Late cancellation"]',
+                    locateStrategy: 'xpath'
+                },
+                noShowOption: {
+                    selector: '//select[@formcontrolname="participationStatus"]//option[text()="No show"]',
+                    locateStrategy: 'xpath'
+                },
+                unconfirmedOption: {
+                    selector: '//select[@formcontrolname="participationStatus"]//option[text()="Unconfirmed"]',
+                    locateStrategy: 'xpath'
+                },
+                unconfirmedRebookOption: {
+                    selector: '//select[@formcontrolname="participationStatus"]//option[text()="Unconfirmed Rebook"]',
+                    locateStrategy: 'xpath'
+                },
+                noShowButton: {
+                    selector: '//button[text()="No show"]',
+                    locateStrategy: 'xpath'
+                },
+
+                attendanceStatus: {
+                    selector: 'select[formcontrolname="attendanceStatus"]',
+                    locateStrategy: 'css selector'
+                },
+                calledCanceledOption: {
+                    selector: '//select[@formcontrolname="attendanceStatus"]//option[text()="Called - Canceled"]',
+                    locateStrategy: 'xpath'
+                },
+                calledDelayedOption: {
+                    selector: '//select[@formcontrolname="attendanceStatus"]//option[text()="Called - Delayed"]',
+                    locateStrategy: 'xpath'
+                },
+                calledNotReachedOption: {
+                    selector: '//select[@formcontrolname="attendanceStatus"]//option[text()="Called - Not reached"]',
+                    locateStrategy: 'xpath'
+                },
+                checkedInOption: {
+                    selector: '//select[@formcontrolname="attendanceStatus"]//option[text()="Checked in"]',
+                    locateStrategy: 'xpath'
+                },
+                leftOption: {
+                    selector: '//select[@formcontrolname="attendanceStatus"]//option[text()="Left"]',
+                    locateStrategy: 'xpath'
+                },
+                notArrivedOption: {
+                    selector: '//select[@formcontrolname="attendanceStatus"]//option[text()="Not Arrived"]',
+                    locateStrategy: 'xpath'
+                },
+
+                participationNotes: {
+                    selector: '//*[text()="Participation notes"]/../../div/textarea',
+                    locateStrategy: 'xpath'
+                },
+                callingNotes: {
+                    selector: '//*[text()="Calling notes"]/../../div/textarea',
+                    locateStrategy: 'xpath'
+                },
+
+                saveButton: {
+                    selector: '//button[text()="Save"]',
+                    locateStrategy: 'xpath'
+                },
+                cancelButton: {
+                    selector: '//button[text()="Cancel"]',
+                    locateStrategy: 'xpath'
+                },
+            }
         }
     }
 };

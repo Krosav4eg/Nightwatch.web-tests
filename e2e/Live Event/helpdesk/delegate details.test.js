@@ -77,5 +77,4 @@ module.exports = _.assign(presteps, auth, {
                 handle = result.value[0];
                 browser.switchWindow(handle);})
     },
-
 });

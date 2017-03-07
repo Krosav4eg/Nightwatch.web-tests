@@ -7,8 +7,6 @@ module.exports = _.assign(presteps, auth, {
     'redirection to awards': function (browser) {
         browser
             .relUrl('/event/1607/awards')
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
 
     'status switcher by default': function (browser) {

@@ -7,8 +7,6 @@ module.exports = _.assign(presteps, auth, {
     'redirection to participant-roles': function (browser) {
     browser
             .relUrl('/event/1484/event-participant-roles')
-            .waitForElementVisible('#thisIsMainLoader', 100000)
-            .waitForElementNotVisible('#thisIsMainLoader', 100000);
     },
 
     'add new role': function (browser) {

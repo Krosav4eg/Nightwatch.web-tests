@@ -8,8 +8,6 @@ module.exports = _.assign(presteps, auth, {
     'redirection to the event-participant-roles': function (browser) {
         browser
             .relUrl('/event/212/event-participant-roles')
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
 
     'advisory board member. check that number  is correct and the same as in list': function (browser) {

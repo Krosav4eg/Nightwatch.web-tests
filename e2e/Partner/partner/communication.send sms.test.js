@@ -7,8 +7,6 @@ module.exports = _.assign(presteps, auth, {
     'redirection to representatives': function (browser) {
         browser
             .relUrl('/event/2/partners/25')
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
     },
 
     'add contact person': function (browser) {

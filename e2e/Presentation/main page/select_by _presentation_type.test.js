@@ -7,8 +7,6 @@ module.exports = _.assign(presteps, auth, {
     'redirection to presentations': function (browser) {
         browser
             .relUrl('/event/212/presentations')
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
 
     'delegate - Case presentation. check that number  is correct and the same as in list': function (browser) {

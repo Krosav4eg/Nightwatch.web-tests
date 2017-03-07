@@ -7,8 +7,6 @@ module.exports = _.assign(presteps, auth, {
     'redirection to representatives': function (browser) {
         browser
             .relUrl('/event/212/partners/7588')
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
 
     'participation info not visible': function (browser) {
@@ -94,10 +92,5 @@ module.exports = _.assign(presteps, auth, {
             .pause(3000)
             .clickBySelectorXpath('//*[contains(text(),"Thomas Bula")]');
     },
-<<<<<<< HEAD
-})
-;
-=======
-
 });
->>>>>>> b926e39163209331c4099746b886e7085d4bd873
+
