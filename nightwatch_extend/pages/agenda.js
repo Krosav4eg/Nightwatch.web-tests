@@ -130,10 +130,175 @@ module.exports = {
                     selector: '//i[@class="fa fa-pencil edit-container"]',
                     locateStrategy: 'xpath'
                 },
+                addElementButton: {
+                    selector: '//*[@data-marker="me-event-agenda__button__button__add0"]',
+                    locateStrategy: 'xpath'
+                },
+
                 alertInfo: {
                     selector: '//div[@class="alert alert-info text-center"]',
                     locateStrategy: 'xpath'
-                }
+                },
+                timeElementText: {
+                    selector: '(//h5)[2]',
+                    locateStrategy: 'xpath'
+                },
+                TO1PlaceholderText: {
+                    selector: '(//h5)[3]',
+                    locateStrategy: 'xpath'
+                },
+                lunchPlaceholderText: {
+                    selector: '//h5[contains(text(),"Lunch Placeholder")]',
+                    locateStrategy: 'xpath'
+                },
+                addRoomButton: {
+                    selector: '//button[contains(text(), "Add room")]',
+                    locateStrategy: 'xpath'
+                },
+                blueBlockColorForEvent: {
+                    selector: '//*[@class="panel-heading blueBlockColorForEvent"]',
+                    locateStrategy: 'xpath'
+                },
+                greenBlockColorForEvent: {
+                    selector: '//div[@class="panel-heading greenBlockColorForEvent"]',
+                    locateStrategy: 'xpath'
+                },
+                deleteElementButton: {
+                    selector: '//a[3]/i[@class="fa fa-trash-o delete-element"]',
+                    locateStrategy: 'xpath'
+                },
+                massegeForDeleteElement: {
+                    selector: '//modal-content[contains(text(),"Do you really want to delete element 1-TO-1 Placeholder?")]',
+                    locateStrategy: 'xpath'
+                },
+                confitmYesButton: {
+                    selector: '//button[@data-marker="me-confirm__button__button__yes"]',
+                    locateStrategy: 'xpath'
+                },
+            }
+        },
+        addElement: {
+            selector: '//h4[contains(text(),"Element form")]',
+            locateStrategy: 'xpath',
+            elements: {
+                totalNameElementForm: {
+                    selector: '//h4[contains(text(),"Element form")]',
+                    locateStrategy: 'xpath'
+                },
+                agendaElementType: {
+                    selector: '//label[contains(text(),"Agenda Element Entry Type")]',
+                    locateStrategy: 'xpath'
+                },
+                TO1PlaceholderOption: {
+                    selector: '//option[@value="25"]',
+                    locateStrategy: 'xpath'
+                },
+                meetingElementOption: {
+                    selector: '//option[contains(text(),"Meeting element")]',
+                    locateStrategy: 'xpath'
+                },
+                elementRequiringTableSettingOption: {
+                    selector: '//option[contains(text(),"Element requiring table setting")]',
+                    locateStrategy: 'xpath'
+                },
+                hostedTablePlaceholderOption: {
+                    selector: '//option[@value="23"]',
+                    locateStrategy: 'xpath'
+                },
+                dinnerPlaceholderOption: {
+                    selector: '//option[@value="34"]',
+                    locateStrategy: 'xpath'
+                },
+                groupDiscussionPlaceholderOption: {
+                    selector: '//option[@value="33"]',
+                    locateStrategy: 'xpath'
+                },
+                lunchPlaceholderOption: {
+                    selector: '//option[@value="32"]',
+                    locateStrategy: 'xpath'
+                },
+
+                endTimeText: {
+                    selector: '//label[contains(text(),"End time")]',
+                    locateStrategy: 'xpath'
+                },
+                endTimeInput: {
+                    selector: '//input[@placeholder="End time"]',
+                    locateStrategy: 'xpath'
+                },
+                startTimeText: {
+                    selector: '//label[contains(text(),"Start time")]',
+                    locateStrategy: 'xpath'
+                },
+                startTimeInput: {
+                    selector: '//input[@placeholder="Start time"]',
+                    locateStrategy: 'xpath'
+                },
+                meetingAllowedText: {
+                    selector: '//label[contains(text(),"Meeting allowed")]',
+                    locateStrategy: 'xpath'
+                },
+                primaryMeetingHourOption: {
+                    selector: '//option[contains(text(),"Primary meeting hour")]',
+                    locateStrategy: 'xpath'
+                },
+                noMeetingsAllowedOption: {
+                    selector: '//option[contains(text(),"No meetings allowed")]',
+                    locateStrategy: 'xpath'
+                },
+                groupsUsedText: {
+                    selector: '//label[contains(text(),"Groups Used")]',
+                    locateStrategy: 'xpath'
+                },
+                eventGroupsText: {
+                    selector: '//label[contains(text(),"Event Groups")]',
+                    locateStrategy: 'xpath'
+                },
+                groupOrangeCheckbox: {
+                    selector: '(//div[@class="checkbox-item"])[1]',
+                    locateStrategy: 'xpath'
+                },
+                groupVioletCheckbox: {
+                    selector: '(//div[@class="checkbox-item"])[2]',
+                    locateStrategy: 'xpath'
+                },
+                showInCalendarsText: {
+                    selector: '//label[contains(text(),"Show in calendars")]',
+                    locateStrategy: 'xpath'
+                },
+                delegatesCheckbox: {
+                    selector: '(//label)[9]',
+                    locateStrategy: 'xpath'
+                },
+                providerRepresentativesCheckbox: {
+                    selector: '(//label)[10]',
+                    locateStrategy: 'xpath'
+                },
+                publishWWWText: {
+                    selector: '//label[contains(text(),"Publish WWW")]',
+                    locateStrategy: 'xpath'
+                },
+                visibilityPublishWWWYesCheckbox: {
+                    selector: '//*[@id="visibilityPublishWWWYes"]',
+                    locateStrategy: 'xpath'
+                },
+                visibilityPublishWWWNoCheckbox: {
+                    selector: '//*[@id="visibilityPublishWWWNo"]',
+                    locateStrategy: 'xpath'
+                },
+                roomText: {
+                    selector: '//div[@class="form-group"]/div/label[contains(text(),"Room")]',
+                    locateStrategy: 'xpath'
+                },
+                roomInput: {
+                    selector: '//input[@id="room"]',
+                    locateStrategy: 'xpath'
+                },
+                saveButton: {
+                    selector: '//div[@class="col-sm-12 container_btn_group"]/button[2][contains(text(),"Save")]',
+                    locateStrategy: 'xpath'
+                },
+
             }
         },
     }

@@ -1,5 +1,79 @@
 module.exports = {
     sections: {
+        allInformation: {
+            selector: '//h4',
+            locateStrategy: 'xpath',
+            elements: {
+                titleEvent: {
+                    selector: '(//h4)[1]',
+                    locateStrategy: 'xpath'
+                },
+                nameEvent: {
+                    selector: '(//h3)[1]',
+                    locateStrategy: 'xpath'
+                },
+                localName: {
+                    selector: '(//h3/../div)[1]',
+                    locateStrategy: 'xpath'
+                },
+                dates: {
+                    selector: '(//h3/../div)[2]',
+                    locateStrategy: 'xpath'
+                },
+                venue: {
+                    selector: '(//h3/../div)[3]',
+                    locateStrategy: 'xpath'
+                },
+                titleTable: {
+                    selector: '(//h4)[2]',
+                    locateStrategy: 'xpath'
+                },
+            }
+        },
+        showFilter: {
+            selector: '//select[@name="show"]',
+            locateStrategy: 'xpath',
+            elements: {
+                showFilterSelector: {
+                    selector: '//select[@name="show"]',
+                    locateStrategy: 'xpath'
+                },
+                allOption: {
+                    selector: '(//option[@value="undefined"])[1]',
+                    locateStrategy: 'xpath'
+                },
+                ShowConfirmedAndUnconfirmedOption: {
+                    selector: '(//option[@value=1])[1]',
+                    locateStrategy: 'xpath'
+                },
+                showOnlyAttendingOption: {
+                    selector: '(//option[@value=2])[1]',
+                    locateStrategy: 'xpath'
+                },
+            }
+        },
+        eventGroupFilter: {
+            selector: '//select[@name="eventGroupId"]',
+            locateStrategy: 'xpath',
+            elements: {
+                showFilterSelector: {
+                    selector: '//select[@name="eventGroupId"]',
+                    locateStrategy: 'xpath'
+                },
+                allOption: {
+                    selector: '(//option[text()="All"])[1]',
+                    locateStrategy: 'xpath'
+                },
+                orangeOption: {
+                    selector: '(//option[@value=3695])[1]',
+                    locateStrategy: 'xpath'
+                },
+                purpleOption: {
+                    selector: '(//option[@value=3696])[1]',
+                    locateStrategy: 'xpath'
+                },
+            }
+        },
         delegateDetails: {
             selector: '//tr[2]/td[6]/span/a[1]',
             locateStrategy: 'xpath',
@@ -230,6 +304,606 @@ module.exports = {
                     selector: '//button[text()="Cancel"]',
                     locateStrategy: 'xpath'
                 },
+            }
+        },
+        checkboxColmn: {
+            selector: '(//input[@type="checkbox"])[1]',
+            locateStrategy: 'xpath',
+            elements: {
+                allCheckbox: {
+                    selector: '(//input[@type="checkbox"])[1]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '(//input[@type="checkbox"])[2]',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '(//input[@type="checkbox"])[3]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '(//input[@type="checkbox"])[4]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '(//input[@type="checkbox"])[5]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
+        attendanceStatusesColumn: {
+            selector: '//tr/th[2]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[2]',
+                    locateStrategy: 'xpath'
+                },
+                allOption: {
+                    selector: '(//option)[7]',
+                    locateStrategy: 'xpath'
+                },
+                canceledOption: {
+                    selector: '//option[text()="Canceled"]',
+                    locateStrategy: 'xpath'
+                },
+                checkedInOption: {
+                    selector: '//option[text()="Checked in"]',
+                    locateStrategy: 'xpath'
+                },
+                delayedOption: {
+                    selector: '//option[text()="Delayed"]',
+                    locateStrategy: 'xpath'
+                },
+                leftOption: {
+                    selector: '//option[text()="Left"]',
+                    locateStrategy: 'xpath'
+                },
+                notArrivedOption: {
+                    selector: '//option[text()="Not Arrived"]',
+                    locateStrategy: 'xpath'
+                },
+                notReachedOption: {
+                    selector: '//option[text()="Not reached"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[2]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[2]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[2]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[2]',
+                    locateStrategy: 'xpath'
+                },
+                noResultsFound: {
+                    selector: '//*[contains(text(),"No results found")]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
+        participationStatusesColumn: {
+            selector: '//tr/th[3]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[3]',
+                    locateStrategy: 'xpath'
+                },
+                allOption: {
+                    selector: '(//option)[14]',
+                    locateStrategy: 'xpath'
+                },
+                cancelledOption: {
+                    selector: '//option[text()="Cancelled"]',
+                    locateStrategy: 'xpath'
+                },
+                confirmedOption: {
+                    selector: '//option[text()="Confirmed"]',
+                    locateStrategy: 'xpath'
+                },
+                confirmedRebookOption: {
+                    selector: '//option[text()="Confirmed Rebook"]',
+                    locateStrategy: 'xpath'
+                },
+                lateCancellationOption: {
+                    selector: '//option[text()="Late cancellation"]',
+                    locateStrategy: 'xpath'
+                },
+                noShowOption: {
+                    selector: '//option[text()="No show"]',
+                    locateStrategy: 'xpath'
+                },
+                prospectOption: {
+                    selector: '//option[text()="Prospect"]',
+                    locateStrategy: 'xpath'
+                },
+                unconfirmedOption: {
+                    selector: '//option[text()="Unconfirmed"]',
+                    locateStrategy: 'xpath'
+                },
+                unconfirmedRebookOption: {
+                    selector: '//option[text()="Unconfirmed Rebook"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[3]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[3]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[3]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[3]',
+                    locateStrategy: 'xpath'
+                },
+                noResultsFound: {
+                    selector: '//*[contains(text(),"No results found")]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
+        idColumn: {
+            selector: '//tr/th[4]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[4]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[4]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[4]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[4]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[4]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[4]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
+        firstNameColumn: {
+            selector: '//tr/th[5]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[5]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[5]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[5]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[5]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[5]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[5]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
+        lastNameColumn: {
+            selector: '//tr/th[6]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[6]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[6]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[6]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[6]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[6]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[6]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
+        companyColumn: {
+            selector: '//tr/th[7]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[7]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[7]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[7]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[7]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[7]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[7]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
+        eventGroupColumn: {
+            selector: '//tr/th[8]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[8]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[8]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[8]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[8]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[8]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[8]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
+        bookedMeetingsColumn: {
+            selector: '//tr/th[9]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[9]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[9]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[9]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[9]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[9]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[9]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
+        open121RequestsColumn: {
+            selector: '//tr/th[10]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[10]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[10]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[10]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[10]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[10]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[10]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
+        open121suggestionsColumn: {
+            selector: '//tr/th[11]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[11]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[11]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[11]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[11]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[11]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[11]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
+        openHostedTableSuggestionsColumn: {
+            selector: '//tr/th[12]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[12]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[12]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[12]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[12]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[12]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[12]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
+        rejectedRequestsColumn: {
+            selector: '//tr/th[13]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[13]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[13]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[13]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[13]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[13]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[13]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
+        queuingMeetingsColumn: {
+            selector: '//tr/th[14]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[14]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[14]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[14]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[14]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[14]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[14]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
+        meetingsToRescheduleColumn: {
+            selector: '//tr/th[15]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[15]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[15]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[15]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[15]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[15]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[15]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
+        calledColumn: {
+            selector: '//tr/th[16]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[16]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[16]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[16]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[16]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[16]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[16]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
+        participationNotesColumn: {
+            selector: '//tr/th[19]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[18]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[18]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[18]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[18]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[18]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[18]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
+        callingNotesColumn: {
+            selector: '//tr/th[19]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[19]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[19]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[19]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[19]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[19]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[19]',
+                    locateStrategy: 'xpath'
+                }
             }
         }
     }
