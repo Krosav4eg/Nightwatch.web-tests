@@ -81,17 +81,10 @@ module.exports = _.assign(presteps, auth, {
     'search for an event in live event - choose event sidebar navigation': function (browser) {
         browser
             .clickBySelectorXpath('//span[contains(text(),"Live event")]')
-            .verify.elementPresent('(//span[contains(text(),"Choose event")])[3]');
     },
 
     'click event Id for any of the returned search results': function (browser) {
         browser
-            .clickBySelectorXpath('(//span[contains(text(),"Choose event")])[3]')
-            .clickBySelectorXpath('//a[contains(text(),"IndustryForum Healthcare")]')
-
-            .verify.elementPresent('//h4[contains(text(),"Event (#2314)")]')
-            .verify.elementPresent('//h3[contains(text(),"IndustryForum Healthcare")]')
-
             .clickBySelectorXpath('(//span[contains(text(),"IndustryForum Healthcare")])[4]')
 
             .verify.elementPresent('//span[contains(text(),"Check-in")]')

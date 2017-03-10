@@ -32,23 +32,22 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('//a[@href="#table-setting-10679"]')
 
             .verify.elementPresent('//abbr[contains(text(),"Delegates in tables:")]')
-            .verify.containsText('(//p)[1]','113')
+            .verify.containsText('(//p)[1]','120')
 
             .verify.elementPresent('//abbr[contains(text(),"Delegates not in tables:")]')
-            .verify.containsText('(//p)[2]','10')
+            .verify.containsText('(//p)[2]','3')
 
             .verify.elementPresent('//abbr[contains(text(),"Representatives in tables:")]')
-            .verify.containsText('(//p)[3]','23')
+            .verify.containsText('(//p)[3]','25')
 
             .verify.elementPresent('//abbr[contains(text(),"Representatives not in tables:")]')
-            .verify.containsText('(//p)[4]','2')
+            .verify.containsText('(//p)[4]','0')
 
             .verify.elementPresent('//abbr[contains(text(),"Hosted tables")]')
-            .verify.containsText('(//p)[5]','8')
+            .verify.containsText('(//p)[5]','9')
 
             .verify.elementPresent('//abbr[contains(text(),"Extra tables:")]')
-            .verify.containsText('(//p)[6]','7')
-
+            .verify.containsText('(//p)[6]','6');
     },
 });
 
