@@ -30,15 +30,12 @@ module.exports = _.assign(presteps, auth, {
     'choose element requiring table setting': function (browser) {
         var addElementPage = browser.page.agenda().section.addElement;
         addElementPage
-            //.clickBySelectorCss('select#agendaElementEntryTypeId.form-control')
             .clickBySelector('@elementRequiringTableSettingOption');
     },
 
     'assertion agenda element type drop down list': function (browser) {
         var addElementPage = browser.page.agenda().section.addElement;
         addElementPage
-           // .waitForElementVisible('select#agendaElementTypeId', 4000)
-
             .clickBySelector('@hostedTablePlaceholderOption')
             .clickBySelector('@dinnerPlaceholderOption')
             .clickBySelector('@groupDiscussionPlaceholderOption')
@@ -76,9 +73,6 @@ module.exports = _.assign(presteps, auth, {
             .setValueBySelector('@startTimeInput', ['8:59', browser.Keys.ENTER])
             .setValueBySelector('@endTimeInput', ['9:59', browser.Keys.ENTER])
 
-           // .clickBySelectorCss('input#room')
-
-           // .clickBySelectorCss('option[value="32"]')
             .clickBySelector('@noMeetingsAllowedOption')
 
             .clickBySelector('@saveButton');
@@ -88,7 +82,7 @@ module.exports = _.assign(presteps, auth, {
         var addElementPage = browser.page.agenda().section.addCotainer;
         addElementPage
             .verify.elementPresent('@timeElementText')
-            .verify.elementPresent('@lunchPlaceholderText')
+            .verify.containsText('@namePlaceholderText', 'Lunch placeholder')
             .verify.elementPresent('@addRoomButton');
     },
 
@@ -103,7 +97,6 @@ module.exports = _.assign(presteps, auth, {
         var addElementPage = browser.page.agenda().section.addCotainer;
         addElementPage
             .clickBySelector('@deleteElementButton')
-            .verify.elementPresent('@massegeForDeleteElement')
             .clickBySelector('@confitmYesButton');
     },
 
@@ -111,7 +104,6 @@ module.exports = _.assign(presteps, auth, {
         var addElementPage = browser.page.agenda().section.addCotainer;
         addElementPage
             .verify.elementNotPresent('@timeElementText')
-            .verify.elementNotPresent('@lunchPlaceholderText')
             .verify.elementNotPresent('@addRoomButton');
     },
 

@@ -76,7 +76,7 @@ module.exports = _.assign(presteps, auth, {
         var addElementPage = browser.page.agenda().section.addCotainer;
         addElementPage
             .verify.containsText('@timeElementText', '08:59 - 09:59')
-            .verify.containsText('@TO1PlaceholderText', '1-TO-1 Placeholder')
+            .verify.containsText('@namePlaceholderText', '1-TO-1 Placeholder')
             .verify.elementPresent('@addRoomButton');
     },
 
@@ -99,7 +99,7 @@ module.exports = _.assign(presteps, auth, {
         var addElementPage = browser.page.agenda().section.addCotainer;
         addElementPage
             .verify.elementNotPresent('@timeElementText')
-            .verify.elementNotPresent('@TO1PlaceholderText')
+            .verify.elementNotPresent('@namePlaceholderText')
             .verify.elementNotPresent('@addRoomButton');
     },
 

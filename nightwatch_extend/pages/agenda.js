@@ -143,12 +143,8 @@ module.exports = {
                     selector: '(//h5)[2]',
                     locateStrategy: 'xpath'
                 },
-                TO1PlaceholderText: {
+                namePlaceholderText: {
                     selector: '(//h5)[3]',
-                    locateStrategy: 'xpath'
-                },
-                lunchPlaceholderText: {
-                    selector: '//h5[contains(text(),"Lunch Placeholder")]',
                     locateStrategy: 'xpath'
                 },
                 addRoomButton: {
@@ -161,6 +157,34 @@ module.exports = {
                 },
                 greenBlockColorForEvent: {
                     selector: '//div[@class="panel-heading greenBlockColorForEvent"]',
+                    locateStrategy: 'xpath'
+                },
+                orangeBlockColorForEvent: {
+                    selector: '//div[@class="panel-heading orangeBlockColorForEvent"]',
+                    locateStrategy: 'xpath'
+                },
+                orangeGroupColorForEvent: {
+                    selector: '//span[@class="label orangeGroupColorForEvent"]',
+                    locateStrategy: 'xpath'
+                },
+                violetGroupColorForEvent: {
+                    selector: '//span[@class="label violetGroupColorForEvent"]',
+                    locateStrategy: 'xpath'
+                },
+                blueGroupColorForEvent: {
+                    selector: '//span[@class="label blueGroupColorForEvent"]',
+                    locateStrategy: 'xpath'
+                },
+                greenGroupColorForEvent: {
+                    selector: '//span[@class="label greenGroupColorForEvent"]',
+                    locateStrategy: 'xpath'
+                },
+                redGroupColorForEvent: {
+                    selector: '//span[@class="label redGroupColorForEvent"]',
+                    locateStrategy: 'xpath'
+                },
+                grayBlockColorForEvent: {
+                    selector: '//span[@class="label grayBlockColorForEvent"]',
                     locateStrategy: 'xpath'
                 },
                 deleteElementButton: {
@@ -193,6 +217,10 @@ module.exports = {
                     selector: '//option[@value="25"]',
                     locateStrategy: 'xpath'
                 },
+                staticAgendaElementOption: {
+                    selector: '//option[contains(text(),"Static agenda element")]',
+                    locateStrategy: 'xpath'
+                },
                 meetingElementOption: {
                     selector: '//option[contains(text(),"Meeting element")]',
                     locateStrategy: 'xpath'
@@ -203,6 +231,10 @@ module.exports = {
                 },
                 hostedTablePlaceholderOption: {
                     selector: '//option[@value="23"]',
+                    locateStrategy: 'xpath'
+                },
+                awardsPanelOption: {
+                    selector: '//option[@value="35"]',
                     locateStrategy: 'xpath'
                 },
                 dinnerPlaceholderOption: {
@@ -260,6 +292,22 @@ module.exports = {
                 },
                 groupVioletCheckbox: {
                     selector: '(//div[@class="checkbox-item"])[2]',
+                    locateStrategy: 'xpath'
+                },
+                groupBlueCheckbox: {
+                    selector: '(//div[@class="checkbox-item"])[3]',
+                    locateStrategy: 'xpath'
+                },
+                groupGreenCheckbox: {
+                    selector: '(//div[@class="checkbox-item"])[4]',
+                    locateStrategy: 'xpath'
+                },
+                groupRedCheckbox: {
+                    selector: '(//div[@class="checkbox-item"])[5]',
+                    locateStrategy: 'xpath'
+                },
+                groupWiteCheckbox: {
+                    selector: '(//div[@class="checkbox-item"])[7]',
                     locateStrategy: 'xpath'
                 },
                 showInCalendarsText: {
