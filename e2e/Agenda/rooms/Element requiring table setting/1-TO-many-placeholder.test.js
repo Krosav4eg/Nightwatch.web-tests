@@ -74,8 +74,8 @@ module.exports = _.assign(presteps, auth, {
     'redirection after creation 1-TO-many-placeholder': function (browser) {
         browser
             .useXpath()
-            .verify.elementPresent('//h5[contains(text(),"08:55 - 09:25")]', 5000)
-            .verify.elementPresent('//h5[contains(text(),"Hosted table placeholder")]', 2000)
+            .verify.elementPresent('//h5[contains(text(),"08:55 - 09:25")]')
+            .verify.elementPresent('//h5[contains(text(),"Hosted table placeholder")]')
 
             .clickBySelectorCss('i.fa.fa-plus');
     },

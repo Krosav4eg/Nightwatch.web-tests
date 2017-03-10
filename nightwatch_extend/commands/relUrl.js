@@ -6,6 +6,6 @@
  */
 module.exports.command = function(url, callback) {
   this.url(this.launchUrl + url, callback)
-    .waitForElementNotVisible('#thisIsMainLoader', 30000);
+      .pause(10000)
   return this;
 };

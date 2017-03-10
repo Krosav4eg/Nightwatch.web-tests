@@ -92,5 +92,10 @@ module.exports = _.assign(presteps, auth, {
             .pause(3000)
             .clickBySelectorXpath('//*[contains(text(),"Thomas Bula")]');
     },
+<<<<<<< HEAD
 });
 
+=======
+})
+;
+>>>>>>> table-settings

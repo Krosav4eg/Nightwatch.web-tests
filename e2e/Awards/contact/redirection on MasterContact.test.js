@@ -40,16 +40,13 @@ module.exports = _.assign(presteps, auth, {
 
                 browser.closeWindow(handle);
                 handle = result.value[0];
-                browser.switchWindow(handle);})
+                browser.switchWindow(handle);});
     },
 
     'enter "Introduction"': function (browser) {
         browser
             .setValueByCss('textarea[formcontrolname="introduction"]', "Test introduction")
             .clickBySelectorXpath('//*[text()="Candidates"]/../..//button[text()="Save"]')
-
-            .verify.elementPresent('//div[contains(text(),"Award saved successfully")]')
-            .clickBySelectorXpath('//div[contains(text(),"Award saved successfully")]')
 
             .verify.valueContains('//textarea[@formcontrolname="introduction"]', 'Test introduction');
     },
