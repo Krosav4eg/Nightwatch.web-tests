@@ -12,7 +12,7 @@ module.exports = _.assign(presteps, auth, {
     'check event data': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible('//h4[text()="Event (#2008)"]', 3000)
+            .verify.elementPresent('//h4[text()="Event (#2008)"]')
             .verify.elementPresent('//h3[text()="NeedSeeker 18.5.2016"]')
             .verify.elementPresent('//div[text()="Local name: NeedSeeker 18.5.2016"]')
             .verify.elementPresent('//div[text()="Dates: 2016-05-18 08:00:00 - 2016-05-18 13:00:00"]')
@@ -21,28 +21,28 @@ module.exports = _.assign(presteps, auth, {
 
     'go to the edit presentation': function (browser) {
         browser
-            .clickBySelectorXpath('//a[@href="/presentations/edit/3732"]')
+            .clickBySelectorXpath('//a[@href="/presentations/edit/5721"]')
             .useXpath()
-            .waitForElementVisible('//h1[text()="Edit Presentation (#3732)"]', 3000);
+            .verify.elementPresent('//h1[text()="Edit Presentation (#5721)"]');
     },
 
     'add new guest speaker page verifyion': function (browser) {
         browser
             .clickBySelectorXpath('//button[text()="Add speaker"]')
-            .waitForElementVisible('//h4[text()="Attach Master Contact"]', 5000)
+            .verify.elementPresent('//h4[text()="Attach Master Contact"]')
 
             .clickBySelectorXpath('//button[contains(text(),"Add new")]')
-            .waitForElementVisible('//h4[text()="Add new guest speaker"]', 5000)
+            .verify.elementPresent('//h4[text()="Add new guest speaker"]')
 
-            .waitForElementVisible('//input[@id="lastName"]', 3000)
-            .waitForElementVisible('//input[@id="firstName"]', 3000)
-            .waitForElementVisible('//input[@id="academicTitle"]', 3000)
-            .waitForElementVisible('//input[@id="functionTitle"]', 3000)
-            .waitForElementVisible('//input[@id="masterCompanyId"]', 3000)
-            .waitForElementVisible('//input[@id="country"]', 3000)
-            .waitForElementVisible('//input[@id="mobile"]', 3000)
-            .waitForElementVisible('//input[@id="email"]', 3000)
-            .waitForElementVisible('//modal[@class="modal fade in"]//button[1][text()="Save"]', 3000);
+            .verify.elementPresent('//input[@id="lastName"]')
+            .verify.elementPresent('//input[@id="firstName"]')
+            .verify.elementPresent('//input[@id="academicTitle"]')
+            .verify.elementPresent('//input[@id="functionTitle"]')
+            .verify.elementPresent('//input[@id="masterCompanyId"]')
+            .verify.elementPresent('//input[@id="country"]')
+            .verify.elementPresent('//input[@id="mobile"]')
+            .verify.elementPresent('//input[@id="email"]')
+            .verify.elementPresent('(//button[1][text()="Save"])[2]');
     },
 
     'last name alert message verifyion': function (browser) {
@@ -108,20 +108,20 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
 
             .clickBySelectorXpath('//button[text()="Add speaker"]')
-            .waitForElementVisible('//h4[text()="Attach Master Contact"]', 5000)
+            .verify.elementPresent('//h4[text()="Attach Master Contact"]')
 
             .clickBySelectorXpath('//button[contains(text(),"Add new")]')
-            .waitForElementVisible('//h4[text()="Add new guest speaker"]', 5000)
-            .waitForElementVisible('//input[@id="lastName"]', 3000)
-            .waitForElementVisible('//input[@id="firstName"]', 3000)
-            .waitForElementVisible('//input[@id="academicTitle"]', 3000)
-            .waitForElementVisible('//input[@id="functionTitle"]', 3000)
-            .waitForElementVisible('//input[@id="masterCompanyId"]', 3000)
-            .waitForElementVisible('//input[@id="country"]', 3000)
-            .waitForElementVisible('//input[@id="mobile"]', 3000)
-            .waitForElementVisible('//input[@id="email"]', 3000)
+            .verify.elementPresent('//h4[text()="Add new guest speaker"]')
+            .verify.elementPresent('//input[@id="lastName"]')
+            .verify.elementPresent('//input[@id="firstName"]')
+            .verify.elementPresent('//input[@id="academicTitle"]')
+            .verify.elementPresent('//input[@id="functionTitle"]')
+            .verify.elementPresent('//input[@id="masterCompanyId"]')
+            .verify.elementPresent('//input[@id="country"]')
+            .verify.elementPresent('//input[@id="mobile"]')
+            .verify.elementPresent('//input[@id="email"]')
 
-            .clickBySelectorXpath('//modal[@class="modal fade in"]//button[1][text()="Save"]')
+            .clickBySelectorXpath('(//button[1][text()="Save"])[2]')
             .verify.containsText('//*[contains(text(), "Add new guest speaker")]/../..//*[contains(text(), "Last Name")]/..' ,"Last Name is required")
             .verify.containsText('//*[contains(text(), "Add new guest speaker")]/../..//*[contains(text(), "First Name")]/..' ,"First Name is required")
 

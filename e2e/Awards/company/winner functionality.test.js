@@ -119,10 +119,7 @@ module.exports = _.assign(presteps, auth, {
         browser
             .click('//button[text()="Winner"]')
             .clickBySelectorXpath('//me-event-candidates-form//button[text()="Save"]')
-
-            .waitForElementVisible('//div[text()="Award saved successfully"]', 20000)
             .pause(3000)
-
             .deleteCandidate();
     },
 });
