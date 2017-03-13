@@ -16,120 +16,77 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'click on add element button': function (browser) {
-        browser
-            .addElementButtonForAgenda();
-    },
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
+            .clickBySelector('@addElementButton');
 
-    'blank.click another field': function (browser) {
-        browser
-            .blankClickOnAnotherField();
+        var addElementPage = browser.page.agenda().section.addElement;
+        addElementPage
+            .clickBySelector('@staticAgendaElementOption');
     },
 
     'blank click Save': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[contains(text(),"Headline")]')
-            .clickBySelectorCss('select#agendaElementTypeId')
+        var addElementPage = browser.page.agenda().section.addElement;
+        addElementPage
+            .clickBySelector('@headlineOption')
 
-            .clickBySelectorXpath('//div/div/div/div/button[contains(text(),"Save")]')
-            .verify.containsText('(//p[@class="help-block"])[1]','Heading is required.')
-            .verify.containsText('(//p[@class="help-block"])[2]','Start Hour is required.')
-            .verify.containsText('(//p[@class="help-block"])[3]','End Hour is required.');
+            .clickBySelector('@saveButton')
+
+            .verify.containsText('@errorMassegeElementTypeSelect','Heading is required.')
+            .verify.containsText('@errorMassegeStartHour','Start Hour is required.')
+            .verify.containsText('@errorMassegeEndtHour','End Hour is required.')
     },
 
     'input heading field': function (browser) {
-        browser
-            .setValueByCss('input#heading.form-control.ng-pristine.ng-invalid.ng-touched', 'autotest2016');
+        var addElementPage = browser.page.agenda().section.addElement;
+        addElementPage
+            .setValueBySelector('@headingInput', 'autotest2016')
+            .setValueBySelector('@subHeadingInput', 'test');
     },
 
-    'input sub heading field': function (browser) {
-        browser
-            .setValueByCss('input#subHeading.form-control.ng-pristine.ng-valid.ng-touched', 'test');
+    'input time ': function (browser) {
+        var addElementPage = browser.page.agenda().section.addElement;
+        addElementPage
+            .setValueBySelector('@startTimeInput', ['8:00', browser.Keys.ENTER])
+            .setValueBySelector('@endTimeInput', ['9:45', browser.Keys.ENTER])
+
+            .clickBySelector('@noMeetingsAllowedOption')
+            .clickBySelector('@saveButton');
     },
 
-    'start time can not be before set time ': function (browser) {
-        browser
-            .setValueByCss('me-date-time-input#elementStartHour input.form-control.dateTimeInput.dateTimeInput', ['7:59', browser.Keys.ENTER])
-
-            .useXpath()
-            .verify.containsText("//*[contains(text(), 'Start time')]/../..", "Date should be between 08:00 and 10:00")
-            .setValueByCss('me-date-time-input#elementStartHour input.form-control.dateTimeInput.dateTimeInput', ['8:00', browser.Keys.ENTER]);
+    'click on edit awards panel': function (browser) {
+        var addElementPage = browser.page.agenda().section.addCotainer;
+        addElementPage
+            .clickBySelector('@editElementButton');
     },
 
-    'end time can not be after set time ': function (browser) {
-        browser
-            .setValueByCss('me-date-time-input#elementEnd input.form-control.dateTimeInput.dateTimeInput', ['10:01', browser.Keys.ENTER])
-            .useXpath()
-            .verify.containsText("//*[contains(text(), 'End time')]/../..", "Date should be between 08:00 and 10:00")
-
-            .setValueByCss('me-date-time-input#elementEnd input.form-control.dateTimeInput.dateTimeInput', ['9:45', browser.Keys.ENTER])
-            .clickBySelectorXpath('//option[contains(text(),"No meetings allowed")]')
-
-            .clickBySelectorXpath('//div/div/div/div/button[contains(text(),"Save")]');
-    },
-
-    'redirection & assertion  page': function (browser) {
-        browser
-            .verify.elementPresent('//h5[contains(text(),"08:00 - 09:45")]')
-            .verify.elementPresent('//h5[contains(text(),"autotest2016")]' )
-            .verify.elementPresent('//button[contains(text(), "Add room")]');
-    },
-
-    'click on edit head line panel': function (browser) {
-        browser
-            .clickBySelectorXpath('//a[2]/i[@class="fa fa-pencil edit-element"]');
-    },
-
-    'static agenda page displayed and click on background': function (browser) {
-        browser
-            .agendaElementPageAssertion()
-
-            .clickBySelectorXpath('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__0"]')
-            .clickBySelectorXpath('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__1"]')
-
-            .clickBySelectorXpath('//button[@data-marker="me-event-agenda-element-form__input__button__cancel"]')
-
-            .verify.elementNotPresent('//span[@class="label orangeGroupColorForEvent"]')
-            .verify.elementNotPresent('//span[@class="label violetGroupColorForEvent"]');
-    },
-
-    'click on pencil': function (browser) {
-        browser
-            .clickBySelectorXpath('//a[2]/i[@class="fa fa-pencil edit-element"]');
-    },
 
     'putting check-boxes in Group 1 & Group 2': function (browser) {
-        browser
-            .puttingCeckBoxesForAgenda();
+        var addElementPage = browser.page.agenda().section.addElement;
+        addElementPage
+            .clickBySelector('@groupOrangeCheckbox')
+            .clickBySelector('@groupVioletCheckbox')
+
+            .clickBySelector('@saveButton');
     },
 
     'redirection after selection "Group 1 - orange" & "Group 2 - violet"  page': function (browser) {
-        browser
-            .useXpath()
-            .waitForElementVisible('//h5[contains(text(),"08:00 - 09:45")]', 2000)
-            .waitForElementVisible('//h5[contains(text(),"autotest2016")]', 2000)
-            .waitForElementVisible('//button[contains(text(), "Add room")]', 2000)
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
 
-            .waitForElementVisible('//span[@class="label orangeGroupColorForEvent"]', 2000)
-            .verify.containsText('//span[@class="label orangeGroupColorForEvent"]', 'Group 1 - orange')
+            .verify.containsText('@timeElementText','08:00 - 09:45')
+            .verify.containsText('@namePlaceholderText','autotest2016')
+            .verify.elementPresent('@addRoomButton')
 
-            .waitForElementVisible('//span[@class="label violetGroupColorForEvent"]', 2000)
-            .verify.containsText('//span[@class="label violetGroupColorForEvent"]', 'Group 2 - violet');
+            .verify.elementPresent('@orangeGroupColorForEvent')
+            .verify.elementPresent('@violetGroupColorForEvent');
     },
 
     'delete award panel': function (browser) {
-        browser
-            .clickBySelectorXpath('//a[3]/i[@class="fa fa-trash-o delete-element"]')
-            .verify.elementPresent('//modal-content[contains(text(),"Do you really want to delete element autotest2016?")]')
-
-            .clickBySelectorXpath('//button[@data-marker="me-confirm__button__button__yes"]');
-    },
-
-    'awards panel has been deleted': function (browser) {
-        browser
-            .useXpath()
-            .verify.elementNotPresent('//h5[contains(text(),"08:00 - 09:45")]')
-            .verify.elementNotPresent('//h5[contains(text(),"autotest2016")]')
-            .verify.elementNotPresent('//button[contains(text(), "Add room")]');
+        var addElementPage = browser.page.agenda().section.addCotainer;
+        addElementPage
+            .clickBySelector('@deleteElementButton')
+            .clickBySelector('@confitmYesButton');
     },
 
     'delete container': function (browser) {

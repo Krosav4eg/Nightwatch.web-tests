@@ -210,7 +210,27 @@ module.exports = {
                 deleteElementButton:{
                     selector: '//i[@class="fa fa-trash-o delete-element"]',
                     locateStrategy: 'xpath'
-                }
+                },
+                addPresentationButton: {
+                    selector: '//button[text()="Add content "]',
+                    locateStrategy: 'xpath'
+                },
+                namePresentation: {
+                    selector: '(//table[@class="table table-striped"]//li)[1]',
+                    locateStrategy: 'xpath'
+                },
+                editPresentationButton: {
+                    selector: '(//i[@class="fa fa-pencil edit-element"])[2]',
+                    locateStrategy: 'xpath'
+                },
+                deletePresentationButton: {
+                    selector: '(//i[@class="fa fa-trash-o delete-element"])[2]',
+                    locateStrategy: 'xpath'
+                },
+                plusPresentationButton: {
+                    selector: '//i[@class="fa fa-plus"]',
+                    locateStrategy: 'xpath'
+                },
             }
         },
         addElement: {
@@ -241,27 +261,84 @@ module.exports = {
                     selector: '//option[contains(text(),"Element requiring table setting")]',
                     locateStrategy: 'xpath'
                 },
+                agendaElementTypeSelect: {
+                    selector: '//select[@id="agendaElementTypeId"]',
+                    locateStrategy: 'xpath'
+                },
+
+                presentationKeynoteOption: {
+                    selector: '//option[@value="1"]',
+                    locateStrategy: 'xpath'
+                },
+                headlineOption: {
+                    selector: '//option[@value="2"]',
+                    locateStrategy: 'xpath'
+                },
+                presentationPanelDiscussionOption: {
+                    selector: '//option[@value="17"]',
+                    locateStrategy: 'xpath'
+                },
+                presentationDebateOption: {
+                    selector: '//option[@value="18"]',
+                    locateStrategy: 'xpath'
+                },
+                presentationChairmanOption: {
+                    selector: '//option[@value="19"]',
+                    locateStrategy: 'xpath'
+                },
+                presentationSpotlightOption: {
+                    selector: '//option[@value="21"]',
+                    locateStrategy: 'xpath'
+                },
                 hostedTablePlaceholderOption: {
                     selector: '//option[@value="23"]',
                     locateStrategy: 'xpath'
                 },
-                awardsPanelOption: {
-                    selector: '//option[@value="35"]',
+                presentationCaseOption: {
+                    selector: '//option[@value="27"]',
                     locateStrategy: 'xpath'
                 },
-                dinnerPlaceholderOption: {
-                    selector: '//option[@value="34"]',
+                presentationCrossFunctionKeynoteOption: {
+                    selector: '//option[@value="28"]',
                     locateStrategy: 'xpath'
                 },
-                groupDiscussionPlaceholderOption: {
-                    selector: '//option[@value="33"]',
+                presentationFishBowlOption: {
+                    selector: '//option[@value="29"]',
+                    locateStrategy: 'xpath'
+                },
+                presentationLeadershipOption: {
+                    selector: '//option[@value="30"]',
+                    locateStrategy: 'xpath'
+                },
+                presentationSnapshotOption: {
+                    selector: '//option[@value="31"]',
                     locateStrategy: 'xpath'
                 },
                 lunchPlaceholderOption: {
                     selector: '//option[@value="32"]',
                     locateStrategy: 'xpath'
                 },
+                groupDiscussionPlaceholderOption: {
+                    selector: '//option[@value="33"]',
+                    locateStrategy: 'xpath'
+                },
+                dinnerPlaceholderOption: {
+                    selector: '//option[@value="34"]',
+                    locateStrategy: 'xpath'
+                },
+                awardsPanelOption: {
+                    selector: '//option[@value="35"]',
+                    locateStrategy: 'xpath'
+                },
 
+                headingInput: {
+                    selector: '//*[@id="heading"]',
+                    locateStrategy: 'xpath'
+                },
+                subHeadingInput: {
+                    selector: '//*[@id="subHeading"]',
+                    locateStrategy: 'xpath'
+                },
                 endTimeText: {
                     selector: '//label[contains(text(),"End time")]',
                     locateStrategy: 'xpath'
@@ -276,6 +353,14 @@ module.exports = {
                 },
                 startTimeInput: {
                     selector: '//input[@placeholder="Start time"]',
+                    locateStrategy: 'xpath'
+                },
+                massegeStartTimeError: {
+                    selector: "//*[contains(text(), 'Start time')]/../..",
+                    locateStrategy: 'xpath'
+                },
+                massegeEndTimeError: {
+                    selector: "//*[contains(text(), 'End time')]/../..",
                     locateStrategy: 'xpath'
                 },
                 meetingAllowedText: {
@@ -358,6 +443,22 @@ module.exports = {
                     selector: '//div[@class="col-sm-12 container_btn_group"]/button[2][contains(text(),"Save")]',
                     locateStrategy: 'xpath'
                 },
+                cancelButton: {
+                    selector: '//button[contains(text(),"Cancel")]',
+                    locateStrategy: 'xpath'
+                },
+                errorMassegeElementTypeSelect: {
+                    selector: '(//p[@class="help-block"])[1]',
+                    locateStrategy: 'xpath'
+                },
+                errorMassegeStartHour: {
+                    selector: '(//p[@class="help-block"])[2]',
+                    locateStrategy: 'xpath'
+                },
+                errorMassegeEndtHour: {
+                    selector: '(//p[@class="help-block"])[3]',
+                    locateStrategy: 'xpath'
+                },
 
             }
         },
@@ -375,6 +476,24 @@ module.exports = {
                 },
                 saveButton: {
                     selector: '//button[@class="btn btn-primary pull-left"]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
+        addPresentation: {
+            selector: '//h4[text()="Add presentation to "]',
+            locateStrategy: 'xpath',
+            elements: {
+                totalName: {
+                    selector: '//h4[text()="Add presentation to "]',
+                    locateStrategy: 'xpath'
+                },
+                checkbox: {
+                    selector: '//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__1670"]',
+                    locateStrategy: 'xpath'
+                },
+                saveButton: {
+                    selector: '//button[@data-marker="me-modal-attach-presentation-to-element__input__button__save"]',
                     locateStrategy: 'xpath'
                 }
             }
