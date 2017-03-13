@@ -199,6 +199,18 @@ module.exports = {
                     selector: '//button[@data-marker="me-confirm__button__button__yes"]',
                     locateStrategy: 'xpath'
                 },
+                myRoomButton: {
+                    selector: '//button[contains(text(), "MyRoom")]',
+                    locateStrategy: 'xpath'
+                },
+                editElementButton: {
+                    selector: '//a[2]/i[@class="fa fa-pencil edit-element"]',
+                    locateStrategy: 'xpath'
+                },
+                deleteElementButton:{
+                    selector: '//i[@class="fa fa-trash-o delete-element"]',
+                    locateStrategy: 'xpath'
+                }
             }
         },
         addElement: {
@@ -307,7 +319,7 @@ module.exports = {
                     locateStrategy: 'xpath'
                 },
                 groupWiteCheckbox: {
-                    selector: '(//div[@class="checkbox-item"])[7]',
+                    selector: '(//div[@class="checkbox-item"])[6]',
                     locateStrategy: 'xpath'
                 },
                 showInCalendarsText: {
@@ -349,5 +361,23 @@ module.exports = {
 
             }
         },
+        addRoom: {
+            selector: '//h4[contains(text(),"Add room for Awards Panel 25-04-2013 08:59:00 - 09:59:00")]',
+            locateStrategy: 'xpath',
+            elements: {
+                totalNameElementForm: {
+                    selector: '//h4[contains(text(),"Add room for Awards Panel 25-04-2013 08:59:00 - 09:59:00")]',
+                    locateStrategy: 'xpath'
+                },
+                nameRoomInput: {
+                    selector: '//input[@name="room"]',
+                    locateStrategy: 'xpath'
+                },
+                saveButton: {
+                    selector: '//button[@class="btn btn-primary pull-left"]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        }
     }
 };

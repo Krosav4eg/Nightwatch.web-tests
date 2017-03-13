@@ -29,12 +29,12 @@ module.exports = _.assign(presteps, auth, {
 
             .setValueBySelector('@groupQtyInput', ['6', browser.Keys.ENTER])
 
-            .verify.elementPresent('@firstCheckbox')
-            .verify.elementPresent('@secondCheckbox')
-            .verify.elementPresent('@thirdCheckbox')
-            .verify.elementPresent('@fourthCheckbox')
-            .verify.elementPresent('@fifthCheckbox')
-            .verify.elementPresent('@sixthCheckbox')
+            // .verify.elementPresent('@firstCheckbox')
+            // .verify.elementPresent('@secondCheckbox')
+            // .verify.elementPresent('@thirdCheckbox')
+            // .verify.elementPresent('@fourthCheckbox')
+            // .verify.elementPresent('@fifthCheckbox')
+            // .verify.elementPresent('@sixthCheckbox')
 
             .clickBySelector('@saveButton');
     },
@@ -160,55 +160,68 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'add room for awards panel is displayed': function (browser) {
-        //сделать секцию addRoom
-        browser
-            .waitForElementVisible('//h4[contains(text(),"Add room for Awards Panel 25-04-2013 08:59:00 - 09:59:00")]', 4000)
-            .useCss()
-            .verify.valueContains("input.form-control[title=Room]", "")
-            .setValueByCss('input.form-control[title=Room]', 'MyRoom')
-            .clickBySelectorXpath('//button[@data-marker="me-event-agenda__button__save-room"]');
+        var addRoom = browser.page.agenda().section.addRoom;
+        addRoom
+            .waitForElementVisible('@totalNameElementForm', 4000)
+            .verify.valueContains("@nameRoomInput", "")
+            .setValueBySelector('@nameRoomInput', 'MyRoom')
+            .clickBySelector('@saveButton');
     },
 
     'redirection after adding room': function (browser) {
-        browser
-            .verify.elementPresent('//h5[contains(text(),"08:59 - 09:59")]')
-            .verify.elementPresent('//h5[contains(text(),"Awards Panel")]')
+        var addElementPage = browser.page.agenda().section.addCotainer;
+        addElementPage
+            .verify.containsText('@timeElementText', "08:59 - 09:59")
+            .verify.containsText('@namePlaceholderText', "Awards Panel")
 
-            .verify.elementPresent('//button[contains(text(), "MyRoom")]');
+            .verify.elementPresent('@myRoomButton');
     },
 
     'check that the button is red when room was choosen': function (browser) {
-        browser
-            .verify.elementPresent('//button[contains(text(), "MyRoom")]')
-            .verify.cssProperty('//button[contains(text(), "MyRoom")]', 'background-color', 'rgba(231, 60, 60, 1)');
+        var addElementPage = browser.page.agenda().section.addCotainer;
+        addElementPage
+            .verify.elementPresent('@myRoomButton')
+            .verify.cssProperty('@myRoomButton', 'background-color', 'rgba(231, 60, 60, 1)');
     },
 
     'delete groups checkboxes': function (browser) {
-        browser
-            .clickBySelectorXpath('//a[2]/i[@class="fa fa-pencil edit-element"]');
+        var addElementPage = browser.page.agenda().section.addCotainer;
+        addElementPage
+            .clickBySelector('@editElementButton');
     },
 
 
     'awards panel has been deleted': function (browser) {
-        browser
-            .clickBySelectorXpath('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__0"]')
-            .clickBySelectorXpath('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__1"]')
-            .clickBySelectorXpath('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__2"]')
-            .clickBySelectorXpath('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__3"]')
-            .clickBySelectorXpath('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__4"]')
-            .clickBySelectorXpath('//checkbox-item[@data-marker="me-event-agenda-element-form__input__checkbox__5"]')
-            .clickBySelectorXpath('//div[@class="col-sm-12 container_btn_group"]/button[2][contains(text(),"Save")]')
+        var addElementPage = browser.page.agenda().section.addElement;
+        addElementPage
+            .clickBySelector('@groupOrangeCheckbox')
+            .clickBySelector('@groupVioletCheckbox')
+            .clickBySelector('@groupBlueCheckbox')
+            .clickBySelector('@groupGreenCheckbox')
+            .clickBySelector('@groupRedCheckbox')
+            .clickBySelector('@groupWiteCheckbox')
+
+            .clickBySelector('@saveButton');
     },
 
     'groups are not present': function (browser) {
-        browser
-            .useXpath()
-            .verify.elementNotPresent('//span[@class="label orangeGroupColorForEvent"]')
-            .verify.elementNotPresent('//span[@class="label violetGroupColorForEvent"]')
-            .verify.elementNotPresent('//span[@class="label blueGroupColorForEvent"]')
-            .verify.elementNotPresent('//span[@class="label greenGroupColorForEvent"]')
-            .verify.elementNotPresent('//span[@class="label redGroupColorForEvent"]')
-            .verify.elementNotPresent('//span[@class="label grayBlockColorForEvent"]');
+        var addElementPage = browser.page.agenda().section.addCotainer;
+        addElementPage
+
+            .verify.elementNotPresent('@orangeGroupColorForEvent')
+            .verify.elementNotPresent('@violetGroupColorForEvent')
+            .verify.elementNotPresent('@blueGroupColorForEvent')
+            .verify.elementNotPresent('@greenGroupColorForEvent')
+            .verify.elementNotPresent('@redGroupColorForEvent')
+            .verify.elementNotPresent('@grayBlockColorForEvent')
+    },
+
+    'delete element': function (browser) {
+        var addElementPage = browser.page.agenda().section.addCotainer;
+        addElementPage
+            .clickBySelector('@deleteElementButton')
+            .clickBySelector('@confitmYesButton');
+
     },
 
     'delete container': function (browser) {
