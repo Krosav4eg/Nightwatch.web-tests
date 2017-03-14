@@ -14,10 +14,10 @@ module.exports = _.assign(presteps, auth, {
         durationColumn
             .clickBySelector('@nameColumn')
 
-            .verify.containsText('@firstRow', '')
-            .verify.containsText('@secondRow', '')
-            .verify.containsText('@thirdRow', '')
-            .verify.containsText('@fourthRow', '');
+            .verify.containsText('@firstRow', '15 min')
+            .verify.containsText('@secondRow', '15 min')
+            .verify.containsText('@thirdRow', '15 min')
+            .verify.containsText('@fourthRow', '15 min');
 
     },
 
@@ -26,18 +26,18 @@ module.exports = _.assign(presteps, auth, {
         durationColumn
             .clickBySelector('@nameColumn')
 
-            .verify.containsText('@firstRow', '')
-            .verify.containsText('@secondRow', '')
-            .verify.containsText('@thirdRow', '')
-            .verify.containsText('@fourthRow', '');
+            .verify.containsText('@firstRow', '20 min')
+            .verify.containsText('@secondRow', '20 min')
+            .verify.containsText('@thirdRow', '20 min')
+            .verify.containsText('@fourthRow', '20 min');
     },
 
-    // 'search by durationColumn': function (browser) {
-    //     var durationColumn = browser.page.meetingSummary().section.durationColumn;
-    //     durationColumn
-    //         .setValueBySelector('@seachColumn', ['1140', browser.Keys.ENTER])
-    //
-    //         .waitForElementVisible('@firstRow', 3000)
-    //         .verify.containsText("@firstRow", "")
-    // },
+    'search by durationColumn': function (browser) {
+        var durationColumn = browser.page.meetingSummary().section.durationColumn;
+        durationColumn
+            .setValueBySelector('@seachColumn', ['15', browser.Keys.ENTER])
+
+            .waitForElementVisible('@firstRow', 3000)
+            .verify.containsText("@firstRow", "15 min")
+    },
 });

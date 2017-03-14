@@ -18,10 +18,10 @@ module.exports = _.assign(presteps, auth, {
 
         var meetingTypeColumn = browser.page.meetingSummary().section.meetingTypeColumn;
         meetingTypeColumn
-            .verify.containsText('@firstRow', '')
-            .verify.containsText('@secondRow', '')
-            .verify.containsText('@thirdRow', '')
-            .verify.containsText('@fourthRow', '');
+            .verify.containsText('@firstRow', '1-to-1 meeting')
+            .verify.containsText('@secondRow', '1-to-1 meeting')
+            .verify.containsText('@thirdRow', '1-to-1 meeting')
+            .verify.containsText('@fourthRow', '1-to-1 meeting');
     },
 
     'choose hostedTableMeetingOption': function (browser) {
@@ -31,10 +31,10 @@ module.exports = _.assign(presteps, auth, {
 
         var meetingTypeColumn = browser.page.meetingSummary().section.meetingTypeColumn;
         meetingTypeColumn
-            .verify.containsText('@firstRow', '')
-            .verify.containsText('@secondRow', '')
-            .verify.containsText('@thirdRow', '')
-            .verify.containsText('@fourthRow', '');
+            .verify.containsText('@firstRow', 'Hosted table meeting')
+            .verify.containsText('@secondRow', 'Hosted table meeting')
+            .verify.containsText('@thirdRow', 'Hosted table meeting')
+            .verify.containsText('@fourthRow', 'Hosted table meeting');
     },
 
     'choose all': function (browser) {
@@ -44,9 +44,9 @@ module.exports = _.assign(presteps, auth, {
 
         var meetingTypeColumn = browser.page.meetingSummary().section.meetingTypeColumn;
         meetingTypeColumn
-            .verify.containsText('@firstRow', '')
-            .verify.containsText('@secondRow', '')
-            .verify.containsText('@thirdRow', '')
-            .verify.containsText('@fourthRow', '');
+            .verify.containsText('@firstRow', '1-to-1 meeting')
+            .verify.containsText('@secondRow', '1-to-1 meeting')
+            .verify.containsText('@thirdRow', '1-to-1 meeting')
+            .verify.containsText('@fourthRow', '1-to-1 meeting');
     },
 });

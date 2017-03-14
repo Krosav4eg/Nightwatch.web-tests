@@ -11,23 +11,35 @@ module.exports = _.assign(presteps, auth, {
 
     'choose meetingStatusFilter': function (browser) {
         var meetingSourceFilter = browser.page.meetingSummary().section.meetingSourceFilter;
-        meetingSourceFilter
-
-            .clickBySelector('@requestOption')
-            .clickBySelector('@additionalOption')
-            .clickBySelector('@suggestedOption')
-            .clickBySelector('@allOption')
-
         var meetingTypeColumn = browser.page.meetingSummary().section.meetingTypeColumn;
+        meetingSourceFilter
+            .clickBySelector('@requestOption');
         meetingTypeColumn
-            .verify.containsText('@firstRow', '')
-            .verify.containsText('@secondRow', '')
-            .verify.containsText('@thirdRow', '')
-            .verify.containsText('@fourthRow', '');
+            .verify.elementPresent('@noResultsFound');
+
+        meetingSourceFilter
+            .clickBySelector('@additionalOption');
+        meetingTypeColumn
+            .verify.elementPresent('@noResultsFound');
+
+        meetingSourceFilter
+            .clickBySelector('@suggestedOption');
+        meetingTypeColumn
+            .verify.elementPresent('@noResultsFound');
+
+        meetingSourceFilter
+            .clickBySelector('@allOption');
+
+        //var meetingTypeColumn = browser.page.meetingSummary().section.meetingTypeColumn;
+        meetingTypeColumn
+            .verify.containsText('@firstRow', '1-to-1 meeting')
+            .verify.containsText('@secondRow', '1-to-1 meeting')
+            .verify.containsText('@thirdRow', '1-to-1 meeting')
+            .verify.containsText('@fourthRow', '1-to-1 meeting');
     },
 
     'choose suggestedOption': function (browser) {
-        var meetingStatusFilter = browser.page.meetingSummary().section.meetingStatusFilter;
+        var meetingStatusFilter = browser.page.meetingSummary().section.meetingSourceFilter;
         meetingStatusFilter
 
             .clickBySelector('@suggestedOption');

@@ -14,10 +14,10 @@ module.exports = _.assign(presteps, auth, {
         meetingTypeColumn
             .clickBySelector('@nameColumn')
 
-            .verify.containsText('@firstRow', '')
-            .verify.containsText('@secondRow', '')
-            .verify.containsText('@thirdRow', '')
-            .verify.containsText('@fourthRow', '');
+            .verify.containsText('@firstRow', '1-to-1 meeting')
+            .verify.containsText('@secondRow', '1-to-1 meeting')
+            .verify.containsText('@thirdRow', '1-to-1 meeting')
+            .verify.containsText('@fourthRow', '1-to-1 meeting');
 
     },
 
@@ -26,18 +26,18 @@ module.exports = _.assign(presteps, auth, {
         meetingTypeColumn
             .clickBySelector('@nameColumn')
 
-            .verify.containsText('@firstRow', '')
-            .verify.containsText('@secondRow', '')
-            .verify.containsText('@thirdRow', '')
-            .verify.containsText('@fourthRow', '');
+            .verify.containsText('@firstRow', 'Hosted table meeting')
+            .verify.containsText('@secondRow', 'Hosted table meeting')
+            .verify.containsText('@thirdRow', 'Hosted table meeting')
+            .verify.containsText('@fourthRow', 'Hosted table meeting');
     },
 
-    // 'search by meetingTypeColumn': function (browser) {
-    //     var meetingTypeColumn = browser.page.meetingSummary().section.meetingTypeColumn;
-    //     meetingTypeColumn
-    //         .setValueBySelector('@seachColumn', ['1140', browser.Keys.ENTER])
-    //
-    //         .waitForElementVisible('@firstRow', 3000)
-    //         .verify.containsText("@firstRow", "")
-    // },
+    'search by meetingTypeColumn': function (browser) {
+        var meetingTypeColumn = browser.page.meetingSummary().section.meetingTypeColumn;
+        meetingTypeColumn
+            .setValueBySelector('@seachColumn', ['1-to-1 meeting', browser.Keys.ENTER])
+
+            .waitForElementVisible('@firstRow', 3000)
+            .verify.containsText("@firstRow", "1-to-1 meeting")
+    },
 });

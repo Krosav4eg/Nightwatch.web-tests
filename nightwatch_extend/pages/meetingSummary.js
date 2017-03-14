@@ -135,6 +135,36 @@ module.exports = {
             }
         },
 
+        meetingTimeColumn: {
+            selector: '//tr/th[2]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[2]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[2]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[2]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[2]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[2]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[2]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
         meetingTypeColumn: {
             selector: '//tr/th[3]',
             locateStrategy: 'xpath',
@@ -161,6 +191,10 @@ module.exports = {
                 },
                 fourthRow: {
                     selector: '//tr[4]/td[3]',
+                    locateStrategy: 'xpath'
+                },
+                noResultsFound: {
+                    selector: '//*[contains(text(),"No results found")]',
                     locateStrategy: 'xpath'
                 }
             }
@@ -194,6 +228,140 @@ module.exports = {
                     locateStrategy: 'xpath'
                 }
             }
-        }
+        },
+        attendanceStatusColumn: {
+            selector: '//tr/th[5]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[5]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[5]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[5]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[5]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[5]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[5]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
+        checkingStatusColumn: {
+            selector: '//tr/th[6]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[6]',
+                    locateStrategy: 'xpath'
+                },
+
+                allOption: {
+                    selector: '(//tr/td/select/option)[1]',
+                    locateStrategy: 'xpath'
+                },
+                okOption: {
+                    selector: '//option[text()="OK"]',
+                    locateStrategy: 'xpath'
+                },
+                cancelledOption: {
+                    selector: '//option[text()="Cancelled"]',
+                    locateStrategy: 'xpath'
+                },
+                rescheduleOption: {
+                    selector: '//option[text()="Reschedule"]',
+                    locateStrategy: 'xpath'
+                },
+
+                firstRow: {
+                    selector: '//tr[1]/td[6]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[6]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[6]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[6]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
+        partnerCompanyColumn: {
+            selector: '//tr/th[7]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[7]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[7]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[7]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[7]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[7]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[7]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
+        representativeColumn: {
+            selector: '//tr/th[8]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[8]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[8]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[8]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[8]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[8]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[8]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
     }
 };
