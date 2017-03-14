@@ -10,36 +10,35 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'creation new container': function (browser) {
-        browser
-            .containerCreationForAgenda();
+        var agendaPage = browser.page.agenda();
+        agendaPage.
+            containerCreation();
     },
 
     'choose static agenda element': function (browser) {
-        browser
-            .addElementButtonForAgenda();
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
+            .clickBySelector('@addElementButton');
+
+        var addElementPage = browser.page.agenda().section.addElement;
+        addElementPage
+            .clickBySelector('@staticAgendaElementOption');
     },
 
     'select presentation/panel discussion': function (browser) {
-        browser
-            .clickBySelectorCss('option[value="17"]');
-    },
-
-    'set start time ': function (browser) {
-        browser
-            .setValueByCss('me-date-time-input#elementStartHour input.form-control.dateTimeInput.dateTimeInput', ['8:00', browser.Keys.ENTER]);
-    },
-
-    'set end time ': function (browser) {
-        browser
-            .setValueByCss('me-date-time-input#elementEnd input.form-control.dateTimeInput.dateTimeInput', ['9:45', browser.Keys.ENTER]);
+        var addElementPage = browser.page.agenda().section.addElement;
+        addElementPage
+            .clickBySelector('@presentationPanelDiscussionOption')
+            .setValueBySelector('@startTimeInput', ['8:00', browser.Keys.ENTER])
+            .setValueBySelector('@endTimeInput', ['9:45', browser.Keys.ENTER])
+            .clickBySelector('@attachButton')
     },
 
     'attach new speaker ': function (browser) {
-        browser
-            .clickBySelectorXpath('//me-event-agenda-element-presentation/div/div[2]/button[text()="Attach"]')
-            .verify.elementPresent('//h4[text()="Add presentation to "]')
-            .clickBySelectorXpath('//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__1875"]')
-            .clickBySelectorXpath('//button[@data-marker="me-modal-attach-presentation-to-element__input__button__save"]');
+        var addPresentation = browser.page.agenda().section.addPresentation;
+        addPresentation
+            .clickBySelector('@checkbox629')
+            .clickBySelector('@saveButton');
     },
 
     'chosen speaker is displayed': function (browser) {

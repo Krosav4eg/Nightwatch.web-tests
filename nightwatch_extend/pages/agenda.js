@@ -31,6 +31,44 @@ var agendaCommands = {
 module.exports = {
     commands: [agendaCommands],
     sections: {
+        allInformation: {
+            selector: '//h4',
+            locateStrategy: 'xpath',
+            elements: {
+                titleEvent: {
+                    selector: '(//h4)[1]',
+                    locateStrategy: 'xpath'
+                },
+                nameEvent: {
+                    selector: '(//h3)[1]',
+                    locateStrategy: 'xpath'
+                },
+                localName: {
+                    selector: '(//h3/../div)[1]',
+                    locateStrategy: 'xpath'
+                },
+                dates: {
+                    selector: '(//h3/../div)[2]',
+                    locateStrategy: 'xpath'
+                },
+                venue: {
+                    selector: '(//h3/../div)[3]',
+                    locateStrategy: 'xpath'
+                },
+                titleTable: {
+                    selector: '(//h4)[2]',
+                    locateStrategy: 'xpath'
+                },
+                firstDay: {
+                    selector: '//a[@class="btn btn-default day active"]',
+                    locateStrategy: 'xpath'
+                },
+                secondDay: {
+                    selector: '//a[@class="btn btn-default day"]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
         addCotainer: {
             selector: 'button.btn.btn-primary.btn-block',
             elements: {
@@ -86,12 +124,20 @@ module.exports = {
                     selector: '//b[1][contains(text(),"8:00")]',
                     locateStrategy: 'xpath'
                 },
+                start10Time: {
+                    selector: '//b[1][contains(text(),"10:00")]',
+                    locateStrategy: 'xpath'
+                },
                 endTime: {
                     selector: '//b[2][contains(text(),"10:00")]',
                     locateStrategy: 'xpath'
                 },
                 end8Time: {
                     selector: '//b[2][contains(text(),"8:00")]',
+                    locateStrategy: 'xpath'
+                },
+                end18Time: {
+                    selector: '//b[2][contains(text(),"18:00")]',
                     locateStrategy: 'xpath'
                 },
                 textInContainer: {
@@ -439,6 +485,10 @@ module.exports = {
                     selector: '//input[@id="room"]',
                     locateStrategy: 'xpath'
                 },
+                attachButton: {
+                    selector: '//me-event-agenda-element-presentation/div/div[2]/button[text()="Attach"]',
+                    locateStrategy: 'xpath'
+                },
                 saveButton: {
                     selector: '//div[@class="col-sm-12 container_btn_group"]/button[2][contains(text(),"Save")]',
                     locateStrategy: 'xpath'
@@ -457,6 +507,22 @@ module.exports = {
                 },
                 errorMassegeEndtHour: {
                     selector: '(//p[@class="help-block"])[3]',
+                    locateStrategy: 'xpath'
+                },
+                namePresentation: {
+                    selector: '(//table[@class="table table-striped"]//li)[1]',
+                    locateStrategy: 'xpath'
+                },
+                editPresentationButton: {
+                    selector: '(//i[@class="fa fa-pencil edit-element"])[1]',
+                    locateStrategy: 'xpath'
+                },
+                deletePresentationButton: {
+                    selector: '(//i[@class="fa fa-trash-o delete-element"])[1]',
+                    locateStrategy: 'xpath'
+                },
+                plusPresentationButton: {
+                    selector: '//i[@class="fa fa-plus"]',
                     locateStrategy: 'xpath'
                 },
 
@@ -492,10 +558,52 @@ module.exports = {
                     selector: '//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__1670"]',
                     locateStrategy: 'xpath'
                 },
+                checkbox629: {
+                    selector: '//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__629"]',
+                    locateStrategy: 'xpath'
+                },
                 saveButton: {
                     selector: '//button[@data-marker="me-modal-attach-presentation-to-element__input__button__save"]',
                     locateStrategy: 'xpath'
+                },
+                cancelButton: {
+                    selector: '//button[@data-marker="me-modal-attach-presentation-to-element__input__button__cancel"]',
+                    locateStrategy: 'xpath'
                 }
+            }
+        },
+        attachTemplate: {
+            selector: '//button[text()="Attach template"]',
+            locateStrategy: 'xpath',
+            elements: {
+                addattachTemplateButton: {
+                    selector: '//button[text()="Attach template"]',
+                    locateStrategy: 'xpath'
+                },
+                continiumButton: {
+                    selector: '//button[@class="btn btn-primary pull-right"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRadioButton: {
+                    selector: '(//input[@class="radio-item-input"])[1]',
+                    locateStrategy: 'xpath'
+                },
+                doneButton: {
+                    selector: '//button[@class="btn btn-success pull-right"]',
+                    locateStrategy: 'xpath'
+                },
+                rowAgendaContainer: {
+                    selector: '//div[@class="row agenda-container"]',
+                    locateStrategy: 'xpath'
+                },
+                deleteButton: {
+                    selector: '//i[@class="fa fa-trash-o delete-container"]',
+                    locateStrategy: 'xpath'
+                },
+                confirmationSuccess: {
+                    selector: '//*[contains(text(), "Confirmation")]/../../../..//*[@class="btn btn-success"]',
+                    locateStrategy: 'xpath'
+                },
             }
         }
     }
