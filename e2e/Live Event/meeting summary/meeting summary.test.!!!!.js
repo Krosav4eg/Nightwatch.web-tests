@@ -6,8 +6,11 @@ module.exports = _.assign(presteps, auth, {
 
     'redirection to meeting-summary': function (browser) {
         browser
-            .relUrl('/events/2339/meeting-summary');
+            .relUrl('/events/live-events');
     },
+    //US29117
+    //выбор евент
+    //переход к meeting-summary
 
     'check information': function (browser) {
         var allInformationPage = browser.page.meetingSummary().section.allInformation;
@@ -19,5 +22,11 @@ module.exports = _.assign(presteps, auth, {
             .verify.containsText('@venue', 'Venue: Radisson Blu Hotel Latvija, Riga')
             .verify.containsText('@titleTable', 'Results - ')
             .verify.containsText('@titleTable', ' 268 / 268');
+    },
+
+    'verifi link in left menu': function (browser) {
+        var allInformationPage = browser.page.meetingSummary().section.allInformation;
+        allInformationPage
+            .verify.elementPresent('@linkMeetingSummaryInLeftMenu');
     },
 });

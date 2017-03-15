@@ -4,143 +4,122 @@ var auth = require('./../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
 
-    // 'redirection to settings page': function (browser) {
-    //     browser
-    //         .useCss()
-    //         .relUrl('/event/212/settings')
-    //         .waitForElementVisible('#thisIsMainLoader', 20000)
-    //         .waitForElementNotVisible('#thisIsMainLoader', 20000)
-    //         .useXpath()
-    //         .waitForElementVisible('//span[text()="212/IndustryForum Energy - Event settings"]', 30000);
-    // },
-    //
-    // 'select all check-boxes and radio buttons': function (browser) {
-    //     browser
-    //         .useXpath()
-    //         .verify.elementPresent('//legend[text()="Agenda"]')
-    //         .verify.elementPresent('//label[text()="Availability"]')
-    //
-    //         .clickBySelectorXpath('//input[@data-marker="me-event-settings-agenda-availability__input__radio__1"]')
-    //         .clickBySelectorXpath('//input[@data-marker="me-event-settings-agenda-blocking-delegates__input__checkbox__for-me-users"]')
-    //         .clickBySelectorXpath('//input[@data-marker="me-event-settings-agenda-blocking-delegates__input__checkbox__for-delegates"]')
-    //         .clickBySelectorXpath('//input[@data-marker="me-event-settings-agenda-blocking-solution-provider__input__checkbox__for-me-users"]')
-    //
-    //         .clickBySelectorXpath('//input[@data-marker="me-event-settings-agenda-blocking-solution-provider__input__checkbox__for-solution-providers"]')
-    //         .waitForElementVisible('//label[text()="Group Qty"]', 5000)
-    //
-    //         .setValueByXpath('//input[@data-marker="me-event-settings-agenda-group-qty__input__text"]', ['0', browser.Keys.ENTER])
-    //         .setValueByXpath('//input[@data-marker="me-event-settings-agenda-group-qty__input__text"]', ['1', browser.Keys.ENTER])
-    //         .setValueByXpath('//input[@data-marker="me-event-settings-agenda-group-qty__input__text"]', ['2', browser.Keys.ENTER])
-    //         .setValueByXpath('//input[@data-marker="me-event-settings-agenda-group-qty__input__text"]', ['3', browser.Keys.ENTER])
-    //         .setValueByXpath('//input[@data-marker="me-event-settings-agenda-group-qty__input__text"]', ['4', browser.Keys.ENTER])
-    //         .setValueByXpath('//input[@data-marker="me-event-settings-agenda-group-qty__input__text"]', ['5', browser.Keys.ENTER])
-    //         .setValueByXpath('//input[@data-marker="me-event-settings-agenda-group-qty__input__text"]', ['6', browser.Keys.ENTER])
-    //
-    //         .clickBySelectorXpath('//input[@data-marker="me-groups-managed-automatically__input__checkbox__1"]')
-    //         .clickBySelectorXpath('//input[@data-marker="me-groups-managed-automatically__input__checkbox__2"]')
-    //         .clickBySelectorXpath('//input[@data-marker="me-groups-managed-automatically__input__checkbox__3"]')
-    //         .clickBySelectorXpath('//input[@data-marker="me-groups-managed-automatically__input__checkbox__4"]')
-    //         .clickBySelectorXpath('//input[@data-marker="me-groups-managed-automatically__input__checkbox__5"]')
-    //         .clickBySelectorXpath('//input[@data-marker="me-groups-managed-automatically__input__checkbox__6"]')
-    //         .clickBySelectorXpath('//div[@class="panel-body"]/div//div[3]/button[2]');
-    // },
+    'redirection to settings page': function (browser) {
+        browser
+            .relUrl('/event/212/settings');
+    },
+
+    'check general information': function (browser) {
+        var settings = browser.page.settings();
+        settings
+            .verify.elementPresent('@totalNameFor212Event');
+    },
+
+    'select all check-boxes and radio buttons': function (browser) {
+        var settings = browser.page.settings();
+        settings
+            .verify.elementPresent('@agendaText')
+            .verify.elementPresent('@availabilityText')
+
+            .clickBySelector('@availabilityYesCheckbox')
+            .clickBySelector('@delegatesblockingEnabledForMEUsersCheckbox')
+            .clickBySelector('@delegatesblockingEnabledForDelegatesCheckbox')
+            .clickBySelector('@providersblockingEnabledForMEUsersCheckbox')
+
+            .clickBySelector('@providersblockingEnabledForSolutionProvidersCheckbox')
+            .verify.elementPresent('@groupQtyText', 5000)
+
+            .setValueBySelector('@groupQtyInput', ['0', browser.Keys.ENTER])
+            .setValueBySelector('@groupQtyInput', ['1', browser.Keys.ENTER])
+            .setValueBySelector('@groupQtyInput', ['2', browser.Keys.ENTER])
+            .setValueBySelector('@groupQtyInput', ['3', browser.Keys.ENTER])
+            .setValueBySelector('@groupQtyInput', ['4', browser.Keys.ENTER])
+            .setValueBySelector('@groupQtyInput', ['5', browser.Keys.ENTER])
+            .setValueBySelector('@groupQtyInput', ['6', browser.Keys.ENTER])
+
+            .clickBySelector('@firstCheckbox')
+            .clickBySelector('@secondCheckbox')
+            .clickBySelector('@thirdCheckbox')
+            .clickBySelector('@fourthCheckbox')
+            .clickBySelector('@fifthCheckbox')
+            .clickBySelector('@sixthCheckbox')
+            .clickBySelector('@saveButton');
+    },
 
     'events groups are displayed': function (browser) {
         browser
-            .useXpath()
-            .relUrl('/event/212/delegates')
-            .useCss()
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
+            .relUrl('/event/212/delegates');
 
-            .useXpath()
-            .waitForElementVisible('//div[text()="Event Groups"]', 5000)
+        var eventGroups = browser.page.delegates().section.eventGroups;
+        eventGroups
 
-            .verify.elementPresent('//p[contains(text(),"Group 1")]')
-            .verify.elementPresent('//p[contains(text(),"Group 2")]')
-            .verify.elementPresent('//p[contains(text(),"Group 3")]')
-            .verify.elementPresent('//p[contains(text(),"Group 4")]')
-            .verify.elementPresent('//p[contains(text(),"Group 5")]')
-            .verify.elementPresent('//p[contains(text(),"Group 6")]');
+            .waitForElementVisible('@totalName', 5000)
+
+            .verify.elementPresent('@group1Text')
+            .verify.elementPresent('@group2Text')
+            .verify.elementPresent('@group3Text')
+            .verify.elementPresent('@group4Text')
+            .verify.elementPresent('@group5Text')
+            .verify.elementPresent('@group6Text');
     },
 
     'blocking delegates of agenda assertion': function (browser) {
         browser
-            .relUrl('/delegates/edit/92240')
-            .useCss()
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
+            .relUrl('/delegates/edit/92240');
 
-            .useXpath()
-            .verify.elementPresent('//legend[text()="Master Contact Information"]')
-            .verify.elementPresent('//a[contains(text(),"105375")]')
-            .verify.elementPresent('//legend[text()="Participation Information"]')
-            .verify.elementPresent('//legend[text()="Blocked Times"]')
-            .verify.elementPresent('//label[text()="Blocked time(s)"]')
-            .verify.elementPresent('//button[text()="Add Blocked Time"]');
+        var delegatesEdit = browser.page.delegates().section.delegatesEdit;
+        delegatesEdit
+
+            .verify.elementPresent('@totalName')
+            .verify.elementPresent('@id105375Link')
+            .verify.elementPresent('@participationInformationText')
+            .verify.elementPresent('@blockedTimesTotalText')
+            .verify.elementPresent('@blockedTimesText')
+            .verify.elementPresent('@addBlockedTimeButton');
     },
 
     'go to the settings page': function (browser) {
         browser
-            .useCss()
             .relUrl('/event/212/settings')
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
 
-            .useXpath()
-            .waitForElementVisible('//span[text()="212/IndustryForum Energy - Event settings"]', 5000);
+        var settings = browser.page.settings();
+        settings
+            .verify.elementPresent('@totalNameFor212Event');
     },
 
-    // 'delete all check-boxes and radio buttons': function (browser) {
-    //     browser
-    //         .verify.elementPresent('//legend[text()="Agenda"]')
-    //         .verify.elementPresent('//label[text()="Availability"]')
-    //
-    //         .clickBySelectorXpath('//input[@data-marker="me-event-settings-agenda-availability__input__radio__1"]')
-    //         .clickBySelectorXpath('//input[@data-marker="me-event-settings-agenda-blocking-delegates__input__checkbox__for-me-users"]')
-    //         .clickBySelectorXpath('//input[@data-marker="me-event-settings-agenda-blocking-delegates__input__checkbox__for-delegates"]')
-    //         .clickBySelectorXpath('//input[@data-marker="me-event-settings-agenda-blocking-solution-provider__input__checkbox__for-me-users"]')
-    //         .clickBySelectorXpath('//input[@data-marker="me-event-settings-agenda-blocking-solution-provider__input__checkbox__for-solution-providers"]')
-    //
-    //         .waitForElementVisible('//label[text()="Group Qty"]', 5000)
-    //         .setValueByXpath('//input[@data-marker="me-event-settings-agenda-group-qty__input__text"]', ['2', browser.Keys.ENTER])
-    //
-    //         .verify.elementNotPresent('//input[@data-marker="me-groups-managed-automatically__input__checkbox__3"]')
-    //         .verify.elementNotPresent('//input[@data-marker="me-groups-managed-automatically__input__checkbox__4"]')
-    //         .verify.elementNotPresent('//input[@data-marker="me-groups-managed-automatically__input__checkbox__5"]')
-    //         .verify.elementNotPresent('//input[@data-marker="me-groups-managed-automatically__input__checkbox__6"]')
-    //
-    //         .clickBySelectorXpath('//div[@class="panel-body"]/div//div[3]/button[2]');
-    // },
+    'delete all check-boxes and radio buttons': function (browser) {
+        var settings = browser.page.settings();
+        settings
+
+            .clickBySelector('@availabilityYesCheckbox')
+            .clickBySelector('@delegatesblockingEnabledForMEUsersCheckbox')
+            .clickBySelector('@delegatesblockingEnabledForDelegatesCheckbox')
+            .clickBySelector('@providersblockingEnabledForMEUsersCheckbox')
+
+            .clickBySelector('@providersblockingEnabledForSolutionProvidersCheckbox')
+            .setValueBySelector('@groupQtyInput', ['2', browser.Keys.ENTER])
+
+            .verify.elementNotPresent('@thirdCheckbox')
+            .verify.elementNotPresent('@fourthCheckbox')
+            .verify.elementNotPresent('@fifthCheckbox')
+            .verify.elementNotPresent('@sixthCheckbox')
+
+            .clickBySelector('@saveButton');
+    },
 
     'events groups are not displayed': function (browser) {
         browser
-            .relUrl('/event/212/delegates')
-            .useCss()
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
+            .relUrl('/event/212/delegates');
 
-            .useXpath()
-            .waitForElementVisible('//div[text()="Event Groups"]', 5000)
-            .verify.elementNotPresent('//p[text()="Group 3 - blue - 0"]')
-            .verify.elementNotPresent('//p[text()="Group 4 - green - 0"]')
-            .verify.elementNotPresent('//p[text()="Group 5 - red - 0"]')
-            .verify.elementNotPresent('//p[text()="Group 6 - 0"]');
+        var eventGroups = browser.page.delegates().section.eventGroups;
+        eventGroups
+
+            .waitForElementVisible('@totalName', 5000)
+
+            .verify.elementNotPresent('@group3Text')
+            .verify.elementNotPresent('@group4Text')
+            .verify.elementNotPresent('@group5Text')
+            .verify.elementNotPresent('@group6Text');
     },
-
-    'blocking delegates of agenda again': function (browser) {
-        browser
-            .relUrl('/delegates/edit/92240')
-            .useCss()
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
-
-            .useXpath()
-            .verify.elementPresent('//legend[text()="Master Contact Information"]')
-            .verify.elementPresent('//a[contains(text(),"105375")]')
-            .verify.elementPresent('//legend[text()="Participation Information"]');
-    },
-
-
 });
 

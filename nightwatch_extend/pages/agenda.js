@@ -234,7 +234,7 @@ module.exports = {
                     locateStrategy: 'xpath'
                 },
                 deleteElementButton: {
-                    selector: '//a[3]/i[@class="fa fa-trash-o delete-element"]',
+                    selector: '//i[@class="fa fa-trash-o delete-element"]/..',
                     locateStrategy: 'xpath'
                 },
                 massegeForDeleteElement: {
@@ -489,6 +489,14 @@ module.exports = {
                     selector: '//me-event-agenda-element-presentation/div/div[2]/button[text()="Attach"]',
                     locateStrategy: 'xpath'
                 },
+                attachButtonOnAddElementForm: {
+                    selector: '//me-event-agenda-element-host-topics/div/div/button',
+                    locateStrategy: 'xpath'
+                },
+                attachCancelWindowButton: {
+                    selector: '(//div[@class="modal in fade"]//span[contains(text(),"×")])[2]',
+                    locateStrategy: 'xpath'
+                },
                 saveButton: {
                     selector: '//div[@class="col-sm-12 container_btn_group"]/button[2][contains(text(),"Save")]',
                     locateStrategy: 'xpath'
@@ -523,6 +531,18 @@ module.exports = {
                 },
                 plusPresentationButton: {
                     selector: '//i[@class="fa fa-plus"]',
+                    locateStrategy: 'xpath'
+                },
+                TOMANYMEETINGhostsText: {
+                    selector: '//label[contains(text(),"1 TO MANY MEETING hosts")]',
+                    locateStrategy: 'xpath'
+                },
+                tableSizeText: {
+                    selector: '//label[contains(text(),"Table size")]',
+                    locateStrategy: 'xpath'
+                },
+                tableSizeInput: {
+                    selector: '//input[@id="tableSize"]',
                     locateStrategy: 'xpath'
                 },
 
@@ -605,6 +625,16 @@ module.exports = {
                     locateStrategy: 'xpath'
                 },
             }
-        }
+        },
+        addHostTopics: {
+            selector: '//h4[contains(text(), "Add host topics to")]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameModalWindow: {
+                    selector: '//b[contains(text(),"Hosted table placeholder")]',
+                    locateStrategy: 'xpath'
+                },
+            }
+        },
     }
 };

@@ -12,23 +12,18 @@ module.exports = _.assign(presteps, auth, {
     'choose meetingStatusFilter': function (browser) {
         var meetingSourceFilter = browser.page.meetingSummary().section.meetingSourceFilter;
         var meetingTypeColumn = browser.page.meetingSummary().section.meetingTypeColumn;
-        meetingSourceFilter
-            .clickBySelector('@requestOption');
-        meetingTypeColumn
-            .verify.elementPresent('@noResultsFound');
+        var meetingTypeFilter = browser.page.meetingSummary().section.meetingTypeFilter;
 
-        meetingSourceFilter
-            .clickBySelector('@additionalOption');
-        meetingTypeColumn
-            .verify.elementPresent('@noResultsFound');
+        meetingSourceFilter.clickBySelector('@requestOption');
+        meetingTypeColumn.verify.elementPresent('@noResultsFound');
 
-        meetingSourceFilter
-            .clickBySelector('@suggestedOption');
-        meetingTypeColumn
-            .verify.elementPresent('@noResultsFound');
+        meetingSourceFilter.clickBySelector('@additionalOption');
+        meetingTypeColumn.verify.elementPresent('@noResultsFound');
 
-        meetingSourceFilter
-            .clickBySelector('@allOption');
+        meetingSourceFilter.clickBySelector('@suggestedOption');
+        meetingTypeColumn.verify.elementPresent('@noResultsFound');
+
+        meetingSourceFilter.clickBySelector('@allOption');
 
         //var meetingTypeColumn = browser.page.meetingSummary().section.meetingTypeColumn;
         meetingTypeColumn

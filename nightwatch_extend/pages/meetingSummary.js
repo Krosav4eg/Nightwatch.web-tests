@@ -1,4 +1,12 @@
+var meetinCommands = {
+    clickByDateOption: function(data, time) {
+        var selector = '//option[contains(text(), "' + data + '") and contains(text(), "' + time +'")]';
+        this.clickBySelectorXpath(selector);
+    }
+};
+
 module.exports = {
+    commands: [meetinCommands],
     sections: {
         allInformation: {
             selector: '//h4',
@@ -26,6 +34,11 @@ module.exports = {
                 },
                 titleTable: {
                     selector: '(//h4)[2]',
+                    locateStrategy: 'xpath'
+                },
+
+                linkMeetingSummaryInLeftMenu: {
+                    selector: '//a[@id="MeetingSummaryIndex"]',
                     locateStrategy: 'xpath'
                 },
             }
@@ -132,9 +145,31 @@ module.exports = {
                     selector: '//button[@name="removePastMeetings"]',
                     locateStrategy: 'xpath'
                 },
+                allOption: {
+                    selector: '//option[text()="All"]',
+                    locateStrategy: 'xpath'
+                },
+                firstDay: {
+                    selector: '(//span[text()="Meeting time"]/../..//option[contains(text(), "All")])[2]',
+                    locateStrategy: 'xpath'
+                },
+                secondDay: {
+                    selector: '(//span[text()="Meeting time"]/../..//option[contains(text(), "All")])[3]',
+                    locateStrategy: 'xpath'
+                },
             }
         },
 
+        detailsColumn: {
+            selector: '//tr/th[1]',
+            locateStrategy: 'xpath',
+            elements: {
+                firstRowDetails: {
+                    selector: '//tr[1]/td[1]/span/a',
+                    locateStrategy: 'xpath'
+                },
+            }
+        },
         meetingTimeColumn: {
             selector: '//tr/th[2]',
             locateStrategy: 'xpath',
@@ -361,6 +396,183 @@ module.exports = {
                     selector: '//tr[4]/td[8]',
                     locateStrategy: 'xpath'
                 }
+            }
+        },
+        delegateColumn: {
+            selector: '//tr/th[9]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[9]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[9]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[9]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[9]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[9]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[9]',
+                    locateStrategy: 'xpath'
+                },
+                noResultsFound: {
+                    selector: '//*[contains(text(),"No results found")]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
+        delegateCompanyColumn: {
+            selector: '//tr/th[10]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[10]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[10]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[10]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[10]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[10]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[10]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
+
+        meetingDetails: {
+            selector: '//h4[contains(text(), "Meeting")]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameModalWindow: {
+                    selector: '//h4[contains(text(), "Meeting")]',
+                    locateStrategy: 'xpath'
+                },
+                meetingTime: {
+                    selector: '//*[text()="Meeting Time "]/../../div[2]',
+                    locateStrategy: 'xpath'
+                },
+                delegate: {
+                    selector: '//*[text()="Delegate "]/../../div[2]',
+                    locateStrategy: 'xpath'
+                },
+                delegateMobile: {
+                    selector: '//*[text()="Delegate mobile"]/../../div[2]',
+                    locateStrategy: 'xpath'
+                },
+                representative: {
+                    selector: '//*[text()="Representative "]/../../div[2]',
+                    locateStrategy: 'xpath'
+                },
+                representativeMobile: {
+                    selector: '//*[text()="Representative mobile "]/../../div[2]',
+                    locateStrategy: 'xpath'
+                },
+                meetingStatus: {
+                    selector: '//*[text()="Meeting Status"]/../../div[2]',
+                    locateStrategy: 'xpath'
+                },
+                meetingType: {
+                    selector: '//*[text()="Meeting Type"]/../../div[2]',
+                    locateStrategy: 'xpath'
+                },
+                meetingInitiated: {
+                    selector: '//*[text()="Meeting initiated"]/../../div[2]',
+                    locateStrategy: 'xpath'
+                },
+                meetingRequest: {
+                    selector: '//*[text()="Meeting Request/suggestion sent"]/../../div[2]',
+                    locateStrategy: 'xpath'
+                },
+                meetingBooked: {
+                    selector: '//*[text()="Meeting Booked"]/../../div[2]',
+                    locateStrategy: 'xpath'
+                },
+                modified: {
+                    selector: '//*[text()="Modified"]/../../div[2]',
+                    locateStrategy: 'xpath'
+                },
+                participationStatus: {
+                    selector: '//*[text()="Participation Status"]/../../div[2]',
+                    locateStrategy: 'xpath'
+                },
+                attendanceStatus: {
+                    selector: '//*[text()="Attendance Status"]/../../div[2]',
+                    locateStrategy: 'xpath'
+                },
+
+                checkingStatusSelect: {
+                    selector: '//*[text()="Checking Status"]/../../div/select',
+                    locateStrategy: 'xpath'
+                },
+                undefinedOption: {
+                    selector: '//option[contains(text(), "Undefined")]',
+                    locateStrategy: 'xpath'
+                },
+                okOption: {
+                    selector: '//*[text()="Checking Status"]/../..//option[contains(text(), "OK")]',
+                    locateStrategy: 'xpath'
+                },
+                canceledOption: {
+                    selector: '//option[contains(text(), "Canceled")]',
+                    locateStrategy: 'xpath'
+                },
+
+                delegateMobileService: {
+                    selector: '//*[text()="Delegate mobile service"]/../../div[2]/a',
+                    locateStrategy: 'xpath'
+                },
+                representativeMobileService: {
+                    selector: '//*[text()="Representative mobile service"]/../../div[2]/a',
+                    locateStrategy: 'xpath'
+                },
+                sms: {
+                    selector: '//*[text()="SMS"]/../../div[2]',
+                    locateStrategy: 'xpath'
+                },
+                called: {
+                    selector: '//*[text()="Called"]/../../div[2]',
+                    locateStrategy: 'xpath'
+                },
+                participationNotesInput: {
+                    selector: '//*[text()="Participation notes"]/../../div[2]/textarea',
+                    locateStrategy: 'xpath'
+                },
+                callingNotesInput: {
+                    selector: '//*[text()="Calling notes"]/../../div[2]/textarea',
+                    locateStrategy: 'xpath'
+                },
+                closeButton: {
+                    selector: '//button[text()="Close"]',
+                    locateStrategy: 'xpath'
+                },
+                saveButton: {
+                    selector: '//button[text()="Save"]',
+                    locateStrategy: 'xpath'
+                },
             }
         },
     }

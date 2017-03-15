@@ -6,72 +6,92 @@ module.exports = _.assign(presteps, auth, {
 
     'redirection to agenda': function (browser) {
         browser
-            .relUrl('/event/239/agenda')
+            .relUrl('/event/235/agenda')
     },
 
     'creation new container': function (browser) {
-        browser
-            .containerCreationForAgenda();
+        var agendaPage = browser.page.agenda();
+        agendaPage.
+            containerCreation();
     },
 
     'choose Element requiring table setting': function (browser) {
-        browser
-            .chooseElementRequiringTableSetting();
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
+            .clickBySelector('@addElementButton');
+
+        var addElementPage = browser.page.agenda().section.addElement;
+        addElementPage
+            .clickBySelector('@elementRequiringTableSettingOption');
     },
 
     'dinner element page assertion': function (browser) {
-        browser
-            .agendaElementPageAssertion();
+        var addElementPage = browser.page.agenda().section.addElement;
+        addElementPage
+            .verify.elementPresent('@endTimeText')
+            .verify.elementPresent('@startTimeText')
+            .verify.elementPresent('@meetingAllowedText')
+            .verify.elementPresent('@groupsUsedText')
+
+            .verify.elementPresent('@eventGroupsText')
+            .verify.containsText('@groupOrangeCheckbox','Group 1 - orange')
+            .verify.containsText('@groupVioletCheckbox','Group 2 - violet')
+
+            .verify.elementPresent('@showInCalendarsText', 'Show in calendars')
+            .verify.containsText('@delegatesCheckbox','Delegates')
+            .verify.containsText('@providerRepresentativesCheckbox','Provider representatives')
+
+            .verify.elementPresent('@publishWWWText', 'Publish WWW')
+            .verify.elementPresent('@visibilityPublishWWWYesCheckbox')
+            .verify.elementPresent('@visibilityPublishWWWNoCheckbox')
+
+            .verify.elementPresent('@roomText');
     },
 
     'creating Dinner Placeholder panel': function (browser) {
-        browser
+        var addElementPage = browser.page.agenda().section.addElement;
+        addElementPage
+            .clickBySelector('@dinnerPlaceholderOption')
 
-            .clickBySelectorCss('select#agendaElementTypeId')
-            .clickBySelectorCss('option[value="34"]')
+            .setValueBySelector('@startTimeInput', ['8:55', browser.Keys.ENTER])
+            .setValueBySelector('@endTimeInput', ['9:25', browser.Keys.ENTER])
 
-            .setValueByCss('me-date-time-input#elementStartHour input.form-control.dateTimeInput.dateTimeInput', ['8:55', browser.Keys.ENTER])
-            .setValueByCss('me-date-time-input#elementEnd input.form-control.dateTimeInput.dateTimeInput', ['9:25', browser.Keys.ENTER])
-
-            .clickBySelectorXpath('//option[contains(text(),"No meetings allowed")]')
-
-            .clickBySelectorCss('input#room')
-
-            .clickBySelectorXpath('//div[@class="col-sm-12 container_btn_group"]/button[2][contains(text(),"Save")]');
+            .clickBySelector('@noMeetingsAllowedOption')
+            .clickBySelector('@saveButton');
     },
 
     'redirection after creation Dinner-placeholder': function (browser) {
-        browser
-            .useXpath()
-            .waitForElementVisible('//h5[contains(text(),"08:55 - 09:25")]', 7000)
-            .waitForElementVisible('//h5[contains(text(),"Dinner placeholder")]', 7000);
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
+            .verify.elementPresent('@timeElementText',"08:55 - 09:25")
+            .verify.elementPresent('@namePlaceholderText',"Dinner placeholder");
     },
 
     'click add room': function (browser) {
-        browser
-            .clickBySelectorXpath('//button[contains(text(), "Add room")]');
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
+            .clickBySelector('@addRoomButton');
     },
 
-    'add room for Dinner placeholder is displayed': function (browser) {
-        browser
-            .verify.elementPresent('//label[contains(text(),"Room")]')
-            .verify.elementPresent('//h4[contains(text(),"Add room for Dinner placeholder 14-11-2013 08:55:00 - 09:25:00")]');
-    },
+    // 'add room for Dinner placeholder is displayed': function (browser) {
+    //     browser
+    //         .verify.elementPresent('//label[contains(text(),"Room")]')
+    //         .verify.elementPresent('//h4[contains(text(),"Add room for Dinner placeholder 14-11-2013 08:55:00 - 09:25:00")]');
+    // },
 
     'room input field is empty': function (browser) {
-        browser
-            .useCss()
-            .verify.valueContains("input.form-control[title=Room]", "")
-            .setValueByCss('input.form-control[title=Room]', 'MyRoom')
-
-            .clickBySelectorXpath('//button[@data-marker="me-event-agenda__button__save-room"]');
+        var addRoom = browser.page.agenda().section.addRoom;
+        addRoom
+            .setValueBySelector('@nameRoomInput', 'MyRoom')
+            .clickBySelector('@saveButton');
     },
 
     'created room is displaying': function (browser) {
-        browser
-            .clickBySelectorXpath('//button[contains(text(),"MyRoom")]');
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
+            .clickBySelector('@myRoomButton');
     },
-
+/*
     'add room is displayed again': function (browser) {
         browser
             .waitForElementVisible('//h4[contains(text(),"Add room for Dinner placeholder 14-11-2013 08:55:00 - 09:25:00")]', 3000)
@@ -117,5 +137,5 @@ module.exports = _.assign(presteps, auth, {
     'delete container': function (browser) {
         browser
             .deleteContainerForAgenda();
-    },
+    },*/
 });

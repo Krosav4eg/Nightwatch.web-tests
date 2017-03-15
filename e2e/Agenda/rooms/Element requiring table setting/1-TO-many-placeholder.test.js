@@ -9,105 +9,87 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'creation new container': function (browser) {
-        browser
-            .containerCreationForAgenda();
+        var agendaPage = browser.page.agenda();
+        agendaPage.
+             containerCreation();
     },
 
     'click on add element button': function (browser) {
-        browser
-            .clickBySelectorCss('.btn.btn-info.btn-block')
-            .useXpath()
-            .verify.elementPresent('//h4[contains(text(),"Element form")]')
-            .verify.elementPresent('//label[contains(text(),"Agenda Element Entry Type")]');
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
+            .clickBySelector('@addElementButton');
     },
 
     'choose element requiring table setting': function (browser) {
-        browser
-            .clickBySelectorCss('select#agendaElementEntryTypeId.form-control')
-            .clickBySelectorXpath('//option[contains(text(),"Element requiring table setting")]');
+        var addElementPage = browser.page.agenda().section.addElement;
+        addElementPage
+            .clickBySelector('@elementRequiringTableSettingOption');
     },
 
     'assertion elements type in drop down list': function (browser) {
-        browser
-            .useCss()
-            .clickBySelectorCss('select#agendaElementTypeId')
+        var addElementPage = browser.page.agenda().section.addElement;
+        addElementPage
+            .clickBySelector('@agendaElementTypeSelect')
 
-            .useXpath()
-            .verify.elementPresent('//option[contains(text(),"Hosted table placeholder")]')
-            .verify.elementPresent('//option[contains(text(),"Dinner placeholder")]')
-            .verify.elementPresent('//option[contains(text(),"Group Discussion Placeholder")]')
-            .verify.elementPresent('//option[contains(text(),"Lunch Placeholder")]');
+            .verify.containsText('@hostedTablePlaceholderOption',"Hosted table placeholder")
+            .verify.elementPresent('@dinnerPlaceholderOption',"Dinner placeholder")
+            .verify.elementPresent('@groupDiscussionPlaceholderOption',"Group Discussion Placeholder")
+            .verify.elementPresent('@lunchPlaceholderOption',"Lunch Placeholder");
     },
 
     'creating 1-TO-1 placeholder panel': function (browser) {
-        browser
-            .clickBySelectorCss('select#agendaElementTypeId')
-            .clickBySelectorCss('option[value="23"]')
+        var addElementPage = browser.page.agenda().section.addElement;
+        addElementPage
+            .clickBySelector('@hostedTablePlaceholderOption')
 
-            .setValueByCss('me-date-time-input#elementStartHour input.form-control.dateTimeInput.dateTimeInput', ['8:55', browser.Keys.ENTER])
-            .setValueByCss('me-date-time-input#elementEnd input.form-control.dateTimeInput.dateTimeInput', ['9:25', browser.Keys.ENTER]);
+            .setValueBySelector('@startTimeInput', ['8:55', browser.Keys.ENTER])
+            .setValueBySelector('@endTimeInput', ['9:25', browser.Keys.ENTER])
     },
 
 
     'element requiring table setting assertion': function (browser) {
-        browser
-            .useCss()
-            .clickBySelectorCss('select#meetingAllowed')
+        var addElementPage = browser.page.agenda().section.addElement;
+        addElementPage
+            .clickBySelector('@noMeetingsAllowedOption')
 
-            .useXpath()
-            .clickBySelectorXpath('//option[contains(text(),"No meetings allowed")]')
+            .verify.elementPresent('@TOMANYMEETINGhostsText')
+            .verify.elementPresent('@tableSizeText')
+            .verify.elementPresent('@tableSizeInput')
 
-            .verify.elementPresent('//label[contains(text(),"1 TO MANY MEETING hosts")]')
-            .verify.elementPresent('//label[contains(text(),"Table size")]')
-            .useCss()
-            .verify.elementPresent('input[id="tableSize"]')
+            .clickBySelector('@attachButtonOnAddElementForm')
+            .clickBySelector('@attachCancelWindowButton')
 
-            .clickBySelectorCss('div.col-sm-8.text-center>button.btn.btn-primary')
-            .useXpath()
-            .verify.elementPresent('//h4[contains(text(),"Add host topics to ")]')
-            .clickBySelectorXpath('(//div[@class="modal in fade"]//span[contains(text(),"×")])[2]')
-
-            .clickBySelectorCss('input#room')
-            .clickBySelectorXpath('//div[@class="col-sm-12 container_btn_group"]/button[2][contains(text(),"Save")]');
+            .clickBySelector('@saveButton');
     },
 
     'redirection after creation 1-TO-many-placeholder': function (browser) {
-        browser
-            .useXpath()
-            .verify.elementPresent('//h5[contains(text(),"08:55 - 09:25")]')
-            .verify.elementPresent('//h5[contains(text(),"Hosted table placeholder")]')
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
+            .verify.elementPresent('@timeElementText',"08:55 - 09:25")
+            .verify.elementPresent('@namePlaceholderText',"Hosted table placeholder")
 
-            .clickBySelectorCss('i.fa.fa-plus');
+            .clickBySelector('@plusPresentationButton');
     },
 
-    'Add host topics to 1-TO-MANY Placeholder is displayed': function (browser) {
-        browser
-            .useXpath()
-            .verify.elementPresent('//b[contains(text(),"Hosted table placeholder")]')
+    'add host topics to 1-TO-MANY Placeholder is displayed': function (browser) {
+        var addHostTopics = browser.page.agenda().section.addHostTopics;
+        addHostTopics
+            .verify.elementPresent('@nameModalWindow');
 
-            .refresh()
-            .useCss()
-            .waitForElementNotVisible('#thisIsMainLoader', 30000);
+        browser.refresh();
     },
-
 
     'delete 1-to-many-placeholder panel': function (browser) {
-        browser
-            .clickBySelectorXpath('//a[3]/i[@class="fa fa-trash-o delete-element"]')
-            .clickBySelectorXpath('//button[@data-marker="me-confirm__button__button__yes"]')
-    },
-
-    '1-to-many-placeholder has been deleted': function (browser) {
-        browser
-            .useXpath()
-            .verify.elementNotPresent('//h5[contains(text(),"08:55 - 09:25")]')
-            .verify.elementNotPresent('//h5[contains(text(),"Hosted table placeholder")]')
-            .verify.elementNotPresent('//i[@class="fa fa-plus"]');
+        var addElementPage = browser.page.agenda().section.addCotainer;
+        addElementPage
+            .clickBySelector('@deleteElementButton')
+            .clickBySelector('@confitmYesButton');
     },
 
     'delete container': function (browser) {
-        browser
-            .deleteContainerForAgenda();
+        var agendaPage = browser.page.agenda();
+        agendaPage
+            .containerDelete();
     },
 });
 
