@@ -47,4 +47,60 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('@closeButton')
             .verify.elementPresent('@saveButton')
     },
+
+    'open delegateMobileService': function (browser) {
+        var meetingDetails = browser.page.meetingSummary().section.meetingDetails;
+        meetingDetails
+            .clickBySelector('@delegateMobileService');
+
+        browser.window_handles(function(result) {
+            var handle = result.value[1];
+            browser.switchWindow(handle)
+                .useXpath()
+                .waitForElementVisible('//*[@class="nav filter-list ng-scope"]', 90000);
+            this.verify.urlContains("app.managementevents.com/#/event/2339/meetings");
+
+            browser.closeWindow(handle);
+            handle = result.value[0];
+            browser.switchWindow(handle);});
+    },
+
+    'open representativeMobileService': function (browser) {
+        var meetingDetails = browser.page.meetingSummary().section.meetingDetails;
+        meetingDetails
+            .clickBySelector('@representativeMobileService');
+
+        browser.window_handles(function(result) {
+            var handle = result.value[1];
+            browser.switchWindow(handle)
+                .useXpath()
+                .waitForElementVisible('//span[@class="ns-login ng-binding"]', 60000);
+            this.verify.urlContains("app.managementevents.com/#/signup");
+
+            browser.closeWindow(handle);
+            handle = result.value[0];
+            browser.switchWindow(handle);});
+    },
+
+    'click cancel button': function (browser) {
+        var meetingDetails = browser.page.meetingSummary().section.meetingDetails;
+        meetingDetails
+            .clickBySelector('@closeButton');
+    },
+
+    'click save button': function (browser) {
+        var detailsColumn = browser.page.meetingSummary().section.detailsColumn;
+        var meetingDetails = browser.page.meetingSummary().section.meetingDetails;
+        var toastInfo = browser.page.toasInformation();
+
+        detailsColumn
+            .clickBySelector('@firstRowDetails');
+        var meetingDetails = browser.page.meetingSummary().section.meetingDetails;
+        meetingDetails
+            .clickBySelector('@saveButton');
+
+        toastInfo
+            .verify.containsText('@toastTitle', 'Success')
+            .verify.containsText('@toastContent', 'Event Participant saved');
+    },
 });

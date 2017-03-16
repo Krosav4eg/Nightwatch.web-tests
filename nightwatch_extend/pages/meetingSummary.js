@@ -575,5 +575,15 @@ module.exports = {
                 },
             }
         },
+        nameEvents: {
+            selector: '//a[@href="/events/2339/helpdesk"]',
+            locateStrategy: 'xpath',
+            elements: {
+                NordicStrategyForumEvents: {
+                    selector: '//a[@href="/events/2339/helpdesk"]',
+                    locateStrategy: 'xpath'
+                },
+            }
+        },
     }
 };

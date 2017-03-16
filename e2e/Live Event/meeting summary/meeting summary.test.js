@@ -4,13 +4,20 @@ var auth = require('./../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
 
-    'redirection to meeting-summary': function (browser) {
+    'redirection to live-events': function (browser) {
         browser
             .relUrl('/events/live-events');
     },
-    //US29117
-    //выбор евент
-    //переход к meeting-summary
+
+    'go to meeting-summary': function (browser) {
+        var nameEvents = browser.page.meetingSummary().section.nameEvents;
+        nameEvents
+            .clickBySelector('@NordicStrategyForumEvents');
+
+        var leftMenu = browser.page.leftMenu();
+        leftMenu
+            .clickBySelector('@meetingsSummary');
+    },
 
     'check information': function (browser) {
         var allInformationPage = browser.page.meetingSummary().section.allInformation;
@@ -21,7 +28,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.containsText('@dates', 'Dates: 2017-03-16 08:00:00 - 2017-03-17 18:00:00')
             .verify.containsText('@venue', 'Venue: Radisson Blu Hotel Latvija, Riga')
             .verify.containsText('@titleTable', 'Results - ')
-            .verify.containsText('@titleTable', ' 268 / 268');
+            .verify.containsText('@titleTable', ' 245 / 552');
     },
 
     'verifi link in left menu': function (browser) {

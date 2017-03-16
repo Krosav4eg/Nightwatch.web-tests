@@ -5,11 +5,11 @@ module.exports = {
             locateStrategy: 'xpath'
         },
         toastTitle: {
-            selector: '//div[@class="sn-title"]',
+            selector: '(//div[@class="sn-title"])[1]',
             locateStrategy: 'xpath'
         },
         toastContent: {
-            selector: '//div[@class="sn-content"]',
+            selector: '(//div[@class="sn-content"])[1]',
             locateStrategy: 'xpath'
         },
     }

@@ -20,9 +20,9 @@ module.exports.command = function (selector) {
     var yy = today.getFullYear();
 
     var hh = today.getHours();
-    // if (today.toString().includes("GMT+0300")) {
-    //     hh = hh - 1;
-    // }
+    if (today.toString().includes("GMT+0300")) {
+        hh = hh - 1;
+    }
     if (hh < 10) {
         hh = "0" + hh;
     }
