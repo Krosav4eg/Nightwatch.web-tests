@@ -52,14 +52,14 @@ module.exports = _.assign(presteps, auth, {
         browser.expect.element('(//div[@class="panel-heading panel-heading-auto-height"])[1]').to.not.be.visible
         browser.expect.element('(//div[@class="panel-heading panel-heading-auto-height"])[2]').to.not.be.visible
         browser.expect.element('(//div[@class="panel-heading panel-heading-auto-height"])[3]').to.not.be.visible
-        browser.clickBySelectorXpath('(//i[@class="pull-right glyphicon accordion-panel-arrow glyphicon-chevron-down"])[1]');
+        browser.clickBySelector('(//i[@class="pull-right glyphicon accordion-panel-arrow glyphicon-chevron-down"])[1]');
     },
 
     'queuing meetings pop-up verifying': function (browser) {
         browser
             .verify.elementPresent('//div[contains(text(),"Queuing Meetings")]')
-        browser .clickBySelectorXpath('(//i[@class="pull-right glyphicon accordion-panel-arrow glyphicon-chevron-down"])[1]')
-        browser.expect.element('(//div[@class="panel-collapse collapse"])[1]').to.be.visible
-        browser .clickBySelectorXpath('(//i[@class="pull-right glyphicon accordion-panel-arrow glyphicon-chevron-up"])[2]')
+        browser .clickBySelector('(//i[@class="pull-right glyphicon accordion-panel-arrow glyphicon-chevron-down"])[1]')
+        browser.expect.element('(//div[@aria-expanded="true"])[4]').to.be.visible
+        browser .clickBySelector('(//i[@class="pull-right glyphicon accordion-panel-arrow glyphicon-chevron-up"])[2]')
     },
 });
