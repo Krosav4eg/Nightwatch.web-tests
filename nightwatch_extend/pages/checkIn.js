@@ -4,8 +4,32 @@ module.exports = {
             selector: '//h4',
             locateStrategy: 'xpath',
             elements: {
+                titleEvent: {
+                    selector: '(//h4)[1]',
+                    locateStrategy: 'xpath'
+                },
+                nameEvent: {
+                    selector: '(//h3)[1]',
+                    locateStrategy: 'xpath'
+                },
+                localName: {
+                    selector: '(//h3/../div)[1]',
+                    locateStrategy: 'xpath'
+                },
+                dates: {
+                    selector: '(//h3/../div)[2]',
+                    locateStrategy: 'xpath'
+                },
+                venue: {
+                    selector: '(//h3/../div)[3]',
+                    locateStrategy: 'xpath'
+                },
                 tableCountRow: {
                     selector: '//h4/span',
+                    locateStrategy: 'xpath'
+                },
+                tableName: {
+                    selector: '(//h4)[2]',
                     locateStrategy: 'xpath'
                 },
             }
@@ -126,6 +150,66 @@ module.exports = {
                 }
             }
         },
+        firstNameColumn: {
+            selector: '//tr/th[3]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[3]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[3]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[3]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[3]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[3]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[3]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
+        companyColumn: {
+            selector: '//tr/th[4]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[4]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[4]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[4]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[4]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[4]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[4]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
         calledColumn: {
             selector: '//tr/th[5]',
             locateStrategy: 'xpath',
@@ -229,6 +313,44 @@ module.exports = {
                 },
                 calledButton: {
                     selector: '//button[text()="Called"]',
+                    locateStrategy: 'xpath'
+                },
+
+                attendanceStatus: {
+                    selector: '//select[@formcontrolname="attendanceStatus"]',
+                    locateStrategy: 'xpath'
+                },
+                calledCanceledOption: {
+                    selector: '//select[@formcontrolname="attendanceStatus"]//option[text()="Called - Canceled"]',
+                    locateStrategy: 'xpath'
+                },
+                calledDelayedOption: {
+                    selector: '//select[@formcontrolname="attendanceStatus"]//option[text()="Called - Delayed"]',
+                    locateStrategy: 'xpath'
+                },
+                calledNotReachedOption: {
+                    selector: '//select[@formcontrolname="attendanceStatus"]//option[text()="Called - Not reached"]',
+                    locateStrategy: 'xpath'
+                },
+                checkedInOption: {
+                    selector: '//select[@formcontrolname="attendanceStatus"]//option[text()="Checked in"]',
+                    locateStrategy: 'xpath'
+                },
+                leftOption: {
+                    selector: '//select[@formcontrolname="attendanceStatus"]//option[text()="Left"]',
+                    locateStrategy: 'xpath'
+                },
+                notArrivedOption: {
+                    selector: '//select[@formcontrolname="attendanceStatus"]//option[text()="Not Arrived"]',
+                    locateStrategy: 'xpath'
+                },
+
+                saveButton: {
+                    selector: '//button[text()="Save"]',
+                    locateStrategy: 'xpath'
+                },
+                cancelButton: {
+                    selector: '//button[text()="Cancel"]',
                     locateStrategy: 'xpath'
                 },
             }
