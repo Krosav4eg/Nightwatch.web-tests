@@ -6,6 +6,6 @@
  */
 module.exports.command = function(url, callback) {
   this.url(this.launchUrl + url, callback)
-      .pause(10000)
+      .pause(5000)
   return this;
 };
