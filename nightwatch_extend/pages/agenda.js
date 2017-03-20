@@ -574,6 +574,10 @@ module.exports = {
                     selector: '//h4[text()="Add presentation to "]',
                     locateStrategy: 'xpath'
                 },
+                daimlerAGText: {
+                    selector: '(//div[@class="modal in fade"]//b[contains(text(), "Daimler AG")])[1]',
+                    locateStrategy: 'xpath'
+                },
                 checkbox: {
                     selector: '//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__1670"]',
                     locateStrategy: 'xpath'

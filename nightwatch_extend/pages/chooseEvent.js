@@ -531,8 +531,6 @@ module.exports = {
                     locateStrategy: 'xpath'
                 },
 
-
-
                 nameColumn: {
                     selector: '(//th[contains(text(),"Name")])[3]',
                     locateStrategy: 'xpath'
@@ -545,8 +543,6 @@ module.exports = {
                     selector: '//tr[3]/td[2]',
                     locateStrategy: 'xpath'
                 },
-
-
 
 
                 startDateColumn: {
@@ -562,9 +558,6 @@ module.exports = {
                     locateStrategy: 'xpath'
                 },
 
-
-
-
                 endDateColumn: {
                     selector: '(//th[contains(text(),"End date")])[2]',
                     locateStrategy: 'xpath'
@@ -577,10 +570,6 @@ module.exports = {
                     selector: '//tr[3]/td[4]',
                     locateStrategy: 'xpath'
                 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 0d99ce242babe10630882815e15bd982fbde59bf
             }
         }
     }

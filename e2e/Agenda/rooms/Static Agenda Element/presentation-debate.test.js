@@ -10,45 +10,52 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'creation new container': function (browser) {
-        browser
-            .containerCreationForAgenda();
+        var agendaPage = browser.page.agenda();
+        agendaPage.
+            containerCreation();
     },
 
     'choose static agenda element': function (browser) {
-        browser
-            .addElementButtonForAgenda();
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
+            .clickBySelector('@addElementButton');
+
+        var addElementPage = browser.page.agenda().section.addElement;
+        addElementPage
+            .clickBySelector('@staticAgendaElementOption');
     },
 
     'creating presentation-debate panel': function (browser) {
-        browser
-            .clickBySelectorCss('select#agendaElementTypeId')
-            .clickBySelectorCss('option[value="18"]')
+        var addElementPage = browser.page.agenda().section.addElement;
+        addElementPage
+            .clickBySelector('@presentationDebateOption')
 
-            .setValueByCss('me-date-time-input#elementStartHour input.form-control.dateTimeInput.dateTimeInput', ['9:30', browser.Keys.ENTER])
-            .setValueByCss('me-date-time-input#elementEnd input.form-control.dateTimeInput.dateTimeInput', ['10:00', browser.Keys.ENTER])
+            .setValueBySelector('@startTimeInput', ['9:30', browser.Keys.ENTER])
+            .setValueBySelector('@endTimeInput', ['10:00', browser.Keys.ENTER])
 
-            .clickBySelectorXpath('//option[contains(text(),"No meetings allowed")]')
+            .clickBySelector('@noMeetingsAllowedOption')
+            .clickBySelector('@attachButtonOnAddElementForm');
 
+        var addPresentation = browser.page.agenda().section.addPresentation;
+        addPresentation
+            .verify.elementPresent('@daimlerAGText')
+            .clickBySelector('@cancelButton');
 
-            .verify.containsText('//label[text()="Attach role/presentation"]', 'Attach role/presentation')
-            .clickBySelectorXpath('//button[text()="Attach"]')
-
-            .verify.elementPresent('(//div[@class="modal in fade"]//b[contains(text(), "Daimler AG")])[1]')
-
-            .clickBySelectorXpath('//button[@data-marker="me-modal-attach-presentation-to-element__input__button__cancel"]')
-            .clickBySelectorXpath('//div[@class="col-sm-12 container_btn_group"]/button[2][contains(text(),"Save")]');
+        addElementPage
+            .clickBySelector('@saveButton');
     },
 
     'redirection after creation presentation-debate ': function (browser) {
-        browser
-            .verify.elementPresent('//h5[contains(text(),"09:30 - 10:00")]')
-            .verify.elementPresent('//h5[contains(text(),"Presentation / Debate")]')
-            .verify.elementPresent('//button[@class="btn btn-primary"]');
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
+            .verify.elementPresent('@timeElementText',"09:30 - 10:00")
+            .verify.elementPresent('@namePlaceholderText',"Presentation / Debate")
     },
 
     'click add Content button': function (browser) {
-        browser
-            .clickBySelectorCss('i.fa.fa-plus', 2000);
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
+            .clickBySelector('@plusPresentationButton');
     },
 
     'add presentation to Presentation window is displayed': function (browser) {
