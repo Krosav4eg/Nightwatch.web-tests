@@ -510,162 +510,77 @@ module.exports = {
             }
         },
         liveEventsTable: {
-            selector: '(//tr/td[1])[2]/input',
+            selector: '//i[@class="glyphicon glyphicon-chevron-down"]',
             locateStrategy: 'xpath',
             elements: {
-                searchByCountryName: {
-                    selector: '(//tr/td[1])[2]/input',
-                    locateStrategy: 'xpath'
-                },
-                noFoundResults: {
-                    selector: '(//p[contains(text(),"No results found")])[2]',
-                    locateStrategy: 'xpath'
-                },
-                firstRowForCountryName: {
-                    selector: '(//tr/td[1]/span)[1]',
-                    locateStrategy: 'xpath'
-                },
-                secondRowForCountryName: {
-                    selector: '(//tr[2]/td[1]/span)[1]',
-                    locateStrategy: 'xpath'
-                },
-                thirdRowForCountryName: {
-                    selector: '(//tr[3]/td[1]/span)[1]',
-                    locateStrategy: 'xpath'
-                },
-                fourthRowForCountryName: {
-                    selector: '(//tr[3]/td[1]/span)[1]',
-                    locateStrategy: 'xpath'
-                },
-                fifthRowForCountryName: {
-                    selector: '(//tr[5]/td[1]/span)[1]',
+                chevronDown: {
+                    selector: '//i[@class="glyphicon glyphicon-chevron-down"]',
                     locateStrategy: 'xpath'
                 },
 
-
-                searchByName: {
-                    selector: '(//tr/td[2])[2]/input',
-                    locateStrategy: 'xpath'
-                },
-
-                firstRowForName: {
-                    selector: '(//tr/td[2]/span)[1]',
-                    locateStrategy: 'xpath'
-                },
-                secondRowForName: {
-                    selector: '(//tr[2]/td[2]/span)[1]',
-                    locateStrategy: 'xpath'
-                },
-                thirdRowForName: {
-                    selector: '(//tr[3]/td[2]/span)[1]',
-                    locateStrategy: 'xpath'
-                },
-                fourthRowForName: {
-                    selector: '(//tr[4]/td[2]/span)[1]',
-                    locateStrategy: 'xpath'
-                },
-                fifthRowForName: {
-                    selector: '(//tr[5]/td[2]/span)[1]',
-                    locateStrategy: 'xpath'
-                },
-
-
-                searchByStartDate: {
-                    selector: '(//tr/td[3])[2]/input',
-                    locateStrategy: 'xpath'
-                },
-
-                firstRowForStartDate: {
-                    selector: '(//tr[1]/td[3]/span)[1]',
-                    locateStrategy: 'xpath'
-                },
-                secondRowForStartDate: {
-                    selector: '(//tr[2]/td[3]/span)[1]',
-                    locateStrategy: 'xpath'
-                },
-                thirdRowForStartDate: {
-                    selector: '(//tr[3]/td[3]/span)[1]',
-                    locateStrategy: 'xpath'
-                },
-                fourthRowForStartDate: {
-                    selector: '(//tr[4]/td[3]/span)[1]',
-                    locateStrategy: 'xpath'
-                },
-                fifthRowForStartDate: {
-                    selector: '(//tr[5]/td[3]/span)[1]',
-                    locateStrategy: 'xpath'
-                },
-
-
-                searchByEndDate: {
-                    selector: '(//tr/td[4]/input)[1]',
-                    locateStrategy: 'xpath'
-                },
-
-                firstColumnOfEventName: {
-                    selector: '(//tr[1]/td[4]/span)[1]',
-                    locateStrategy: 'xpath'
-                },
-                secondColumnOfEventName: {
-                    selector: '(//tr[2]/td[4]/span)[1]',
-                    locateStrategy: 'xpath'
-                },
-                thirdColumnOfEventName: {
-                    selector: '(//tr[3]/td[4]/span)[1]',
-                    locateStrategy: 'xpath'
-                },
-                fourthColumnOfEventName: {
-                    selector: '(//tr[4]/td[4]/span)[1]',
-                    locateStrategy: 'xpath'
-                },
-                fifthColumnOfEventName: {
-                    selector: '(//tr[5]/td[4]/span)[1]',
-                    locateStrategy: 'xpath'
-                },
-
-
-                sortByCountryName: {
+                countryNameColumn: {
                     selector: '(//th[contains(text(),"Country Name")])[1]',
                     locateStrategy: 'xpath'
                 },
+                firstRowForCountryName: {
+                    selector: '//tr[2]/td[1]',
+                    locateStrategy: 'xpath'
+                },
+                secondRowForCountryName: {
+                    selector: '//tr[3]/td[1]',
+                    locateStrategy: 'xpath'
+                },
 
-                sortByName: {
+
+
+                nameColumn: {
                     selector: '(//th[contains(text(),"Name")])[3]',
                     locateStrategy: 'xpath'
                 },
+                firstRowForName: {
+                    selector: '//tr[2]/td[2]',
+                    locateStrategy: 'xpath'
+                },
+                secondRowForName: {
+                    selector: '//tr[3]/td[2]',
+                    locateStrategy: 'xpath'
+                },
 
-                sortByStartDate: {
+
+
+
+                startDateColumn: {
                     selector: '(//th[contains(text(),"Start date")])[2]',
                     locateStrategy: 'xpath'
                 },
+                firstRowForStartDate: {
+                    selector: '//tr[2]/td[3]',
+                    locateStrategy: 'xpath'
+                },
+                secondRowForStartDate: {
+                    selector: '//tr[3]/td[3]',
+                    locateStrategy: 'xpath'
+                },
 
-                sortByEndDate: {
+
+
+
+                endDateColumn: {
                     selector: '(//th[contains(text(),"End date")])[2]',
                     locateStrategy: 'xpath'
                 },
-            }
-        },
-        pageFilterForLiveEvents: {
-            selector: '(//option[@value="20"])[2]',
-            locateStrategy: 'xpath',
-            elements: {
-                twentyPages: {
-                    selector: '(//option[@value="20"])[2]',
+                firstRowForEndDate: {
+                    selector: '//tr[2]/td[4]',
                     locateStrategy: 'xpath'
                 },
-                pageText2: {
-                    selector: '(//span[contains(text(),"Pages")])[2]',
-                    locateStrategy: 'xpath'
-                },
-
-                fiftyPages: {
-                    selector: '(//option[@value="50"])[3]',
-                    locateStrategy: 'xpath'
-                },
-                hundredPages: {
-                    selector: '(//option[@value="100"])[2]',
+                secondRowForEndDate: {
+                    selector: '//tr[3]/td[4]',
                     locateStrategy: 'xpath'
                 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0d99ce242babe10630882815e15bd982fbde59bf
             }
         }
     }
