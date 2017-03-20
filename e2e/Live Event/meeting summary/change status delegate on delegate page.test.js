@@ -6,7 +6,7 @@ module.exports = _.assign(presteps, auth, {
 
     'redirection to meeting-summary': function (browser) {
         browser
-            .relUrl('/delegates/edit/115153');
+            .relUrl('/delegates/edit/148599');
     },
 
     'select confirmed for delegates': function (browser) {
@@ -20,6 +20,10 @@ module.exports = _.assign(presteps, auth, {
     'verify status confirmed on meeting-summary': function (browser) {
         browser
             .relUrl('/events/2326/meeting-summary');
+        var meetingTypeFilter = browser.page.meetingSummary().section.meetingTypeFilter;
+        meetingTypeFilter
+
+            .clickBySelector('@hostedTableMeetingOption');
 
         var meetingStatusFilter = browser.page.meetingSummary().section.meetingStatusFilter;
         meetingStatusFilter
@@ -29,20 +33,20 @@ module.exports = _.assign(presteps, auth, {
         var delegateColumn = browser.page.meetingSummary().section.delegateColumn;
         delegateColumn
             .moveToElement('@nameColumn', 1298, 597)
-            .setValueBySelector('@seachColumn', ['Scott Dunn', browser.Keys.ENTER])
+            .setValueBySelector('@seachColumn', ['Raymond Lim', browser.Keys.ENTER])
 
             .waitForElementVisible('@firstRow', 3000)
-            .verify.containsText("@firstRow", "Scott Dunn")
+            .verify.containsText("@firstRow", "Raymond Lim")
 
         meetingStatusFilter
-            .clickBySelector('@cancelledOption');
+            .clickBySelector('@delegateCancellationOption');
         delegateColumn
             .verify.elementPresent('@noResultsFound');
     },
 
     'select cancel for delegates': function (browser) {
         browser
-            .relUrl('/delegates/edit/115153');
+            .relUrl('/delegates/edit/148599');
 
         var delegatesEdit = browser.page.delegates().section.delegatesEdit;
         delegatesEdit
@@ -55,22 +59,25 @@ module.exports = _.assign(presteps, auth, {
         browser
             .relUrl('/events/2326/meeting-summary');
 
+        var meetingTypeFilter = browser.page.meetingSummary().section.meetingTypeFilter;
+        meetingTypeFilter
+            .clickBySelector('@hostedTableMeetingOption');
+
         var meetingStatusFilter = browser.page.meetingSummary().section.meetingStatusFilter;
         meetingStatusFilter
-
-            .clickBySelector('@cancelledOption');
+            .clickBySelector('@delegateCancellationOption');
 
         var delegateColumn = browser.page.meetingSummary().section.delegateColumn;
         delegateColumn
             .moveToElement('@nameColumn', 1298, 597)
-            .setValueBySelector('@seachColumn', ['Scott Dunn', browser.Keys.ENTER])
+            .setValueBySelector('@seachColumn', ['Raymond Lim', browser.Keys.ENTER])
 
             .waitForElementVisible('@firstRow', 3000)
-            .verify.containsText("@firstRow", "Scott Dunn")
+            .verify.containsText("@firstRow", "Raymond Lim")
     },
     'return confirmed for delegates': function (browser) {
         browser
-            .relUrl('/delegates/edit/115153');
+            .relUrl('/delegates/edit/148599');
 
         var delegatesEdit = browser.page.delegates().section.delegatesEdit;
         delegatesEdit
@@ -83,21 +90,24 @@ module.exports = _.assign(presteps, auth, {
         browser
             .relUrl('/events/2326/meeting-summary');
 
+        var meetingTypeFilter = browser.page.meetingSummary().section.meetingTypeFilter;
+        meetingTypeFilter
+            .clickBySelector('@hostedTableMeetingOption');
+
         var meetingStatusFilter = browser.page.meetingSummary().section.meetingStatusFilter;
         meetingStatusFilter
-
             .clickBySelector('@allOption');
 
         var delegateColumn = browser.page.meetingSummary().section.delegateColumn;
         delegateColumn
             .moveToElement('@nameColumn', 1298, 597)
-            .setValueBySelector('@seachColumn', ['Scott Dunn', browser.Keys.ENTER])
+            .setValueBySelector('@seachColumn', ['Raymond Lim', browser.Keys.ENTER])
 
             .waitForElementVisible('@firstRow', 3000)
-            .verify.containsText("@firstRow", "Scott Dunn")
+            .verify.containsText("@firstRow", "Raymond Lim")
 
         meetingStatusFilter
-            .clickBySelector('@cancelledOption');
+            .clickBySelector('@delegateCancellationOption');
         delegateColumn
             .verify.elementPresent('@noResultsFound');
     },

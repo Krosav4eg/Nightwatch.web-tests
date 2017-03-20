@@ -75,9 +75,13 @@ module.exports = {
             }
         },
         delegateDetails: {
-            selector: '//tr[2]/td[6]/span/a[1]',
+            selector: '//tr[1]/td[6]/span/a[1]',
             locateStrategy: 'xpath',
             elements: {
+                LimDelegate: {
+                    selector: '//a[text()="Lim"]',
+                    locateStrategy: 'xpath'
+                },
                 lutherDelegate: {
                     selector: '//a[text()="Luther"]',
                     locateStrategy: 'xpath'
@@ -95,7 +99,7 @@ module.exports = {
                     locateStrategy: 'xpath'
                 },
                 partnerName: {
-                    selector: '//h4',
+                    selector: '//h4[@class="modal-title"]',
                     locateStrategy: 'xpath'
                 },
                 masterId: {
@@ -301,7 +305,7 @@ module.exports = {
                     locateStrategy: 'xpath'
                 },
                 cancelButton: {
-                    selector: '//button[text()="Cancel"]',
+                    selector: '//*[@class="modal-footer"]//button[text()="Cancel"]',
                     locateStrategy: 'xpath'
                 },
             }

@@ -666,8 +666,6 @@ module.exports = {
                     selector: '(//option[@value="100"])[2]',
                     locateStrategy: 'xpath'
                 }
-
-
             }
         }
     }

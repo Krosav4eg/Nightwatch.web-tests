@@ -70,6 +70,10 @@ module.exports = {
                     selector: '//tr/th[1]',
                     locateStrategy: 'xpath'
                 },
+                selectElement: {
+                    selector: '(//td/select)[1]',
+                    locateStrategy: 'xpath'
+                },
                 allOption: {
                     selector: '(//option)[4]',
                     locateStrategy: 'xpath'
@@ -240,12 +244,76 @@ module.exports = {
                 }
             }
         },
+        callingNotesColumn: {
+            selector: '//tr/th[6]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[6]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[6]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[6]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[6]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[6]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[6]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
+        participationNotesColumn: {
+            selector: '//tr/th[7]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[7]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[7]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[7]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[7]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[7]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[7]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
         participationStatusesColumn: {
             selector: '//tr/th[8]',
             locateStrategy: 'xpath',
             elements: {
                 nameColumn: {
                     selector: '//tr/th[8]',
+                    locateStrategy: 'xpath'
+                },
+                selectElement: {
+                    selector: '(//td/select)[2]',
                     locateStrategy: 'xpath'
                 },
                 allOption: {
@@ -302,11 +370,85 @@ module.exports = {
                 }
             }
         },
+        firstMeetingTimeColumn: {
+            selector: '//tr/th[9]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[9]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[9]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[9]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[9]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[9]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[9]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
 
         delgatesInfo: {
             selector: '//h4[@class="modal-title"]',
             locateStrategy: 'xpath',
             elements: {
+                partnerName: {
+                    selector: '//h4',
+                    locateStrategy: 'xpath'
+                },
+                delegateName: {
+                    selector: '//h4[@class="modal-title"]',
+                    locateStrategy: 'xpath'
+                },
+                partnerId: {
+                    selector: '(//a[@href="/delegates/edit/94420"])[1]',
+                    locateStrategy: 'xpath'
+                },
+                masterId: {
+                    selector: '//a[@class="btn-link"]',
+                    locateStrategy: 'xpath'
+                },
+                title: {
+                    selector: '//div[@class="margin-top"]',
+                    locateStrategy: 'xpath'
+                },
+                company: {
+                    selector: '//div[@class="col-sm-12"]/div[2]',
+                    locateStrategy: 'xpath'
+                },
+                mobile: {
+                    selector: '//*[text()="Mobile "]/../../div[2]',
+                    locateStrategy: 'xpath'
+                },
+                telDirect: {
+                    selector: '//*[text()="Tel. Direct "]/../../div[2]',
+                    locateStrategy: 'xpath'
+                },
+                telSwitchboard: {
+                    selector: '//*[text()="Tel.Switchboard "]/../../div[2]',
+                    locateStrategy: 'xpath'
+                },
+                delegateGroup: {
+                    selector: '//*[text()="Delegate Group"]/../../div[2]',
+                    locateStrategy: 'xpath'
+                },
+                eventRoles: {
+                    selector: '//*[text()="Event Roles"]/../../div[2]',
+                    locateStrategy: 'xpath'
+                },
                 calledText: {
                     selector: '//*[text()="Called"]/../../div[2]',
                     locateStrategy: 'xpath'

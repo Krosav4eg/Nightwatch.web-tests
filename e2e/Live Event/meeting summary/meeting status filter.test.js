@@ -45,7 +45,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.containsText('@firstRow', '1-to-1 meeting')
             .verify.containsText('@secondRow', '1-to-1 meeting')
             .verify.containsText('@thirdRow', '1-to-1 meeting')
-            .verify.containsText('@fourthRow', '1-to-1 meeting');
+            .verify.containsText('@fourthRow', 'Hosted table meeting"');
     },
 
     'choose queuedOption': function (browser) {
@@ -120,10 +120,11 @@ module.exports = _.assign(presteps, auth, {
 
     'choose queuedOption and verify Meeting time': function (browser) {
         var meetingStatusFilter = browser.page.meetingSummary().section.meetingStatusFilter;
+        var meetingTimeFilter = browser.page.meetingSummary().section.meetingTimeFilter;
         meetingStatusFilter
 
-            .clickBySelector('@queuedOption')
-
-       //после исправления бага проверить что фильтр Meeting time не доступен
+            .clickBySelector('@queuedOption');
+        meetingTimeFilter
+            .verify.attributeEquals('@meetingTypeSelect', 'disabled', "true");
     },
 });
