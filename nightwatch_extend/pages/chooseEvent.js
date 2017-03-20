@@ -530,10 +530,6 @@ module.exports = {
                     selector: '//tr[3]/td[1]',
                     locateStrategy: 'xpath'
                 },
-                thirdRowForCountryName: {
-                    selector: '//tr[4]/td[1]',
-                    locateStrategy: 'xpath'
-                },
 
 
 
@@ -549,10 +545,7 @@ module.exports = {
                     selector: '//tr[3]/td[2]',
                     locateStrategy: 'xpath'
                 },
-                thirdRowForName: {
-                    selector: '//tr[4]/td[2]',
-                    locateStrategy: 'xpath'
-                },
+
 
 
 
@@ -568,10 +561,7 @@ module.exports = {
                     selector: '//tr[3]/td[3]',
                     locateStrategy: 'xpath'
                 },
-                thirdRowForStartDate: {
-                    selector: '//tr[4]/td[3]',
-                    locateStrategy: 'xpath'
-                },
+
 
 
 
@@ -586,11 +576,8 @@ module.exports = {
                 secondRowForEndDate: {
                     selector: '//tr[3]/td[4]',
                     locateStrategy: 'xpath'
-                },
-                thirdRowForEndDate: {
-                    selector: '//tr[4]/td[4]',
-                    locateStrategy: 'xpath'
                 }
+
             }
         }
     }
