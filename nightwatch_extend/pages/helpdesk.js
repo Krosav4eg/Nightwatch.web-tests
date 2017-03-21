@@ -536,6 +536,10 @@ module.exports = {
                     selector: '//tr[1]/td[6]/span',
                     locateStrategy: 'xpath'
                 },
+                firstRowWithLastName: {
+                    selector: '//tr[1]/td[6]//a[contains(text(),"Röynä")]',
+                    locateStrategy: 'xpath'
+                },
                 secondRow: {
                     selector: '//tr[2]/td[6]',
                     locateStrategy: 'xpath'
