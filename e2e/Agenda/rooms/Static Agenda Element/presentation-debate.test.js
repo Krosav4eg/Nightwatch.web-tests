@@ -34,7 +34,7 @@ module.exports = _.assign(presteps, auth, {
             .setValueBySelector('@endTimeInput', ['10:00', browser.Keys.ENTER])
 
             .clickBySelector('@noMeetingsAllowedOption')
-            .clickBySelector('@attachButtonOnAddElementForm');
+            .clickBySelector('@attachButton');
 
         var addPresentation = browser.page.agenda().section.addPresentation;
         addPresentation
@@ -59,92 +59,73 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'add presentation to Presentation window is displayed': function (browser) {
-        browser
-            .useXpath()
-            .verify.elementPresent('//h4[text()="Add presentation to "]/b[text()="Presentation / Debate"]')
+        var addPresentation = browser.page.agenda().section.addPresentation;
+        addPresentation
+            .verify.elementPresent('@totalName')
+            .verify.elementPresent('@daimlerAGText')
+            .clickBySelector('@checkbox932')
 
-            .verify.elementPresent('(//div[@class="modal in fade"]//b[contains(text(), "Daimler AG")])[1]')
-            .clickBySelectorXpath('//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__932"]')
-
-            .clickBySelectorXpath('//button[@data-marker="me-modal-attach-presentation-to-element__input__button__save"]');
+            .clickBySelector('@saveButton');
     },
 
     'added person is displayed': function (browser) {
-        browser
-            .useXpath()
-            .verify.elementPresent('//h5[contains(text(),"09:30 - 10:00")]')
-            .verify.elementPresent('//h5[contains(text(),"Presentation / Debate")]')
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
+            .verify.elementPresent('@timeElementText',"09:30 - 10:00")
+            .verify.elementPresent('@namePlaceholderText',"Presentation / Debate")
 
-            .verify.elementPresent('//b[contains(text(), "Daimler AG")]')
+            .verify.elementPresent('@daimlerAGText')
 
-            .verify.elementPresent('//button[@class="btn btn-primary"]/i[@class="fa fa-plus"]')
-            .verify.elementPresent('//button[contains(text(), "Add room")]')
+            .verify.elementPresent('@plusPresentationButton')
+            .verify.elementPresent('@addRoomButton')
 
-            .verify.elementPresent('//me-event-agenda-attached-presentation-list//i[@class="fa fa-pencil edit-element"]')
-            .verify.elementPresent('//me-event-agenda-attached-presentation-list//i[@class="fa fa-trash-o delete-element"]')
+            .verify.elementPresent('@editElementButton')
+            .verify.elementPresent('@deleteElementButton')
 
-            .clickBySelectorXpath('//button[contains(text(), "Add room")]');
+            .clickBySelector('@addRoomButton');
     },
 
     'presentation-debate is displayed': function (browser) {
-        browser
-            .verify.elementPresent('//h4[contains(text(),"Add room for Presentation / Debate 24-05-2012 09:30:00 - 10:00:00")]')
-            .useCss()
-            .verify.elementPresent('input.form-control[title=Room]');
+        var addRoom = browser.page.agenda().section.addRoom;
+        addRoom
+            .verify.elementPresent('@nameForPresentation')
+            .verify.elementPresent('@nameRoomInput');
     },
 
     'input Room field is empty': function (browser) {
-        browser
-            .verify.valueContains("input.form-control[title=Room]", "")
-            .setValueByCss('input.form-control[title=Room]', 'MyRoom#2')
+        var addRoom = browser.page.agenda().section.addRoom;
+        addRoom
+            .verify.valueContains("@nameRoomInput", "")
+            .setValueBySelector('@nameRoomInput', 'MyRoom')
 
-            .useXpath()
-            .clickBySelectorXpath('//button[@data-marker="me-event-agenda__button__save-room"]');
+            .clickBySelector('@saveButton');
     },
 
     'set room is displaying': function (browser) {
-        browser
-            .clickBySelectorXpath('//button[contains(text(), "MyRoom#2")]');
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
+            .clickBySelector('@myRoomButton');
     },
 
     'add room for Presentation is displayed again': function (browser) {
-        browser
-            .verify.elementPresent('//h4[contains(text(),"Add room for Presentation / Debate 24-05-2012 09:30:00 - 10:00:00")]', 2000)
-            .useCss()
-            .verify.valueContains("input.form-control[title=Room]", "MyRoom#2")
+        var addRoom = browser.page.agenda().section.addRoom;
+        addRoom
+            .verify.elementPresent('@nameForPresentation')
+            .verify.valueContains("@nameRoomInput", "MyRoom")
 
-            .clickBySelectorCss('button[data-dismiss="modalRoom"]');
+            .clickBySelector('@cancelButton');
     },
 
-    'assertion for room field contains name My Room#2': function (browser) {
-        browser
-            .clickBySelectorXpath('//a[2]/i[@class="fa fa-pencil edit-element"]')
-            .useCss()
-            .verify.valueContains("input#room", "MyRoom#2")
-
-            .refresh()
-            .waitForElementNotVisible('#thisIsMainLoader', 30000);
-    },
-
-    'delete presentation-leaderShip panel': function (browser) {
-        browser
-            .clickBySelectorXpath('//a[3]/i[@class="fa fa-trash-o delete-element"]')
-            .verify.elementPresent('//modal-content[contains(text(),"Do you really want to delete element Presentation / Debate?")]')
-            .clickBySelectorXpath('//button[@data-marker="me-confirm__button__button__yes"]');
-
-    },
-
-    'presentation-leaderShip has been deleted': function (browser) {
-        browser
-            .useXpath()
-            .verify.elementNotPresent('//h5[contains(text(),"09:30 - 10:00")]')
-            .verify.elementNotPresent('//h5[contains(text(),"Presentation / Debate")]')
-            .verify.elementNotPresent('//button[contains(text(), "Add room")]');
+    'delete 1-to-many-placeholder panel': function (browser) {
+        var addElementPage = browser.page.agenda().section.addCotainer;
+        addElementPage
+            .clickBySelector('@deleteElementButton')
+            .clickBySelector('@confitmYesButton');
     },
 
     'delete container': function (browser) {
-        browser
-            .pause(3000)
-            .deleteContainerForAgenda();
+        var agendaPage = browser.page.agenda();
+        agendaPage
+            .containerDelete();
     },
 });

@@ -20,9 +20,9 @@ module.exports = _.assign(presteps, auth, {
         emailColumnSection
             .clickBySelector('@nameColumn')
 
-            .verify.containsText("@firstRow", "boris.funke@citiworks.de")
-            .verify.containsText("@secondRow", "holger.kink@rwe.com")
-            .verify.containsText("@thirdRow", "ingo.alpheus@rwe.com")
+            .verify.containsText("@firstRow", "andrea.abels@eon-energie.com")
+            .verify.containsText("@secondRow", "boris.funke@citiworks.de")
+            .verify.containsText("@thirdRow", "holger.kink@rwe.com")
     },
 
     'sort by email down': function (browser) {

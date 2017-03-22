@@ -41,28 +41,28 @@ module.exports = _.assign(presteps, auth, {
     'template is selected': function (browser) {
         var sendEmailSection = browser.page.speaker().section.sendEmail;
         sendEmailSection
-            .clickBySelector('@any310Option')
+            .clickBySelector('@firstOption')//any310Option
 
             .verify.elementPresent('@templateField')
-            .verify.valueContains('@fromEmailInput', 'gbhn@nam.com')
-            .verify.valueContains('@fromNameInput', 'Kate')
-            .verify.valueContains('@replyToEmailInput', 'frerfgb@mail.com')
-            .verify.valueContains('@subjectInput', 'resttgytygh')
+            .verify.valueContains('@fromEmailInput', 'test@gmail.com')
+            .verify.valueContains('@fromNameInput', '')
+            .verify.valueContains('@replyToEmailInput', 'test@gmail.com')
+            .verify.valueContains('@subjectInput', 'Test')
 
             .clickBySelector('@submitButton')
             .waitForElementVisible('@sendSuccessfully',4000);
     },
 
-    'check edit email template ': function (browser) {
-        var sendEmailSection = browser.page.speaker().section.sendEmail;
-        sendEmailSection
-            .relUrl('/email-templates/edit/310')
-
-            .verify.valueContains('//input[@ngcontrol="name"]', 'Testyhh')
-            .verify.valueContains('//input[@ngcontrol="fromEmail"]', 'gbhn@nam.com')
-            .verify.valueContains('//input[@ngcontrol="fromName"]', 'Kate')
-            .verify.valueContains('//input[@ngcontrol="replyToEmail"]', 'frerfgb@mail.com')
-            .verify.valueContains('//select[@ngcontrol="recipientType"]', '17')
-            .verify.valueContains('//input[@ngcontrol="contentSubject"]', 'resttgytygh');
-    },
+    // 'check edit email template ': function (browser) {
+    //     var sendEmailSection = browser.page.speaker().section.sendEmail;
+    //     sendEmailSection
+    //         .relUrl('/email-templates/edit/310')
+    //
+    //         .verify.valueContains('//input[@ngcontrol="name"]', 'Testyhh')
+    //         .verify.valueContains('//input[@ngcontrol="fromEmail"]', 'gbhn@nam.com')
+    //         .verify.valueContains('//input[@ngcontrol="fromName"]', 'Kate')
+    //         .verify.valueContains('//input[@ngcontrol="replyToEmail"]', 'frerfgb@mail.com')
+    //         .verify.valueContains('//select[@ngcontrol="recipientType"]', '17')
+    //         .verify.valueContains('//input[@ngcontrol="contentSubject"]', 'resttgytygh');
+    // },
 });

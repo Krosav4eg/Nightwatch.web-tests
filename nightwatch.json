@@ -20,11 +20,11 @@
   },
   "test_workers": {
     "enabled": true,
-    "workers": 4
+    "workers": 5
   },
   "test_settings": {
     "default": {
-      "filter": "**/*.test.js",
+      "filter": "**/*.4.js",
       "selenium_host": "127.0.0.1",
       "selenium_port": 4444,
       "launch_url": "http://alpha.skynet.managementevents.com",
@@ -41,8 +41,7 @@
         "acceptSslCerts": true,
         "chromeOptions": {
           "args": [
-            "ash-touch-hud",
-            "material-hybrid"
+            "start-maximized"
           ]
         }
       }

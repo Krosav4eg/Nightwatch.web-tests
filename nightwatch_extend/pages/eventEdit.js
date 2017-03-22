@@ -1,15 +1,15 @@
 module.exports = {
     elements: {
         startTime: {
-            selector: '//input[@data-attribute="startTime"]',
+            selector: '//*[@formcontrolname="startTime"]/input',
             locateStrategy: 'xpath'
         },
         locationInput: {
-            selector: '//select[@name="Event[countryId]"]',
+            selector: '//select[@formcontrolname="countryId"]',
             locateStrategy: 'xpath'
         },
         townInput: {
-            selector: '//input[@name="Event[city]"]',
+            selector: '//input[@formcontrolname="city"]',
             locateStrategy: 'xpath'
         },
     }

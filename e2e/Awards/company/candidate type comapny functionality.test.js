@@ -10,62 +10,70 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'check awards page info': function (browser) {
-        browser
-            .useXpath()
-            .verify.elementPresent('//h3[text()="IndustryForum Healthcare"]')
-            .verify.elementPresent('//h4[text()="Awards"]')
+        var allInformation = browser.page.awards().section.allInformation;
+        allInformation
+            .verify.containsText('@titleEvent', 'Event (#216)')
+            .verify.containsText('@nameEvent', 'IndustryForum Healthcare')
+            .verify.containsText('@localName', 'Local name: StrategyCircle Gesundheitswesen')
+            .verify.containsText('@dates', 'Dates: 2012-09-19 08:00:00 - 2012-09-20 18:00:00')
+            .verify.containsText('@venue', 'Venue: ,');
 
-            .verify.elementPresent('//label[text()="Award title local"]')
-            .verify.elementPresent('//label[text()="Award title English"]')
-            .verify.elementPresent('//label[text()="Candidate type"]')
+        var awardSectoin = browser.page.awards().section.awardSectoin;
+        awardSectoin
+            .verify.elementPresent('@awardTitleLocalText')
+            .verify.elementPresent('@awardTitleEnglishText')
+            .verify.elementPresent('@candidateTypeText')
 
-            .verify.elementPresent('//radio-item[@id=1]')
-            .verify.elementPresent('//radio-item[@id=2]')
-            .verify.elementPresent('//radio-item[@id=3]')
+            .verify.elementPresent('@contactRadioButton')
+            .verify.elementPresent('@companyRadioButton')
+            .verify.elementPresent('@projectRadioButton')
 
-            .verify.elementPresent('//label[text()="Status"]')
+            .verify.elementPresent('@statusText')
 
-            .verify.elementPresent('//div[text()="Modified: "]')
-            .verify.elementPresent('//div[text()="Modified by: "]')
+            .verify.elementPresent('@modifiedText')
+            .verify.elementPresent('@modifiedByText')
 
-            .verify.elementPresent('//button[@type="submit"]')
-
-            .verify.elementPresent('//h4[text()="Candidates"]');
+            .verify.elementPresent('@saveButton')
     },
 
     'verify status switcher': function (browser) {
-        browser
-            .waitForElementVisible('//label[@btnradio="0"]', 7000)
-            .verify.cssProperty('//label[@btnradio="0"]', 'background-color', 'rgba(231, 60, 60, 1)');
-    },
-
-    'select on in status switcher': function (browser) {
-        browser
-            .clickBySelectorXpath('//label[@btnradio="1"]')
-            .verify.cssProperty('//label[@btnradio="1"]', 'background-color', 'rgba(41, 115, 207, 1)');
+        var awardSectoin = browser.page.awards().section.awardSectoin;
+        awardSectoin
+            .clickBySelector('@onButton')
+            .verify.cssProperty('@offButton', 'background-color', 'rgba(230, 231, 232, 1)')
+            .verify.cssProperty('@onButton', 'background-color', 'rgba(41, 115, 207, 1)');
     },
 
     'set values into the input fields': function (browser) {
-        browser
-            .setValueByXpath('//div[1]/div/input[1][@type="text"]','The best of the best')
-            .setValueByXpath('//div[2]/div/input[1][@type="text"]','The best of the best 2')
+        var awardSectoin = browser.page.awards().section.awardSectoin;
+        awardSectoin
+            .setValueBySelector('@awardTitleLocalInput','The best of the best')
+            .setValueBySelector('@awardTitleEnglishInput','The best of the best 2')
     },
 
     'select company radio button ': function (browser) {
-        browser
-            .clickBySelectorXpath('//radio-item[@id=2]')
-            .clickBySelectorXpath('//button[@type="submit"]')
-            .waitForElementVisible('//div[text()="Award saved successfully"]', 30000)
-            .checkModifiedInSelectorXpath('//*[contains(text(),"Awards")]/../..//div[contains(text(),"Modified:")]/../div[2]')
-            .waitForElementVisible('//button[text()="Add a new candidate"]', 30000);
+        var awardSectoin = browser.page.awards().section.awardSectoin;
+        awardSectoin
+            .clickBySelector('@companyRadioButton')
+            .clickBySelector('@saveButton')
+
+            .waitForElementVisible('@succesMasseg', 30000)
+            .checkModifiedInSelector('@modifiedDate');
+
+        var candidatesSectoin = browser.page.awards().section.candidatesSectoin;
+        candidatesSectoin
+            .verify.elementPresent('@addNewCandidateButton');
     },
 
     'to return everything to its original position ': function (browser) {
-        browser
-            .clickBySelectorXpath('//radio-item[@id=1]')
-            .clickBySelectorXpath('//label[@btnradio="0"]')
-            .clickBySelectorXpath('//button[@type="submit"]')
-            .waitForElementVisible('//h3[text()="IndustryForum Healthcare"]', 7000)
-            .checkModifiedInSelectorXpath('//*[contains(text(),"Awards")]/../..//div[contains(text(),"Modified:")]/../div[2]');
+        var awardSectoin = browser.page.awards().section.awardSectoin;
+        awardSectoin
+            .clickBySelector('@contactRadioButton')
+            .clickBySelector('@offButton')
+            .verify.cssProperty('@offButton', 'background-color', 'rgba(214, 26, 26, 1)')
+            .verify.cssProperty('@onButton', 'background-color', 'rgba(230, 231, 232, 1)')
+            .clickBySelector('@saveButton')
+
+            .checkModifiedInSelector('@modifiedDate');
     },
 });

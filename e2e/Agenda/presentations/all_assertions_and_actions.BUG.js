@@ -12,7 +12,7 @@ module.exports = _.assign(presteps, auth, {
     'creation new container': function (browser) {
         var agendaPage = browser.page.agenda();
         agendaPage.
-            containerCreation();
+             containerCreation();
     },
 
     'choose static agenda element': function (browser) {
@@ -37,106 +37,90 @@ module.exports = _.assign(presteps, auth, {
     'attach new speaker ': function (browser) {
         var addPresentation = browser.page.agenda().section.addPresentation;
         addPresentation
-            .clickBySelector('@checkbox629')
+            .clickBySelector('@checkbox1875')
             .clickBySelector('@saveButton');
     },
 
     'chosen speaker is displayed': function (browser) {
-        browser
-            .verify.elementPresent('//td[text()="1875"]')
-            .verify.elementPresent('//li/b[text()="Suominen Oyj"]')
+        var addElementPage = browser.page.agenda().section.addElement;
+        addElementPage
+            .verify.elementPresent('@text1875')
+            .verify.elementPresent('@suominenOyjText')
 
-            .verify.elementPresent('//i[@class="fa fa-pencil edit-element"]')
-            .verify.elementPresent('//i[@class="fa fa-trash-o delete-element"]')
-            .verify.elementPresent('//i[@class="fa fa-plus"]')
-
-            .clickBySelectorXpath('//option[contains(text(),"No meetings allowed")]')
-
-            .clickBySelectorXpath('//div/div/div/div/button[contains(text(),"Save")]');
+            .clickBySelector('@noMeetingsAllowedOption')
+            .clickBySelector('@saveButton');
     },
 
     'presentation/panel discussion has been created': function (browser) {
-        browser
-            .useXpath()
-            .verify.elementPresent('//h5[contains(text(),"08:00 - 09:45")]')
-            .verify.elementPresent('//h5[contains(text(),"Presentation / Panel discussion")]')
-
-            .verify.elementPresent('(//td[text()="1875"])[1]')
-            .verify.elementPresent('//table[@class="table-agenda"]//li/b[contains(text(), "Suominen Oyj")]')
-
-            .verify.elementPresent('//table[@class="table-agenda"]//li[(text()=" - Vekve Sandra             ")]')
-
-            .verify.elementPresent('//button[@class="btn btn-primary"]/i[@class="fa fa-plus"]')
-            .verify.elementPresent('//button[contains(text(), "Add room")]')
-
-            .verify.elementPresent('//me-event-agenda-attached-presentation-list//i[@class="fa fa-pencil edit-element"]')
-            .verify.elementPresent('//me-event-agenda-attached-presentation-list//i[@class="fa fa-trash-o delete-element"]');
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
+            .verify.containsText('@timeElementText',"08:00 - 09:45")
+            .verify.containsText('@namePlaceholderText',"Presentation / Panel discussion")
+            .verify.elementPresent('@addRoomButton')
+            .verify.elementPresent('@plusPresentationButton')
+            .verify.elementPresent('@text1875')
+            .verify.elementPresent('@suominenOyjText')
     },
 
     'speaker info assertion on presentations page': function (browser) {
-        browser
-            .clickBySelectorXpath('//me-event-agenda-attached-presentation-list//i[@class="fa fa-pencil edit-element"]')
-
-            .verify.elementPresent('//a[@href="/presentations/1875/master-contact/126606"]')
-            .verify.containsText('(//tr[@class="hover"]//span)[2]', 'Delegate')
-            .verify.containsText('(//tr[@class="hover"]//span)[3]', 'Suominen Oyj')
-            .verify.containsText('(//tr[@class="hover"]//span)[4]', 'Hulden')
-            .verify.containsText('(//tr[@class="hover"]//span)[5]', 'Margareta')
-            .verify.containsText('(//tr[@class="hover"]//span)[7]', 'Vice President, R&D')
-            .verify.containsText('(//tr[@class="hover"]//span)[8]', 'margareta.hulden@suominencorp.com');
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
+            .clickBySelector('@editPresentationButton')
     },
 
     'input information into input fields page': function (browser) {
-        browser
-            .useXpath()
-            .verify.elementPresent('//h1[contains(text(), "Edit Presentation (#1875)")]')
-            .verify.elementPresent('//h4[contains(text(), "Presentation (#1875)")]')
+        var tableSpeaker = browser.page.presentationsEdit().section.tableSpeaker;
+        tableSpeaker
+            .verify.elementPresent('@firstRowInColumnM')
+            .verify.containsText('@firstRowInColumnContactType', 'Delegate')
+            .verify.containsText('@firstRowInColumnCompanyName', 'Suominen Oyj')
+            .verify.containsText('@firstRowInColumnLastName', 'Hulden')
+            .verify.containsText('@firstRowInColumnFirstName', 'Margareta')
+            .verify.containsText('@firstRowInColumnTitle', 'Vice President, R&D')
+            .verify.containsText('@firstRowInColumnEmail', 'margareta.hulden@suominencorp.com');
 
-            .verify.elementPresent('//label[contains(text(),"Organizer ")]')
-            .verify.elementPresent('//span[contains(text(),"Management Events")]')
+        var presentation = browser.page.presentationsEdit().section.presentation;
+        presentation
 
-            .verify.elementPresent('//label[contains(text(),"Presentation Type")]')
-            .verify.elementPresent('//span[contains(text(),"Panel discussion")]')
+            .verify.elementPresent('@organizerText')
+            .verify.elementPresent('@managementEventsText')
 
-            .verify.elementPresent('//label[contains(text(),"Heading")]')
-            .setValueByXpath('//input[@data-marker="me-event-presentation-form__input__heading"]', 'Heading')
+            .verify.elementPresent('@presentationTypeText')
+            .verify.elementPresent('@panelDiscussionText')
 
-            .verify.elementPresent('//label[contains(text(),"Sub heading 1")]')
-            .setValueByXpath('//input[@data-marker="me-event-presentation-form__input__subheading0"]', 'Sub heading 1')
+            .verify.elementPresent('@headingText')
+            .setValueBySelector('@headingInput', 'Heading')
 
-            .verify.elementPresent('//label[contains(text(),"Sub heading 2")]')
-            .setValueByXpath('//input[@data-marker="me-event-presentation-form__input__subheading1"]', 'Sub heading 2')
+            .verify.elementPresent('@subheading1Text')
+            .setValueBySelector('@subheading1Input', 'Sub heading 1')
 
-            .verify.elementPresent('//label[contains(text(),"Sub heading 3")]')
-            .setValueByXpath('//input[@data-marker="me-event-presentation-form__input__subheading2"]', 'Sub heading 3')
+            .verify.elementPresent('@subheading2Text')
+            .setValueByXpath('@subheading2Input', 'Sub heading 2')
 
-            .verify.elementPresent('//label[contains(text(),"Notes")]')
-            .setValueByXpath('//textarea[@data-marker="me-event-presentation-form__textarea__notes"]', 'Simply note')
+            .verify.elementPresent('@subheading3Text')
+            .setValueByXpath('@subheading3Input', 'Sub heading 3')
 
-            .verify.elementPresent('//label[contains(text(),"Created")]')
-            .verify.elementPresent('//label[contains(text(),"Created By")]')
+            .verify.elementPresent('@notesText')
+            .setValueByXpath('@notesInput', 'Simply note')
 
-            .verify.elementPresent('//label[contains(text(),"Modified")]')
-            .verify.elementPresent('//label[text()="Modified By "]', 3000)
+            .verify.elementPresent('@createdText')
+            .verify.elementPresent('@createdByText')
 
-            .verify.elementPresent('(//div[@class="btn-toolbar"]//button[contains(text(),"Cancel")])[1]')
-            .clickBySelectorXpath('(//div[@class="btn-toolbar"]//button[contains(text(),"Save")])[1]');
+            .verify.elementPresent('@modifiedText')
+            .verify.elementPresent('@modifiedByText')
+
+            .verify.elementPresent('@cancelButton')
+            .clickBySelector('@saveButton');
     },
 
     'check heading in presentation main page': function (browser) {
         browser
             .relUrl('/event/1002/agenda')
-            .useCss()
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
-            .useXpath()
-            .verify.elementPresent('(//td[text()="Heading"])[1]');
     },
 
     'back to the presentation edit page': function (browser) {
         browser
             .relUrl('/presentations/edit/1875')
-            .useCss()
-            .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
 
     'verify information about speaker': function (browser) {

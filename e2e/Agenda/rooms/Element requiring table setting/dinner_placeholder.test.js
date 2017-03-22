@@ -73,12 +73,6 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelector('@addRoomButton');
     },
 
-    // 'add room for Dinner placeholder is displayed': function (browser) {
-    //     browser
-    //         .verify.elementPresent('//label[contains(text(),"Room")]')
-    //         .verify.elementPresent('//h4[contains(text(),"Add room for Dinner placeholder 14-11-2013 08:55:00 - 09:25:00")]');
-    // },
-
     'room input field is empty': function (browser) {
         var addRoom = browser.page.agenda().section.addRoom;
         addRoom
@@ -91,51 +85,26 @@ module.exports = _.assign(presteps, auth, {
         addCotainerPage
             .clickBySelector('@myRoomButton');
     },
-/*
+
     'add room is displayed again': function (browser) {
-        browser
-            .waitForElementVisible('//h4[contains(text(),"Add room for Dinner placeholder 14-11-2013 08:55:00 - 09:25:00")]', 3000)
+        var addRoom = browser.page.agenda().section.addRoom;
+        addRoom
+            .verify.elementPresent('@nameForPresentation')
+            .verify.valueContains("@nameRoomInput", "MyRoom")
 
-            .waitForElementVisible('//button[contains(text(),"MyRoom")]', 2000)
-            .useCss()
-            .verify.valueContains("input.form-control[title=Room]", "MyRoom")
-
-            .clickBySelectorCss('button[data-dismiss="modalRoom"]');
+            .clickBySelector('@cancelButton');
     },
 
-    'click on edit dinner panel': function (browser) {
-        browser
-            .clickBySelectorXpath('//a[2]/i[@class="fa fa-pencil edit-element"]');
-    },
-
-    'room field contains name My Room': function (browser) {
-        browser
-            .useCss()
-            .verify.valueContains("input#room", "MyRoom")
-
-            .refresh()
-            .waitForElementVisible('#thisIsMainLoader', 30000)
-            .waitForElementNotVisible('#thisIsMainLoader', 30000);
-    },
-
-    'delete dinner panel': function (browser) {
-        browser
-            .useXpath()
-
-            .clickBySelectorXpath('//a[3]/i[@class="fa fa-trash-o delete-element"]')
-            .clickBySelectorXpath('//button[@data-marker="me-confirm__button__button__yes"]');
-    },
-
-    'presentation-leaderShip has been deleted': function (browser) {
-        browser
-            .useXpath()
-            .verify.elementNotPresent('//h5[contains(text(),"08:00 - 09:45")]')
-            .verify.elementNotPresent('//h5[contains(text(),"Dinner Placeholder")]')
-            .verify.elementNotPresent('//button[contains(text(), "MyRoom")]');
+    'delete 1-to-many-placeholder panel': function (browser) {
+        var addElementPage = browser.page.agenda().section.addCotainer;
+        addElementPage
+            .clickBySelector('@deleteElementButton')
+            .clickBySelector('@confitmYesButton');
     },
 
     'delete container': function (browser) {
-        browser
-            .deleteContainerForAgenda();
-    },*/
+        var agendaPage = browser.page.agenda();
+        agendaPage
+            .containerDelete();
+    },
 });

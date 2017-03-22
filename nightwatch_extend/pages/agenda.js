@@ -189,6 +189,10 @@ module.exports = {
                     selector: '(//h5)[2]',
                     locateStrategy: 'xpath'
                 },
+                daimlerAGText: {
+                    selector: '//b[contains(text(), "Daimler AG")]',
+                    locateStrategy: 'xpath'
+                },
                 namePlaceholderText: {
                     selector: '(//h5)[3]',
                     locateStrategy: 'xpath'
@@ -275,6 +279,18 @@ module.exports = {
                 },
                 plusPresentationButton: {
                     selector: '//i[@class="fa fa-plus"]',
+                    locateStrategy: 'xpath'
+                },
+                text1875: {
+                    selector: '(//td[text()="1875"])[1]',
+                    locateStrategy: 'xpath'
+                },
+                RWEGroupBusinessText: {
+                    selector: '//td/ul/li/b[text()="RWE Group Business Services GmbH"]',
+                    locateStrategy: 'xpath'
+                },
+                suominenOyjText: {
+                    selector: '//table[@class="table-agenda"]//li/b[contains(text(), "Suominen Oyj")]',
                     locateStrategy: 'xpath'
                 },
             }
@@ -545,15 +561,31 @@ module.exports = {
                     selector: '//input[@id="tableSize"]',
                     locateStrategy: 'xpath'
                 },
+                text1875: {
+                    selector: '//td[text()="1875"]',
+                    locateStrategy: 'xpath'
+                },
+                suominenOyjText: {
+                    selector: '//li/b[text()="Suominen Oyj"]',
+                    locateStrategy: 'xpath'
+                },
 
             }
         },
         addRoom: {
-            selector: '//h4[contains(text(),"Add room for Awards Panel 25-04-2013 08:59:00 - 09:59:00")]',
+            selector: '//h4[contains(text(),"Add room")]',
             locateStrategy: 'xpath',
             elements: {
                 totalNameElementForm: {
                     selector: '//h4[contains(text(),"Add room for Awards Panel 25-04-2013 08:59:00 - 09:59:00")]',
+                    locateStrategy: 'xpath'
+                },
+                nameForLunchPlaceholder: {
+                    selector: '//h4[contains(text(),"Add room for Lunch placeholder 17-10-2013 08:55:00 - 09:25:00")]',
+                    locateStrategy: 'xpath'
+                },
+                nameForPresentation: {
+                    selector: '//h4[contains(text(),"Add room for Presentation / Debate 24-05-2012 09:30:00 - 10:00:00")]',
                     locateStrategy: 'xpath'
                 },
                 nameRoomInput: {
@@ -562,6 +594,10 @@ module.exports = {
                 },
                 saveButton: {
                     selector: '//button[@class="btn btn-primary pull-left"]',
+                    locateStrategy: 'xpath'
+                },
+                cancelButton: {
+                    selector: '//button[@data-dismiss="modalRoom"]',
                     locateStrategy: 'xpath'
                 }
             }
@@ -578,12 +614,28 @@ module.exports = {
                     selector: '(//div[@class="modal in fade"]//b[contains(text(), "Daimler AG")])[1]',
                     locateStrategy: 'xpath'
                 },
+                groupDiscussionPlaceholderText: {
+                    selector: '//b[contains(text(),"Group Discussion Placeholder")]',
+                    locateStrategy: 'xpath'
+                },
                 checkbox: {
                     selector: '//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__1670"]',
                     locateStrategy: 'xpath'
                 },
                 checkbox629: {
                     selector: '//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__629"]',
+                    locateStrategy: 'xpath'
+                },
+                checkbox1962: {
+                    selector: '//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__1962"]',
+                    locateStrategy: 'xpath'
+                },
+                checkbox932: {
+                    selector: '//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__932"]',
+                    locateStrategy: 'xpath'
+                },
+                checkbox1875: {
+                    selector: '//input[@data-marker="me-modal-attach-presentation-to-element__input__checkbox__1875"]',
                     locateStrategy: 'xpath'
                 },
                 saveButton: {

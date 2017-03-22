@@ -38,12 +38,14 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelector('@industryForumEnergyLeftMenu')
             .click('@generalLeftMenu');
 
+        browser.pause(6000);
+
         var eventEdit = browser.page.eventEdit();
         eventEdit
 
-            .waitForElementVisible('@startTime', 10000)
+            .waitForElementVisible('@startTime', 30000)
             .verify.valueContains('@startTime', "2012-05-09 08:00:00")
-            .verify.valueContains('@locationInput', "66")
+            .verify.containsText('@locationInput', "Germany")
             .verify.valueContains('@townInput', "München");
     },
 
