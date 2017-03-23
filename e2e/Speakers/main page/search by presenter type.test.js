@@ -30,8 +30,7 @@ module.exports = _.assign(presteps, auth, {
         var presenterTypeSection = browser.page.speaker().section.presenterTypeColumn;
 
         presenterTypeSection
-            .moveToElement('@nameColumn', 1298, 597)
-            .clickBySelector('@sortColumn')
+            .clickBySelector('@nameColumn')
             .verify.containsText('@thirdRow', 'Delegate')
             .verify.containsText('@fourthRow', 'Delegate')
             .verify.containsText('@fifthRow', 'Delegate')
@@ -41,7 +40,6 @@ module.exports = _.assign(presteps, auth, {
         var presenterTypeSection = browser.page.speaker().section.presenterTypeColumn;
 
         presenterTypeSection
-            .moveToElement('@nameColumn', 1298, 597)
             .clickBySelector('@delegateOption')
             .verify.containsText("@firstRow", "Delegate")
             .verify.containsText("@secondRow", "Delegate")

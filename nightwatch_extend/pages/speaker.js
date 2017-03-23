@@ -506,39 +506,39 @@ module.exports = {
             },
 
             presenterTypeColumn: {
-                selector: '//tr[1]/th[12]',
+                selector: '//tr[1]/th[13]',
                 locateStrategy: 'xpath',
                 elements: {
                     nameColumn: {
-                        selector: '//tr[1]/th[12]',
+                        selector: '//tr[1]/th[13]',
                         locateStrategy: 'xpath'
                     },
                     partnerOption: {
-                        selector: '//option[text()="Partner"]',
+                        selector: '(//option[text()="Partner"])[2]',
                         locateStrategy: 'xpath'
                     },
                     delegateOption: {
-                        selector: '//option[text()="Delegate"]',
+                        selector: '(//option[text()="Delegate"])[2]',
                         locateStrategy: 'xpath'
                     },
                     firstRow: {
-                        selector: '//tr[1]/td[12]/span/ul/li',
+                        selector: '//tr[1]/td[13]/span/ul/li',
                         locateStrategy: 'xpath'
                     },
                     secondRow: {
-                        selector: '//tr[2]/td[12]/span/ul/li',
+                        selector: '//tr[2]/td[13]/span/ul/li',
                         locateStrategy: 'xpath'
                     },
                     thirdRow: {
-                        selector: '//tr[3]/td[12]/span/ul/li',
+                        selector: '//tr[3]/td[13]/span/ul/li',
                         locateStrategy: 'xpath'
                     },
                     fourthRow: {
-                        selector: '//tr[4]/td[12]/span/ul/li',
+                        selector: '//tr[4]/td[13]/span/ul/li',
                         locateStrategy: 'xpath'
                     },
                     fifthRow: {
-                        selector: '//tr[5]/td[12]/span/ul/li',
+                        selector: '//tr[5]/td[13]/span/ul/li',
                         locateStrategy: 'xpath'
                     },
                     noResultsFound: {
@@ -596,7 +596,7 @@ module.exports = {
                         locateStrategy: 'xpath'
                     },
                     firstOption: {
-                        selector: '//modal[@class="modal fade in"]//option[1]',
+                        selector: '//*[@class="modal in fade"]//option[2]',
                         locateStrategy: 'xpath'
                     },
                     any310Option: {
@@ -632,7 +632,7 @@ module.exports = {
                         locateStrategy: 'xpath'
                     },
                     sendSuccessfully: {
-                        selector: '//div[text()="The email template was sent successfully."]',
+                        selector: '//div[text()="Email sent to 4 recipients"]',
                         locateStrategy: 'xpath'
                     },
                 }

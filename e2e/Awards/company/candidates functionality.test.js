@@ -10,91 +10,98 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'select company radio button ': function (browser) {
-        browser
-            .selectCompanyRadioButton();
+        var awardSectoin = browser.page.awards().section.awardSectoin;
+        awardSectoin
+            .clickBySelector('@companyRadioButton')
+            .clickBySelector('@onButton')
+            .clickBySelector('@saveButton')
+
+            .waitForElementVisible('@succesMasseg', 30000);
     },
 
     'click on add a new candidate  button': function (browser) {
-        browser
-            .addNewCandidate("PRS Prime");
+        var awardSectoin = browser.page.awards();
+        awardSectoin
+            .addNewCandidateByName("PRS Prime");
     },
 
     'added candidate has been displayed': function (browser) {
-        browser
-            .useXpath()
-            .verify.elementPresent('//h4[contains(text(),"Candidates")]')
+        var candidatesSectoin = browser.page.awards().section.candidatesSectoin;
+        candidatesSectoin
 
-            .verify.elementPresent('//h3[contains(text(),"Candidate 1")]')
-            .verify.elementPresent('//label[contains(text(),"Company Name")]')
-            .verify.elementPresent('//a[contains(text(),"(M#84462)")]')
-            .verify.elementPresent('//label[contains(text(),"Country")]')
+            .verify.elementPresent('@candidate1Text')
+            .verify.elementPresent('@companyNameText')
+            .verify.elementPresent('@masterId84462Link')
+            .verify.elementPresent('@countryText')
 
-            .verify.elementPresent('//*[text()="Candidates"]/../..//img')
+            .verify.elementPresent('@defaultLogo')
 
-            .verify.elementPresent('//label[contains(text(),"Introduction")]')
-            .verify.elementPresent('//div/textarea')
+            .verify.elementPresent('@introductionText')
+            .verify.elementPresent('@introductionInput')
 
-            .verify.elementPresent('//button[contains(text(),"Winner")]')
-            .verify.elementPresent('//button[contains(text(),"Delete")]')
+            .verify.elementPresent('@winnerButton')
+            .verify.elementPresent('@deleteButton')
 
-            .verify.elementPresent('//div[@class="form-group"]//div[contains(text(),"Modified: ")]')
-            .verify.elementPresent('//div[@class="form-group"]//div[contains(text(),"Modified by: ")]')
+            .verify.elementPresent('@modifiedText')
+            .verify.elementPresent('@modifiedByText')
 
-            .verify.elementPresent('//div[@class="form-group"]//button[text()="Save"]')
+            .verify.elementPresent('@saveButton')
     },
 
     'click on casterContact ID': function (browser) {
-        browser
-            .clickBySelectorXpath('//a[contains(text(),"(M#84462)")]');
+        var candidatesSectoin = browser.page.awards().section.candidatesSectoin;
+        candidatesSectoin
+            .clickBySelector('@masterId84462Link');
     },
 
     'check contact information': function (browser) {
         browser
-            .closeWindow()
+        .closeWindow()
             .window_handles(function (result) {
                 var handle = result.value[0];
-                browser.switchWindow(handle)
-                    .waitForElementVisible('//h4[contains(text(),"Company  - *PRS Prime Re Services AG (#84462)")]', 30000)
-
-                    .useCss()
-                    .verify.valueContains('#MasterCompany_Name', '*PRS Prime Re Services AG')
-                    .verify.valueContains('#MasterCompany_Country', 'Switzerland')
-
-                    .relUrl('/event/1502/awards')
-                    .waitForElementNotVisible('#thisIsMainLoader', 30000);
-            })
+                browser.switchWindow(handle);
+            });
+    },
+    'verify  contact information': function (browser) {
+        var masterCompan = browser.page.masterCompan();
+        masterCompan
+            .waitForElementVisible('@totalName', 60000)
+            .verify.containsText('@totalName',"Company - *PRS Prime Re Services AG (#84462)")
+            .verify.valueContains('@nameInput', '*PRS Prime Re Services AG')
+            .verify.valueContains('@countryInput', 'Switzerland');
     },
 
     'back to the awards page': function (browser) {
         browser
             .relUrl('/event/1502/awards')
-            .useXpath()
-            .waitForElementVisible('//h4[contains(text(),"Event (#1502)")]', 30000);
     },
 
     'enter introduction': function (browser) {
-        browser
-            .moveToElement('//me-event-candidates-form//button[text()="Save"]', 100, 100)
-            .setValueByXpath('//textarea', 'Very important information')
-            .waitForElementVisible('//me-event-candidates-form//button[text()="Save"]', 30000)
-            .clickBySelectorXpath('//me-event-candidates-form//button[text()="Save"]')
-            .waitForElementVisible('//div[contains(text(),"Award saved successfully")]', 30000)
-            .checkModifiedInSelectorXpath('//*[contains(text(),"Awards")]/../..//div[contains(text(),"Modified:")]/../div[2]')
-            .verify.valueContains('//textarea', 'Very important information');
+        var candidatesSectoin = browser.page.awards().section.candidatesSectoin;
+        candidatesSectoin
+            .moveToElement('@saveButton', 100, 100)
+            .setValueBySelector('@introductionInput', 'Very important information')
+
+            .clickBySelector('@saveButton');
+        var awardSectoin = browser.page.awards().section.awardSectoin;
+        awardSectoin
+            .waitForElementVisible('@succesMasseg', 30000)
     },
 
     'refresh page and verify in introduction field': function (browser) {
         browser
-            .refresh()
-            .waitForElementVisible('//me-event-candidates-form//button[text()="Save"]', 20000)
-            .moveToElement('//me-event-candidates-form//button[text()="Save"]', 100, 100)
+            .refresh();
+        var candidatesSectoin = browser.page.awards().section.candidatesSectoin;
+        candidatesSectoin
+            .waitForElementVisible('@saveButton', 30000)
+            .moveToElement('@saveButton', 100, 100)
 
-            .waitForElementVisible('//textarea', 30000)
-            .verify.valueContains('//textarea', 'Very important information');
+            .verify.valueContains('@introductionInput', 'Very important information');
     },
 
     'delete candidate': function (browser) {
-        browser
-            .deleteCandidate();
+        var awardSectoin = browser.page.awards();
+        awardSectoin
+            .deleteFirstCandidate();
     },
 });

@@ -10,178 +10,127 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'select company radio button ': function (browser) {
-        browser
-            .selectCompanyRadioButton()
+        var awardSectoin = browser.page.awards().section.awardSectoin;
+        awardSectoin
+            .clickBySelector('@companyRadioButton')
+            .clickBySelector('@onButton')
+            .clickBySelector('@saveButton')
+
+            .waitForElementVisible('@succesMasseg', 30000);
     },
 
     'click on add a new candidate button': function (browser) {
-        browser
-            .addNewCandidate("UNiQUARE");
-    },
-
-    'added candidate has been displayed': function (browser) {
-        browser
-            .useXpath()
-            .verify.elementPresent('//h4[contains(text(),"Candidates")]')
-
-            .verify.elementPresent('//h3[contains(text(),"Candidate 1")]')
-            .verify.elementPresent('//label[contains(text(),"Company Name")]')
-            .verify.elementPresent('//span[contains(text(),"UNiQUARE Software Development GmbH")]')
-            .verify.elementPresent('//a[contains(text(),"(M#100014)")]')
-            .verify.elementPresent('//label[contains(text(),"Country")]')
-            .verify.elementPresent('//span[contains(text(),"AUSTRIA")]')
-
-            .verify.elementPresent('//*[text()="Candidates"]/../..//img')
-
-            .verify.elementPresent('//label[contains(text(),"Introduction")]')
-            .verify.elementPresent('//div/textarea')
-
-            .verify.elementPresent('//button[contains(text(),"Winner")]')
-            .verify.elementPresent('//button[contains(text(),"Delete")]')
-
-            .verify.elementPresent('//div[@class="form-group"]//div[contains(text(),"Modified: ")]')
-            .verify.elementPresent('//div[@class="form-group"]//div[contains(text(),"Modified by: ")]')
-
-            .verify.elementPresent('//div[@class="form-group"]//button[text()="Save"]')
+        var awardSectoin = browser.page.awards();
+        awardSectoin
+            .addNewCandidateByName("UNiQUARE");
     },
 
     'select add a new candidate button': function (browser) {
-        browser
-            .refresh()
-            .useCss()
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
-            .useXpath()
-            .verify.elementPresent('//button[text()="Add a new candidate"]')
-            .clickBySelectorXpath('//button[@class="row-fluid btn btn-default"]')
-            .waitForElementVisible('//button[text()="Add company"]', 30000)
-            .verify.elementPresent('//input[@value-property-name="companyId"]');
-    },
+        var awardSectoin = browser.page.awards().section.candidatesSectoin
+           // .clickBySelector('@addNewCandidateButton')
+            .clickBySelector('@companyNameInput')
+            .clickBySelector('@addCompanyButton')
 
-    ' click on add company button without entering the company': function (browser) {
-        browser
-            .clickBySelectorXpath('//button[text()="Add company"]')
-            .waitForElementVisible('//div[text()="Please select a company"]', 30000)
+            .waitForElementVisible('@errorMassege', 30000)
+            .clickBySelector('@addNewCandidateButton');
     },
 
     'enter alcatel in the autocomplete to displaying companies': function (browser) {
-        browser
-            .refresh()
-            .addNewCandidate("Alcatel");
+        var awardSectoin = browser.page.awards();
+        awardSectoin
+            .addNewCandidateByName("Alcatel");
     },
 
     'added second candidate has been displayed': function (browser) {
-        browser
-            .useXpath()
-            .verify.elementPresent('//h4[contains(text(),"Candidates")]')
-
-            .verify.elementPresent('//h3[contains(text(),"Candidate 1")]')
-            .verify.elementPresent('//label[contains(text(),"Company Name")]')
-            .verify.containsText('(//span[@class="control-text"])[3]','Alcatel Austria AG')
-            .verify.elementPresent('//a[contains(text(),"(M#63459)")]')
-            .verify.elementPresent('//label[contains(text(),"Country")]')
-            .verify.elementPresent('//span[contains(text(),"AUSTRIA")]')
-
-            .verify.elementPresent('//*[text()="Candidates"]/../..//img')
-
-            .verify.elementPresent('//label[contains(text(),"Introduction")]')
-            .verify.elementPresent('//div/textarea')
-
-            .verify.elementPresent('//button[contains(text(),"Winner")]')
-            .verify.elementPresent('//button[contains(text(),"Delete")]')
-
-            .verify.elementPresent('//div[@class="form-group"]//div[contains(text(),"Modified: ")]')
-            .verify.elementPresent('//div[@class="form-group"]//div[contains(text(),"Modified by: ")]')
-
-            .verify.elementPresent('//div[@class="form-group"]//button[text()="Save"]')
-
+        var candidatesSectoin = browser.page.awards().section.candidatesSectoin;
+        candidatesSectoin
+            .verify.containsText('@companyNameSecondCondidateText', 'Alcatel Austria AG')
+            .verify.containsText('@companyNameSecondCondidateText', '(M#63459)')
     },
 
     'click on add new candidate button again': function (browser) {
-        browser
-            .clickBySelectorXpath('//button[text()="Add a new candidate"]')
-            .verify.elementNotPresent('//button[text()="Add company"]')
-            .verify.elementNotPresent('//input[@value-property-name="companyId"]');
+        var awardSectoin = browser.page.awards().section.candidatesSectoin
+            .clickBySelector('@addNewCandidateButton')
+            .verify.elementNotPresent('@companyNameInput')
+            .verify.elementNotPresent('@addCompanyButton')
     },
 
-    'set values into the input fields': function (browser) {
-        browser
-            .setValueByXpath('//div[1]/div/input[1][@type="text"]', 'The best of the best')
-            .setValueByXpath('//div[2]/div/input[1][@type="text"]', 'The best of the best 2');
-    },
     'status switcher: select "Off" in status switcher': function (browser) {
-        browser
-            .verify.elementPresent('//label[@btnradio="0"]')
-            .clickBySelectorXpath('//label[@btnradio="0"]');
-    },
+        var awardSectoin = browser.page.awards().section.awardSectoin;
+        var allInformation = browser.page.awards().section.allInformation;
+        allInformation
+            .moveToElement('@titleEvent', 0, 0);
+        awardSectoin
+            .clickBySelector('@offButton')
+            .clickBySelector('@saveButton')
 
-    'select "company" candidate type': function (browser) {
-        browser
-            .clickBySelectorXpath('//radio-item[@id=2]');
+            .waitForElementVisible('@succesMasseg', 30000);
     },
 
     'click save button ': function (browser) {
-        browser
-            .clickBySelectorXpath('//button[@type="submit"]')
-            .useCss()
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
-            .useXpath()
-            .verify.elementPresent('//div[text()="Award saved successfully"]')
-            .checkModifiedInSelectorXpath('//*[contains(text(),"Awards")]/../..//div[contains(text(),"Modified:")]/../div[2]')
-            .verify.elementNotPresent('//h3[text()="Candidate 1"]')
-            .verify.elementNotPresent('//h3[text()="Candidate 2"]')
-            .refresh()
-            .useCss()
-            .waitForElementNotVisible('#thisIsMainLoader', 30000);
+        var candidatesSectoin = browser.page.awards().section.candidatesSectoin;
+        candidatesSectoin
+            .verify.elementNotPresent('@candidate1Text')
+            .verify.elementNotPresent('@candidate2Text')
     },
 
     'create new candidate': function (browser) {
-        browser
-            .addNewCandidate("ALVAREZ");
+        var awardSectoin = browser.page.awards();
+        awardSectoin
+            .addNewCandidateByName("ALVAREZ");
     },
 
     'created candidate is not visible': function (browser) {
-        browser
-            .waitForElementVisible('//div[text()="Company added successfully"]', 30000)
-            .checkModifiedInSelectorXpath('//*[contains(text(),"Awards")]/../..//div[contains(text(),"Modified:")]/../div[2]')
-            .verify.elementNotPresent('//h3[text()="Candidate 3"]');
+        var candidatesSectoin = browser.page.awards().section.candidatesSectoin;
+        candidatesSectoin
+            .verify.elementNotPresent('@candidate1Text')
+            .verify.elementNotPresent('@candidate2Text')
+            .verify.elementNotPresent('@candidate3Text')
     },
 
     'status switcher is "ON"': function (browser) {
-        browser
-            .clickBySelectorXpath('//radio-item[@id=2]')
-            .clickBySelectorXpath('//label[@btnradio="1"]')
-            .verify.cssProperty('//label[@btnradio="1"]', 'background-color', 'rgba(41, 115, 207, 1)')
+        var awardSectoin = browser.page.awards().section.awardSectoin;
+        var allInformation = browser.page.awards().section.allInformation;
+        allInformation
+            .moveToElement('@titleEvent', 0, 0);
+        awardSectoin
+            .clickBySelector('@onButton')
+            .clickBySelector('@saveButton')
 
-            .clickBySelectorXpath('//button[@type="submit"]')
+            .waitForElementVisible('@succesMasseg', 30000);
 
-            .useCss()
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
-            .useXpath()
-            .waitForElementVisible('//div[text()="Award saved successfully"]', 30000)
-            .verify.elementPresent('//h3[text()="Candidate 1"]')
-            .verify.elementPresent('//h3[text()="Candidate 2"]')
-            .verify.elementPresent('//h3[text()="Candidate 3"]')
-            .checkModifiedInSelectorXpath('//*[contains(text(),"Awards")]/../..//div[contains(text(),"Modified:")]/../div[2]');
+        var candidatesSectoin = browser.page.awards().section.candidatesSectoin;
+        candidatesSectoin
+            .verify.elementPresent('@candidate1Text')
+            .verify.elementPresent('@candidate2Text')
+            .verify.elementPresent('@candidate3Text')
     },
 
     'try to click on "Contact" radio button': function (browser) {
-        browser
-            .clickBySelectorXpath('//radio-item[@id=1]')
-            .verify.elementPresent('//*[contains(text(),"be changed because candidates have been selected.Please remove the existing candidates before changing the candidate type of the award.")]');
+        var awardSectoin = browser.page.awards().section.awardSectoin;
+        awardSectoin
+            .clickBySelector('@contactRadioButton')
+
+            .verify.elementPresent('@infoMassege');
 
     },
 
     'try to click on "Project" radio button': function (browser) {
-        browser
-            .clickBySelectorXpath('//radio-item[@id=3]')
-            .verify.elementPresent('//*[contains(text(),"be changed because candidates have been selected.Please remove the existing candidates before changing the candidate type of the award.")]');
+        var awardSectoin = browser.page.awards().section.awardSectoin;
+        awardSectoin
+            .clickBySelector('@projectRadioButton')
+
+            .verify.elementPresent('@infoMassege');
     },
 
     'delete all candidates from candidates table': function (browser) {
-        browser
-            .deleteCandidate()
-            .deleteCandidate()
-            .deleteCandidate();
+        var awardSectoin = browser.page.awards();
+        awardSectoin
+            .deleteFirstCandidate();
+        awardSectoin
+            .deleteFirstCandidate();
+        awardSectoin
+            .deleteFirstCandidate();
     },
 });
 

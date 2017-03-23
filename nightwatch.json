@@ -20,7 +20,7 @@
   },
   "test_workers": {
     "enabled": true,
-    "workers": 4
+    "workers": 5
   },
   "test_settings": {
     "default": {
@@ -41,8 +41,7 @@
         "acceptSslCerts": true,
         "chromeOptions": {
           "args": [
-            "ash-touch-hud",
-            "material-hybrid"
+            "start-maximized"
           ]
         }
       }

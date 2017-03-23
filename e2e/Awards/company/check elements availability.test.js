@@ -10,43 +10,32 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'select company radio button ': function (browser) {
-        browser
-            .selectCompanyRadioButton();
+        var awardSectoin = browser.page.awards().section.awardSectoin;
+        awardSectoin
+            .clickBySelector('@companyRadioButton')
+            .clickBySelector('@onButton')
+            .clickBySelector('@saveButton')
+
+            .waitForElementVisible('@succesMasseg', 30000);
     },
 
     'click on add a new candidate  button': function (browser) {
-        browser
-            .addNewCandidate('Zscaler');
+        var awardSectoin = browser.page.awards();
+        awardSectoin
+            .addNewCandidateByName("Zscaler");
     },
 
     'added candidate has been displayed': function (browser) {
-        browser
-            .useXpath()
-            .verify.elementPresent('//h4[contains(text(),"Candidates")]')
-
-            .verify.elementPresent('//h3[contains(text(),"Candidate 1")]')
-            .verify.elementPresent('//label[contains(text(),"Company Name")]')
-            .verify.elementPresent('//span[contains(text(),"Zscaler ")]')
-            .verify.elementPresent('//a[contains(text(),"(M#63417)")]')
-            .verify.elementPresent('//label[contains(text(),"Country")]')
-            .verify.elementPresent('//span[contains(text(),"Germany")]')
-
-            .verify.elementPresent('//*[text()="Candidates"]/../..//img')
-
-            .verify.elementPresent('//label[contains(text(),"Introduction")]')
-            .verify.elementPresent('//div/textarea')
-
-            .verify.elementPresent('//button[contains(text(),"Winner")]')
-            .verify.elementPresent('//button[contains(text(),"Delete")]')
-
-            .verify.elementPresent('//div[@class="form-group"]//div[contains(text(),"Modified: ")]')
-            .verify.elementPresent('//div[@class="form-group"]//div[contains(text(),"Modified by: ")]')
-
-            .verify.elementPresent('//div[@class="form-group"]//button[text()="Save"]')
+        var candidatesSectoin = browser.page.awards().section.candidatesSectoin;
+        candidatesSectoin
+            .verify.containsText('@companyNameCondidateText', 'Zscaler')
+            .verify.containsText('@companyNameCondidateText', '(M#63417)')
+            .verify.containsText('@countryCondidateText',"Germany")
     },
 
     'delete candidate': function (browser) {
-        browser
-            .deleteCandidate();
+        var awardSectoin = browser.page.awards();
+        awardSectoin
+            .deleteFirstCandidate();
     },
 });

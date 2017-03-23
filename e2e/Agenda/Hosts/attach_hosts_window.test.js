@@ -42,11 +42,6 @@ module.exports = _.assign(presteps, auth, {
 
     },
 
-    'none speaker is not displayed': function (browser) {
-        browser
-            .verify.elementNotPresent('//modal[@class="modal fade in"]//td[text()="3756"]');
-    },
-
     'attach new speaker ': function (browser) {
         var addElementPage = browser.page.agenda().section.addElement;
         addElementPage
@@ -60,8 +55,7 @@ module.exports = _.assign(presteps, auth, {
 
     'chosen speaker is displayed in Element form': function (browser) {
         var addElementPage = browser.page.agenda().section.addElement;
-        addElementPage            .verify.elementPresent('//td[text()="3756"]')
-            .verify.containsText('@namePresentation', 'RWE Group Business Services GmbH')
+        addElementPage
             .verify.containsText('@namePresentation', 'Klink Holger')
             .verify.elementPresent('@editPresentationButton')
             .verify.elementPresent('@deletePresentationButton')
@@ -71,19 +65,14 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelector('@saveButton');
     },
 
-    'chosen speakers is displayed in the Element form': function (browser) {
-        browser
-
-            .verify.elementPresent('//h5[contains(text(),"08:00 - 09:45")]')
-            .verify.elementPresent('//h5[contains(text(),"Presentation / Case")]')
-
-            .verify.elementPresent('//button[contains(text(), "Add room")]')
-            .verify.elementPresent('//button[@class="btn btn-primary"]/i[@class="fa fa-plus"]')
-
-            .verify.elementPresent('//td[text()="3756"]')
-            .verify.elementPresent('//td/ul/li/b[text()="Telenor ASA"]')
-            .verify.elementPresent('//a[@href="/presentations/edit/3756"]/i')
-            .verify.elementPresent('//me-event-agenda-attached-presentation-list//i[@class="fa fa-trash-o delete-element"]');
+    'verify speakers is displayed in the Element form': function (browser) {
+        var addCotainerPage = browser.page.agenda().section.addCotainer;
+        addCotainerPage
+            .verify.containsText('@timeElementText',"08:00 - 09:45")
+            .verify.containsText('@namePlaceholderText',"Presentation / Case")
+            .verify.elementPresent('@addRoomButton')
+            .verify.elementPresent('@plusPresentationButton')
+            .verify.elementPresent('@RWEGroupBusinessText')
     },
 
     'delete award panel': function (browser) {
