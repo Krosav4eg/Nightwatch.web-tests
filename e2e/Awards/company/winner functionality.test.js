@@ -10,98 +10,117 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'select company radio button ': function (browser) {
-        var awardSectoin = browser.page.awards().section.awardSectoin;
-        awardSectoin
-            .clickBySelector('@companyRadioButton')
-            .clickBySelector('@onButton')
-            .clickBySelector('@saveButton')
-
-            .waitForElementVisible('@succesMasseg', 30000)
-            .clickBySelector('@succesMasseg');
+        browser
+            .selectCompanyRadioButton();
     },
 
     'create new candidate': function (browser) {
-        var awardSectoin = browser.page.awards();
-        awardSectoin
-            .addNewCandidateByName("Aalef");
+        browser
+            .addNewCandidate('Aalef');
+    },
+
+    'added candidate has been displayed': function (browser) {
+        browser
+            .useXpath()
+            .verify.elementPresent('//h4[contains(text(),"Candidates")]', 30000)
+
+            .verify.elementPresent('//h3[contains(text(),"Candidate 1")]', 30000)
+            .verify.elementPresent('//label[contains(text(),"Company Name")]', 30000)
+            .verify.elementPresent('//span[contains(text(),"Aalef Oy")]', 30000)
+            .verify.elementPresent('//a[contains(text(),"(M#92844)")]', 30000)
+            .verify.elementPresent('//label[contains(text(),"Country")]', 30000)
+
+            .verify.elementPresent('//*[text()="Candidates"]/../..//img', 30000)
+
+            .verify.elementPresent('//label[contains(text(),"Introduction")]', 30000)
+            .verify.elementPresent('//div/textarea', 30000)
+
+            .verify.elementPresent('//button[contains(text(),"Winner")]', 30000)
+            .verify.elementPresent('//button[contains(text(),"Delete")]', 30000)
+
+            .verify.elementPresent('//div[@class="form-group"]//div[contains(text(),"Modified: ")]', 30000)
+            .verify.elementPresent('//div[@class="form-group"]//div[contains(text(),"Modified by: ")]', 30000)
+
+            .verify.elementPresent('//div[@class="form-group"]//button[text()="Save"]', 30000);
     },
 
     'enter introduction': function (browser) {
-        var candidatesSectoin = browser.page.awards().section.candidatesSectoin;
-        candidatesSectoin
-            .moveToElement('@saveButton', 100, 100)
-            .setValueBySelector('@introductionInput', 'Very important information')
-            .clickBySelector('@saveButton');
-        var awardSectoin = browser.page.awards().section.awardSectoin;
-        awardSectoin
-            .waitForElementVisible('@succesMasseg', 30000);
+        browser
+            .moveToElement('//me-event-candidates-form//button[text()="Save"]', 100, 100)
 
-        candidatesSectoin
-            .verify.valueContains('@introductionInput', 'Very important information');
+            .setValueByXpath('//textarea', 'Very important information')
+            .clickBySelectorXpath('//me-event-candidates-form//button[text()="Save"]')
+
+            .waitForElementVisible('//div[contains(text(),"Award saved successfully")]', 30000)
+
+            .checkModifiedInSelectorXpath('//*[contains(text(),"Awards")]/../..//div[contains(text(),"Modified:")]/../div[2]')
+            .verify.valueContains('//textarea', 'Very important information')
+            .pause(1500);
     },
 
     'Enter Winners description ': function (browser) {
-        var candidatesSectoin = browser.page.awards().section.candidatesSectoin;
-        candidatesSectoin
-            .clickBySelector('@winnerButton')
-
-            .verify.elementPresent('@winnersdescriptionText')
-            .verify.elementPresent('@winnersdescriptionInput')
-
-            .verify.cssProperty('@winnerButton', 'background-color', 'rgba(108, 166, 50, 1)')
-
-            .setValueBySelector('@winnersdescriptionInput', 'You are best of the best')
-            .verify.valueContains('@winnersdescriptionInput', 'You are best of the best')
-
-            .clickBySelector('@saveButton');
-        var awardSectoin = browser.page.awards().section.awardSectoin;
-        awardSectoin
-            .waitForElementVisible('@succesMasseg', 30000);
+        browser
+            .clickBySelectorXpath('//button[text()="Winner"]')
+            .verify.elementPresent('//*[contains(text(),"s description")]')
+            .waitForElementVisible('//form//div[2]//textarea', 30000)
+            .verify.cssProperty('//button[text()="Winner"]', 'background-color', 'rgba(108, 166, 50, 1)')
+            .setValueByXpath('//form//div[2]//textarea', 'You are best of the best')
+            .verify.valueContains('//form//div[2]//textarea', 'You are best of the best')
+            .clickBySelectorXpath('//me-event-candidates-form//button[text()="Save"]')
+            .waitForElementVisible('//div[text()="Award saved successfully"]', 30000)
+            .checkModifiedInSelectorXpath('//*[contains(text(),"Awards")]/../..//div[contains(text(),"Modified:")]/../div[2]');
     },
 
     'refresh page and verify in introduction field': function (browser) {
-        var candidatesSectoin = browser.page.awards().section.candidatesSectoin;
-        candidatesSectoin
-            .verify.valueContains('@winnersdescriptionInput', 'You are best of the best')
-            .verify.valueContains('@introductionInput', 'Very important information')
+        browser
+            .refresh()
+            .useCss()
+            .waitForElementVisible('#thisIsMainLoader', 30000)
+            .waitForElementNotVisible('#thisIsMainLoader', 30000)
+            .useXpath()
+            .waitForElementVisible('//me-event-candidates-form//button[text()="Save"]', 20000)
+            .moveToElement('//me-event-candidates-form//button[text()="Save"]', 100, 100)
+
+            .waitForElementVisible('//form//div[1]//textarea', 30000)
+            .verify.valueContains('//form//div[1]//textarea', 'Very important information')
+
+            .waitForElementVisible('//form//div[2]//textarea', 30000)
+            .verify.valueContains('//form//div[2]//textarea', 'You are best of the best');
     },
 
     'click winners button again': function (browser) {
-        var candidatesSectoin = browser.page.awards().section.candidatesSectoin;
-        candidatesSectoin
-            .clickBySelector('@winnerButton')
-
-            .verify.elementNotPresent('@winnersdescriptionText')
-            .verify.elementNotPresent('@winnersdescriptionInput')
-
-            .verify.cssProperty('@winnerButton', 'background-color', 'rgba(41, 115, 207, 1)')
+        browser
+            .clickBySelectorXpath('//button[text()="Winner"]')
+            .pause(1000)
+            .verify.elementNotPresent('//*[contains(text(),"s description")]', 30000)
+            .verify.elementNotPresent('//form//div[2]//textarea', 30000)
+            .verify.cssProperty('//button[text()="Winner"]', 'background-color', 'rgba(41, 115, 207, 1)')
+            .pause(1500);
     },
 
     'change winners description': function (browser) {
-        var candidatesSectoin = browser.page.awards().section.candidatesSectoin;
-        candidatesSectoin
-            .clickBySelector('@winnerButton')
+        browser
+            .clickBySelectorXpath('//button[text()="Winner"]')
+            .verify.cssProperty('//button[text()="Winner"]', 'background-color', 'rgba(108, 166, 50, 1)')
+            .verify.valueContains('//form//div[1]//textarea', 'Very important information')
+            .verify.valueContains('//form//div[2]//textarea', 'You are best of the best')
+            .setValueByXpath('//form//div[2]//textarea', 'You are best of the best of the best')
 
-            .verify.cssProperty('@winnerButton', 'background-color', 'rgba(108, 166, 50, 1)')
-            .verify.valueContains('@winnersdescriptionInput', 'You are best of the best')
-            .verify.valueContains('@introductionInput', 'Very important information')
+            .clickBySelectorXpath('//me-event-candidates-form//button[text()="Save"]')
 
-            .setValueBySelector('@winnersdescriptionInput', 'You are best of the best of the best')
+            .waitForElementVisible('//div[text()="Award saved successfully"]', 20000)
 
-            .clickBySelector('@saveButton');
+            .checkModifiedInSelectorXpath('//*[contains(text(),"Awards")]/../..//div[contains(text(),"Modified:")]/../div[2]')
+            .verify.valueContains('//form//div[2]//textarea', 'You are best of the best of the best')
+            .pause(1200);
     },
 
     'to return everything to its original position ': function (browser) {
-        var candidatesSectoin = browser.page.awards().section.candidatesSectoin;
-        candidatesSectoin
-            .clickBySelector('@winnerButton')
-            .clickBySelector('@saveButton');
-    },
-
-    'delete candidate': function (browser) {
-        var awardSectoin = browser.page.awards();
-        awardSectoin
-            .deleteFirstCandidate();
+        browser
+            .click('//button[text()="Winner"]')
+            .clickBySelectorXpath('//me-event-candidates-form//button[text()="Save"]')
+            .pause(3000)
+            .deleteCandidate();
     },
 });
 
