@@ -60,9 +60,7 @@ module.exports = _.assign(presteps, auth, {
 
     'Enter Winners description ': function (browser) {
         browser
-            .clickBySelectorXpath('//button[text()="Winner"]')
-            .verify.elementPresent('//*[contains(text(),"s description")]')
-            .waitForElementVisible('//form//div[2]//textarea', 30000)
+            .verify.elementPresent('//form//div[2]//textarea')
             .verify.cssProperty('//button[text()="Winner"]', 'background-color', 'rgba(108, 166, 50, 1)')
             .setValueByXpath('//form//div[2]//textarea', 'You are best of the best')
             .verify.valueContains('//form//div[2]//textarea', 'You are best of the best')
