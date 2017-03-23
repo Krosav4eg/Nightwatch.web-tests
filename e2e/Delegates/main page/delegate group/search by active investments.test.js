@@ -19,7 +19,5 @@ module.exports = _.assign(presteps, auth, {
             .verify.containsText('//tr[2]/td[10]/span', '0')
             .verify.containsText('//tr[3]/td[10]/span', '0')
             .verify.containsText('//tr[4]/td[10]/span', '0')
-
-            .verify.elementPresent('//h4[contains(text(),"Delegates 0/18")]');
     },
 });

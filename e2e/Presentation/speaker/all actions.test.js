@@ -19,9 +19,9 @@ module.exports = _.assign(presteps, auth, {
     },
     'go to the edit presentation': function (browser) {
         browser
-            .clickBySelectorXpath('//a[@href="/presentations/edit/5721"]')
+            .clickBySelectorXpath('//a[@href="/presentations/edit/6052"]')
             .useXpath()
-            .verify.elementPresent('//h1[text()="Edit Presentation (#5721)"]');
+            .verify.elementPresent('//h1[text()="Edit Presentation (#6052)"]');
 
     },
 
@@ -42,5 +42,4 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//input[@id="email"]')
             .verify.elementPresent('(//button[text()="Save"])[2]');
     },
-
 });

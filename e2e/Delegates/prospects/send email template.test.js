@@ -9,7 +9,6 @@ module.exports = _.assign(presteps, auth, {
             .relUrl('/event/212/delegates')
     },
 
-
     'check that when you open select E-mail template page template field is blank': function (browser) {
         browser
             .clickBySelectorXpath('//a[contains(text(),"Prospects")]')

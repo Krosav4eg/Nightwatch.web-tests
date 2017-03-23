@@ -6,20 +6,18 @@ module.exports = _.assign(presteps, auth, {
 
     'redirection to delegates': function (browser) {
         browser
-            .relUrl('/delegates/edit/107422')
+            .relUrl('/event/200/delegates')
     },
 
     'click save': function (browser) {
         browser
-            .clickBySelectorXpath('//button[contains(text(),"Save")]')
+            .clickBySelectorXpath('(//td/span/a)[1]')
 
-            .waitForElementVisible('//div[@class="simple-notification toast-notification success"]', 30000)
-            .verify.containsText('//div[@class="sn-title"]', 'Success!')
+            .useXpath()
+            .waitForElementVisible('//button[contains(text(),"Save")]', 30000)
+            .click('//button[contains(text(),"Save")]')
+
+         .waitForElementVisible('//div[@class="sn-content"]', 30000)
             .verify.containsText('//div[@class="sn-content"]', 'Event Participant saved')
-            .clickBySelectorXpath('//div[@class="simple-notification toast-notification success"]')
-
-            .waitForElementVisible('//h4[text()="Event (#2338)"]', 3000)
     },
-
-
 });

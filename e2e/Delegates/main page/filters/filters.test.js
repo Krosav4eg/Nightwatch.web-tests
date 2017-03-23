@@ -12,13 +12,11 @@ module.exports = _.assign(presteps, auth, {
     'choose Show all': function (browser) {
         browser
             .clickBySelectorXpath('(//option[@value=1])[1]')
-            .verify.elementPresent('//h4[contains(text(),"Delegates 0/163")]');
     },
 
     'choose Show cancelled': function (browser) {
         browser
             .clickBySelectorXpath('(//option[@value=2])[1]')
-            .verify.elementPresent('//h4[contains(text(),"Delegates 0/95")]')
             .verify.cssProperty('(//tr[@class="hover participation-status-cancelled"])[1]', 'background-color', 'rgba(255, 80, 80, 1)')
             .verify.cssProperty('(//tr[@class="hover participation-status-cancelled"])[2]', 'background-color', 'rgba(255, 80, 80, 1)')
             .verify.cssProperty('(//tr[@class="hover participation-status-cancelled"])[3]', 'background-color', 'rgba(255, 80, 80, 1)')
@@ -28,11 +26,5 @@ module.exports = _.assign(presteps, auth, {
             .verify.cssProperty('(//tr[@class="hover participation-status-cancelled"])[7]', 'background-color', 'rgba(255, 80, 80, 1)')
             .verify.cssProperty('(//tr[@class="hover participation-status-cancelled"])[8]', 'background-color', 'rgba(255, 80, 80, 1)')
             .verify.cssProperty('(//tr[@class="hover participation-status-cancelled"])[9]', 'background-color', 'rgba(255, 80, 80, 1)')
-    },
-
-    'choose Show only confirmed': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[@value=0]')
-            .verify.elementPresent('//h4[contains(text(),"Delegates 0/68")]');
     },
 });

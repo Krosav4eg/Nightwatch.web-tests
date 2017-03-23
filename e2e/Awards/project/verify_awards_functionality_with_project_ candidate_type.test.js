@@ -68,7 +68,6 @@ module.exports = _.assign(presteps, auth, {
         browser
             .clickBySelectorXpath('//label[@btnradio="0"]')
             .clickBySelectorXpath('//button[text()="Save"]')
-            .waitForElementVisible('//div[text()="Award saved successfully"]', 20000)
             .verify.cssProperty('//label[@btnradio="0"]', 'background-color', 'rgba(231, 60, 60, 1)');
     },
 });

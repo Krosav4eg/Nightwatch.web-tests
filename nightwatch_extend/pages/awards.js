@@ -135,6 +135,10 @@ module.exports = {
             selector: '//h4[text()="Candidates"]',
             locateStrategy: 'xpath',
             elements: {
+                candidatesBlock: {
+                    selector: '//*[text()="Candidates"]/../..',
+                    locateStrategy: 'xpath'
+                },
                 addNewCandidateButton: {
                     selector: '//button[text()="Add a new candidate"]',
                     locateStrategy: 'xpath'

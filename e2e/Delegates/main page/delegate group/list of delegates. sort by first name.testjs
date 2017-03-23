@@ -1,0 +1,42 @@
+var _ = require('lodash');
+var presteps = require('./../../../presteps/presteps.js');
+var auth = require('./../../../presteps/auth.js');
+
+module.exports = _.assign(presteps, auth, {
+
+    'redirection to delegates': function (browser) {
+        browser
+            .relUrl('/event/200/delegates')
+    },
+
+    'sort by first name up': function (browser) {
+        browser
+            .clickBySelectorXpath('(//tr/th[3])[1]')
+
+            .verify.containsText('//tr[1]/td[3]/span/a',"Boris")
+            .verify.containsText('//tr[2]/td[3]/span/a',"Brigitte")
+            .verify.containsText('//tr[3]/td[3]/span/a',"Carsten")
+            .verify.containsText('//tr[4]/td[3]/span/a',"Carsten")
+            .verify.containsText('//tr[5]/td[3]/span/a',"Christian")
+            .verify.containsText('//tr[6]/td[3]/span/a',"Christoph")
+            .verify.containsText('//tr[7]/td[3]/span/a',"Daniel")
+            .verify.containsText('//tr[8]/td[3]/span/a',"Eric")
+            .verify.containsText('//tr[9]/td[3]/span/a',"Heiko")
+            .verify.containsText('//tr[10]/td[3]/span/a',"Jens");
+    },
+
+    'sort by first name down': function (browser) {
+        browser
+            .clickBySelectorXpath('(//tr/th[3])[1]')
+
+            .verify.containsText('//tr[1]/td[3]/span/a',"Vacancy")
+            .verify.containsText('//tr[2]/td[3]/span/a',"Thomas")
+            .verify.containsText('//tr[3]/td[3]/span/a',"Thilo")
+            .verify.containsText('//tr[4]/td[3]/span/a',"Sven")
+            .verify.containsText('//tr[5]/td[3]/span/a',"Stefan")
+            .verify.containsText('//tr[6]/td[3]/span/a',"Reinhard")
+            .verify.containsText('//tr[7]/td[3]/span/a',"Oliver")
+            .verify.containsText('//tr[8]/td[3]/span/a',"Nurten")
+            .verify.containsText('//tr[9]/td[3]/span/a',"Mike");
+    },
+});

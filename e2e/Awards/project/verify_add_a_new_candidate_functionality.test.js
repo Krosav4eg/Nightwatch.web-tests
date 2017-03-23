@@ -10,16 +10,12 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'status switcher by default': function (browser) {
-        browser
-            .useXpath()
-            .waitForElementVisible('//label[@btnradio="0"]', 30000)
-            .verify.cssProperty('//label[@btnradio="0"]', 'background-color', 'rgba(231, 60, 60, 1)')
-            .pause(1000);
-    },
-
-    'choose "Project" candidate type': function (browser) {
-        browser
-            .selectProjectRadioButton();
+        var awardSectoin = browser.page.awards().section.awardSectoin;
+        awardSectoin
+            .clickBySelector('@onButton')
+            .verify.cssProperty('@onButton', 'background-color', 'rgba(231, 60, 60, 1)')
+            .clickBySelector('@projectRadioButton')
+            .clickBySelector('@saveButton')
     },
 
     'add a new candidate ': function (browser) {
@@ -28,12 +24,11 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'status switcher is on': function (browser) {
-        browser
-            .clickBySelectorXpath('//label[@btnradio="1"]')
-            .verify.cssProperty('//label[@btnradio="1"]', 'background-color', 'rgba(79, 142, 220, 1)')
-
-            .clickBySelectorXpath('//button[text()="Save"]')
-            .waitForElementVisible('//div[text()="Award saved successfully"]', 30000);
+        var awardSectoin = browser.page.awards().section.awardSectoin;
+        awardSectoin
+            .clickBySelector('@offButton')
+            .verify.cssProperty('@offButton', 'background-color', 'rgba(79, 142, 220, 1)')
+            .clickBySelector('@saveButton')
     },
 
     'added candidate is displayed': function (browser) {

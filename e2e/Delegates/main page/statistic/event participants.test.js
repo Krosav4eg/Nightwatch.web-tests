@@ -12,8 +12,8 @@ module.exports = _.assign(presteps, auth, {
     'check event participants data': function (browser) {
         browser
             .useXpath()
-            .verify.elementPresent('//p[contains(text(),"Total delegates: 387")]')
-            .verify.elementPresent('//p[contains(text(),"Total participants: 19")]')
-            .verify.elementPresent('//p[contains(text(),"Total cancelled: 13")]');
+            .verify.elementPresent('//p[contains(text(),"Total delegates: 388")]')
+            .verify.elementPresent('//p[contains(text(),"Total participants: 27")]')
+            .verify.elementPresent('//p[contains(text(),"Total cancelled: 5")]');
     },
 });

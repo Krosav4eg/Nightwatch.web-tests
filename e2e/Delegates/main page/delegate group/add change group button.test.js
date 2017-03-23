@@ -28,7 +28,7 @@ module.exports = _.assign(presteps, auth, {
 
     'group 1 - orange was chosen': function (browser) {
         browser
-            .clickBySelectorXpath('//option[contains(text(),"Group 1 - orange")]')
+            .clickBySelectorXpath('//*[@class="modal-content"]//option[contains(text(),"Group 1 - orange")]')
             .clickBySelectorXpath('(//button[contains(text(),"Add/change")])[2]')
 
             .verify.elementPresent('//div[contains(text(),"s group changed")]')
@@ -42,7 +42,7 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('(//tr/td/input[@type="checkbox"])[2]')
             .clickBySelectorXpath('//button[contains(text(),"Add/change group")]')
 
-            .clickBySelectorXpath('//option[contains(text(),"Group 2 - violet")]')
+            .clickBySelectorXpath('//*[@class="modal-content"]//option[contains(text(),"Group 2 - violet")]')
             .clickBySelectorXpath('(//button[contains(text(),"Add/change")])[2]')
             .moveToElement('(//tr/th[12])[1]', 1340, 640)
             .verify.containsText('//tr[2]/td[12]/span', 'Group 2 - violet');
@@ -54,7 +54,7 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('(//tr/td/input[@type="checkbox"])[1]')
             .clickBySelectorXpath('//button[contains(text(),"Add/change group")]')
 
-            .clickBySelectorXpath('(//option[contains(text(),"Group 2 - violet")])')
+            .clickBySelectorXpath('//*[@class="modal-content"]//option[contains(text(),"Group 2 - violet")]')
             .clickBySelectorXpath('(//button[contains(text(),"Add/change")])[2]');
     },
 
@@ -64,7 +64,7 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('(//tr/td/input[@type="checkbox"])[2]')
             .clickBySelectorXpath('//button[contains(text(),"Add/change group")]')
 
-            .clickBySelectorXpath('(//option[contains(text(),"Group 1 - orange")])')
+            .clickBySelectorXpath('//*[@class="modal-content"]//option[contains(text(),"Group 1 - orange")]')
             .clickBySelectorXpath('(//button[contains(text(),"Add/change")])[2]')
 
             .moveToElement('(//tr/th[12])[1]', 1340, 640)

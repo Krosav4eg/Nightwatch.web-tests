@@ -2,40 +2,35 @@ var _ = require('lodash');
 var presteps = require('./../../presteps/presteps.js');
 var auth = require('./../../presteps/auth.js');
 
-
 module.exports = _.assign(presteps, auth, {
     'redirection to participant-roles': function (browser) {
-    browser
+        browser
             .relUrl('/event/1484/event-participant-roles')
     },
 
     'add new role': function (browser) {
-        browser
-            .addNewRole("Risem");
+        var eventRoles = browser.page.eventRoles()
+        eventRoles
+            .addAwardsCandidateRole("Solbrekke");
     },
 
     'verification  of Awards Candidate': function (browser) {
-        var shared = {};
 
-        browser
-            .useXpath()
-            .waitForElementVisible('//div[contains(text(),"Awards candidate")]', 10000)
-            .getText('//div[contains(text(),"Awards candidate")]/../div[2]', function(result) {
-                shared.eventRolesCount = result.value;
-            })
+        var allInformation = browser.page.eventRoles().section.allInformation;
+        var eventRoleColumn = browser.page.eventRoles().section.eventRoleColumn;
+        allInformation
+            .waitForElementVisible('@awardsCandidateText', 10000)
+            .verify.containsText('@awardsCandidateCount', '1');
 
-            .clickBySelectorXpath('(//select[@class="ng-untouched ng-pristine ng-valid"])[1]')
-            .clickBySelectorXpath('//option[contains(text(),"Awards candidate")]')
+        eventRoleColumn
+            .clickBySelector('@awardsCandidateOption');
 
-            .waitForElementVisible('//*[contains(text(),"Assigned roles")]/span', 10000)
-            .getText('//*[contains(text(),"Assigned roles")]/span', function(result) {
-                shared.assignedRolesCount = result.value;
-                this.verify.equal(shared.eventRolesCount, shared.assignedRolesCount);
-            })
+        allInformation
+            .verify.containsText('@assignedRolesCount', '1');
 
-            .elements('css selector','table tbody tr', function (result) {
-                shared.assignedRolesLength = result.value.length - 1;
-                this.verify.equal(shared.assignedRolesCount, shared.assignedRolesLength);
+        browser.elements('css selector','table tbody tr', function (result) {
+                var assignedRolesLength = result.value.length - 1;
+                this.verify.equal(assignedRolesLength, 1);
             });
     },
 
@@ -45,49 +40,54 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'check elements availability': function (browser) {
-        browser
-            .useXpath()
-            .waitForElementVisible('//*[@class="panel panel-primary"]/div/h4[contains(text(),"Event")]', 10000)
-            .verify.elementPresent('//*[@class="panel panel-primary"]/div/h4[contains(text(),"Event")]')
-            .verify.elementPresent('//*[@class="panel panel-primary"]/div/h4[contains(text(),"Votes")]')
-            .verify.elementPresent('//*[@class="panel panel-primary"]/div/h4[contains(text(),"Awards")]')
-            .verify.elementPresent('//*[@class="panel panel-primary"]/div/h4[contains(text(),"Candidates")]')
-            .useCss()
-            .elements('css selector', 'div[class="panel panel-primary"]', function (result) {
+        var allInformation = browser.page.awards().section.allInformation;
+        allInformation
+            .verify.containsText('@titleEvent', 'Event (#1484)')
+            .verify.containsText('@nameEvent', '600Minutes Executive IT')
+            .verify.containsText('@localName', 'Local name: 600Minutes Executive IT')
+            .verify.containsText('@dates', 'Dates: 2016-10-27 08:00:00 - 2016-10-27 18:00:00')
+            .verify.containsText('@venue', 'Venue: Hotel Bristol, Oslo');
+
+        browser.elements('css selector', 'div[class="panel panel-primary"]', function (result) {
                 this.verify.equal(result.value.length, 4);
             });
     },
 
     'verify Candidates': function (browser) {
-        browser
-            .useXpath()
-            .waitForElementVisible('//*[text()="Candidates"]/../..', 10000)
-            .clickBySelectorXpath('//*[@id="1"]')
-            .clickBySelectorXpath('//label[text()="On"]')
-            .clickBySelectorXpath('//*[text()="Awards"]/../..//button[text()="Save"]')
+        var awardSectoin = browser.page.awards().section.awardSectoin;
+        awardSectoin
+            .clickBySelector('@contactRadioButton')
+            .clickBySelector('@onButton')
+            .clickBySelector('@saveButton')
 
-            .verify.containsText('//*[text()="Candidates"]/../..', "Candidate 1")
-            .verify.containsText('//*[text()="Candidates"]/../..', "Last Name")
-            .verify.containsText('//*[text()="Candidates"]/../..', "First Name")
-            .verify.containsText('//*[text()="Candidates"]/../..', "Function title")
-            .verify.containsText('//*[text()="Candidates"]/../..', "English Function title")
-            .verify.containsText('//*[text()="Candidates"]/../..', "Academic title")
-            .verify.containsText('//*[text()="Candidates"]/../..', "Company")
-            .verify.containsText('//*[text()="Candidates"]/../..', "Country")
-            .verify.containsText('//*[text()="Candidates"]/../..', "Introduction")
-            .verify.containsText('//*[text()="Candidates"]/../..', "Modified:")
-            .verify.containsText('//*[text()="Candidates"]/../..', "Modified by:")
-            .verify.elementPresent('//*[text()="Candidates"]/../..//a[contains(@href,"MasterContact")]')
-            .verify.elementPresent('//*[text()="Candidates"]/../..//img');
-    },    
+            .waitForElementVisible('@succesMasseg', 30000)
+
+        var candidatesSectoin = browser.page.awards().section.candidatesSectoin;
+        candidatesSectoin
+
+            .verify.containsText('@candidatesBlock', "Candidate 1")
+            .verify.containsText('@candidatesBlock', "Last Name")
+            .verify.containsText('@candidatesBlock', "First Name")
+            .verify.containsText('@candidatesBlock', "Function title")
+            .verify.containsText('@candidatesBlock', "English Function title")
+            .verify.containsText('@candidatesBlock', "Academic title")
+            .verify.containsText('@candidatesBlock', "Company")
+            .verify.containsText('@candidatesBlock', "Country")
+            .verify.containsText('@candidatesBlock', "Introduction")
+            .verify.containsText('@candidatesBlock', "Modified:")
+            .verify.containsText('@candidatesBlock', "Modified by:")
+            .verify.elementPresent('@defaultLogo');
+    },
 
     'redirection to role': function (browser) {
         browser
-            .clickBySelectorXpath('(//a[@id="EventRoleStatsIndex"])[2]')
+            .relUrl('/event/1484/event-participant-roles');
     },
 
     'delete role': function (browser) {
-        browser
-            .deleteRole("Awards candidate");
+        // var eventRoles = browser.page.eventRoles()
+        // eventRoles
+        //     .deleteFirstRole("Awards candidate");
+        browser.deleteRole("Awards candidate");
     },
 });

@@ -13,9 +13,7 @@ module.exports = _.assign(presteps, auth, {
         browser
             .clickBySelectorXpath('//option[text()="Delegate - Case presentation"]')
 
-            .useXpath()
             .verify.elementPresent('//h4/span[text()="2"]')
-
             .verify.containsText('//tr[1]/td[4]/span', 'Case presentation')
             .verify.containsText('//tr[2]/td[4]/span', 'Case presentation');
     },
@@ -23,43 +21,32 @@ module.exports = _.assign(presteps, auth, {
     'case parallel. check that number  is correct and the same as in list': function (browser) {
         browser
             .clickBySelectorXpath('//option[text()="Partner - Case - parallel"]')
-
-            .useXpath()
             .verify.elementPresent('//h4/span[text()="0"]');
     },
 
     'case - whole audience. check that number  is correct and the same as in list': function (browser) {
         browser
             .clickBySelectorXpath('//option[text()="Partner - Case - whole audience"]')
-
-            .useXpath()
             .verify.elementPresent('//h4/span[text()="0"]');
     },
 
     'delegate - Chairman speach . check that number  is correct and the same as in list': function (browser) {
         browser
             .clickBySelectorXpath('//option[text()="Delegate - Chairman speech"]')
-            .useXpath()
             .verify.elementPresent('//h4/span[text()="1"]')
-
             .verify.containsText('//tr[1]/td[4]/span', 'Chairman speech');
     },
 
     'delegate - Cross-function keynote. check that number  is correct and the same as in list': function (browser) {
         browser
             .clickBySelectorXpath('//option[text()="Delegate - Cross-function keynote"]')
-            .useXpath()
-            .verify.elementPresent('//h4/span[text()="1"]')
-
             .verify.containsText('//tr[1]/td[4]/span', 'Cross-function keynote');
     },
 
     'delegate - Debate. check that number  is correct and the same as in list': function (browser) {
         browser
             .clickBySelectorXpath('//option[text()="Delegate - Debate"]')
-            .useXpath()
             .verify.elementPresent('//h4/span[text()="2"]')
-
             .verify.containsText('//tr[1]/td[4]/span', 'Debate')
             .verify.containsText('//tr[2]/td[4]/span', 'Debate');
     },
@@ -67,23 +54,19 @@ module.exports = _.assign(presteps, auth, {
     ' delegate - FishBowl. check that number  is correct and the same as in list': function (browser) {
         browser
             .clickBySelectorXpath('//option[text()="Delegate - FishBowl"]')
-            .useXpath()
             .verify.elementPresent('//h4/span[text()="1"]')
-
             .verify.containsText('//tr[1]/td[4]/span', 'FishBowl');
     },
 
     ' delegate - Gold spotlight. check that number  is correct and the same as in list': function (browser) {
         browser
             .clickBySelectorXpath('//option[text()="Partner - Gold spotlight"]')
-            .useXpath()
             .verify.elementPresent('//h4/span[text()="0"]');
     },
 
     ' delegate - Group discussion initiation. check that number  is correct and the same as in list': function (browser) {
         browser
             .clickBySelectorXpath('//option[text()="Delegate - Group discussion initiation"]')
-            .useXpath()
             .verify.elementPresent('//h4/span[text()="1"]')
             .verify.containsText('//tr[1]/td[4]/span', 'Group discussion initiation');
     },
@@ -91,7 +74,6 @@ module.exports = _.assign(presteps, auth, {
     ' delegate - Keynote. check that number  is correct and the same as in list': function (browser) {
         browser
             .clickBySelectorXpath('//option[text()="Delegate - Keynote"]')
-            .useXpath()
             .waitForElementVisible('//h4/span[text()="1"]', 5000)
             .verify.containsText('//tr[1]/td[4]/span', 'Keynote');
     },
@@ -99,7 +81,6 @@ module.exports = _.assign(presteps, auth, {
     ' delegate - Leadership presentation. check that number  is correct and the same as in list': function (browser) {
         browser
             .clickBySelectorXpath('//option[text()="Delegate - Leadership presentation"]')
-            .useXpath()
             .verify.elementPresent('//h4/span[text()="1"]')
             .verify.containsText('//tr[1]/td[4]/span', 'Leadership presentation');
     },
@@ -107,7 +88,6 @@ module.exports = _.assign(presteps, auth, {
     ' delegate - panel discussion. check that number  is correct and the same as in list': function (browser) {
         browser
             .clickBySelectorXpath('//option[text()="Delegate - Panel discussion"]')
-            .useXpath()
             .verify.elementPresent('//h4/span[text()="1"]')
             .verify.containsText('//tr[1]/td[4]/span', 'Panel discussion');
     },
@@ -115,8 +95,6 @@ module.exports = _.assign(presteps, auth, {
     ' partner - SnapShot. check that number  is correct and the same as in list': function (browser) {
         browser
             .clickBySelectorXpath('//option[text()="Partner - SnapShot"]')
-            .useXpath()
             .verify.elementPresent('//h4/span[text()="0"]');
     },
-
 });

@@ -11,25 +11,13 @@ module.exports = _.assign(presteps, auth, {
 
     'go to the edit presentation': function (browser) {
         browser
-            .clickBySelectorXpath('//a[@href="/presentations/edit/5721"]')
-
-            .useCss()
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
-
-            .useXpath()
-            .verify.elementPresent('//h1[text()="Edit Presentation (#5721)"]');
-
+            .clickBySelectorXpath('//a[@href="/presentations/edit/6053"]')
+            .verify.elementPresent('//h1[text()="Edit Presentation (#6053)"]');
     },
 
     'search by #M ': function (browser) {
         browser
-            .setValueByXpath('//me-event-presentation-speaker-list//tr[1]/td[1]/input[@type="text"]', ['1', browser.Keys.ENTER])
-
-            .useCss()
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
-
-            .useXpath()
-            .verify.elementPresent('//tr[1]/td[1]/span/a[@href="/presentations/5721/master-contact/1"]');
+            .setValueByXpath('//me-event-presentation-speaker-list//tr[1]/td[1]/input[@type="text"]', ['188600', browser.Keys.ENTER])
+            .verify.elementPresent('//tr[1]/td[1]/span/a[@href="/presentations/6053/master-contact/188600"]');
     },
-
 });

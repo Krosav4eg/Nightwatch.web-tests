@@ -63,8 +63,8 @@ module.exports = _.assign(presteps, auth, {
             .verify.containsText('(//tr[1]/td[5]/span)[1]', 'Envia Mitteldeutsche Energie AG')
             .verify.containsText('//tr[1]/td[6]/span[1]', 'mario.mueller@enviam.de')
             .verify.containsText('//tr[1]/td[7]/span[1]', 'Germany')
-            .verify.containsText('//tr[1]/td[8]/span[1]', 'Unconfirmed')
-            .verify.containsText('//tr[1]/td[9]/span[1]', '2015-10-26 18:10:05')
+            .verify.containsText('//tr[1]/td[8]/span[1]', 'Confirmed')
+            .verify.containsText('//tr[1]/td[9]/span[1]', '2017-03-14 12:15:07')
 
             .moveToElement('(//tr/th[13])[1]', 1340, 640)
             .verify.containsText('(//tr[1]/td[13]/span)[1]', 'No')

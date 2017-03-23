@@ -17,8 +17,6 @@ module.exports = _.assign(presteps, auth, {
             .verify.containsText('//tr[1]/td[13]/span', 'No')
             .verify.containsText('//tr[2]/td[13]/span', 'No')
             .verify.containsText('//tr[3]/td[13]/span', 'No')
-
-            .verify.elementPresent('//h4[contains(text(),"Delegates 0/19")]');
     },
 
     'click no': function (browser) {
@@ -28,8 +26,6 @@ module.exports = _.assign(presteps, auth, {
             .verify.containsText('//tr[1]/td[13]/span', 'No')
             .verify.containsText('//tr[2]/td[13]/span', 'No')
             .verify.containsText('//tr[3]/td[13]/span', 'No')
-
-            .verify.elementPresent('//h4[contains(text(),"Delegates 0/19")]');
     },
 
     'click Yes': function (browser) {
@@ -37,5 +33,4 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('//tr/td[13]/select/option[contains(text(),"Yes")]')
             .verify.elementPresent('//h4[contains(text(),"Delegates 0/0")]');
     },
-
 });

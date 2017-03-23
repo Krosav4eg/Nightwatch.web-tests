@@ -15,9 +15,9 @@ module.exports = _.assign(presteps, auth, {
 
             .verify.containsText('//tr[1]/td[4]/span', 'Abteilungsdirektor Informationsverarbeitung Operations')
             .verify.containsText('//tr[2]/td[4]/span', 'Abteilungsdirektor gewerbliche Immobilienfinanzierung')
-            .verify.containsText('//tr[3]/td[4]/span', 'Bereichsleiter Organisation')
-            .verify.containsText('//tr[4]/td[4]/span', 'Bereichsleiter Rechnungswesen/Controlling')
-            .verify.containsText('//tr[5]/td[4]/span', 'Bereichsleiter Risikobetreuung');
+            .verify.containsText('//tr[3]/td[4]/span', 'Bereichsleiter Immobilienmanagement, Construction Mobility Property')
+            .verify.containsText('//tr[4]/td[4]/span', 'Bereichsleiter Organisation')
+            .verify.containsText('//tr[5]/td[4]/span', 'Bereichsleiter Organisation, Projektmanagement und Konzerneinkauf');
     },
 
     'sort by function title down': function (browser) {

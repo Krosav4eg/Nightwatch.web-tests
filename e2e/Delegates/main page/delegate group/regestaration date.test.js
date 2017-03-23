@@ -11,11 +11,8 @@ module.exports = _.assign(presteps, auth, {
 
     'search by registration date': function (browser) {
         browser
-            .setValueByXpath('(//tr/td[9]/input)[1]', ['2015-10-29 13:50:07', browser.Keys.ENTER])
+            .setValueByXpath('(//tr/td[9]/input)[1]', ['2016-05-19 17:50:04', browser.Keys.ENTER])
             .pause(2000)
-            .verify.containsText('//tr[1]/td[9]/span', '2015-10-29 13:50:07')
-            .verify.containsText('//tr[2]/td[9]/span', '2015-10-29 13:50:07')
-
-            .verify.elementPresent('//h4[contains(text(),"Delegates 0/2")]');
+            .verify.containsText('//tr[1]/td[9]/span', '2016-05-19 17:50:04')
     },
 });

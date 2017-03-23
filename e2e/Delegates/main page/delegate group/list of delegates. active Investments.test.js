@@ -27,9 +27,9 @@ module.exports = _.assign(presteps, auth, {
             .moveToElement('(//tr/th[10])[1]', 1298, 597)
             .clickBySelectorXpath('(//tr/th[10])[1]')
 
-            .verify.containsText('//tr[1]/td[10]/span', '2')
-            .verify.containsText('//tr[2]/td[10]/span', '0')
-            .verify.containsText('//tr[3]/td[10]/span', '0')
+            .verify.containsText('//tr[1]/td[10]/span', '3')
+            .verify.containsText('//tr[2]/td[10]/span', '2')
+            .verify.containsText('//tr[3]/td[10]/span', '2')
             .verify.containsText('//tr[4]/td[10]/span', '0')
             .verify.containsText('//tr[5]/td[10]/span', '0');
     },

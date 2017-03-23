@@ -16,7 +16,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.containsText('//tr[1]/td[5]/span', 'ARGE - Arbeitsgemeinschaft Baden-Württembergischer Bausparkassen')
             .verify.containsText('//tr[2]/td[5]/span', 'Bankhaus Neelmeyer AG')
             .verify.containsText('//tr[3]/td[5]/span', 'Bankhaus Neelmeyer AG')
-            .verify.containsText('//tr[4]/td[5]/span', 'BHF-Bank AG')
+            .verify.containsText('//tr[4]/td[5]/span', 'Barclaycard Barclays Bank PLC')
             .verify.containsText('//tr[5]/td[5]/span', 'BHF-Bank AG');
     },
 
