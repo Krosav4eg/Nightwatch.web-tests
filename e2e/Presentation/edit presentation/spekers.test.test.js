@@ -9,96 +9,109 @@ module.exports = _.assign(presteps, auth, {
             .relUrl('/event/219/presentations')
     },
 
-    'check event data': function (browser) {
-        browser
-            .useXpath()
-            .waitForElementVisible('//h4[text()="Event (#219)"]', 3000)
+    'check information about speaker in the presentations page': function (browser) {
+        var presenterColumn = browser.page.presentations().section.presenterColumn;
+        presenterColumn
+            .verify.containsText("@firstRow", "Delegate");
+
+        var organizerColumn = browser.page.presentations().section.organizerColumn;
+        organizerColumn
+            .verify.containsText("@firstRow", "Management Events");
+
+        var presentationTypeColumn = browser.page.presentations().section.presentationTypeColumn;
+        presentationTypeColumn
+            .verify.containsText("@firstRow", "Keynote");
+
+        var speakerCompanyColumn = browser.page.presentations().section.speakerCompanyColumn;
+        speakerCompanyColumn
+            .verify.containsText("@firstRow", "Fachhochschule Kaiserslautern");
+
+        var speakerLastNameColumn = browser.page.presentations().section.speakerLastNameColumn;
+        speakerLastNameColumn
+            .verify.containsText("@firstRow", "Speck");
+
+        var speakerFirstNameColumn = browser.page.presentations().section.speakerFirstNameColumn;
+        speakerFirstNameColumn
+            .verify.containsText("@firstRow", "Hendrik");
+
+        var speakerTitleColumn = browser.page.presentations().section.speakerTitleColumn;
+        speakerTitleColumn
+            .verify.containsText("@firstRow", "Professor");
+
+        var speakerEmailColumn = browser.page.presentations().section.speakerEmailColumn;
+        speakerEmailColumn
+            .verify.containsText("@firstRow", "hendrik.speck@fh-kl.de");
+
+        var speakerMobileColumn = browser.page.presentations().section.speakerMobileColumn;
+        speakerMobileColumn
+            .verify.containsText("@firstRow", "0176 2122 9880");
     },
 
-    'check information about speaker in the presentations page': function (browser) {
-        browser
-            .waitForElementVisible('//a[@href="/presentations/edit/1025"]', 3000)
-            .verify.containsText("//tr[1]/td[2]/span", "Delegate")
-            .verify.containsText("//tr[1]/td[3]/span/span", "Management Events")
-            .verify.containsText("//tr[1]/td[4]/span", "Keynote")
-            .verify.containsText("//tr[1]/td[7]/span/ul/li[1]", "Fachhochschule Kaiserslautern")
-            .verify.containsText("//tr[1]/td[8]/span/ul/li[1]", "Speck")
-            .verify.containsText("//tr[1]/td[9]/span/ul/li[1]", "Hendrik")
-            .verify.containsText("//tr[1]/td[10]/span/ul/li[1]", "Professor")
-            .verify.containsText("//tr[1]/td[11]/span/ul/li[1]", "hendrik.speck@fh-kl.de")
-            .verify.containsText("//tr[1]/td[12]/span/ul/li[1]", "0176 2122 9880");
+    'go to the edit presentation': function (browser) {
+        var idColumn = browser.page.presentations().section.idColumn;
+        idColumn
+            .clickBySelector('@firstRow')
     },
 
     'check information about speaker in the edit presentation': function (browser) {
-        browser
-            .clickBySelectorXpath('//a[@href="/presentations/edit/1025"]')
-            .verify.containsText("//tr[1]/td[2]/span", "Delegate")
-            .verify.containsText("//tr[1]/td[3]/span", "Fachhochschule Kaiserslautern")
-            .verify.containsText("//tr[1]/td[4]/span", "Speck")
-            .verify.containsText("//tr[1]/td[5]/span", "Hendrik")
-            .verify.containsText("//tr[1]/td[6]/span", "Prof.")
-            .verify.containsText("//tr[1]/td[7]/span", "Professor")
-            .verify.containsText("//tr[1]/td[8]/span", "hendrik.speck@fh-kl.de")
-            .verify.containsText("//tr[1]/td[9]/span", "Delegate");
+        var tableSpeaker = browser.page.presentationsEdit().section.tableSpeaker;
+        tableSpeaker
+            .verify.containsText("@firstRowInColumnContactType", "Delegate")
+            .verify.containsText("@firstRowInColumnCompanyName", "Fachhochschule Kaiserslautern")
+            .verify.containsText("@firstRowInColumnLastName", "Speck")
+            .verify.containsText("@firstRowInColumnFirstName", "Hendrik")
+            .verify.containsText("@firstRowInAcademicTitleName", "Prof.")
+            .verify.containsText("@firstRowInColumnTitle", "Professor")
+            .verify.containsText("@firstRowInColumnEmail", "hendrik.speck@fh-kl.de")
+            .verify.containsText("@firstRowInColumnPresenterType", "Delegate");
 
     },
     'add new speaker': function (browser) {
-        browser
-            .clickBySelectorXpath('//button[text()="Add speaker"]')
-            .verify.elementPresent('//h4[text()="Attach Master Contact"]')
-            .clickBySelectorXpath('//button[contains(text(),"Add new")]')
+        var tableSpeaker = browser.page.presentationsEdit().section.tableSpeaker;
+        tableSpeaker
+            .clickBySelector('@addSpeakerButton');
 
-            .verify.elementPresent('//h4[text()="Master contact"]')
-            .verify.elementPresent('//h4[text()="Add new guest speaker"]')
-            .verify.elementPresent('//input[@id="lastName"]')
-            .setValue('//input[@id="lastName"]', 'Sergey')
-            .verify.elementPresent('//input[@id="firstName"]')
-            .setValue('//input[@id="firstName"]', 'Potapoff')
-            .verify.elementPresent('//input[@id="academicTitle"]')
-            .setValue('//input[@id="academicTitle"]', 'Academic')
-            .verify.elementPresent('//input[@id="functionTitle"]')
-            .setValue('//input[@id="functionTitle"]', 'functionTitle')
-            .verify.elementPresent('//input[@id="masterCompanyId"]')
-            .setValue('//input[@id="masterCompanyId"]', 'Alex Toys')
-            // .waitForElementVisible('//input[@id="country"]', 3000)
-            .clickBySelectorXpath('//input[@id="country"]')
-            .sendKeys('//input[@id="country"]', 'Ukraine')
-            .pause(3000)
-            .clickBySelectorXpath('//*[contains(text(),"Ukraine")]')
-            .pause(3000)
 
-            .waitForElementVisible('//input[@id="mobile"]', 3000)
-            .setValue('//input[@id="mobile"]', '0978544488')
-            .waitForElementVisible('//input[@id="email"]', 3000)
-            .setValue('//input[@id="email"]', 'Sergey_Potapof@mail.ru')
-            .pause(2000)
-            .click('(//button[contains(text(),"Save")])[2]')
-            .pause(7000)
-            .refresh()
+        var attachMasterContact = browser.page.presentationsEdit().section.attachMasterContact;
+        attachMasterContact
+            .clickBySelector('@addNewButton');
+
+        var addNewGuestSpeaker = browser.page.presentationsEdit().section.addNewGuestSpeaker;
+        addNewGuestSpeaker
+
+            .setValue('@lastNameInput', 'Sergey')
+            .setValue('@firstNameInput', 'Potapoff')
+            .setValue('@academicTitleInput', 'Academic')
+            .setValue('@functionTitleInput', 'functionTitle')
+            .setValue('@masterCompanyIdInput', 'Alex Toys')
+            .clickBySelector('@countryInput')
+            .sendKeys('@countryInput', 'Ukraine')
+            .clickBySelector('@countryUkraine')
+
+            .setValue('@mobileInput', '0978544488')
+            .setValue('@emailInput', 'Sergey_Potapof@mail.ru')
+            .clickBySelector('@saveButton');
+
+        browser .refresh()
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 30000);
     },
 
     'new speaker has been successfully added': function (browser) {
-        browser
-            .useXpath()
-            .verify.containsText('//tr[2]/td[2]/span', 'Guest Speaker')
-            .verify.containsText('//tr[2]/td[3]/span', '')
-            .verify.elementPresent('//tr[2]/td[4]/span', 'Sergey')
-            .verify.containsText('//tr[2]/td[5]/span', 'Potapoff')
-            .verify.containsText('//tr[2]/td[6]/span', 'Academic')
-            .verify.containsText('//tr[2]/td[7]/span', 'functionTitle')
-            .verify.containsText('//tr[2]/td[8]/span', 'Sergey_Potapof@mail.ru')
-            .verify.containsText('//tr[2]/td[9]/span', 'Delegate')
+        var tableSpeaker = browser.page.presentationsEdit().section.tableSpeaker;
+        tableSpeaker
+            .verify.containsText("@secondRowInColumnContactType", "Guest Speaker")
+            .verify.containsText("@secondRowInColumnCompanyName", "")
+            .verify.containsText("@secondRowInColumnLastName", "Sergey")
+            .verify.containsText("@secondRowInColumnFirstName", "Potapoff")
+            .verify.containsText("@secondRowInAcademicTitleName", "Academic")
+            .verify.containsText("@secondRowInColumnTitle", "functionTitle")
+            .verify.containsText("@secondRowInColumnEmail", "Sergey_Potapof@mail.ru")
+            .verify.containsText("@secondRowInColumnPresenterType", "Delegate")
 
-            .clickBySelectorXpath('//tr[2]/td[10]/span/button[@class="btn btn-danger"]')
+            .clickBySelector('@deleteSeconSpeaker')
+            .clickBySelector('@alertYes')
 
-            .verify.elementPresent('//h4[contains(text(),"Confirmation")]')
-            .verify.elementPresent('//modal-content[contains(text(),"Are you sure you want to delete the speaker?")]')
-            .clickBySelectorXpath('//button[@data-marker="me-confirm__button__button__yes"]')
-
-            .verify.elementNotPresent('//tr[2]');
-
+            .verify.elementNotPresent('@secondRowInColumnContactType');
     },
-
 });

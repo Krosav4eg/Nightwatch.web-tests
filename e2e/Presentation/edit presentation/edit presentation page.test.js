@@ -9,44 +9,34 @@ module.exports = _.assign(presteps, auth, {
             .relUrl('/event/212/presentations')
     },
 
-    'check event data': function (browser) {
-        browser
-            .useXpath()
-            .waitForElementVisible('//h4[text()="Event (#212)"]', 3000)
-    },
-
     'go to the edit presentation': function (browser) {
-        browser
-            .clickBySelectorXpath('//a[@href="/presentations/edit/628"]')
+        var idColumn = browser.page.presentations().section.idColumn;
+        idColumn
+            .clickBySelector('@firstRow')
     },
 
     'check edit page information': function (browser) {
-        browser
-            .useXpath()
-            .waitForElementVisible('//h1[text()="Edit Presentation (#628)"]', 3000)
-            .waitForElementVisible('//label[text()="Organizer "]', 3000)
+        var presentation = browser.page.presentationsEdit().section.presentation;
+        presentation
+            .verify.elementPresent('@organizerText')
 
-            .waitForElementVisible('//span[contains(text(),"Management Events")]', 3000)
-            .waitForElementVisible('//label[text()="Presentation Type "]', 3000)
+            .verify.elementPresent('@managementEventsText')
+            .verify.elementPresent('@presentationTypeText')
 
-            .waitForElementVisible('//label[text()="Heading "]', 3000)
-            .waitForElementVisible('//input[@placeholder="Heading"]', 3000)
-            .waitForElementVisible('//label[text()="Sub heading 1 "]', 3000)
-            .waitForElementVisible('//label[text()="Sub heading 2 "]', 3000)
-            .waitForElementVisible('//label[text()="Sub heading 3 "]', 3000)
-            .waitForElementVisible('//label[text()="Notes "]', 3000)
+            .verify.elementPresent('@headingText')
+            .verify.elementPresent('@headingInput')
+            .verify.elementPresent('@subheading1Text')
+            .verify.elementPresent('@subheading1Input')
+            .verify.elementPresent('@subheading2Text')
+            .verify.elementPresent('@notesText')
 
-            .waitForElementVisible('//label[text()="Created "]', 3000)
-            .waitForElementVisible('(//span[text()="2016-10-06 17:20:41"])[1]', 3000)
+            .verify.elementPresent('@createdText')
+            .verify.elementPresent('@createdByText')
 
-            .waitForElementVisible('//label[text()="Created By "]', 3000)
-            .waitForElementVisible('(//span[contains(text(),",")])[1]', 3000)
+            .verify.elementPresent('@modifiedText')
+            .verify.elementPresent('@modifiedByText')
 
-            .waitForElementVisible('//label[text()="Modified "]', 3000)
-            .waitForElementVisible('(//span[text()="2016-10-06 17:20:41"])[2]', 3000)
-
-            .waitForElementVisible('//label[text()="Modified By "]', 3000)
-            .waitForElementVisible('//button[text()="Cancel"]', 3000)
-            .waitForElementVisible('//button[text()="Save"]', 3000);
+            .verify.elementPresent('@cancelButton')
+            .verify.elementPresent('@saveButton');
     },
 });

@@ -10,70 +10,56 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'go to the edit presentation': function (browser) {
-        browser
-            .clickBySelectorXpath('//a[@href="/presentations/edit/628"]')
-
-            .useCss()
-            .waitForElementNotVisible('#thisIsMainLoader', 30000);
+        var idColumn = browser.page.presentations().section.idColumn;
+        idColumn
+            .clickBySelector('@firstRow')
     },
 
     'check edit page information': function (browser) {
-        browser
-            .useXpath()
-            .verify.elementPresent('//h1[text()="Edit Presentation (#628)"]')
+        var presentation = browser.page.presentationsEdit().section.presentation;
+        presentation
 
-            .verify.elementPresent('//label[text()="Organizer "]')
-            .verify.elementPresent('//span[contains(text(),"Management Events")]')
+            .verify.elementPresent('@organizerText')
+            .verify.elementPresent('@managementEventsText')
 
-            .verify.elementPresent('//label[text()="Presentation Type "]')
-            .verify.elementPresent('//span[text()="Debate"]')
+            .verify.elementPresent('@presentationTypeText')
 
-            .verify.elementPresent('//label[text()="Heading "]')
-            .verify.elementPresent('//input[@placeholder="Heading"]')
+            .verify.elementPresent('@headingText')
+            .verify.elementPresent('@headingInput')
 
-            .verify.elementPresent('//label[text()="Sub heading 1 "]')
-            .verify.elementPresent('//input[@data-marker="me-event-presentation-form__input__subheading0"]')
+            .verify.elementPresent('@subheading1Text')
+            .verify.elementPresent('@subheading1Input')
 
-            .verify.elementPresent('//label[text()="Sub heading 2 "]')
-            .verify.elementPresent('//input[@data-marker="me-event-presentation-form__input__subheading1"]')
+            .verify.elementPresent('@subheading2Text')
+            .verify.elementPresent('@subheading2Input')
 
-            .verify.elementPresent('//label[text()="Sub heading 3 "]')
-            .verify.elementPresent('//input[@data-marker="me-event-presentation-form__input__subheading2"]')
+            .verify.elementPresent('@subheading3Text')
+            .verify.elementPresent('@subheading3Input')
 
-            .verify.elementPresent('//label[text()="Notes "]')
-            .verify.elementPresent('//textarea[@data-marker="me-event-presentation-form__textarea__notes"]')
+            .verify.elementPresent('@notesText')
+            .verify.elementPresent('@notesInput')
 
+            .verify.elementPresent('@createdText')
+            .verify.elementPresent('@createdByText')
 
-            .verify.elementPresent('//label[text()="Created "]')
-            .verify.elementPresent('(//span[text()="2016-10-06 17:20:41"])[1]')
+            .verify.elementPresent('@modifiedText')
+            .verify.elementPresent('@modifiedByText')
 
-            .verify.elementPresent('//label[text()="Created By "]')
-            .verify.elementPresent('(//span[contains(text(),",")])[2]')
-
-            .verify.elementPresent('//label[text()="Modified "]')
-            .verify.elementPresent('(//span[text()="2016-10-06 17:20:41"])[2]')
-
-            .verify.elementPresent('//label[text()="Modified By "]')
-            .verify.elementPresent('(//span[contains(text(),",")])[1]')
-
-            .verify.elementPresent('//button[text()="Cancel"]')
-            .verify.elementPresent('//button[text()="Save"]');
+            .verify.elementPresent('@cancelButton')
+            .verify.elementPresent('@saveButton');
 
     },
 
     'page count': function (browser) {
-        browser
-            .useXpath()
-            .clickBySelectorXpath('//option[1][@value="20"]')
-            .verify.elementPresent('//span[text()="1 of 1"]')
+        var presentation = browser.page.presentationsEdit().section.presentation;
+        presentation
+            .clickBySelector('@option20Page')
+            .verify.elementPresent('@pageNumberCount')
 
-            .clickBySelectorXpath('//option[2][@value="50"]')
-            .useXpath()
-            .verify.elementPresent('//span[text()="1 of 1"]')
+            .clickBySelector('@option50Page')
+            .verify.elementPresent('@pageNumberCount')
 
-            .clickBySelectorXpath('//option[3][@value="100"]')
-            .useXpath()
-            .verify.elementPresent('//span[text()="1 of 1"]');
+            .clickBySelector('@option100Page')
+            .verify.elementPresent('@pageNumberCount');
     },
-
 });

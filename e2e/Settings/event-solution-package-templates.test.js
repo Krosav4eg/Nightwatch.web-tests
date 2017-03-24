@@ -10,14 +10,15 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'choose Uitto': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[text()="Active"]')
-            .verify.containsText('//tr[2]/td[2]', 'Active')
+        var statusColumn = browser.page.eventSolutionPackageTemplates().section.statusColumn;
+        statusColumn
+            .clickBySelector('@activeOption')
+            .verify.containsText('@firstRow', 'Active')
 
-            .clickBySelectorXpath('//option[text()="Archived"]')
-            .verify.containsText('//tr[2]/td[2]', 'Archived')
+            .clickBySelector('@archivedOption')
+            .verify.containsText('@firstRow', 'Archived')
 
-            .clickBySelectorXpath('//option[text()="Passive"]')
-            .verify.elementPresent('//*[contains(text(), "No results found")]');
+            .clickBySelector('@passiveOption')
+            .verify.containsText('@firstRow', 'Passive')
     },
 });

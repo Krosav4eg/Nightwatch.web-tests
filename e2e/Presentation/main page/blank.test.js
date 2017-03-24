@@ -9,55 +9,47 @@ module.exports = _.assign(presteps, auth, {
             .relUrl('/event/212/presentations')
     },
 
+    'select by presenter up': function (browser) {
+        var presenterColumn = browser.page.presentations().section.presenterColumn;
+        presenterColumn
+            .clickBySelector('@nameColumn')
+            .verify.containsText("@firstRow", "Delegate")
+            .verify.containsText("@secondRow", "Delegate")
+            .verify.containsText("@thirdRow", "Delegate")
+            .verify.containsText("@fourthRow", "Delegate")
+
+            .clickBySelector('@nameColumn')
+
+            .verify.containsText("@firstRow", "Delegate")
+            .verify.containsText("@secondRow", "Delegate")
+            .verify.containsText("@thirdRow", "Delegate")
+            .verify.containsText("@fourthRow", "Delegate");
+    },
+
     'select by  blank': function (browser) {
-        browser
-            .clickBySelectorXpath('//tr/td[2]/select/option[1]')
-            .useXpath()
-            .verify.elementPresent("//tr[1]/td[2]/span", "Delegate")
-            .verify.elementPresent("//tr[2]/td[2]/span", "Delegate")
-            .verify.elementPresent("//tr[3]/td[2]/span", "Delegate")
-            .verify.elementPresent("//tr[4]/td[2]/span", "Delegate")
-            .verify.elementPresent("//tr[5]/td[2]/span", "Delegate")
-            .verify.elementPresent("//tr[6]/td[2]/span", "Delegate")
-            .verify.elementPresent("//tr[7]/td[2]/span", "Delegate")
-            .verify.elementPresent("//tr[8]/td[2]/span", "Delegate")
-            .verify.elementPresent("//tr[9]/td[2]/span", "Delegate")
-            .verify.elementPresent("//tr[10]/td[2]/span", "Delegate")
-            .verify.elementPresent("//tr[11]/td[2]/span", "Delegate");
+        var presenterColumn = browser.page.presentations().section.presenterColumn;
+        presenterColumn
+            .clickBySelector('@allOption')
+            .verify.containsText("@firstRow", "Delegate")
+            .verify.containsText("@secondRow", "Delegate")
+            .verify.containsText("@thirdRow", "Delegate")
+            .verify.containsText("@fourthRow", "Delegate");
     },
 
     'select by delegate': function (browser) {
-        browser
-            .clickBySelectorXpath('//tr/td[2]/select/option[2]')
-            .useXpath()
-            .verify.elementPresent("//tr[1]/td[2]/span", "Delegate")
-            .verify.elementPresent("//tr[2]/td[2]/span", "Delegate")
-            .verify.elementPresent("//tr[3]/td[2]/span", "Delegate")
-            .verify.elementPresent("//tr[4]/td[2]/span", "Delegate")
-            .verify.elementPresent("//tr[5]/td[2]/span", "Delegate")
-            .verify.elementPresent("//tr[6]/td[2]/span", "Delegate")
-            .verify.elementPresent("//tr[7]/td[2]/span", "Delegate")
-            .verify.elementPresent("//tr[8]/td[2]/span", "Delegate")
-            .verify.elementPresent("//tr[9]/td[2]/span", "Delegate")
-            .verify.elementPresent("//tr[10]/td[2]/span", "Delegate")
-            .verify.elementPresent("//tr[11]/td[2]/span", "Delegate");
+        var presenterColumn = browser.page.presentations().section.presenterColumn;
+        presenterColumn
+            .clickBySelector('@delegateOption')
+            .verify.containsText("@firstRow", "Delegate")
+            .verify.containsText("@secondRow", "Delegate")
+            .verify.containsText("@thirdRow", "Delegate")
+            .verify.containsText("@fourthRow", "Delegate");
     },
 
     'select by partner': function (browser) {
-        browser
-            .clickBySelectorXpath('//tr/td[2]/select/option[3]')
-            .useXpath()
-            .verify.elementNotPresent("//tr[1]/td[2]/span", "Partner")
-            .verify.elementNotPresent("//tr[2]/td[2]/span", "Partner")
-            .verify.elementNotPresent("//tr[3]/td[2]/span", "Partner")
-            .verify.elementNotPresent("//tr[4]/td[2]/span", "Partner")
-            .verify.elementNotPresent("//tr[5]/td[2]/span", "Partner")
-            .verify.elementNotPresent("//tr[6]/td[2]/span", "Partner")
-            .verify.elementNotPresent("//tr[7]/td[2]/span", "Partner")
-            .verify.elementNotPresent("//tr[8]/td[2]/span", "Partner")
-            .verify.elementNotPresent("//tr[9]/td[2]/span", "Partner")
-            .verify.elementNotPresent("//tr[10]/td[2]/span", "Partner")
-            .verify.elementNotPresent("//tr[11]/td[2]/span", "Partner")
-            .verify.elementNotPresent("//tr[12]/td[2]/span", "Partner");
+        var presenterColumn = browser.page.presentations().section.presenterColumn;
+        presenterColumn
+            .clickBySelector('@partnerOption')
+            .verify.elementPresent("@noResultsFound");
     },
 });

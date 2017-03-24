@@ -10,15 +10,25 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'go to the edit presentation': function (browser) {
-        browser
-            .clickBySelectorXpath('//a[@href="/presentations/edit/6052"]')
-            .verify.elementPresent('//h1[text()="Edit Presentation (#6052)"]');
+        var idColumn = browser.page.presentations().section.idColumn;
+        idColumn
+            .clickBySelector('@firstRow')
     },
 
-    'search by company name ': function (browser) {
-        browser
-            .setValueByXpath('//me-event-presentation-speaker-list//tr[1]/td[3]/input[@type="text"]', ['Amec Foster Wheeler', browser.Keys.ENTER])
+    'sort by #M ': function (browser) {
+        var tableSpeaker = browser.page.presentationsEdit().section.tableSpeaker;
+        tableSpeaker
+            .clickBySelector('@companyNameColumn')
+            .verify.containsText('@firstRowInColumnCompanyName', 'Amec Foster Wheeler')
 
-            .verify.containsText('//tr[1]/td[3]/span','Amec Foster Wheeler');
-    }
-  });
+            .clickBySelector('@companyNameColumn')
+            .verify.containsText('@firstRowInColumnCompanyName', 'Amec Foster Wheeler');
+    },
+
+    'search by #M ': function (browser) {
+        var tableSpeaker = browser.page.presentationsEdit().section.tableSpeaker;
+        tableSpeaker
+            .setValueBySelector('@companyNameSearchColumn', ['Amec Foster Wheeler', browser.Keys.ENTER])
+            .verify.containsText('@firstRowInColumnCompanyName', 'Amec Foster Wheeler');
+    },
+});

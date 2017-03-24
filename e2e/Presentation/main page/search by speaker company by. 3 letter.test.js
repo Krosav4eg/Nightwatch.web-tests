@@ -9,13 +9,29 @@ module.exports = _.assign(presteps, auth, {
             .relUrl('/event/212/presentations')
     },
 
+    'sort ': function (browser) {
+        var speakerCompanyColumn = browser.page.presentations().section.speakerCompanyColumn;
+        speakerCompanyColumn
+            .clickBySelector('@nameColumn')
+
+            .verify.containsText("@firstRow", "Citiworks AG")
+            .verify.containsText("@secondRow", "Citiworks AG")
+            .verify.containsText("@thirdRow", "Citiworks AG")
+            .verify.containsText("@fourthRow", "Citiworks AG")
+
+            .clickBySelector('@nameColumn')
+
+            .verify.containsText("@firstRow", "RWE Group Business Services GmbH")
+            .verify.containsText("@secondRow", "RWE GBS GmbH")
+            .verify.containsText("@thirdRow", "E.ON Global ")
+            .verify.containsText("@fourthRow", "Citiworks AG")
+    },
+
     'search by 3 letters': function (browser) {
-        browser
-            .setValueByXpath('//tr/td[7]/input[@type="text"]', ['RWE ', browser.Keys.ENTER])
-            .useCss()
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
-            .useXpath()
-            .verify.containsText('//tr[1]/td[7]/span/ul/li','RWE GBS GmbH')
-            .verify.elementPresent('//tr[2]/td[7]/span/ul/li','RWE Group Business Services GmbH');
+        var speakerCompanyColumn = browser.page.presentations().section.speakerCompanyColumn;
+        speakerCompanyColumn
+            .setValueBySelector('@seachColumn', ['RWE', browser.Keys.ENTER])
+
+            .verify.containsText("@firstRow", "RWE Group Business Services GmbH")
     },
 });

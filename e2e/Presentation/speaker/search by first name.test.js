@@ -4,33 +4,31 @@ var auth = require('./../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
 
-
     'redirection to presentations': function (browser) {
         browser
-            .relUrl('/event/212/presentations')
+            .relUrl('/event/2008/presentations')
     },
 
     'go to the edit presentation': function (browser) {
-        browser
-            .clickBySelectorXpath('//a[@href="/presentations/edit/629"]')
-
-            .useCss()
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
-
-            .useXpath()
-            .verify.elementPresent('//h1[text()="Edit Presentation (#629)"]');
-
+        var idColumn = browser.page.presentations().section.idColumn;
+        idColumn
+            .clickBySelector('@firstRow')
     },
 
-    'search by last name ': function (browser) {
-        browser
-            .setValueByXpath('//me-event-presentation-speaker-list//tr[1]/td[5]/input[@type="text"]', ['Holger', browser.Keys.ENTER])
+    'sort by #M ': function (browser) {
+        var tableSpeaker = browser.page.presentationsEdit().section.tableSpeaker;
+        tableSpeaker
+            .clickBySelector('@firstNameColumn')
+            .verify.containsText('@firstRowInColumnFirstName', 'Aarne')
 
-            .useCss()
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
-
-            .useXpath()
-            .verify.containsText('//tr[1]/td[5]/span', 'Holger');
+            .clickBySelector('@firstNameColumn')
+            .verify.containsText('@firstRowInColumnFirstName', 'Aarne');
     },
 
+    'search by #M ': function (browser) {
+        var tableSpeaker = browser.page.presentationsEdit().section.tableSpeaker;
+        tableSpeaker
+            .setValueBySelector('@firstNameSearchColumn', ['Aarne', browser.Keys.ENTER])
+            .verify.containsText('@firstRowInColumnFirstName', 'Aarne');
+    },
 });

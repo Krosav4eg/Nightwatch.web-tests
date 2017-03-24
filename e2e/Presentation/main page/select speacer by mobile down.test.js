@@ -9,41 +9,30 @@ module.exports = _.assign(presteps, auth, {
             .relUrl('/event/212/presentations')
     },
 
-    'select by speaker email up': function (browser) {
-        browser
-            .useXpath()
-            .getLocationInView("//tr/th[12]", function (result) {
-                this.verify.equal(typeof result, "object")
-                this.verify.equal(result.status, 0)
-                this.verify.equal(result.value.x, 1350)
-                this.verify.equal(result.value.y, 421)
-                this.clickBySelectorXpath('//tr/th[12]')
-                    .useXpath()
-                    .verify.elementPresent('//tr[1]/td[12]/span/ul/li[contains(text(),"")]')
-                    .verify.elementPresent('//tr[2]/td[12]/span/ul/li[contains(text(),"")]')
-                    .verify.elementPresent('//tr[3]/td[12]/span/ul/li[contains(text(),"")]')
-                    .verify.elementPresent('//tr[4]/td[12]/span/ul/li[contains(text(),"")]')
-                    .verify.elementPresent('//tr[5]/td[12]/span/ul/li[contains(text(),"")]')
-                    .verify.elementPresent('//tr[6]/td[12]/span/ul/li[contains(text(),"")]')
-                    .verify.elementPresent('//tr[7]/td[12]/span/ul/li[contains(text(),"")]')
-                    .verify.elementPresent('//tr[8]/td[12]/span/ul/li[contains(text(),"")]')
-                    .verify.elementPresent('//tr[9]/td[12]/span/ul/li[contains(text(),"")]')
-                    .verify.elementPresent('//tr[10]/td[12]/span/ul/li[contains(text(),"+49 162 2565252")]')
-                    .verify.elementPresent('//tr[11]/td[12]/span/ul/li[contains(text(),"+49 1622850155")]');
-            });
+    'select by speaker email': function (browser) {
+        var speakerMobileColumn = browser.page.presentations().section.speakerMobileColumn;
+        speakerMobileColumn
+            .moveToElement('@nameColumn', 1298, 597)
+            .clickBySelector('@nameColumn')
+
+            .verify.containsText("@firstRow", "")
+            .verify.containsText("@secondRow", "")
+            .verify.containsText("@thirdRow", "")
+            .verify.containsText("@fourthRow", "")
+
+            .clickBySelector('@nameColumn')
+
+            .verify.containsText("@firstRow", "+49 1622850155")
+            .verify.containsText("@secondRow", "+49 162 2565252")
+            .verify.containsText("@thirdRow", "")
+            .verify.containsText("@fourthRow", "")
     },
 
-    'select by speaker email down': function (browser) {
-        browser
-            .useXpath()
-            .clickBySelectorXpath('//tr/th[12]')
-            .verify.elementPresent('//tr[1]/td[12]/span/ul/li[contains(text(),"+49 1622850155")]')
-            .verify.elementPresent('//tr[2]/td[12]/span/ul/li[contains(text(),"+49 162 2565252")]')
-            .verify.elementPresent('//tr[3]/td[12]/span/ul/li[contains(text(),"")]')
-            .verify.elementPresent('//tr[4]/td[12]/span/ul/li[contains(text(),"")]')
-            .verify.elementPresent('//tr[5]/td[12]/span/ul/li[contains(text(),"")]')
-            .verify.elementPresent('//tr[6]/td[12]/span/ul/li[contains(text(),"")]')
-            .verify.elementPresent('//tr[7]/td[12]/span/ul/li[contains(text(),"")]')
-            .verify.elementPresent('//tr[8]/td[12]/span/ul/li[contains(text(),"")]');
+    'search by 3 letters': function (browser) {
+        var speakerMobileColumn = browser.page.presentations().section.speakerMobileColumn;
+        speakerMobileColumn
+            .setValueBySelector('@seachColumn', ['+49 162 2565252', browser.Keys.ENTER])
+
+            .verify.containsText("@firstRow", "+49 162 2565252")
     },
 });

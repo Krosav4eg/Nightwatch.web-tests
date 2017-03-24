@@ -9,44 +9,35 @@ module.exports = _.assign(presteps, auth, {
             .relUrl('/event/212/presentations')
     },
 
-    'check event data': function (browser) {
-        browser
-            .useXpath()
-            .waitForElementVisible('//h4[text()="Event (#212)"]', 3000)
-    },
-
     'go to the edit presentation': function (browser) {
-        browser
-            .clickBySelectorXpath('//a[@href="/presentations/edit/628"]')
+        var idColumn = browser.page.presentations().section.idColumn;
+        idColumn
+            .clickBySelector('@firstRow')
     },
 
     'add button verify': function (browser) {
-        browser
-            .setValueByXpath('//input[@type="file"]', __dirname + '/Event-Agenda.docx')
-            .pause(2000)
-            .clickBySelectorXpath('//*[text()="Upload file"]')
-            .useXpath()
-            .verify.containsText('//li[@class="list-group-item list-material-item"]', 'Event-Agenda.docx (351.29 kB)')
-            .waitForElementVisible('//p[@class="btn material-delete btn-primary"]', 8000)
+        var presentation = browser.page.presentationsEdit().section.presentation;
+        presentation
+            .setValueBySelector('@addFileInput', __dirname + '/Event-Agenda.docx')
+            .clickBySelector('@uploadFileButton')
 
-            .click('//p[@class="btn material-delete btn-primary"]')
-            .acceptAlert()
-            .useCss()
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
-            .useXpath()
-            .verify.elementNotPresent('//li[contains(text(),"Event-Agenda.docx (351.29 kB)")]')
+            .verify.containsText('@listMaterialItem', 'Event-Agenda.docx (351.29 kB)')
+            .waitForElementVisible('@deleteButton', 8000)
 
-            .setValueByXpath('//input[@type="file"]', __dirname + '/Event-Agenda.docx')
-            .clickBySelectorXpath('//button[text()="Upload file"]')
-            .useXpath()
-            .verify.containsText('//li[@class="list-group-item list-material-item"]', 'Event-Agenda.docx (351.29 kB)')
-            .waitForElementVisible('//p[@class="btn material-delete btn-primary"]', 8000)
+            .clickBySelector('@deleteButton')
+            .clickBySelector('@alertYes')
 
-            .click('//p[@class="btn material-delete btn-primary"]')
-            .acceptAlert()
-            .useCss()
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
-            .useXpath()
-            .verify.elementNotPresent('//li[contains(text(),"Event-Agenda.docx (351.29 kB)")]')
+            .verify.elementNotPresent('@eventAgendaDocx')
+
+            .setValueBySelector('@addFileInput', __dirname + '/Event-Agenda.docx')
+            .clickBySelector('@uploadFileButton')
+
+            .verify.containsText('@listMaterialItem', 'Event-Agenda.docx (351.29 kB)')
+            .waitForElementVisible('@deleteButton', 8000)
+
+            .clickBySelector('@deleteButton')
+            .clickBySelector('@alertYes')
+
+            .verify.elementNotPresent('@eventAgendaDocx');
     },
 });

@@ -10,95 +10,107 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'check event data': function (browser) {
-        browser
-            .useXpath()
-            .verify.elementPresent('//h4[text()="Event (#2008)"]')
-            .verify.elementPresent('//h3[text()="NeedSeeker 18.5.2016"]')
-            .verify.elementPresent('//div[text()="Local name: NeedSeeker 18.5.2016"]')
-            .verify.elementPresent('//div[text()="Dates: 2016-05-18 08:00:00 - 2016-05-18 13:00:00"]')
-            .verify.elementPresent('//div[text()="Venue: Tapahtumakeskus Telakka, Helsinki"]');
+        var allInformation = browser.page.presentations().section.allInformation;
+        allInformation
+            .verify.containsText('@titleEvent', "Event (#2008)")
+            .verify.containsText('@nameEvent', "NeedSeeker 18.5.2016")
+            .verify.containsText('@localName', "Local name: NeedSeeker 18.5.2016")
+            .verify.containsText('@dates', "Dates: 2016-05-18 08:00:00 - 2016-05-18 13:00:00")
+            .verify.containsText('@venue', "Venue: Tapahtumakeskus Telakka, Helsinki");
     },
 
     'go to the edit presentation': function (browser) {
-        browser
-            .clickBySelectorXpath('//a[@href="/presentations/edit/5721"]')
-            .useXpath()
-            .verify.elementPresent('//h1[text()="Edit Presentation (#5721)"]');
+        var idColumn = browser.page.presentations().section.idColumn;
+        idColumn
+            .clickBySelector('@firstRow')
     },
 
     'add new guest speaker page verifyion': function (browser) {
-        browser
-            .clickBySelectorXpath('//button[text()="Add speaker"]')
-            .verify.elementPresent('//h4[text()="Attach Master Contact"]')
+        var tableSpeaker = browser.page.presentationsEdit().section.tableSpeaker;
+        tableSpeaker
+            .clickBySelector('@addSpeakerButton')
 
-            .clickBySelectorXpath('//button[contains(text(),"Add new")]')
-            .verify.elementPresent('//h4[text()="Add new guest speaker"]')
 
-            .verify.elementPresent('//input[@id="lastName"]')
-            .verify.elementPresent('//input[@id="firstName"]')
-            .verify.elementPresent('//input[@id="academicTitle"]')
-            .verify.elementPresent('//input[@id="functionTitle"]')
-            .verify.elementPresent('//input[@id="masterCompanyId"]')
-            .verify.elementPresent('//input[@id="country"]')
-            .verify.elementPresent('//input[@id="mobile"]')
-            .verify.elementPresent('//input[@id="email"]')
-            .verify.elementPresent('(//button[1][text()="Save"])[2]');
+        var attachMasterContact = browser.page.presentationsEdit().section.attachMasterContact;
+        attachMasterContact
+            .clickBySelector('@addNewButton')
+
+        var addNewGuestSpeaker = browser.page.presentationsEdit().section.addNewGuestSpeaker;
+        addNewGuestSpeaker
+
+            .verify.elementPresent('@lastNameInput')
+            .verify.elementPresent('@firstNameInput')
+            .verify.elementPresent('@academicTitleInput')
+            .verify.elementPresent('@functionTitleInput')
+            .verify.elementPresent('@masterCompanyIdInput')
+            .verify.elementPresent('@countryInput')
+            .verify.elementPresent('@mobileInput')
+            .verify.elementPresent('@emailInput')
+            .verify.elementPresent('@saveButton');
     },
 
     'last name alert message verifyion': function (browser) {
-        browser
-            .clickBySelectorXpath('//input[@id="lastName"]')
-            .clickBySelectorXpath('//input[@id="firstName"]')
-            .verify.containsText('//*[contains(text(), "Add new guest speaker")]/../..//*[contains(text(), "Last Name")]/..' ,"Last Name is required");
+        var addNewGuestSpeaker = browser.page.presentationsEdit().section.addNewGuestSpeaker;
+        addNewGuestSpeaker
+            .clickBySelector('@lastNameInput')
+            .clickBySelector('@firstNameInput')
+            .verify.containsText('@lastNameError' ,"Last Name is required");
     },
 
     'first name alert message verifyion': function (browser) {
-        browser
-            .clickBySelectorXpath('//input[@id="firstName"]')
-            .clickBySelectorXpath('//input[@id="academicTitle"]')
-            .verify.containsText('//*[contains(text(), "Add new guest speaker")]/../..//*[contains(text(), "First Name")]/..' ,"First Name is required");
+        var addNewGuestSpeaker = browser.page.presentationsEdit().section.addNewGuestSpeaker;
+        addNewGuestSpeaker
+            .clickBySelector('@firstNameInput')
+            .clickBySelector('@academicTitleInput')
+            .verify.containsText('@firstNameError' ,"First Name is required");
     },
 
     'academic title no alert message verifyion': function (browser) {
-        browser
-            .clickBySelectorXpath('//input[@id="academicTitle"]')
-            .clickBySelectorXpath('//input[@id="functionTitle"]')
-            .verify.elementNotPresent('//p[contains(text(),"Academic Title is required")]');
+        var addNewGuestSpeaker = browser.page.presentationsEdit().section.addNewGuestSpeaker;
+        addNewGuestSpeaker
+            .clickBySelector('@academicTitleInput')
+            .clickBySelector('@functionTitleInput')
+            .verify.elementNotPresent('@academicTitleError');
     },
 
     'functional title no alert message verifyion': function (browser) {
-        browser
-            .clickBySelectorXpath('//input[@id="functionTitle"]')
-            .clickBySelectorXpath('//input[@id="masterCompanyId"]')
-            .verify.elementNotPresent('//p[contains(text(),"Functional Title is required")]');
+        var addNewGuestSpeaker = browser.page.presentationsEdit().section.addNewGuestSpeaker;
+        addNewGuestSpeaker
+            .clickBySelector('@functionTitleInput')
+            .clickBySelector('@masterCompanyIdInput')
+            .verify.elementNotPresent('@functionTitleError');
     },
 
     'company no alert message verifyion': function (browser) {
-        browser
-            .clickBySelectorXpath('//input[@id="masterCompanyId"]')
-            .clickBySelectorXpath('//input[@id="country"]')
-            .verify.elementNotPresent('//p[contains(text(),"Company is required")]');
+        var addNewGuestSpeaker = browser.page.presentationsEdit().section.addNewGuestSpeaker;
+        addNewGuestSpeaker
+            .clickBySelector('@masterCompanyIdInput')
+            .clickBySelector('@countryInput')
+            .verify.elementNotPresent('@masterCompanyIdError');
     },
 
     'country alert message verifyion': function (browser) {
-        browser
-            .clickBySelectorXpath('//input[@id="country"]')
-            .clickBySelectorXpath('//input[@id="mobile"]')
-            .verify.containsText('//*[contains(text(), "Add new guest speaker")]/../..//*[contains(text(), "Country")]/..' ,"Country");
+        var addNewGuestSpeaker = browser.page.presentationsEdit().section.addNewGuestSpeaker;
+        addNewGuestSpeaker
+            .clickBySelector('@countryInput')
+            .clickBySelector('@mobileInput')
+            .verify.containsText('@countryError' ,"Country");
     },
 
     'mobile alert message verifyion': function (browser) {
-        browser
-            .clickBySelectorXpath('//input[@id="mobile"]')
-            .clickBySelectorXpath('//input[@id="email"]')
-            .verify.containsText('//*[contains(text(), "Add new guest speaker")]/../..//*[contains(text(), "Mobile")]/..' ,"Mobile is not valid");
+        var addNewGuestSpeaker = browser.page.presentationsEdit().section.addNewGuestSpeaker;
+        addNewGuestSpeaker
+            .clickBySelector('@mobileInput')
+            .clickBySelector('@emailInput')
+            .verify.containsText('@mobileError' ,"Mobile is not valid");
     },
 
     'email alert message verifyion': function (browser) {
-        browser
-            .clickBySelectorXpath('//input[@id="email"]')
-            .clickBySelectorXpath('//input[@id="mobile"]')
-            .verify.containsText('//*[contains(text(), "Add new guest speaker")]/../..//*[contains(text(), "Email")]/..' ,"Email is required");
+        var addNewGuestSpeaker = browser.page.presentationsEdit().section.addNewGuestSpeaker;
+        addNewGuestSpeaker
+            .clickBySelector('@emailInput')
+            .clickBySelector('@mobileInput')
+            .verify.containsText('@emailError' ,"Email is required");
     },
 
     'blank click all alerts verifyion': function (browser) {
@@ -107,30 +119,39 @@ module.exports = _.assign(presteps, auth, {
             .useCss()
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
 
-            .clickBySelectorXpath('//button[text()="Add speaker"]')
-            .verify.elementPresent('//h4[text()="Attach Master Contact"]')
+        var tableSpeaker = browser.page.presentationsEdit().section.tableSpeaker;
+        tableSpeaker
+            .clickBySelector('@addSpeakerButton')
 
-            .clickBySelectorXpath('//button[contains(text(),"Add new")]')
-            .verify.elementPresent('//h4[text()="Add new guest speaker"]')
-            .verify.elementPresent('//input[@id="lastName"]')
-            .verify.elementPresent('//input[@id="firstName"]')
-            .verify.elementPresent('//input[@id="academicTitle"]')
-            .verify.elementPresent('//input[@id="functionTitle"]')
-            .verify.elementPresent('//input[@id="masterCompanyId"]')
-            .verify.elementPresent('//input[@id="country"]')
-            .verify.elementPresent('//input[@id="mobile"]')
-            .verify.elementPresent('//input[@id="email"]')
+        var attachMasterContact = browser.page.presentationsEdit().section.attachMasterContact;
+        attachMasterContact
+            .clickBySelector('@addNewButton')
 
-            .clickBySelectorXpath('(//button[1][text()="Save"])[2]')
-            .verify.containsText('//*[contains(text(), "Add new guest speaker")]/../..//*[contains(text(), "Last Name")]/..' ,"Last Name is required")
-            .verify.containsText('//*[contains(text(), "Add new guest speaker")]/../..//*[contains(text(), "First Name")]/..' ,"First Name is required")
 
-            .verify.elementNotPresent('//p[contains(text(),"Academic Title is required")]')
-            .verify.elementNotPresent('//p[contains(text(),"Functional Title is required")]')
-            .verify.elementNotPresent('//p[contains(text(),"Company is required")]')
+        var addNewGuestSpeaker = browser.page.presentationsEdit().section.addNewGuestSpeaker;
+        addNewGuestSpeaker
 
-            .verify.containsText('//*[contains(text(), "Add new guest speaker")]/../..//*[contains(text(), "Country")]/..' ,"Country is required")
-            .verify.containsText('//*[contains(text(), "Add new guest speaker")]/../..//*[contains(text(), "Mobile")]/..' ,"Mobile is not valid")
-            .verify.containsText('//*[contains(text(), "Add new guest speaker")]/../..//*[contains(text(), "Email")]/..' ,"Email is required");
+            .verify.elementPresent('@lastNameInput')
+            .verify.elementPresent('@firstNameInput')
+            .verify.elementPresent('@academicTitleInput')
+            .verify.elementPresent('@functionTitleInput')
+            .verify.elementPresent('@masterCompanyIdInput')
+            .verify.elementPresent('@countryInput')
+            .verify.elementPresent('@mobileInput')
+            .verify.elementPresent('@emailInput')
+            .verify.elementPresent('@saveButton')
+
+            .clickBySelector('@saveButton')
+
+            .verify.containsText('@lastNameError' ,"Last Name is required")
+            .verify.containsText('@firstNameError' ,"First Name is required")
+
+            .verify.elementNotPresent('@academicTitleError')
+            .verify.elementNotPresent('@functionTitleError')
+            .verify.elementNotPresent('@masterCompanyIdError')
+
+            .verify.containsText('@countryError' ,"Country is required")
+            .verify.containsText('@mobileError' ,"Mobile is not valid")
+            .verify.containsText('@emailError' ,"Email is required");
     },
 });

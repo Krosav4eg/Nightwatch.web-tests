@@ -9,19 +9,30 @@ module.exports = _.assign(presteps, auth, {
             .relUrl('/event/212/presentations')
     },
 
-    'select by speaker last name down': function (browser) {
-        browser
-            .useXpath()
-            .getLocationInView("//tr/th[8]", function (result) {
-                this.verify.equal(typeof result, "object")
-                this.verify.equal(result.status, 0)
-                this.verify.equal(result.value.x, 1350)
-                this.verify.equal(result.value.y, 421)
-                this.setValue('//tr/td[8]/input[@type="text"]', ['Alp', browser.Keys.ENTER])
-                    .useCss()
-                    .waitForElementNotVisible('#thisIsMainLoader', 30000)
-                    .useXpath()
-                    .verify.elementPresent('//tr[1]/td[8]/span/ul/li[contains(text(),"Alphéus")]')
-            });
+    'select by speaker email': function (browser) {
+        var speakerLastNameColumn = browser.page.presentations().section.speakerLastNameColumn;
+        speakerLastNameColumn
+            .moveToElement('@nameColumn', 1298, 597)
+            .clickBySelector('@nameColumn')
+
+            .verify.containsText("@firstRow", "Abels")
+            .verify.containsText("@secondRow", "Alphéus")
+            .verify.containsText("@thirdRow", "Funke")
+            .verify.containsText("@fourthRow", "Funke")
+
+            .clickBySelector('@nameColumn')
+
+            .verify.containsText("@firstRow", "Klink")
+            .verify.containsText("@secondRow", "Funke")
+            .verify.containsText("@thirdRow", "Funke")
+            .verify.containsText("@fourthRow", "Funke")
+    },
+
+    'search by 3 letters': function (browser) {
+        var speakerLastNameColumn = browser.page.presentations().section.speakerLastNameColumn;
+        speakerLastNameColumn
+            .setValueBySelector('@seachColumn', ['Abels', browser.Keys.ENTER])
+
+            .verify.containsText("@firstRow", "Abels")
     },
 });

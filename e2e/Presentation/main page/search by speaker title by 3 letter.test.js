@@ -9,19 +9,30 @@ module.exports = _.assign(presteps, auth, {
             .relUrl('/event/212/presentations')
     },
 
-    'select by speaker last name down': function (browser) {
-        browser
-            .useXpath()
-            .getLocationInView("//tr/th[10]", function (result) {
-                this.verify.equal(typeof result, "object")
-                this.verify.equal(result.status, 0)
-                this.verify.equal(result.value.x, 1350)
-                this.verify.equal(result.value.y, 421)
-                this.setValue('//tr/td[10]/input[@type="text"]', ['ges', browser.Keys.ENTER])
-                    .useCss()
-                    .waitForElementNotVisible('#thisIsMainLoader', 30000)
-                    .useXpath()
-                    .verify.elementPresent('//tr[1]/td[10]/span/ul/li[contains(text(),"Geschäftsführer")]');
-            });
+    'select by speaker email': function (browser) {
+        var speakerTitleColumn = browser.page.presentations().section.speakerTitleColumn;
+        speakerTitleColumn
+            .moveToElement('@nameColumn', 1298, 597)
+            .clickBySelector('@nameColumn')
+
+            .verify.containsText("@firstRow", "Geschäftsführer")
+            .verify.containsText("@secondRow", "Leiter Handel und Portfoliomanagement")
+            .verify.containsText("@thirdRow", "Leiter Handel und Portfoliomanagement")
+            .verify.containsText("@fourthRow", "Leiter Handel und Portfoliomanagement")
+
+            .clickBySelector('@nameColumn')
+
+            .verify.containsText("@firstRow", 'Senior Consultant & Analyst, Center of Expertise "Internal Reporting"')
+            .verify.containsText("@secondRow", "Prokurist")
+            .verify.containsText("@thirdRow", "Leiter Handel und Portfoliomanagement")
+            .verify.containsText("@fourthRow", "Leiter Handel und Portfoliomanagement")
+    },
+
+    'search by 3 letters': function (browser) {
+        var speakerTitleColumn = browser.page.presentations().section.speakerTitleColumn;
+        speakerTitleColumn
+            .setValueBySelector('@seachColumn', ['Prokurist', browser.Keys.ENTER])
+
+            .verify.containsText("@firstRow", "Prokurist")
     },
 });

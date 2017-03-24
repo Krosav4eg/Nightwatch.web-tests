@@ -6,29 +6,29 @@ module.exports = _.assign(presteps, auth, {
 
     'redirection to presentations': function (browser) {
         browser
-            .relUrl('/event/212/presentations')
+            .relUrl('/event/2008/presentations')
     },
 
     'go to the edit presentation': function (browser) {
-        browser
-            .clickBySelectorXpath('//a[@href="/presentations/edit/629"]')
-
-            .useCss()
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
-
-            .useXpath()
-            .verify.elementPresent('//h1[text()="Edit Presentation (#629)"]');
-
+        var idColumn = browser.page.presentations().section.idColumn;
+        idColumn
+            .clickBySelector('@firstRow')
     },
 
-    'search by last name ': function (browser) {
-        browser
-            .setValueByXpath('//me-event-presentation-speaker-list//tr[1]/td[4]/input[@type="text"]', ['Klink', browser.Keys.ENTER])
+    'sort by #M ': function (browser) {
+        var tableSpeaker = browser.page.presentationsEdit().section.tableSpeaker;
+        tableSpeaker
+            .clickBySelector('@lastNameColumn')
+            .verify.containsText('@firstRowInColumnLastName', 'Kolehmainen')
 
-            .useCss()
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
+            .clickBySelector('@lastNameColumn')
+            .verify.containsText('@firstRowInColumnLastName', 'Kolehmainen');
+    },
 
-            .useXpath()
-            .verify.containsText('//tr[1]/td[4]/span', 'Klink');
+    'search by #M ': function (browser) {
+        var tableSpeaker = browser.page.presentationsEdit().section.tableSpeaker;
+        tableSpeaker
+            .setValueBySelector('@lastNameSearchColumn', ['Kolehmainen', browser.Keys.ENTER])
+            .verify.containsText('@firstRowInColumnLastName', 'Kolehmainen');
     },
 });

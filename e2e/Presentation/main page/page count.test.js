@@ -9,17 +9,13 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'page count': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[1][@value="20"]')
-            .waitForElementVisible('//span[text()="1 of 1"]', 5000)
-            //.waitForElementVisible('//a[1][@data-page="2"]', 5000)
-            // .waitForElementVisible('//a[2][text()="Next"]', 5000)
-            // .waitForElementVisible('//a[3][text()="Last"]', 5000)
-            .clickBySelectorXpath('//option[2][@value="50"]')
-            .useXpath()
-            .waitForElementVisible('//span[text()="1 of 1"]', 5000)
-            .clickBySelectorXpath('//option[3][@value="100"]')
-            .useXpath()
-            .waitForElementVisible('//span[text()="1 of 1"]', 5000);
+        var allInformation = browser.page.presentations().section.allInformation;
+        allInformation
+            .clickBySelector('@option20Page')
+            .waitForElementVisible('@pageNumberCount', 5000)
+            .clickBySelector('@option50Page')
+            .waitForElementVisible('@pageNumberCount', 5000)
+            .clickBySelector('@option100Page')
+            .waitForElementVisible('@pageNumberCount', 5000);
     },
 });

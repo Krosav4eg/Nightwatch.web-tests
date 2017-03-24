@@ -10,14 +10,25 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'go to the edit presentation': function (browser) {
-        browser
-            .clickBySelectorXpath('//a[@href="/presentations/edit/6053"]')
-            .verify.elementPresent('//h1[text()="Edit Presentation (#6053)"]');
+        var idColumn = browser.page.presentations().section.idColumn;
+        idColumn
+            .clickBySelector('@firstRow')
+    },
+
+    'sort by #M ': function (browser) {
+        var tableSpeaker = browser.page.presentationsEdit().section.tableSpeaker;
+        tableSpeaker
+            .clickBySelector('@firstNameColumnM')
+            .verify.containsText('@firstRowInColumnM', '#113708')
+
+            .clickBySelector('@firstNameColumnM')
+            .verify.containsText('@firstRowInColumnM', '#113708');
     },
 
     'search by #M ': function (browser) {
-        browser
-            .setValueByXpath('//me-event-presentation-speaker-list//tr[1]/td[1]/input[@type="text"]', ['188600', browser.Keys.ENTER])
-            .verify.elementPresent('//tr[1]/td[1]/span/a[@href="/presentations/6053/master-contact/188600"]');
+        var tableSpeaker = browser.page.presentationsEdit().section.tableSpeaker;
+        tableSpeaker
+            .setValueBySelector('@firstSearchColumnM', ['113708', browser.Keys.ENTER])
+            .verify.containsText('@firstRowInColumnM', '#113708');
     },
 });

@@ -10,18 +10,29 @@ module.exports = _.assign(presteps, auth, {
     },
     
     'select by speaker email': function (browser) {
-        browser
-            .useXpath()
-            .getLocationInView("//tr/th[11]", function (result) {
-                this.verify.equal(typeof result, "object")
-                this.verify.equal(result.status, 0)
-                this.verify.equal(result.value.x, 1298)
-                this.verify.equal(result.value.y, 421)
-                this.setValue('//tr/td[11]/input[@type="text"]', ['holger.kink@rwe.com', browser.Keys.ENTER])
-                    .useCss()
-                    .waitForElementNotVisible('#thisIsMainLoader', 30000)
-                    .useXpath()
-                    .verify.elementPresent('//tr[1]/td[11]/span/ul/li[contains(text(),"holger.kink@rwe.com")]')
-            });
+        var speakerEmailColumn = browser.page.presentations().section.speakerEmailColumn;
+        speakerEmailColumn
+            .moveToElement('@nameColumn', 1298, 597)
+            .clickBySelector('@nameColumn')
+
+            .verify.containsText("@firstRow", "andrea.abels@eon-energie.com")
+            .verify.containsText("@secondRow", "boris.funke@citiworks.de")
+            .verify.containsText("@thirdRow", "boris.funke@citiworks.de")
+            .verify.containsText("@fourthRow", "boris.funke@citiworks.de")
+
+            .clickBySelector('@nameColumn')
+
+            .verify.containsText("@firstRow", "ingo.alpheus@rwe.com")
+            .verify.containsText("@secondRow", "holger.kink@rwe.com")
+            .verify.containsText("@thirdRow", "boris.funke@citiworks.de")
+            .verify.containsText("@fourthRow", "boris.funke@citiworks.de")
+    },
+
+    'search by 3 letters': function (browser) {
+        var speakerEmailColumn = browser.page.presentations().section.speakerEmailColumn;
+        speakerEmailColumn
+            .setValueBySelector('@seachColumn', ['ingo', browser.Keys.ENTER])
+
+            .verify.containsText("@firstRow", "ingo.alpheus@rwe.com")
     },
 });

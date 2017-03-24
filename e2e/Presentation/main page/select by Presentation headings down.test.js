@@ -8,27 +8,31 @@ module.exports = _.assign(presteps, auth, {
         browser
             .relUrl('/event/212/presentations')
     },
-    
-    'select by presentation headings down': function (browser) {
-        browser
-            .clickBySelectorXpath('//tr/th[5]')
-            .clickBySelectorXpath('//tr/th[5]')
 
-            .useXpath()
-            .verify.elementNotPresent('//tr[1]/td[5]/span/div[contains(text(),"Some heading")]')
-            .verify.elementNotPresent('//tr[2]/td[5]/span/div[contains(text(),"New Heading")]');
+    'select by speaker email': function (browser) {
+        var presentationHeadingsColumn = browser.page.presentations().section.presentationHeadingsColumn;
+        presentationHeadingsColumn
+            .moveToElement('@nameColumn', 1298, 597)
+            .clickBySelector('@nameColumn')
+
+            .verify.containsText("@firstRow", "")
+            .verify.containsText("@secondRow", "")
+            .verify.containsText("@thirdRow", "")
+            .verify.containsText("@fourthRow", "")
+
+            .clickBySelector('@nameColumn')
+
+            .verify.containsText("@firstRow", '')
+            .verify.containsText("@secondRow", "")
+            .verify.containsText("@thirdRow", "")
+            .verify.containsText("@fourthRow", "")
     },
 
-    'select by presentation headings up': function (browser) {
-        browser
-            .clickBySelectorXpath('//tr/th[5]')
-
-            .useXpath()
-            .verify.containsText('//tr[1]/td[5]/span','')
-            .verify.containsText('//tr[2]/td[5]/span','')
-            .verify.containsText('//tr[3]/td[5]/span','')
-            .verify.containsText('//tr[4]/td[5]/span','')
-            .verify.containsText('//tr[5]/td[5]/span','')
-            .verify.containsText('//tr[6]/td[5]/span','');
-    },
+    // 'search by 3 letters': function (browser) {
+    //     var presentationHeadingsColumn = browser.page.presentations().section.presentationHeadingsColumn;
+    //     presentationHeadingsColumn
+    //         .setValueBySelector('@seachColumn', ['Prokurist', browser.Keys.ENTER])
+    //
+    //         .verify.containsText("@firstRow", "Prokurist")
+    // },
 });

@@ -10,36 +10,25 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'select by id up': function (browser) {
-        browser
-            .clickBySelectorXpath('//tr/th[1]')
-            .useCss()
-            .verify.elementPresent('a[href="/presentations/edit/628"]')
-            .verify.elementPresent('a[href="/presentations/edit/629"]')
-            .verify.elementPresent('a[href="/presentations/edit/5712"]')
-            .verify.elementPresent('a[href="/presentations/edit/5713"]')
-            .verify.elementPresent('a[href="/presentations/edit/5714"]')
-            .verify.elementPresent('a[href="/presentations/edit/5715"]')
-            .verify.elementPresent('a[href="/presentations/edit/5716"]')
-            .verify.elementPresent('a[href="/presentations/edit/5717"]')
-            .verify.elementPresent('a[href="/presentations/edit/5718"]')
-            .verify.elementPresent('a[href="/presentations/edit/5719"]')
-            .verify.elementPresent('a[href="/presentations/edit/5720"]');
+        var idColumn = browser.page.presentations().section.idColumn;
+        idColumn
+            .clickBySelector('@nameColumn')
+            .verify.containsText("@firstRow", "628")
+            .verify.containsText("@secondRow", "629")
+            .verify.containsText("@thirdRow", "5712")
+            .verify.containsText("@fourthRow", "5713")
+
+            .clickBySelector('@nameColumn')
+            .verify.containsText("@firstRow", "6062")
+            .verify.containsText("@secondRow", "5720")
+            .verify.containsText("@thirdRow", "5719")
+            .verify.containsText("@fourthRow", "5718")
     },
 
-    'select by id down': function (browser) {
-        browser
-            .clickBySelectorXpath('//tr/th[1]')
-            .useCss()
-            .verify.elementPresent('a[href="/presentations/edit/5720"]')
-            .verify.elementPresent('a[href="/presentations/edit/5719"]')
-            .verify.elementPresent('a[href="/presentations/edit/5718"]')
-            .verify.elementPresent('a[href="/presentations/edit/5717"]')
-            .verify.elementPresent('a[href="/presentations/edit/5716"]')
-            .verify.elementPresent('a[href="/presentations/edit/5715"]')
-            .verify.elementPresent('a[href="/presentations/edit/5714"]')
-            .verify.elementPresent('a[href="/presentations/edit/5713"]')
-            .verify.elementPresent('a[href="/presentations/edit/5712"]')
-            .verify.elementPresent('a[href="/presentations/edit/628"]')
-            .verify.elementPresent('a[href="/presentations/edit/629"]');
+    'seach by id ': function (browser) {
+        var idColumn = browser.page.presentations().section.idColumn;
+        idColumn
+            .setValueBySelector('@seachColumn', ['5720', browser.Keys.ENTER])
+            .verify.containsText("@firstRow", "5720")
     },
 });

@@ -6,29 +6,29 @@ module.exports = _.assign(presteps, auth, {
 
     'redirection to presentations': function (browser) {
         browser
-            .relUrl('/event/212/presentations')
+            .relUrl('/event/2008/presentations')
     },
 
     'go to the edit presentation': function (browser) {
-        browser
-            .clickBySelectorXpath('//a[@href="/presentations/edit/629"]')
-
-            .useCss()
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
-
-            .useXpath()
-            .verify.elementPresent('//h1[text()="Edit Presentation (#629)"]');
-
+        var idColumn = browser.page.presentations().section.idColumn;
+        idColumn
+            .clickBySelector('@firstRow')
     },
 
-    'search by title ': function (browser) {
-        browser
-            .setValueByXpath('//me-event-presentation-speaker-list//tr[1]/td[7]/input[@type="text"]', ['Senior', browser.Keys.ENTER])
+    'sort by #M ': function (browser) {
+        var tableSpeaker = browser.page.presentationsEdit().section.tableSpeaker;
+        tableSpeaker
+            .clickBySelector('@titleNameColumn')
+            .verify.containsText('@firstRowInColumnTitle', 'kiinteistöpäällikkö')
 
-            .useCss()
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
+            .clickBySelector('@titleNameColumn')
+            .verify.containsText('@firstRowInColumnTitle', 'kiinteistöpäällikkö');
+    },
 
-            .useXpath()
-            .verify.containsText('//tr[1]/td[7]/span', 'Senior Consultant & Analyst, Center of Expertise "Internal Reporting');
+    'search by #M ': function (browser) {
+        var tableSpeaker = browser.page.presentationsEdit().section.tableSpeaker;
+        tableSpeaker
+            .setValueBySelector('@titelSearchColumn', ['kiinteistöpäällikkö', browser.Keys.ENTER])
+            .verify.containsText('@firstRowInColumnTitle', 'kiinteistöpäällikkö');
     },
 });
