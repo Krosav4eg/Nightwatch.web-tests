@@ -242,15 +242,15 @@ module.exports = {
                     locateStrategy: 'xpath'
                 },
                 offeringsForParticipant1: {
-                    selector: '(//b[contains(text(),"Offerings")])[4]',
+                    selector: '(//b[contains(text(),"Offerings")])[1]',
                     locateStrategy: 'xpath'
                 },
                 securitySolutionsForParticipant1: {
-                    selector: '(//b[contains(text(),"Security solutions")])[4]',
+                    selector: '(//b[contains(text(),"Security solutions")])[1]',
                     locateStrategy: 'xpath'
                 },
                 personalMessageForParticipant1: {
-                    selector: '(//b[contains(text(),"Personal Message")])[4]',
+                    selector: '(//b[contains(text(),"Personal Message")])[1]',
                     locateStrategy: 'xpath'
                 },
                 bookedMeetingButtonForParticipant1: {
@@ -262,15 +262,15 @@ module.exports = {
                     locateStrategy: 'xpath'
                 },
                 offeringsForParticipant2: {
-                    selector: '(//b[contains(text(),"Offerings")])[5]',
+                    selector: '(//b[contains(text(),"Offerings")])[2]',
                     locateStrategy: 'xpath'
                 },
                 securitySolutionsForParticipant2: {
-                    selector: '(//b[contains(text(),"Security solutions")])[5]',
+                    selector: '(//b[contains(text(),"Security solutions")])[2]',
                     locateStrategy: 'xpath'
                 },
                 personalMessageForParticipant2: {
-                    selector: '(//b[contains(text(),"Personal Message")])[5]',
+                    selector: '(//b[contains(text(),"Personal Message")])[2]',
                     locateStrategy: 'xpath'
                 },
                 bookedMeetingButtonForParticipant2: {
@@ -282,15 +282,15 @@ module.exports = {
                     locateStrategy: 'xpath'
                 },
                 offeringsForParticipant3: {
-                    selector: '(//b[contains(text(),"Offerings")])[6]',
+                    selector: '(//b[contains(text(),"Offerings")])[3]',
                     locateStrategy: 'xpath'
                 },
                 securitySolutionsForParticipant3: {
-                    selector: '(//b[contains(text(),"Security solutions")])[6]',
+                    selector: '(//b[contains(text(),"Security solutions")])[3]',
                     locateStrategy: 'xpath'
                 },
                 personalMessageForParticipant3: {
-                    selector: '(//b[contains(text(),"Personal Message")])[6]',
+                    selector: '(//b[contains(text(),"Personal Message")])[3]',
                     locateStrategy: 'xpath'
                 },
                 bookedMeetingButtonForParticipant3: {
@@ -341,6 +341,10 @@ module.exports = {
                 },
                 closeButton: {
                     selector: '(//span[contains(text(),"×")])[2]',
+                    locateStrategy: 'xpath'
+                },
+                closeButtonForModalContent: {
+                    selector: '(//span[contains(text(),"×")])',
                     locateStrategy: 'xpath'
                 },
                 firstParticipant: {
@@ -703,6 +707,10 @@ module.exports = {
                 },
                 firstRowWithLastName: {
                     selector: '//tr[1]/td[6]//a[contains(text(),"Röynä")]',
+                    locateStrategy: 'xpath'
+                },
+                secondRowWithLastName: {
+                    selector: '//tr[2]/td[6]//a',
                     locateStrategy: 'xpath'
                 },
                 secondRow: {

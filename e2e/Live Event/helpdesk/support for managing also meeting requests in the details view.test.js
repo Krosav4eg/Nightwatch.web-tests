@@ -88,6 +88,18 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelector('@chevronUp');
     },
 
+    'close modal content': function (browser) {
+        var informationDelegate = browser.page.helpdesk().section.informationDelegate;
+        informationDelegate
+            .clickBySelector('@cancelButton');
+    },
+
+    'select second delegate': function (browser) {
+        var lastNameColumn = browser.page.helpdesk().section.lastNameColumn;
+        lastNameColumn
+            .clickBySelector('@secondRowWithLastName');
+    },
+
     'check rescheduling button': function (browser) {
         var meetingsRequests = browser.page.helpdesk().section.reschedulingButtonFunctionality;
         meetingsRequests
@@ -100,8 +112,6 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('@duringTimeInputField')
 
             .verify.elementPresent('@overlappingHeader')
-            .verify.elementPresent('@overlappingInputField')
-
-            .clickBySelector('@closeButton');
+            .verify.elementPresent('@overlappingInputField');
     },
 });
