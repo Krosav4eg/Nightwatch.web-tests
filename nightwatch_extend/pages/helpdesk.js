@@ -86,7 +86,7 @@ module.exports = {
                     selector: '//a[text()="Luther"]',
                     locateStrategy: 'xpath'
                 },
-                LaaksonenDelegate:{
+                LaaksonenDelegate: {
                     selector: '//a[text()="Laaksonen"]',
                     locateStrategy: 'xpath'
                 },
@@ -204,6 +204,171 @@ module.exports = {
                 },
             }
         },
+
+        meetingsRequests: {
+            selector: '//div[contains(text(),"Meeting Requests")]',
+            locateStrategy: 'xpath',
+            elements: {
+                titleName: {
+                    selector: '//div[contains(text(),"Meeting Requests")]',
+                    locateStrategy: 'xpath'
+                },
+                chevronDown: {
+                    selector: '(//i[@class="pull-right glyphicon accordion-panel-arrow glyphicon-chevron-down"])[2]',
+                    locateStrategy: 'xpath'
+                },
+                participatingDelegate1: {
+                    selector: '(//h4[@class="col-lg-12"]/span)[1]',
+                    locateStrategy: 'xpath'
+                },
+                participatingDelegate1Status: {
+                    selector: '(//b[contains(text(),"Rejected")])[1]',
+                    locateStrategy: 'xpath'
+                },
+                participatingDelegate2: {
+                    selector: '(//h4[@class="col-lg-12"]/span)[3]',
+                    locateStrategy: 'xpath'
+                },
+                participatingDelegate2Status: {
+                    selector: '//b[contains(text(),"Open")]',
+                    locateStrategy: 'xpath'
+                },
+                participatingDelegate3: {
+                    selector: '(//h4[@class="col-lg-12"]/span)[5]',
+                    locateStrategy: 'xpath'
+                },
+                participatingDelegate3Status: {
+                    selector: '(//b[contains(text(),"Rejected")])[2]',
+                    locateStrategy: 'xpath'
+                },
+                offeringsForParticipant1: {
+                    selector: '(//b[contains(text(),"Offerings")])[4]',
+                    locateStrategy: 'xpath'
+                },
+                securitySolutionsForParticipant1: {
+                    selector: '(//b[contains(text(),"Security solutions")])[4]',
+                    locateStrategy: 'xpath'
+                },
+                personalMessageForParticipant1: {
+                    selector: '(//b[contains(text(),"Personal Message")])[4]',
+                    locateStrategy: 'xpath'
+                },
+                bookedMeetingButtonForParticipant1: {
+                    selector: '(//button[contains(text(),"Book meeting")])[1]',
+                    locateStrategy: 'xpath'
+                },
+                rejectedButtonForParticipant1: {
+                    selector: '(//button[contains(text(),"Reject meeting")])[1]',
+                    locateStrategy: 'xpath'
+                },
+                offeringsForParticipant2: {
+                    selector: '(//b[contains(text(),"Offerings")])[5]',
+                    locateStrategy: 'xpath'
+                },
+                securitySolutionsForParticipant2: {
+                    selector: '(//b[contains(text(),"Security solutions")])[5]',
+                    locateStrategy: 'xpath'
+                },
+                personalMessageForParticipant2: {
+                    selector: '(//b[contains(text(),"Personal Message")])[5]',
+                    locateStrategy: 'xpath'
+                },
+                bookedMeetingButtonForParticipant2: {
+                    selector: '(//button[contains(text(),"Book meeting")])[2]',
+                    locateStrategy: 'xpath'
+                },
+                rejectedButtonForParticipant2: {
+                    selector: '(//button[contains(text(),"Reject meeting")])[2]',
+                    locateStrategy: 'xpath'
+                },
+                offeringsForParticipant3: {
+                    selector: '(//b[contains(text(),"Offerings")])[6]',
+                    locateStrategy: 'xpath'
+                },
+                securitySolutionsForParticipant3: {
+                    selector: '(//b[contains(text(),"Security solutions")])[6]',
+                    locateStrategy: 'xpath'
+                },
+                personalMessageForParticipant3: {
+                    selector: '(//b[contains(text(),"Personal Message")])[6]',
+                    locateStrategy: 'xpath'
+                },
+                bookedMeetingButtonForParticipant3: {
+                    selector: '(//button[contains(text(),"Book meeting")])[3]',
+                    locateStrategy: 'xpath'
+                },
+                rejectedButtonForParticipant3: {
+                    selector: '(//button[contains(text(),"Reject meeting")])[3]',
+                    locateStrategy: 'xpath'
+                },
+                chevronUp: {
+                    selector: '(//i[@class="pull-right glyphicon accordion-panel-arrow glyphicon-chevron-up"])[2]',
+                    locateStrategy: 'xpath'
+                },
+
+            }
+        },
+        suggestedMeetings: {
+            selector: '//div[contains(text(),"Suggested Meetings")]',
+            locateStrategy: 'xpath',
+            elements: {
+                titleName: {
+                    selector: '//div[contains(text(),"Suggested Meetings")]',
+                    locateStrategy: 'xpath'
+                },
+                popUp: {
+                    selector: '(//div[@class="panel-collapse collapse in show"])[2]',
+                    locateStrategy: 'xpath'
+                },
+                chevronDown: {
+                    selector: '(//i[@class="pull-right glyphicon accordion-panel-arrow glyphicon-chevron-down"])[3]',
+                    locateStrategy: 'xpath'
+                },
+                chevronUp: {
+                    selector: '(//i[@class="pull-right glyphicon accordion-panel-arrow glyphicon-chevron-up"])[2]',
+                    locateStrategy: 'xpath'
+                },
+            }
+        },
+
+        reschedulingButtonFunctionality: {
+            selector: '(//button[contains(text(),"Reschedule")])[1]',
+            locateStrategy: 'xpath',
+            elements: {
+                reschedulingButton: {
+                    selector: '(//button[contains(text(),"Reschedule")])[1]',
+                    locateStrategy: 'xpath'
+                },
+                closeButton: {
+                    selector: '(//span[contains(text(),"×")])[2]',
+                    locateStrategy: 'xpath'
+                },
+                firstParticipant: {
+                    selector: '(//h4/div[3]/div[2])[1]',
+                    locateStrategy: 'xpath'
+                },
+                selectTimeHeader: {
+                    selector: '//h4[contains(text(),"Select a time for the meeting")]',
+                    locateStrategy: 'xpath'
+                },
+                duringTimeHeader: {
+                    selector: '//label[contains(text(),"During official meeting times")]',
+                    locateStrategy: 'xpath'
+                },
+                duringTimeInputField: {
+                    selector: '//select[@formcontrolname="time"]',
+                    locateStrategy: 'xpath'
+                },
+                overlappingHeader: {
+                    selector: '//label[contains(text(),"Overlapping with presentation")]',
+                    locateStrategy: 'xpath'
+                },
+                overlappingInputField: {
+                    selector: '//select[@formcontrolname="overlappingTime"]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
         informationDelegate: {
             selector: '//div[@class="modal-content"]',
             locateStrategy: 'xpath',
@@ -225,7 +390,7 @@ module.exports = {
                     locateStrategy: 'xpath'
                 },
 
-                participationStatus:{
+                participationStatus: {
                     selector: 'select[formcontrolname="participationStatus"]',
                     locateStrategy: 'css selector'
                 },
