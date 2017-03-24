@@ -10,47 +10,52 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'choose one partner': function (browser) {
-        browser
-            .clickBySelectorXpath('(//input[@type="checkbox"])[2]')
+        var checkboxColumn = browser.page.representatives().section.checkboxColumn;
+        checkboxColumn
+            .clickBySelector('@firstRow')
 
-
-            .verify.attributeEquals('(//input[@type="checkbox"])[2]', 'checked', 'true')
-            .expect.element('(//input[@type="checkbox"])[1]').to.not.be.selected;
+            .verify.attributeEquals('@firstRow', 'checked', 'true')
+            .expect.element('@allcheCkbox').to.not.be.selected;
     },
 
     'choose several partner ': function (browser) {
-        browser
-            .clickBySelectorXpath('(//input[@type="checkbox"])[3]')
-            .clickBySelectorXpath('(//input[@type="checkbox"])[4]')
+        var checkboxColumn = browser.page.representatives().section.checkboxColumn;
+        checkboxColumn
+            .clickBySelector('@secondRow')
+            .clickBySelector('@thirdRow')
 
-            .verify.attributeEquals('(//input[@type="checkbox"])[2]', 'checked', 'true')
-            .verify.attributeEquals('(//input[@type="checkbox"])[3]', 'checked', 'true')
-            .verify.attributeEquals('(//input[@type="checkbox"])[4]', 'checked', 'true')
-            .expect.element('(//input[@type="checkbox"])[5]').to.not.be.selected;
+            .verify.attributeEquals('@firstRow', 'checked', 'true')
+            .verify.attributeEquals('@secondRow', 'checked', 'true')
+            .verify.attributeEquals('@thirdRow', 'checked', 'true')
+            .expect.element('@fourthRow').to.not.be.selected;
     },
 
     'choose all': function (browser) {
-        browser
-            .clickBySelectorXpath('(//input[@type="checkbox"])[1]')
+        var checkboxColumn = browser.page.representatives().section.checkboxColumn;
+        checkboxColumn
+            .clickBySelector('@allcheCkbox');
 
-            .elements('css selector','input[type="checkbox"]', function (result) {
+        browser .elements('css selector','input[type="checkbox"]', function (result) {
                  var count = result.value.length;
                  for(var countVerify = 1; countVerify < count; countVerify++ ){
                      var selector = '(//input[@type="checkbox"])[' + countVerify + ']';
-                     this.verify.attributeEquals(selector, 'checked', 'true');
+                     this.useXpath()
+                         .verify.attributeEquals(selector, 'checked', 'true');
                  }
             });
     },
 
     'cancel all': function (browser) {
-        browser
-            .clickBySelectorXpath('//*[@class="btn btn-default btn-primary clear-selection-btn-margin"]')
+        var allInformation = browser.page.representatives().section.allInformation;
+        allInformation
+            .clickBySelector('@clearSelectionButton')
 
-            .elements('css selector','input[type="checkbox"]', function (result) {
+        browser  .elements('css selector','input[type="checkbox"]', function (result) {
                 var count = result.value.length;
                 for(var countVerify = 1; countVerify < count; countVerify++ ){
                     var selector = '(//input[@type="checkbox"])[' + countVerify + ']';
-                    this.expect.element(selector).to.not.be.selected;
+                    this.useXpath()
+                        .expect.element(selector).to.not.be.selected;
                 }
             });
     },

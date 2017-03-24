@@ -88,7 +88,6 @@ module.exports = {
                     }
                 },
             },
-
             lastNameColumn: {
                 selector: '//tr[1]/th[3]',
                 locateStrategy: 'xpath',
@@ -119,7 +118,6 @@ module.exports = {
                     }
                 },
             },
-
             firstNameColumn: {
                 selector: '//tr[1]/th[4]',
                 locateStrategy: 'xpath',
@@ -150,7 +148,6 @@ module.exports = {
                     }
                 },
             },
-
             titleColumn: {
                 selector: '//tr[1]/th[5]',
                 locateStrategy: 'xpath',
@@ -181,7 +178,6 @@ module.exports = {
                     }
                 },
             },
-
             emailColumn: {
                 selector: '//tr[1]/th[6]',
                 locateStrategy: 'xpath',
@@ -212,7 +208,6 @@ module.exports = {
                     }
                 },
             },
-
             mobileColumn: {
                 selector: '//tr[1]/th[7]',
                 locateStrategy: 'xpath',
@@ -243,7 +238,6 @@ module.exports = {
                     }
                 },
             },
-
             countryColumn: {
                 selector: '//tr[1]/th[8]',
                 locateStrategy: 'xpath',
@@ -274,7 +268,6 @@ module.exports = {
                     }
                 },
             },
-
             organizerColumn: {
                 selector: '//tr[1]/th[9]',
                 locateStrategy: 'xpath',
@@ -305,7 +298,6 @@ module.exports = {
                     },
                 }
             },
-
             presentationTypeColumn: {
                 selector: '//tr[1]/th[10]',
                 locateStrategy: 'xpath',
@@ -382,7 +374,6 @@ module.exports = {
                     }
                 }
             },
-
             eventRolesColumn: {
                 selector: '//tr[1]/th[11]',
                 locateStrategy: 'xpath',
@@ -504,7 +495,6 @@ module.exports = {
                     },
                 }
             },
-
             presenterTypeColumn: {
                 selector: '//tr[1]/th[13]',
                 locateStrategy: 'xpath',

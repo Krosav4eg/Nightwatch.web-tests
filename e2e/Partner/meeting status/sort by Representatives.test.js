@@ -10,32 +10,33 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'sort by Representatives up': function (browser) {
-        browser
-            .clickBySelectorXpath('//tr/th[5]')
-            .clickBySelectorXpath('//tr/th[5]')
+        var representativesColumn = browser.page.meetingStatus().section.representativesColumn;
+        representativesColumn
+            .clickBySelector('@nameColumn')
+            .clickBySelector('@nameColumn')
 
-            .verify.containsText('//tr[1]/td[5]/span', '45')
-            .verify.containsText('//tr[2]/td[5]', '1')
-            .verify.containsText('//tr[3]/td[5]', '0')
-            .verify.containsText('//tr[4]/td[5]', '0')
-            .verify.containsText('//tr[5]/td[5]', '0')
+            .verify.containsText('@firstRow', '45')
+            .verify.containsText('@secondRow', '1')
+            .verify.containsText('@thirdRow', '0')
+            .verify.containsText('@fourthRow', '0')
     },
 
     'sort by Representatives down': function (browser) {
-        browser
-            .clickBySelectorXpath('//tr/th[5]')
+        var representativesColumn = browser.page.meetingStatus().section.representativesColumn;
+        representativesColumn
+            .clickBySelector('@nameColumn')
 
-            .verify.containsText('//tr[1]/td[5]/span', '0')
-            .verify.containsText('//tr[2]/td[5]', '0')
-            .verify.containsText('//tr[3]/td[5]', '0')
-            .verify.containsText('//tr[4]/td[5]', '0')
-            .verify.containsText('//tr[5]/td[5]', '0')
+            .verify.containsText('@firstRow', '0')
+            .verify.containsText('@secondRow', '0')
+            .verify.containsText('@thirdRow', '0')
+            .verify.containsText('@fourthRow', '0')
     },
 
     'search by Representatives Blank': function (browser) {
-        browser
-            .setValueByXpath('//tr[1]/td[5]/input[@type="text"]', ['45', browser.Keys.ENTER])
+        var representativesColumn = browser.page.meetingStatus().section.representativesColumn;
+        representativesColumn
+            .setValueBySelector('@seachColumn', ['45', browser.Keys.ENTER])
 
-            .verify.containsText('//tr[1]/td[5]/span', '45')
+            .verify.containsText('@firstRow', '45')
     },
 });

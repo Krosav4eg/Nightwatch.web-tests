@@ -10,42 +10,52 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'choose Show all': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[@value=1]')
+        var allInformation = browser.page.representatives().section.allInformation;
+        allInformation
+            .clickBySelector('@showAllFilterOption')
 
-            .verify.containsText('//tr[1]/td[3]/span', 'Mohd')
-            .verify.containsText('//tr[2]/td[3]/span', 'Ville')
-            .verify.containsText('//tr[3]/td[3]/span', 'Khuram')
-            .verify.containsText('//tr[4]/td[3]/span', 'Asif')
-            .verify.containsText('//tr[5]/td[3]/span', 'Om')
+        var firstNameColumn = browser.page.representatives().section.firstNameColumn;
+        firstNameColumn
+            .verify.containsText('@firstRow', 'Mohd')
+            .verify.containsText('@secondRow', 'Ville')
+            .verify.containsText('@thirdRow', 'Khuram')
+            .verify.containsText('@fourthRow', 'Asif')
     },
 
     'choose Show cancelled': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[@value=2]')
+        var allInformation = browser.page.representatives().section.allInformation;
+        allInformation
+            .clickBySelector('@showCancelledFilterOption')
 
-            .verify.elementPresent('//*[contains(text(), "No results found")]')
+        var firstNameColumn = browser.page.representatives().section.firstNameColumn;
+        firstNameColumn
+
+            .verify.elementPresent('@noResultsFound')
     },
 
     'choose Show only active': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[@value=0]')
+        var allInformation = browser.page.representatives().section.allInformation;
+        allInformation
+            .clickBySelector('@showOnlyActiveFilterOption')
 
-            .verify.containsText('//tr[1]/td[3]/span', 'Mohd')
-            .verify.containsText('//tr[2]/td[3]/span', 'Ville')
-            .verify.containsText('//tr[3]/td[3]/span', 'Khuram')
-            .verify.containsText('//tr[4]/td[3]/span', 'Asif')
-            .verify.containsText('//tr[5]/td[3]/span', 'Om')
+        var firstNameColumn = browser.page.representatives().section.firstNameColumn;
+        firstNameColumn
+            .verify.containsText('@firstRow', 'Mohd')
+            .verify.containsText('@secondRow', 'Ville')
+            .verify.containsText('@thirdRow', 'Khuram')
+            .verify.containsText('@fourthRow', 'Asif')
     },
 
     'clock reset all': function (browser) {
-        browser
-            .clickBySelectorXpath('//*[@class="btn btn-default btn-block filter-button-margins"]')
+        var allInformation = browser.page.representatives().section.allInformation;
+        allInformation
+            .clickBySelector('@resetAllButton')
 
-            .verify.containsText('//tr[1]/td[3]/span', 'Mohd')
-            .verify.containsText('//tr[2]/td[3]/span', 'Ville')
-            .verify.containsText('//tr[3]/td[3]/span', 'Khuram')
-            .verify.containsText('//tr[4]/td[3]/span', 'Asif')
-            .verify.containsText('//tr[5]/td[3]/span', 'Om')
+        var firstNameColumn = browser.page.representatives().section.firstNameColumn;
+        firstNameColumn
+            .verify.containsText('@firstRow', 'Mohd')
+            .verify.containsText('@secondRow', 'Ville')
+            .verify.containsText('@thirdRow', 'Khuram')
+            .verify.containsText('@fourthRow', 'Asif')
     },
 });

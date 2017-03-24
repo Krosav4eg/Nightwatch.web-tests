@@ -10,80 +10,94 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'press when partner wasnt choosen': function (browser) {
-        browser
-            .clickBySelectorXpath('//a[text()="Send email"]')
+        var allInformation = browser.page.representatives().section.allInformation;
+        allInformation
+            .clickBySelector('@sendEmailButton')
 
-            .waitForElementVisible('//div[@class="simple-notification toast-notification alert"]', 10000)
-            .verify.containsText('//div[@class="sn-title"]', 'Info!')
-            .verify.containsText('//div[@class="sn-content"]', 'You need chose Partner first')
-            .clickBySelectorXpath('//div[@class="simple-notification toast-notification alert"]')
+            .waitForElementVisible('@alertMassege', 10000)
+            .verify.containsText('@contentMassege', 'You need chose Partner first')
     },
 
     'press when one partner was choosen': function (browser) {
-        browser
-            .clickBySelectorXpath('(//input[@type="checkbox"])[2]')
-            .clickBySelectorXpath('//a[text()="Send email"]')
+        var checkboxColumn = browser.page.representatives().section.checkboxColumn;
+        checkboxColumn
+            .clickBySelector('@firstRow');
+        var allInformation = browser.page.representatives().section.allInformation;
+        allInformation
+            .clickBySelector('@sendEmailButton')
 
-            .verify.valueContains('//select[@class="form-control ng-untouched ng-pristine ng-valid"]', '')
-            .verify.containsText('//*[contains(text(), "From Email")]/../div/input', "")
-            .verify.containsText('//*[contains(text(), "From Name")]/../div/input', "")
-            .verify.containsText('//*[contains(text(), "Reply-To Email")]/../div/input', "")
-            .verify.containsText('//*[contains(text(), "Subject")]/../div/input', "")
+        var sendEmail = browser.page.representatives().section.sendEmail;
+        sendEmail
+            .verify.valueContains('@templateSelect', '')
+            .verify.containsText('@fromEmailInput', "")
+            .verify.containsText('@fromNameInput', "")
+            .verify.containsText('@replyToEmailInput', "")
+            .verify.containsText('@subjectInput', "")
 
     },
 
     'verify choose Template': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[@value=170]')
+        var sendEmail = browser.page.representatives().section.sendEmail;
+        sendEmail
+            .clickBySelector('@option170')
 
-            .verify.valueContains('//*[contains(text(), "From Email")]/../div/input', '{{EventVersion.PCResponsible.Email}}')
-            .verify.valueContains('//*[contains(text(), "From Name")]/../div/input', '{{EventVersion.PCResponsible.FirstName}} {{EventVersion.PCResponsible.LastName}}')
-            .verify.valueContains('//*[contains(text(), "Reply-To Email")]/../div/input', '{{EventVersion.PCResponsible.Email}}')
-            .verify.valueContains('//*[contains(text(), "Subject")]/../div/input', 'Start to book your meetings')
+            .verify.valueContains('@fromEmailInput', '{{EventVersion.PCResponsible.Email}}')
+            .verify.valueContains('@fromNameInput', '{{EventVersion.PCResponsible.FirstName}} {{EventVersion.PCResponsible.LastName}}')
+            .verify.valueContains('@replyToEmailInput', '{{EventVersion.PCResponsible.Email}}')
+            .verify.valueContains('@subjectInput', 'Start to book your meetings')
 
-            .clickBySelectorXpath('//option[@value=581]')
+            .clickBySelector('@option581')
 
-            .verify.valueContains('//*[contains(text(), "From Email")]/../div/input', '{{EventVersion.PCResponsible.Email}}')
-            .verify.valueContains('//*[contains(text(), "From Name")]/../div/input', '{{EventVersion.PCResponsible.FirstName}} {{EventVersion.PCResponsible.LastName}}')
-            .verify.valueContains('//*[contains(text(), "Reply-To Email")]/../div/input', '{{EventVersion.PCResponsible.Email}}')
-            .verify.valueContains('//*[contains(text(), "Subject")]/../div/input', 'Your link to the Mobile Service')
+            .verify.valueContains('@fromEmailInput', '{{EventVersion.PCResponsible.Email}}')
+            .verify.valueContains('@fromNameInput', '{{EventVersion.PCResponsible.FirstName}} {{EventVersion.PCResponsible.LastName}}')
+            .verify.valueContains('@replyToEmailInput', '{{EventVersion.PCResponsible.Email}}')
+            .verify.valueContains('@subjectInput', 'Your link to the Mobile Service')
 
-            .clickBySelectorXpath('//option[@value=170]')
+            .clickBySelector('@option170')
 
-            .verify.valueContains('//*[contains(text(), "From Email")]/../div/input', '{{EventVersion.PCResponsible.Email}}')
-            .verify.valueContains('//*[contains(text(), "From Name")]/../div/input', '{{EventVersion.PCResponsible.FirstName}} {{EventVersion.PCResponsible.LastName}}')
-            .verify.valueContains('//*[contains(text(), "Reply-To Email")]/../div/input', '{{EventVersion.PCResponsible.Email}}')
-            .verify.valueContains('//*[contains(text(), "Subject")]/../div/input', 'Start to book your meetings')
+            .verify.valueContains('@fromEmailInput', '{{EventVersion.PCResponsible.Email}}')
+            .verify.valueContains('@fromNameInput', '{{EventVersion.PCResponsible.FirstName}} {{EventVersion.PCResponsible.LastName}}')
+            .verify.valueContains('@replyToEmailInput', '{{EventVersion.PCResponsible.Email}}')
+            .verify.valueContains('@subjectInput', 'Start to book your meetings')
     },
 
     'click by send Email': function (browser) {
-            browser
-                .clickBySelectorXpath('//button[text()="Send Email"]')
+        var sendEmail = browser.page.representatives().section.sendEmail;
+        sendEmail
+                .clickBySelector('@sendEmailButton');
 
-                .waitForElementVisible('//div[@class="simple-notification toast-notification success"]', 10000)
-                .verify.containsText('//div[@class="sn-title"]', 'Success')
-                .verify.containsText('//div[@class="sn-content"]', 'The email template was sent successfully')
-                .clickBySelectorXpath('//div[@class="simple-notification toast-notification success"]')
+        var allInformation = browser.page.representatives().section.allInformation;
+        allInformation
+                .waitForElementVisible('@successMassege', 10000)
+                .verify.containsText('@contentMassege', 'The email template was sent successfully');
     },
 
     'press when all partner was choosen': function (browser) {
-        browser
-            .clickBySelectorXpath('(//input[@type="checkbox"])[1]')
-            .clickBySelectorXpath('//a[text()="Send email"]')
+        var checkboxColumn = browser.page.representatives().section.checkboxColumn;
+        checkboxColumn
+            .clickBySelector('@allcheCkbox');
 
-            .verify.valueContains('//select[@class="form-control ng-untouched ng-pristine ng-valid"]', null)
-            .verify.valueContains('//*[contains(text(), "From Email")]/../div/input', null)
-            .verify.valueContains('//*[contains(text(), "From Name")]/../div/input', null)
-            .verify.valueContains('//*[contains(text(), "Reply-To Email")]/../div/input', null)
-            .verify.valueContains('//*[contains(text(), "Subject")]/../div/input', null)
+        var allInformation = browser.page.representatives().section.allInformation;
+        allInformation
+            .clickBySelector('@sendEmailButton')
+
+        var sendEmail = browser.page.representatives().section.sendEmail;
+        sendEmail
+            .verify.valueContains('@templateSelect', '0')
+            .verify.valueContains('@fromEmailInput', '')
+            .verify.valueContains('@fromNameInput', '')
+            .verify.valueContains('@replyToEmailInput', '')
+            .verify.valueContains('@subjectInput', '')
     },
 
     'click by Cancel': function (browser) {
-        browser
-            .clickBySelectorXpath('//button[text()="Cancel"]')
-
-            .clickBySelectorXpath('//a[text()="Send email"]')
-
-            .clickBySelectorXpath('//button[@class="close"]')
+        var sendEmail = browser.page.representatives().section.sendEmail;
+        sendEmail
+            .clickBySelector('@cancelButton');
+        var allInformation = browser.page.representatives().section.allInformation;
+        allInformation
+            .clickBySelector('@sendEmailButton');
+        sendEmail
+            .clickBySelector('@closeButton');
     },
 });

@@ -10,57 +10,55 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'sort by Participation status up': function (browser) {
-        browser
-            .clickBySelectorXpath('//*[contains(text(), "Participation status")]')
-            .clickBySelectorXpath('//*[contains(text(), "Participation status")]')
+        var participationStatusColumn = browser.page.meetingStatus().section.participationStatusColumn;
+        participationStatusColumn
+            .clickBySelector('@nameColumn')
 
-            .verify.containsText('//tr[1]/td[2]/span', 'Confirmed')
-            .verify.containsText('//tr[2]/td[2]/span', 'Confirmed')
-            .verify.containsText('//tr[3]/td[2]/span', 'Confirmed')
-            .verify.containsText('//tr[4]/td[2]/span', 'Confirmed')
-            .verify.containsText('//tr[5]/td[2]/span', 'Confirmed')
-    },
+            .verify.containsText('@firstRow', 'Unconfirmed')
+            .verify.containsText('@secondRow', 'Confirmed')
+            .verify.containsText('@thirdRow', 'Confirmed')
+            .verify.containsText('@fourthRow', 'Confirmed')
 
-    'sort by Participation status down': function (browser) {
-        browser
-            .clickBySelectorXpath('//*[contains(text(), "Participation status")]')
+            .clickBySelector('@nameColumn')
 
-            .verify.containsText('//tr[1]/td[2]/span', 'Confirmed')
-            .verify.containsText('//tr[2]/td[2]/span', 'Confirmed')
-            .verify.containsText('//tr[3]/td[2]/span', 'Confirmed')
-            .verify.containsText('//tr[4]/td[2]/span', 'Confirmed')
-            .verify.containsText('//tr[5]/td[2]/span', 'Confirmed')
+            .verify.containsText('@firstRow', 'Confirmed')
+            .verify.containsText('@secondRow', 'Confirmed')
+            .verify.containsText('@thirdRow', 'Confirmed')
+            .verify.containsText('@fourthRow', 'Confirmed')
     },
 
     'choose Unconfirmed ': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[text()="Unconfirmed"]')
+        var participationStatusColumn = browser.page.meetingStatus().section.participationStatusColumn;
+        participationStatusColumn
+            .clickBySelector('@unconfirmedOption')
 
-            .verify.elementPresent('//*[contains(text(), "No results found")]')
+            .verify.containsText('@firstRow', 'Unconfirmed')
     },
 
     'choose Confirmed (rebook)': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[text()="Confirmed (rebook)"]')
+        var participationStatusColumn = browser.page.meetingStatus().section.participationStatusColumn;
+        participationStatusColumn
+            .clickBySelector('@confirmedRebookOption')
 
-            .verify.elementPresent('//*[contains(text(), "No results found")]')
+            .verify.elementPresent('@noResultsFound')
     },
 
     'choose Unconfirmed (rebook)': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[text()="Unconfirmed (rebook)"]')
+        var participationStatusColumn = browser.page.meetingStatus().section.participationStatusColumn;
+        participationStatusColumn
+            .clickBySelector('@unconfirmedRebookOption')
 
-            .verify.elementPresent('//*[contains(text(), "No results found")]')
+            .verify.elementPresent('@noResultsFound')
     },
 
     'choose Confirmed': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[text()="Confirmed"]')
+        var participationStatusColumn = browser.page.meetingStatus().section.participationStatusColumn;
+        participationStatusColumn
+            .clickBySelector('@confirmedOption')
 
-            .verify.containsText('//tr[1]/td[2]/span', 'Confirmed')
-            .verify.containsText('//tr[2]/td[2]/span', 'Confirmed')
-            .verify.containsText('//tr[3]/td[2]/span', 'Confirmed')
-            .verify.containsText('//tr[4]/td[2]/span', 'Confirmed')
-            .verify.containsText('//tr[5]/td[2]/span', 'Confirmed')
+            .verify.containsText('@firstRow', 'Confirmed')
+            .verify.containsText('@secondRow', 'Confirmed')
+            .verify.containsText('@thirdRow', 'Confirmed')
+            .verify.containsText('@fourthRow', 'Confirmed')
     },
 });

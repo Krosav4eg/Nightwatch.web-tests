@@ -10,51 +10,56 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'master Contact Information': function (browser) {
-        browser
-            .clickBySelectorXpath('//a[@href="/representatives/edit/50730"]')
+        var idColumn = browser.page.representatives().section.idColumn;
+        idColumn
+            .clickBySelector('@id50730')
 
-            .verify.containsText('//*[contains(text(), "Master Contact ID")]/../div/span', '11046')
-            .verify.containsText('//*[contains(text(), "Last Name")]/../div/span', 'Käkelä')
-            .verify.containsText('//*[contains(text(), "First Name")]/../div/span', 'Ville')
-            .verify.containsText('//*[contains(text(), "Company")]/../div/span', 'Management Events')
-            .verify.containsText('//*[contains(text(), "ME Account")]/../div/span', 'No')
-            .verify.containsText('//*[contains(text(), "Mobile")]/../div/span', '358405657227')
-            .verify.containsText('//*[contains(text(), "Country")]/../div/span', 'Finland')
-            .verify.containsText('//*[contains(text(), "Language")]/../div/span', 'Finnish');
+        var representativesEdit = browser.page.representativesEdit();
+        representativesEdit
+            .verify.containsText('@masterIdInput', '11046')
+            .verify.containsText('@lastNameInput', 'Käkelä')
+            .verify.containsText('@firstNameInput', 'Ville')
+            .verify.containsText('@companyInput', 'Management Events')
+            .verify.containsText('@meAccountInput', 'No')
+            .verify.containsText('@mobileInput', '358405657227')
+            .verify.containsText('@countryInput', 'Finland')
+            .verify.containsText('@languageInput', 'Finnish');
     },
 
     'participation Information': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[contains(text(), "Cancelled")]')
-            .clickBySelectorXpath('//option[contains(text(), "Confirmed Rebook")]')
-            .clickBySelectorXpath('//option[contains(text(), "Late cancellation")]')
-            .clickBySelectorXpath('//option[contains(text(), "No show")]')
-            .clickBySelectorXpath('//option[contains(text(), "Unconfirmed")]')
-            .clickBySelectorXpath('//option[contains(text(), "Unconfirmed Rebook")]')
-            .clickBySelectorXpath('//option[contains(text(), "Confirmed")]')
+        var representativesEdit = browser.page.representativesEdit();
+        representativesEdit
+            .clickBySelector('@cancelledOption')
+            .clickBySelector('@confirmedRebookOption')
+            .clickBySelector('@lateCancellationOption')
+            .clickBySelector('@noShowOption')
+            .clickBySelector('@unconfirmedOption')
+            .clickBySelector('@unconfirmedRebookOption')
+            .clickBySelector('@confirmedOption')
 
-            .clickBySelectorXpath('//option[contains(text(), "Group 2 - violet")]')
-            .clickBySelectorXpath('//option[contains(text(), "Group 1 - orange")]')
-            .clickBySelectorXpath('//option[contains(text(), "[No group]")]')
+            .clickBySelector('@group2VioletOption')
+            .clickBySelector('@group1OrangeOption')
+            .clickBySelector('@noGroupOption')
 
-            .verify.containsText('//*[contains(text(), "Availability From")]/../div/span', '2015-03-04 8:00:00')
-            .verify.containsText('//*[contains(text(), "Availability To")]/../div/span', '2015-03-04 18:00:00');
+            .verify.containsText('@availabilityFrom', '2015-03-04 08:00:00')
+            .verify.containsText('@availabilityTo', '2015-03-04 10:30:00');
     },
 
     'click by save button': function (browser) {
-        browser
-            .clickBySelectorXpath('//button[text()="Save"]')
+        var representativesEdit = browser.page.representativesEdit();
+        representativesEdit
+            .clickBySelector('@saveButtom')
 
-            .waitForElementVisible('//div[@class="simple-notification toast-notification success"]', 10000)
-            .verify.containsText('//div[@class="sn-title"]', 'Success')
-            .verify.containsText('//div[@class="sn-content"]', 'Event Participant saved')
-            .clickBySelectorXpath('//div[@class="simple-notification toast-notification success"]')
+            .waitForElementVisible('@successMassage', 10000)
     },
 
     'click by canceled button': function (browser) {
-        browser
-            .clickBySelectorXpath('//a[@href="/representatives/edit/50730"]')
-            .clickBySelectorXpath('//button[text()="Cancel"]')
+        var idColumn = browser.page.representatives().section.idColumn;
+        idColumn
+            .clickBySelector('@id50730')
+        var representativesEdit = browser.page.representativesEdit();
+        representativesEdit
+            .clickBySelector('@cancelButtom')
             .verify.urlContains('event/2/representatives');
     },
 });

@@ -10,50 +10,50 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'sort by Mettings Guarantee up': function (browser) {
-        browser
-            .clickBySelectorXpath('//tr/th[6]')
-            .clickBySelectorXpath('//tr/th[6]')
+        var guaranteeValidColumn = browser.page.meetingStatus().section.guaranteeValidColumn;
+        guaranteeValidColumn
+            .clickBySelector('@nameColumn')
 
-            .verify.containsText('//tr[1]/td[6]/span', '')
-            .verify.containsText('//tr[2]/td[6]', '')
-            .verify.containsText('//tr[3]/td[6]', '')
-            .verify.containsText('//tr[4]/td[6]', '')
-            .verify.containsText('//tr[5]/td[6]', '')
-    },
+            .verify.containsText('@firstRow', '')
+            .verify.containsText('@secondRow', '')
+            .verify.containsText('@thirdRow', '')
+            .verify.containsText('@fourthRow', '')
+            .verify.containsText('@fifthRow', '')
 
-    'sort by Mettings Guarantee down': function (browser) {
-        browser
-            .clickBySelectorXpath('//tr/th[6]')
+            .clickBySelector('@nameColumn')
 
-            .verify.containsText('//tr[1]/td[6]/span', '')
-            .verify.containsText('//tr[2]/td[6]', '')
-            .verify.containsText('//tr[3]/td[6]', '')
-            .verify.containsText('//tr[4]/td[6]', '')
-            .verify.containsText('//tr[5]/td[6]', '')
+            .verify.containsText('@firstRow', '')
+            .verify.containsText('@secondRow', '')
+            .verify.containsText('@thirdRow', '')
+            .verify.containsText('@fourthRow', '')
+            .verify.containsText('@fifthRow', '')
     },
 
     'choose Yes': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[text()="Yes"]')
+        var guaranteeValidColumn = browser.page.meetingStatus().section.guaranteeValidColumn;
+        guaranteeValidColumn
+            .clickBySelector('@yesOption')
 
-            .verify.elementPresent('//*[contains(text(), "No results found")]')
+            .verify.elementPresent('@noResultsFound')
     },
 
     'choose No': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[text()="No"]')
+        var guaranteeValidColumn = browser.page.meetingStatus().section.guaranteeValidColumn;
+        guaranteeValidColumn
+            .clickBySelector('@noOption')
 
-            .verify.elementPresent('//*[contains(text(), "No results found")]')
+            .verify.elementPresent('@noResultsFound')
     },
 
     'choose All': function (browser) {
-        browser
-            .clickBySelectorXpath('(//option)[9]')
+        var guaranteeValidColumn = browser.page.meetingStatus().section.guaranteeValidColumn;
+        guaranteeValidColumn
+            .clickBySelector('@allOption')
 
-            .verify.containsText('//tr[1]/td[6]/span', '')
-            .verify.containsText('//tr[2]/td[6]', '')
-            .verify.containsText('//tr[3]/td[6]', '')
-            .verify.containsText('//tr[4]/td[6]', '')
-            .verify.containsText('//tr[5]/td[6]', '')
+            .verify.containsText('@firstRow', '')
+            .verify.containsText('@secondRow', '')
+            .verify.containsText('@thirdRow', '')
+            .verify.containsText('@fourthRow', '')
+            .verify.containsText('@fifthRow', '')
     },
 });

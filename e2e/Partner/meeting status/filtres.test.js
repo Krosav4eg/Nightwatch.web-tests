@@ -10,43 +10,51 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'choose Show all': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[@value=1]')
+        var allInformation = browser.page.meetingStatus().section.allInformation;
+        allInformation
+            .clickBySelector('@showAllFilterOption')
 
-            .verify.containsText('//tr[1]/td[2]/span', 'Confirmed')
-            .verify.containsText('//tr[2]/td[2]/span', 'Confirmed')
-            .verify.containsText('//tr[3]/td[2]/span', 'Confirmed')
-            .verify.containsText('//tr[4]/td[2]/span', 'Confirmed')
-            .verify.containsText('//tr[5]/td[2]/span', 'Confirmed')
+        var participationStatusColumn = browser.page.meetingStatus().section.participationStatusColumn;
+        participationStatusColumn
+            .verify.containsText('@firstRow', 'Unconfirmed')
+            .verify.containsText('@secondRow', 'Confirmed')
+            .verify.containsText('@thirdRow', 'Confirmed')
+            .verify.containsText('@fourthRow', 'Confirmed')
     },
 
     'choose Show cancelled': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[@value=2]')
-
-            .verify.elementPresent('//*[contains(text(), "No results found")]')
+        var allInformation = browser.page.meetingStatus().section.allInformation;
+        allInformation
+            .clickBySelector('@showCancelledFilterOption')
+        var participationStatusColumn = browser.page.meetingStatus().section.participationStatusColumn;
+        participationStatusColumn
+            .verify.elementPresent('@noResultsFound')
     },
 
     'choose Show only active': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[@value=0]')
+        var allInformation = browser.page.meetingStatus().section.allInformation;
+        allInformation
+            .clickBySelector('@showOnlyActiveFilterOption')
 
-            .verify.containsText('//tr[1]/td[2]/span', 'Confirmed')
-            .verify.containsText('//tr[2]/td[2]/span', 'Confirmed')
-            .verify.containsText('//tr[3]/td[2]/span', 'Confirmed')
-            .verify.containsText('//tr[4]/td[2]/span', 'Confirmed')
-            .verify.containsText('//tr[5]/td[2]/span', 'Confirmed')
+        var participationStatusColumn = browser.page.meetingStatus().section.participationStatusColumn;
+        participationStatusColumn
+            .verify.containsText('@firstRow', 'Unconfirmed')
+            .verify.containsText('@secondRow', 'Confirmed')
+            .verify.containsText('@thirdRow', 'Confirmed')
+            .verify.containsText('@fourthRow', 'Confirmed')
     },
 
     'click Reset ': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[@value=2]')
-            .clickBySelectorXpath('//button[@class="btn btn-default btn-block filter-button-margins"]')
+        var allInformation = browser.page.meetingStatus().section.allInformation;
+        allInformation
+            .clickBySelector('@showCancelledFilterOption')
+            .clickBySelector('@resetButton')
 
-            .verify.containsText('//tr[1]/td[2]/span', 'Confirmed')
-            .verify.containsText('//tr[2]/td[2]/span', 'Confirmed')
-            .verify.containsText('//tr[3]/td[2]/span', 'Confirmed')
-            .verify.containsText('//tr[4]/td[2]/span', 'Confirmed')
-            .verify.containsText('//tr[5]/td[2]/span', 'Confirmed')
+        var participationStatusColumn = browser.page.meetingStatus().section.participationStatusColumn;
+        participationStatusColumn
+            .verify.containsText('@firstRow', 'Unconfirmed')
+            .verify.containsText('@secondRow', 'Confirmed')
+            .verify.containsText('@thirdRow', 'Confirmed')
+            .verify.containsText('@fourthRow', 'Confirmed')
     },
 });

@@ -10,57 +10,68 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'press when partner wasnt choosen': function (browser) {
-        browser
-            .clickBySelectorXpath('//a[text()="Send SMS"]')
+        var allInformation = browser.page.representatives().section.allInformation;
+        allInformation
+            .clickBySelector('@sendSMSButton')
 
-            .waitForElementVisible('//div[@class="simple-notification toast-notification alert"]', 10000)
-            .verify.containsText('//div[@class="sn-title"]', 'Info!')
-            .verify.containsText('//div[@class="sn-content"]', 'You need chose Partner first')
-            .clickBySelectorXpath('//div[@class="simple-notification toast-notification alert"]')
+            .waitForElementVisible('@alertMassege', 10000)
+            .verify.containsText('@contentMassege', 'You need chose Partner first')
     },
 
     'press when one partner was choosen': function (browser) {
-        browser
-            .clickBySelectorXpath('(//input[@type="checkbox"])[2]')
-            .clickBySelectorXpath('//a[text()="Send SMS"]')
+        var checkboxColumn = browser.page.representatives().section.checkboxColumn;
+        checkboxColumn
+            .clickBySelector('@firstRow');
+        var allInformation = browser.page.representatives().section.allInformation;
+        allInformation
+            .clickBySelector('@sendSMSButton')
 
-            .verify.valueContains('//select[@class="form-control ng-untouched ng-pristine ng-valid"]', '')
+        var sendSMS = browser.page.representatives().section.sendSMS;
+        sendSMS
+            .verify.valueContains('@templateSelect', '')
     },
 
     'verify select Template': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[@value=575]')
-            .verify.valueContains('//*[@class="form-control ng-untouched ng-pristine"]', 'This is the link to your meeting service: {{Partner.Link.Agenda-AUTO}}')
+        var sendSMS = browser.page.representatives().section.sendSMS;
+        sendSMS
+            .clickBySelector('@option575')
+            .verify.valueContains('@textSMS', 'This is the link to your meeting service: {{Partner.Link.Agenda-AUTO}}')
 
-            .clickBySelectorXpath('//option[@value=97]')
-            .verify.valueContains('//*[@class="form-control ng-untouched ng-pristine"]', 'We have booked a new meeting for you. You can check your meetings from here from your mobile service')
+            .clickBySelector('@option97')
+            .verify.valueContains('@textSMS', 'We have booked a new meeting for you. You can check your meetings from here from your mobile service')
 
-            .clickBySelectorXpath('//option[@value=575]')
-            .verify.valueContains('//*[@class="form-control ng-untouched ng-pristine"]', 'This is the link to your meeting service: {{Partner.Link.Agenda-AUTO}}')
+            .clickBySelector('@option575')
+            .verify.valueContains('@textSMS', 'This is the link to your meeting service: {{Partner.Link.Agenda-AUTO}}')
 
-            .clickBySelectorXpath('//option[@value=97]')
-            .verify.valueContains('//*[@class="form-control ng-untouched ng-pristine"]', 'We have booked a new meeting for you. You can check your meetings from here from your mobile service')
+            .clickBySelector('@option97')
+            .verify.valueContains('@textSMS', 'We have booked a new meeting for you. You can check your meetings from here from your mobile service')
     },
 
     'press send SMS': function (browser) {
-        browser
-            .clickBySelectorXpath('//button[text()="Send SMS"]')
-
+        var sendSMS = browser.page.representatives().section.sendSMS;
+        sendSMS
+            .clickBySelector('@sendSMSButton')
     },
 
     'press when all partner was choosen': function (browser) {
-        browser
-            .clickBySelectorXpath('(//input[@type="checkbox"])[1]')
-            .clickBySelectorXpath('//a[text()="Send SMS"]')
+        var checkboxColumn = browser.page.representatives().section.checkboxColumn;
+        checkboxColumn
+            .clickBySelector('@allcheCkbox');
+        var allInformation = browser.page.representatives().section.allInformation;
+        allInformation
+            .clickBySelector('@sendSMSButton')
 
-            .verify.valueContains('//select[@class="form-control ng-untouched ng-pristine ng-valid"]', '')
+        var sendSMS = browser.page.representatives().section.sendSMS;
+        sendSMS
+            .verify.valueContains('@templateSelect', '')
 
-            .clickBySelectorXpath('//button[text()="Cancel"]')
+            .clickBySelector('@cancelButton');
+        allInformation
+            .clickBySelector('@sendSMSButton');
+        var sendSMS = browser.page.representatives().section.sendSMS;
+        sendSMS
+            .verify.valueContains('@templateSelect', '')
 
-            .clickBySelectorXpath('//a[text()="Send SMS"]')
-
-            .verify.valueContains('//select[@class="form-control ng-untouched ng-pristine ng-valid"]', '')
-
-            .clickBySelectorXpath('//button[@class="close"]')
+            .clickBySelector('@closeButton');
     },
 });
