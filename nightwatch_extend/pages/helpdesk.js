@@ -179,9 +179,26 @@ module.exports = {
                 changeRepresentativeButton: {
                     selector: '//div[@class="panel panel-green"]//button[text()="Change representative"]',
                     locateStrategy: 'xpath'
+                },
+                changeRepresentativeHeader: {
+                    selector: '//h4[contains(text(),"Change representative")]',
+                    locateStrategy: 'xpath'
+                },
+                changeRepresentativeImportantInfo: {
+                    selector: '//span[contains(text(),"* The meeting with original representative will be cancelled ")]',
+                    locateStrategy: 'xpath'
+                },
+                changeRepresentativeButtonInNewWindow: {
+                    selector: '(//button[contains(text(),"Change representative")])[7]',
+                    locateStrategy: 'xpath'
+                },
+                changeRepresentativeInputWindow: {
+                    selector: '//select[@placeholder="Representative"]',
+                    locateStrategy: 'xpath'
                 }
             }
         },
+
         queuingMeetings: {
             selector: '//div[contains(text(), "Queuing Meetings")]',
             locateStrategy: 'xpath',
@@ -213,6 +230,22 @@ module.exports = {
                     selector: '//div[contains(text(),"Meeting Requests")]',
                     locateStrategy: 'xpath'
                 },
+                closeButton: {
+                    selector: '//button[@aria-label="Close"]',
+                    locateStrategy: 'xpath'
+                },
+                modalContent: {
+                    selector: '//div[@class="modal-content"]',
+                    locateStrategy: 'xpath'
+                },
+                bookedErrorMessage: {
+                    selector: '//div[contains(text(),"No matching availability between delegate and partner (ErrorCode: 102)")]',
+                    locateStrategy: 'xpath'
+                },
+                rejectSuccessMessage: {
+                    selector: '//div[contains(text(),"Meeting request was rejected")]',
+                    locateStrategy: 'xpath'
+                },
                 chevronDown: {
                     selector: '(//i[@class="pull-right glyphicon accordion-panel-arrow glyphicon-chevron-down"])[2]',
                     locateStrategy: 'xpath'
@@ -242,15 +275,15 @@ module.exports = {
                     locateStrategy: 'xpath'
                 },
                 offeringsForParticipant1: {
-                    selector: '(//b[contains(text(),"Offerings")])[1]',
+                    selector: '(//b[contains(text(),"Offerings")])[4]',
                     locateStrategy: 'xpath'
                 },
                 securitySolutionsForParticipant1: {
-                    selector: '(//b[contains(text(),"Security solutions")])[1]',
+                    selector: '(//b[contains(text(),"Security solutions")])[4]',
                     locateStrategy: 'xpath'
                 },
                 personalMessageForParticipant1: {
-                    selector: '(//b[contains(text(),"Personal Message")])[1]',
+                    selector: '(//b[contains(text(),"Personal Message")])[4]',
                     locateStrategy: 'xpath'
                 },
                 bookedMeetingButtonForParticipant1: {
@@ -262,15 +295,15 @@ module.exports = {
                     locateStrategy: 'xpath'
                 },
                 offeringsForParticipant2: {
-                    selector: '(//b[contains(text(),"Offerings")])[2]',
+                    selector: '(//b[contains(text(),"Offerings")])[5]',
                     locateStrategy: 'xpath'
                 },
                 securitySolutionsForParticipant2: {
-                    selector: '(//b[contains(text(),"Security solutions")])[2]',
+                    selector: '(//b[contains(text(),"Security solutions")])[5]',
                     locateStrategy: 'xpath'
                 },
                 personalMessageForParticipant2: {
-                    selector: '(//b[contains(text(),"Personal Message")])[2]',
+                    selector: '(//b[contains(text(),"Personal Message")])[5]',
                     locateStrategy: 'xpath'
                 },
                 bookedMeetingButtonForParticipant2: {
@@ -282,15 +315,15 @@ module.exports = {
                     locateStrategy: 'xpath'
                 },
                 offeringsForParticipant3: {
-                    selector: '(//b[contains(text(),"Offerings")])[3]',
+                    selector: '(//b[contains(text(),"Offerings")])[6]',
                     locateStrategy: 'xpath'
                 },
                 securitySolutionsForParticipant3: {
-                    selector: '(//b[contains(text(),"Security solutions")])[3]',
+                    selector: '(//b[contains(text(),"Security solutions")])[6]',
                     locateStrategy: 'xpath'
                 },
                 personalMessageForParticipant3: {
-                    selector: '(//b[contains(text(),"Personal Message")])[3]',
+                    selector: '(//b[contains(text(),"Personal Message")])[6]',
                     locateStrategy: 'xpath'
                 },
                 bookedMeetingButtonForParticipant3: {
@@ -305,9 +338,9 @@ module.exports = {
                     selector: '(//i[@class="pull-right glyphicon accordion-panel-arrow glyphicon-chevron-up"])[2]',
                     locateStrategy: 'xpath'
                 },
-
             }
         },
+
         suggestedMeetings: {
             selector: '//div[contains(text(),"Suggested Meetings")]',
             locateStrategy: 'xpath',
@@ -339,14 +372,7 @@ module.exports = {
                     selector: '(//button[contains(text(),"Reschedule")])[1]',
                     locateStrategy: 'xpath'
                 },
-                closeButton: {
-                    selector: '(//span[contains(text(),"×")])[2]',
-                    locateStrategy: 'xpath'
-                },
-                closeButtonForModalContent: {
-                    selector: '(//span[contains(text(),"×")])',
-                    locateStrategy: 'xpath'
-                },
+
                 firstParticipant: {
                     selector: '(//h4/div[3]/div[2])[1]',
                     locateStrategy: 'xpath'
