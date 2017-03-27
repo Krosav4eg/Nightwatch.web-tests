@@ -10,39 +10,43 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'sort by Country up': function (browser) {
-        browser
-            .clickBySelectorXpath('//th[contains(text(), "Country")]')
-            .clickBySelectorXpath('//th[contains(text(), "Country")]')
+        var countryColumn = browser.page.representatives().section.countryColumn;
+        countryColumn
 
-            .verify.containsText('//tr[1]/td[9]/span', 'United Arab Emirates')
-            .verify.containsText('//tr[2]/td[9]/span', 'United Arab Emirates')
-            .verify.containsText('//tr[3]/td[9]/span', 'United Arab Emirates')
-            .verify.containsText('//tr[4]/td[9]/span', 'United Arab Emirates')
-            .verify.containsText('//tr[5]/td[9]/span', 'United Arab Emirates')
+            .clickBySelector('@nameColumn')
+
+            .verify.containsText('@firstRow', 'Finland')
+            .verify.containsText('@secondRow', 'United Arab Emirates')
+            .verify.containsText('@thirdRow', 'United Arab Emirates')
+            .verify.containsText('@fourthRow', 'United Arab Emirates')
+
     },
 
     'sort by Country down': function (browser) {
-        browser
-            .clickBySelectorXpath('//th[contains(text(), "Country")]')
+        var countryColumn = browser.page.representatives().section.countryColumn;
+        countryColumn
 
-            .verify.containsText('//tr[1]/td[9]/span', 'Finland')
-            .verify.containsText('//tr[2]/td[9]/span', 'United Arab Emirates')
-            .verify.containsText('//tr[3]/td[9]/span', 'United Arab Emirates')
-            .verify.containsText('//tr[4]/td[9]/span', 'United Arab Emirates')
-            .verify.containsText('//tr[5]/td[9]/span', 'United Arab Emirates')
+            .clickBySelector('@nameColumn')
+
+            .verify.containsText('@firstRow', 'United Arab Emirates')
+            .verify.containsText('@secondRow', 'United Arab Emirates')
+            .verify.containsText('@thirdRow', 'United Arab Emirates')
+            .verify.containsText('@fourthRow', 'United Arab Emirates')
     },
 
     'search by Email Blank': function (browser) {
-        browser
-            .setValueByXpath('//tr[1]/td[9]/input[@type="text"]', ['Finland', browser.Keys.ENTER])
+        var countryColumn = browser.page.representatives().section.countryColumn;
+        countryColumn
+            .setValueBySelector('@seachColumn', ['Finland', browser.Keys.ENTER])
 
-            .verify.containsText('//tr[1]/td[9]/span', 'Finland')
+            .verify.containsText('@firstRow', 'Finland')
     },
 
     'search by Mobile 3 numbers': function (browser) {
-        browser
-            .setValueByXpath('//tr[1]/td[9]/input[@type="text"]', ['Fin', browser.Keys.ENTER])
+        var countryColumn = browser.page.representatives().section.countryColumn;
+        countryColumn
+            .setValueBySelector('@seachColumn', ['Fin', browser.Keys.ENTER])
 
-            .verify.containsText('//tr[1]/td[9]/span', 'Finland')
+            .verify.containsText('@firstRow', 'Finland')
     },
 });

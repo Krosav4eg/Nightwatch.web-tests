@@ -10,61 +10,56 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'sort by Participation status up': function (browser) {
-        browser
-            .useXpath()
-            .waitForElementVisible('//h4[text()="Event (#2)"]', 5000)
-            .moveToElement('//tr/td[10]', 1298, 597)
+        var participationStatusColumn = browser.page.representatives().section.participationStatusColumn;
+        participationStatusColumn
+            .moveToElement('@nameColumn', 1298, 597)
+            .clickBySelector('@nameColumn')
 
-            .clickBySelectorXpath('//th[contains(text(), "Participation status")]')
-            .clickBySelectorXpath('//th[contains(text(), "Participation status")]')
+            .verify.containsText('@firstRow', 'Confirmed')
+            .verify.containsText('@secondRow', 'Confirmed')
+            .verify.containsText('@thirdRow', 'Confirmed')
+            .verify.containsText('@fourthRow', 'Confirmed')
 
-            .verify.containsText('//tr[1]/td[10]/span', 'Confirmed')
-            .verify.containsText('//tr[2]/td[10]/span', 'Confirmed')
-            .verify.containsText('//tr[3]/td[10]/span', 'Confirmed')
-            .verify.containsText('//tr[4]/td[10]/span', 'Confirmed')
-            .verify.containsText('//tr[5]/td[10]/span', 'Confirmed')
-    },
+            .clickBySelector('@nameColumn')
 
-    'sort by Participation status down': function (browser) {
-        browser
-            .clickBySelectorXpath('//th[contains(text(), "Participation status")]')
-
-            .verify.containsText('//tr[1]/td[10]/span', 'Confirmed')
-            .verify.containsText('//tr[2]/td[10]/span', 'Confirmed')
-            .verify.containsText('//tr[3]/td[10]/span', 'Confirmed')
-            .verify.containsText('//tr[4]/td[10]/span', 'Confirmed')
-            .verify.containsText('//tr[5]/td[10]/span', 'Confirmed')
+            .verify.containsText('@firstRow', 'Confirmed')
+            .verify.containsText('@secondRow', 'Confirmed')
+            .verify.containsText('@thirdRow', 'Confirmed')
+            .verify.containsText('@fourthRow', 'Confirmed')
     },
 
     'choose Unconfirmed': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[text()="Unconfirmed"]')
+        var participationStatusColumn = browser.page.representatives().section.participationStatusColumn;
+        participationStatusColumn
+            .clickBySelector('@unconfirmedOption')
 
-            .verify.containsText('//div[@class="ng-grid-body"]/p', 'No results found')
+            .verify.elementPresent('@noResultsFound')
     },
 
     'choose Confirmed': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[text()="Confirmed"]')
+        var participationStatusColumn = browser.page.representatives().section.participationStatusColumn;
+        participationStatusColumn
+            .clickBySelector('@confirmedOption')
 
-            .verify.containsText('//tr[1]/td[10]/span', 'Confirmed')
-            .verify.containsText('//tr[2]/td[10]/span', 'Confirmed')
-            .verify.containsText('//tr[3]/td[10]/span', 'Confirmed')
-            .verify.containsText('//tr[4]/td[10]/span', 'Confirmed')
-            .verify.containsText('//tr[5]/td[10]/span', 'Confirmed')
+            .verify.containsText('@firstRow', 'Confirmed')
+            .verify.containsText('@secondRow', 'Confirmed')
+            .verify.containsText('@thirdRow', 'Confirmed')
+            .verify.containsText('@fourthRow', 'Confirmed')
     },
 
     'choose Confirmed (rebook)': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[text()="Confirmed (rebook)"]')
+        var participationStatusColumn = browser.page.representatives().section.participationStatusColumn;
+        participationStatusColumn
+            .clickBySelector('@confirmedRebookOption')
 
-            .verify.containsText('//div[@class="ng-grid-body"]/p', 'No results found')
+            .verify.elementPresent('@noResultsFound')
     },
 
     'choose Unconfirmed (rebook)': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[text()="Unconfirmed (rebook)"]')
+        var participationStatusColumn = browser.page.representatives().section.participationStatusColumn;
+        participationStatusColumn
+            .clickBySelector('@unconfirmedRebookOption')
 
-            .verify.containsText('//div[@class="ng-grid-body"]/p', 'No results found')
+            .verify.elementPresent('@noResultsFound')
     },
 });

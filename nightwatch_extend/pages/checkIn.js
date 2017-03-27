@@ -458,6 +458,43 @@ module.exports = {
                     locateStrategy: 'xpath'
                 },
 
+                participationStatus: {
+                    selector: 'select[formcontrolname="participationStatus"]',
+                    locateStrategy: 'css selector'
+                },
+                cancelledOption: {
+                    selector: '//select[@formcontrolname="participationStatus"]//option[text()="Cancelled"]',
+                    locateStrategy: 'xpath'
+                },
+                confirmedOption: {
+                    selector: '//select[@formcontrolname="participationStatus"]//option[text()="Confirmed"]',
+                    locateStrategy: 'xpath'
+                },
+                confirmedRebookOption: {
+                    selector: '//select[@formcontrolname="participationStatus"]//option[text()="Confirmed Rebook"]',
+                    locateStrategy: 'xpath'
+                },
+                lateCancellationOption: {
+                    selector: '//select[@formcontrolname="participationStatus"]//option[text()="Late cancellation"]',
+                    locateStrategy: 'xpath'
+                },
+                noShowOption: {
+                    selector: '//select[@formcontrolname="participationStatus"]//option[text()="No show"]',
+                    locateStrategy: 'xpath'
+                },
+                unconfirmedOption: {
+                    selector: '//select[@formcontrolname="participationStatus"]//option[text()="Unconfirmed"]',
+                    locateStrategy: 'xpath'
+                },
+                unconfirmedRebookOption: {
+                    selector: '//select[@formcontrolname="participationStatus"]//option[text()="Unconfirmed Rebook"]',
+                    locateStrategy: 'xpath'
+                },
+                noShowButton: {
+                    selector: '//button[text()="No show"]',
+                    locateStrategy: 'xpath'
+                },
+
                 attendanceStatus: {
                     selector: '//select[@formcontrolname="attendanceStatus"]',
                     locateStrategy: 'xpath'
@@ -493,6 +530,16 @@ module.exports = {
                 },
                 cancelButton: {
                     selector: '//button[text()="Cancel"]',
+                    locateStrategy: 'xpath'
+                },
+
+                confirmYesButton: {
+                    selector: '//button[@data-marker="me-confirm__button__button__yes"]',
+                    locateStrategy: 'xpath'
+                },
+
+                confirmNoButton: {
+                    selector: '//button[@data-marker="me-confirm__button__button__no"]',
                     locateStrategy: 'xpath'
                 },
             }

@@ -39,7 +39,7 @@ module.exports = {
                     locateStrategy: 'xpath'
                 },
                 allOption: {
-                    selector: '(//option[@value="undefined"])[1]',
+                    selector: '(//option[text()="All"])[1]',
                     locateStrategy: 'xpath'
                 },
                 ShowConfirmedAndUnconfirmedOption: {
@@ -503,6 +503,16 @@ module.exports = {
                     selector: '//*[@class="modal-footer"]//button[text()="Cancel"]',
                     locateStrategy: 'xpath'
                 },
+
+                confirmYesButton: {
+                    selector: '//button[@data-marker="me-confirm__button__button__yes"]',
+                    locateStrategy: 'xpath'
+                },
+
+                confirmNoButton: {
+                    selector: '//button[@data-marker="me-confirm__button__button__no"]',
+                    locateStrategy: 'xpath'
+                },
             }
         },
         checkboxColmn: {
@@ -728,7 +738,7 @@ module.exports = {
                     locateStrategy: 'xpath'
                 },
                 firstRow: {
-                    selector: '//tr[1]/td[6]/span',
+                    selector: '//tr[1]/td[6]/span/a[1]',
                     locateStrategy: 'xpath'
                 },
                 firstRowWithLastName: {

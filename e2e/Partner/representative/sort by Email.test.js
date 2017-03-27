@@ -10,39 +10,37 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'sort by Email up': function (browser) {
-        browser
-            .clickBySelectorXpath('//th[contains(text(), "Email")]')
-            .clickBySelectorXpath('//th[contains(text(), "Email")]')
+        var emailColumn = browser.page.representatives().section.emailColumn;
+        emailColumn
 
-            .verify.containsText('//tr[1]/td[8]/span', 'zameer@alrostamanigroup.ae')
-            .verify.containsText('//tr[2]/td[8]/span', 'ville.kakela@managementevents.com')
-            .verify.containsText('//tr[3]/td[8]/span', 'victor@cmcs-mena.com')
-            .verify.containsText('//tr[4]/td[8]/span', 'venkateshm@techsource.ae')
-            .verify.containsText('//tr[5]/td[8]/span', 'varun.nambiar@3i-infotech.com')
-    },
+            .clickBySelector('@nameColumn')
 
-    'sort by Email down': function (browser) {
-        browser
-            .clickBySelectorXpath('//th[contains(text(), "Email")]')
+            .verify.containsText('@firstRow', 'aanand@profilesw.com')
+            .verify.containsText('@secondRow', 'abhinav@pantechsystems.com')
+            .verify.containsText('@thirdRow', 'alaa.assem@clinart.net')
+            .verify.containsText('@fourthRow', 'albert@fujisoft.net')
 
-            .verify.containsText('//tr[1]/td[8]/span', 'aanand@profilesw.com')
-            .verify.containsText('//tr[2]/td[8]/span', 'abhinav@pantechsystems.com')
-            .verify.containsText('//tr[3]/td[8]/span', 'alaa.assem@clinart.net')
-            .verify.containsText('//tr[4]/td[8]/span', 'albert@fujisoft.net')
-            .verify.containsText('//tr[5]/td[8]/span', 'amy.mortlock@hds.com')
+            .clickBySelector('@nameColumn')
+
+            .verify.containsText('@firstRow', 'zameer@alrostamanigroup.ae')
+            .verify.containsText('@secondRow', 'ville.kakela@managementevents.com')
+            .verify.containsText('@thirdRow', 'victor@cmcs-mena.com')
+            .verify.containsText('@fourthRow', 'venkateshm@techsource.ae')
     },
 
     'search by Email Blank': function (browser) {
-        browser
-            .setValueByXpath('//tr[1]/td[8]/input[@type="text"]', ['zameer@alrostamanigroup.ae', browser.Keys.ENTER])
+        var emailColumn = browser.page.representatives().section.emailColumn;
+        emailColumn
+            .setValueBySelector('@seachColumn', ['zameer@alrostamanigroup.ae', browser.Keys.ENTER])
 
-            .verify.containsText('//tr[1]/td[8]/span', 'zameer@alrostamanigroup.ae')
+            .verify.containsText('@firstRow', 'zameer@alrostamanigroup.ae')
     },
 
     'search by Mobile 3 numbers': function (browser) {
-        browser
-            .setValueByXpath('//tr[1]/td[8]/input[@type="text"]', ['zam', browser.Keys.ENTER])
+        var emailColumn = browser.page.representatives().section.emailColumn;
+        emailColumn
+            .setValueBySelector('@seachColumn', ['zam', browser.Keys.ENTER])
 
-            .verify.containsText('//tr[1]/td[8]/span', 'zameer@alrostamanigroup.ae')
+            .verify.containsText('@firstRow', 'zameer@alrostamanigroup.ae')
     },
 });

@@ -10,29 +10,27 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'sort by Active offering up': function (browser) {
-        browser
-            .useXpath()
-            .waitForElementVisible('//h4[text()="Event (#2)"]', 5000)
-            .moveToElement('//tr/td[11]', 1298, 597)
+        var activeOfferingColumn = browser.page.representatives().section.activeOfferingColumn;
+        activeOfferingColumn
+            .moveToElement('@nameColumn', 1298, 597)
 
-            .clickBySelectorXpath('//th[contains(text(), "Active offering")]')
-            .clickBySelectorXpath('//th[contains(text(), "Active offering")]')
+            .clickBySelector('@nameColumn')
 
-            .verify.containsText('//tr[1]/td[11]/span', '0')
-            .verify.containsText('//tr[2]/td[11]/span', '0')
-            .verify.containsText('//tr[3]/td[11]/span', '0')
-            .verify.containsText('//tr[4]/td[11]/span', '0')
-            .verify.containsText('//tr[5]/td[11]/span', '0')
+            .verify.containsText('@firstRow', '0')
+            .verify.containsText('@secondRow', '0')
+            .verify.containsText('@thirdRow', '0')
+            .verify.containsText('@fourthRow', '0')
     },
 
     'sort by Active offering down': function (browser) {
-        browser
-            .clickBySelectorXpath('//th[contains(text(), "Active offering")]')
+        var activeOfferingColumn = browser.page.representatives().section.activeOfferingColumn;
+        activeOfferingColumn
 
-            .verify.containsText('//tr[1]/td[11]/span', '0')
-            .verify.containsText('//tr[2]/td[11]/span', '0')
-            .verify.containsText('//tr[3]/td[11]/span', '0')
-            .verify.containsText('//tr[4]/td[11]/span', '0')
-            .verify.containsText('//tr[5]/td[11]/span', '0')
+            .clickBySelector('@nameColumn')
+
+            .verify.containsText('@firstRow', '0')
+            .verify.containsText('@secondRow', '0')
+            .verify.containsText('@thirdRow', '0')
+            .verify.containsText('@fourthRow', '0')
     },
 });

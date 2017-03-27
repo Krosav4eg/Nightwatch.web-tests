@@ -10,53 +10,41 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'Cancel window Add company': function (browser) {
-        browser
-            .clickBySelectorXpath('(//button[text()="Add company"])[1]')
+        var allInformation = browser.page.partners().section.allInformation;
+        allInformation
+            .clickBySelector('@addCompanyButton')
 
-            .clickBySelectorXpath('(//button[text()="Add company"])[2]')
+            .clickBySelector('@addCompanyButtonInModal')
 
-            .waitForElementVisible('//div[@class="simple-notification toast-notification error"]', 10000)
-            .verify.containsText('//div[@class="sn-title"]', 'Error')
-            .verify.containsText('//div[@class="sn-content"]', 'Please select a company')
-            .clickBySelectorXpath('//div[@class="simple-notification toast-notification error"]')
+            .waitForElementVisible('@erroeMassege', 10000)
+            .verify.containsText('@contentMassege', 'Please select a company')
 
-            .clickBySelectorXpath('//button[text()="Cancel"]')
+            .clickBySelector('@cancelButtonInModal')
     },
 
     'Close window Add company': function (browser) {
-        browser
-            .clickBySelectorXpath('(//button[text()="Add company"])[1]')
+        var allInformation = browser.page.partners().section.allInformation;
+        allInformation
+            .clickBySelector('@addCompanyButton')
 
-            .clickBySelectorXpath('//input[@value-property-name="companyId"]')
-            .useCss()
-            .sendKeys('.auto-complete input', "ClinArt Mena")
-            .pause(1000)
-            .clickBySelectorXpath('//*[contains(text(),"ClinArt Mena")]')
-            .pause(1000)
+            .clickBySelector('@companyNameInput')
+            .sendKeys('@companyNameInput', "ClinArt Mena")
+            .clickBySelector('@clinArtMenaName')
 
-            .clickBySelectorXpath('(//button[@aria-label="Close"]/span)[1]')
-
+            .clickBySelector('@closeButtonInModal')
     },
 
     'Add company': function (browser) {
-        browser
-            .clickBySelectorXpath('(//button[text()="Add company"])[1]')
+        var allInformation = browser.page.partners().section.allInformation;
+        allInformation
+            .clickBySelector('@addCompanyButton')
 
-            .verify.containsText('//h4[@class="modal-title"]', 'Select event participant company')
-            .verify.containsText('//*[contains(text(), "Company / Search")]/../div', "")
+            .verify.containsText('@companyNameInput', "")
 
-            .clickBySelectorXpath('//input[@class="form-control autocomplete-input ng-pristine ng-valid ng-touched"]')
-            .useCss()
-            .sendKeys('.auto-complete input', "ClinArt Mena")
-            .pause(1000)
-            .clickBySelectorXpath('//*[contains(text(),"ClinArt Mena")]')
-            .pause(1000)
+            .clickBySelector('@companyNameInput')
+            .sendKeys('@companyNameInput', "ClinArt Mena")
+            .clickBySelector('@clinArtMenaName')
 
-            .clickBySelectorXpath('(//button[text()="Add company"])[2]')
-
-            .waitForElementVisible('//div[@class="simple-notification toast-notification error"]', 10000)
-            .verify.containsText('//div[@class="sn-title"]', 'Error')
-            .verify.containsText('//div[@class="sn-content"]', 'Please select a company')
-            .clickBySelectorXpath('//div[@class="simple-notification toast-notification error"]')
+            .clickBySelector('@addCompanyButtonInModal')
     },
 });

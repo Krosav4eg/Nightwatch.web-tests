@@ -10,39 +10,37 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'sort by First name up': function (browser) {
-        browser
-            .clickBySelectorXpath('//*[contains(text(), "First name")]')
-          //  .clickBySelectorXpath('//*[contains(text(), "First name")]')
+        var firstNameColumn = browser.page.representatives().section.firstNameColumn;
+        firstNameColumn
 
-            .verify.containsText('//tr[1]/td[3]/span', 'Abdulrahim')
-            .verify.containsText('//tr[2]/td[3]/span', 'Abhinav')
-            .verify.containsText('//tr[3]/td[3]/span', 'Alaa')
-            .verify.containsText('//tr[4]/td[3]/span', 'Albert')
-            .verify.containsText('//tr[5]/td[3]/span', 'Amy')
-    },
+            .clickBySelector('@nameColumn')
 
-    'sort by First name down': function (browser) {
-        browser
-            .clickBySelectorXpath('//*[contains(text(), "First name")]')
+            .verify.containsText('@firstRow', 'Abdulrahim')
+            .verify.containsText('@secondRow', 'Abhinav')
+            .verify.containsText('@thirdRow', 'Alaa')
+            .verify.containsText('@fourthRow', 'Albert')
 
-            .verify.containsText('//tr[1]/td[3]/span', 'Ville')
-            .verify.containsText('//tr[2]/td[3]/span', 'Victor')
-            .verify.containsText('//tr[3]/td[3]/span', 'Venki')
-            .verify.containsText('//tr[4]/td[3]/span', 'Varun')
-            .verify.containsText('//tr[5]/td[3]/span', 'Syed')
+            .clickBySelector('@nameColumn')
+
+            .verify.containsText('@firstRow', 'Ville')
+            .verify.containsText('@secondRow', 'Victor')
+            .verify.containsText('@thirdRow', 'Venki')
+            .verify.containsText('@fourthRow', 'Varun')
     },
 
     'search by First name Blank': function (browser) {
-        browser
-            .setValueByXpath('//tr[1]/td[3]/input[@type="text"]', ['Sanaullah', browser.Keys.ENTER])
+        var firstNameColumn = browser.page.representatives().section.firstNameColumn;
+        firstNameColumn
+            .setValueBySelector('@seachColumn', ['Sanaullah', browser.Keys.ENTER])
 
-            .verify.containsText('//tr[1]/td[3]/span', 'Sanaullah')
+            .verify.containsText('@firstRow', 'Sanaullah')
     },
 
     'search by First name 3 numbers': function (browser) {
-        browser
-            .setValueByXpath('//tr[1]/td[3]/input[@type="text"]', ['San', browser.Keys.ENTER])
+        var firstNameColumn = browser.page.representatives().section.firstNameColumn;
+        firstNameColumn
+            .setValueBySelector('@seachColumn', ['San', browser.Keys.ENTER])
 
-            .verify.containsText('//tr[1]/td[3]/span', 'Sanaullah')
+            .verify.containsText('@firstRow', 'Sanaullah')
     },
 });

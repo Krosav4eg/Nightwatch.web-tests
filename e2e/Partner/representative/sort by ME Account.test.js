@@ -10,47 +10,40 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'sort by ME Account up': function (browser) {
-        browser
-            .useXpath()
-            .waitForElementVisible('//h4[text()="Event (#2)"]', 5000)
-            .moveToElement('//tr/td[12]', 1298, 597)
+        var MEAccountColumn = browser.page.representatives().section.MEAccountColumn;
+        MEAccountColumn
+            .moveToElement('@nameColumn', 1298, 597)
+            .clickBySelector('@nameColumn')
 
-            .clickBySelectorXpath('//th[contains(text(), "ME Account")]')
-            .clickBySelectorXpath('//th[contains(text(), "ME Account")]')
+            .verify.containsText('@firstRow', 'No')
+            .verify.containsText('@secondRow', 'No')
+            .verify.containsText('@thirdRow', 'No')
+            .verify.containsText('@fourthRow', 'No')
 
-            .verify.containsText('//tr[1]/td[12]/span', 'No')
-            .verify.containsText('//tr[2]/td[12]/span', 'No')
-            .verify.containsText('//tr[3]/td[12]/span', 'No')
-            .verify.containsText('//tr[4]/td[12]/span', 'No')
-            .verify.containsText('//tr[5]/td[12]/span', 'No')
-    },
+            .clickBySelector('@nameColumn')
 
-    'sort by ME Account down': function (browser) {
-        browser
-            .clickBySelectorXpath('//th[contains(text(), "ME Account")]')
-
-            .verify.containsText('//tr[1]/td[12]/span', 'No')
-            .verify.containsText('//tr[2]/td[12]/span', 'No')
-            .verify.containsText('//tr[3]/td[12]/span', 'No')
-            .verify.containsText('//tr[4]/td[12]/span', 'No')
-            .verify.containsText('//tr[5]/td[12]/span', 'No')
+            .verify.containsText('@firstRow', 'No')
+            .verify.containsText('@secondRow', 'No')
+            .verify.containsText('@thirdRow', 'No')
+            .verify.containsText('@fourthRow', 'No')
     },
 
     'choose Yes': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[text()="Yes"]')
+        var MEAccountColumn = browser.page.representatives().section.MEAccountColumn;
+        MEAccountColumn
+            .clickBySelector('@yesOption')
 
-            .verify.containsText('//div[@class="ng-grid-body"]/p', 'No results found')
+            .verify.elementPresent('@noResultsFound')
     },
 
     'choose No': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[text()="No"]')
+        var MEAccountColumn = browser.page.representatives().section.MEAccountColumn;
+        MEAccountColumn
+            .clickBySelector('@noOption')
 
-            .verify.containsText('//tr[1]/td[12]/span', 'No')
-            .verify.containsText('//tr[2]/td[12]/span', 'No')
-            .verify.containsText('//tr[3]/td[12]/span', 'No')
-            .verify.containsText('//tr[4]/td[12]/span', 'No')
-            .verify.containsText('//tr[5]/td[12]/span', 'No')
+            .verify.containsText('@firstRow', 'No')
+            .verify.containsText('@secondRow', 'No')
+            .verify.containsText('@thirdRow', 'No')
+            .verify.containsText('@fourthRow', 'No')
     },
 });

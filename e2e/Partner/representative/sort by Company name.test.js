@@ -10,39 +10,42 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'sort by Company name up': function (browser) {
-        browser
-            .clickBySelectorXpath('//*[contains(text(), "Company name")]')
-            .clickBySelectorXpath('//*[contains(text(), "Company name")]')
+        var companyNameColumn = browser.page.representatives().section.companyNameColumn;
+        companyNameColumn
 
-            .verify.containsText('//tr[1]/td[6]/span', 'Villen testi')
-            .verify.containsText('//tr[2]/td[6]/span', 'Villen testi')
-            .verify.containsText('//tr[3]/td[6]/span', 'Villen testi')
-            .verify.containsText('//tr[4]/td[6]/span', 'Villen testi')
-            .verify.containsText('//tr[5]/td[6]/span', 'Villen testi')
+            .clickBySelector('@nameColumn')
+
+            .verify.containsText('@firstRow', '4power Infocom Free Zone Company LLC')
+            .verify.containsText('@secondRow', 'Management Events')
+            .verify.containsText('@thirdRow', 'Villen testi')
+            .verify.containsText('@fourthRow', 'Villen testi')
     },
 
     'sort by Company name down': function (browser) {
-        browser
-            .clickBySelectorXpath('//*[contains(text(), "Company name")]')
+        var companyNameColumn = browser.page.representatives().section.companyNameColumn;
+        companyNameColumn
 
-            .verify.containsText('//tr[1]/td[6]/span', '4power Infocom Free Zone Company LLC')
-            .verify.containsText('//tr[2]/td[6]/span', 'Management Events')
-            .verify.containsText('//tr[3]/td[6]/span', 'Villen testi')
-            .verify.containsText('//tr[4]/td[6]/span', 'Villen testi')
-            .verify.containsText('//tr[5]/td[6]/span', 'Villen testi')
+            .clickBySelector('@nameColumn')
+
+            .verify.containsText('@firstRow', 'Villen testi')
+            .verify.containsText('@secondRow', 'Villen testi')
+            .verify.containsText('@thirdRow', 'Villen testi')
+            .verify.containsText('@fourthRow', 'Villen testi')
     },
 
     'search by Company name Blank': function (browser) {
-        browser
-            .setValueByXpath('//tr[1]/td[6]/input[@type="text"]', ['Management', browser.Keys.ENTER])
+        var companyNameColumn = browser.page.representatives().section.companyNameColumn;
+        companyNameColumn
+            .setValueBySelector('@seachColumn', ['Management', browser.Keys.ENTER])
 
-            .verify.containsText('//tr[1]/td[6]/span', 'Management Events')
+            .verify.containsText('@firstRow', 'Management Events')
     },
 
     'search by Company name 3 numbers': function (browser) {
-        browser
-            .setValueByXpath('//tr[1]/td[6]/input[@type="text"]', ['Man', browser.Keys.ENTER])
+        var companyNameColumn = browser.page.representatives().section.companyNameColumn;
+        companyNameColumn
+            .setValueBySelector('@seachColumn', ['Man', browser.Keys.ENTER])
 
-            .verify.containsText('//tr[1]/td[6]/span', 'Management Events')
+            .verify.containsText('@firstRow', 'Management Events')
     },
 });
