@@ -10,35 +10,34 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'sort by Modified up': function (browser) {
-        browser
-            .useXpath()
-            .waitForElementVisible('//h4[text()="Event (#2)"]', 5000)
-            .moveToElement('//tr/td[13]', 1298, 597)
-            .clickBySelectorXpath('//tr/th[13]')
-            .clickBySelectorXpath('//tr/th[13]')
+        var modifiedColumn = browser.page.partners().section.modifiedColumn;
+        modifiedColumn
+            .moveToElement('@nameColumn', 1298, 597)
+            .clickBySelector('@nameColumn')
 
-            .verify.containsText('//tr[1]/td[13]/span', '2017-03-02 14:01:01"')
-            .verify.containsText('//tr[2]/td[13]', '2016-07-01 15:01:16"')
-            .verify.containsText('//tr[3]/td[13]', '2016-07-01 15:01:16')
-            .verify.containsText('//tr[4]/td[13]', '2016-07-01 15:01:16')
-            .verify.containsText('//tr[5]/td[13]', '2016-07-01 15:01:16')
+            .verify.containsText('@firstRow', '2016-07-01 15:01:14')
+            .verify.containsText('@secondRow', '2016-07-01 15:01:14')
+            .verify.containsText('@thirdRow', '2016-07-01 15:01:14')
+            .verify.containsText('@fourthRow', '2016-07-01 15:01:15')
     },
 
     'sort by Modified down': function (browser) {
-        browser
-            .clickBySelectorXpath('//tr/th[13]')
+        var modifiedColumn = browser.page.partners().section.modifiedColumn;
+        modifiedColumn
+            .moveToElement('@nameColumn', 1298, 597)
+            .clickBySelector('@nameColumn')
 
-            .verify.containsText('//tr[1]/td[13]/span', '2016-07-01 15:01:14')
-            .verify.containsText('//tr[2]/td[13]', '2016-07-01 15:01:14')
-            .verify.containsText('//tr[3]/td[13]', '2016-07-01 15:01:14')
-            .verify.containsText('//tr[4]/td[13]', '2016-07-01 15:01:15')
-            .verify.containsText('//tr[5]/td[13]', '2016-07-01 15:01:15')
+            .verify.containsText('@firstRow', '2017-03-02 14:01:01')
+            .verify.containsText('@secondRow', '2016-07-01 15:01:16')
+            .verify.containsText('@thirdRow', '2016-07-01 15:01:16')
+            .verify.containsText('@fourthRow', '2016-07-01 15:01:16')
     },
 
     'search by Modified Blank': function (browser) {
-        browser
-            .setValueByXpath('//tr[1]/td[13]/input[@type="text"]', ['2016-07-01', browser.Keys.ENTER])
+        var modifiedColumn = browser.page.partners().section.modifiedColumn;
+        modifiedColumn
+            .setValueBySelector('@seachColumn', ['2016-07-01', browser.Keys.ENTER])
 
-            .verify.containsText('//tr[1]/td[13]/span', '2016-07-01 15:01:14')
+            .verify.containsText('@firstRow', '2016-07-01 15:01:14')
     },
 });

@@ -10,35 +10,33 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'sort by Created up': function (browser) {
-        browser
-            .useXpath()
-            .waitForElementVisible('//h4[text()="Event (#2)"]', 5000)
-            .moveToElement('//tr/td[11]', 1298, 597)
-            .clickBySelectorXpath('//tr/th[11]')
-            .clickBySelectorXpath('//tr/th[11]')
+        var createdColumn = browser.page.partners().section.createdColumn;
+        createdColumn
+            .moveToElement('@nameColumn', 1298, 597)
+            .clickBySelector('@nameColumn')
 
-            .verify.containsText('//tr[1]/td[11]/span', '2015-03-26 14:52:31')
-            .verify.containsText('//tr[2]/td[11]', '2015-03-26 14:52:31')
-            .verify.containsText('//tr[3]/td[11]', '2015-03-26 14:52:31')
-            .verify.containsText('//tr[4]/td[11]', '2015-03-26 14:52:31')
-            .verify.containsText('//tr[5]/td[11]', '2015-03-26 14:52:31')
+            .verify.containsText('@firstRow', '2015-03-26 14:52:31')
+            .verify.containsText('@secondRow', '2015-03-26 14:52:31')
+            .verify.containsText('@thirdRow', '2015-03-26 14:52:31')
+            .verify.containsText('@fourthRow', '2015-03-26 14:52:31')
     },
 
     'sort by Created down': function (browser) {
-        browser
-            .clickBySelectorXpath('//tr/th[11]')
+        var createdColumn = browser.page.partners().section.createdColumn;
+        createdColumn
+            .clickBySelector('@nameColumn')
 
-            .verify.containsText('//tr[1]/td[11]/span', '2015-03-26 14:52:31')
-            .verify.containsText('//tr[2]/td[11]', '2015-03-26 14:52:31')
-            .verify.containsText('//tr[3]/td[11]', '2015-03-26 14:52:31')
-            .verify.containsText('//tr[4]/td[11]', '2015-03-26 14:52:31')
-            .verify.containsText('//tr[5]/td[11]', '2015-03-26 14:52:31')
+            .verify.containsText('@firstRow', '2015-03-26 14:52:31')
+            .verify.containsText('@secondRow', '2015-03-26 14:52:31')
+            .verify.containsText('@thirdRow', '2015-03-26 14:52:31')
+            .verify.containsText('@fourthRow', '2015-03-26 14:52:31')
     },
 
     'search by Created Blank': function (browser) {
-        browser
-            .setValueByXpath('//tr[1]/td[11]/input[@type="text"]', ['2015-03-26', browser.Keys.ENTER])
+        var createdColumn = browser.page.partners().section.createdColumn;
+        createdColumn
+            .setValueBySelector('@seachColumn', ['2015-03-26', browser.Keys.ENTER])
 
-            .verify.containsText('//tr[1]/td[11]/span', '2015-03-26 14:52:31')
+            .verify.containsText('@firstRow', '2015-03-26 14:52:31')
     },
 });

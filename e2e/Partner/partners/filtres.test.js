@@ -10,31 +10,40 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'choose Show all': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[@value=1]')
+        var allInformation = browser.page.partners().section.allInformation;
+        allInformation
+            .clickBySelector('@showAllFilterOption');
 
-            .verify.containsText('//tr[1]/td[4]/span', 'Confirmed')
-            .verify.containsText('//tr[2]/td[4]/span', 'Confirmed')
-            .verify.containsText('//tr[3]/td[4]/span', 'Confirmed')
-            .verify.containsText('//tr[4]/td[4]/span', 'Confirmed')
-            .verify.containsText('//tr[5]/td[4]/span', 'Confirmed')
+        var participationStatusColumn = browser.page.partners().section.participationStatusColumn;
+        participationStatusColumn
+
+            .verify.containsText('@firstRow', 'Confirmed')
+            .verify.containsText('@secondRow', 'Confirmed')
+            .verify.containsText('@thirdRow', 'Confirmed')
+            .verify.containsText('@fourthRow', 'Confirmed');
     },
 
     'choose Show cancelled': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[@value=2]')
+        var allInformation = browser.page.partners().section.allInformation;
+        allInformation
+            .clickBySelector('@showCancelledFilterOption');
+        var participationStatusColumn = browser.page.partners().section.participationStatusColumn;
+        participationStatusColumn
 
-            .verify.elementPresent('//*[contains(text(), "No results found")]')
+            .verify.elementPresent('@noResultsFound');
     },
 
     'choose Show only active': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[@value=0]')
+        var allInformation = browser.page.partners().section.allInformation;
+        allInformation
+            .clickBySelector('@showOnlyActiveFilterOption');
 
-            .verify.containsText('//tr[1]/td[4]/span', 'Confirmed')
-            .verify.containsText('//tr[2]/td[4]/span', 'Confirmed')
-            .verify.containsText('//tr[3]/td[4]/span', 'Confirmed')
-            .verify.containsText('//tr[4]/td[4]/span', 'Confirmed')
-            .verify.containsText('//tr[5]/td[4]/span', 'Confirmed')
+        var participationStatusColumn = browser.page.partners().section.participationStatusColumn;
+        participationStatusColumn
+
+            .verify.containsText('@firstRow', 'Confirmed')
+            .verify.containsText('@secondRow', 'Confirmed')
+            .verify.containsText('@thirdRow', 'Confirmed')
+            .verify.containsText('@fourthRow', 'Confirmed');
     },
 });

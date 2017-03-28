@@ -10,37 +10,40 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'sort by company up': function (browser) {
-        browser
-            .clickBySelectorXpath('//*[contains(text(), "Company name")]')
+        var companyNameColumn = browser.page.partners().section.companyNameColumn;
+        companyNameColumn
+            .clickBySelector('@nameColumn')
 
-            .verify.containsText('//tr[1]/td[2]/span', '3SC World')
-            .verify.containsText('//tr[2]/td[2]/span', '4power Infocom Free Zone Company LLC')
-            .verify.containsText('//tr[3]/td[2]/span', 'Agile Financial Technologies')
-            .verify.containsText('//tr[4]/td[2]/span', 'Al Ayoubi Technologies LLC')
+            .verify.containsText('@firstRow', '3SC World')
+            .verify.containsText('@secondRow', '4power Infocom Free Zone Company LLC')
+            .verify.containsText('@thirdRow', 'Agile Financial Technologies')
+            .verify.containsText('@fourthRow', 'Al Ayoubi Technologies LLC')
     },
 
     'sort by company down': function (browser) {
-        browser
-            .clickBySelectorXpath('//*[contains(text(), "Company name")]')
+        var companyNameColumn = browser.page.partners().section.companyNameColumn;
+        companyNameColumn
+            .clickBySelector('@nameColumn')
 
-            .verify.containsText('//tr[1]/td[2]/span', 'Workspace Oy')
-            .verify.containsText('//tr[2]/td[2]/span', 'Wisdom Information Technology Solutions')
-            .verify.containsText('//tr[3]/td[2]/span', 'Westcon Middle East Free Zone Company')
-            .verify.containsText('//tr[4]/td[2]/span', 'VisionSoft Business Solutions JLT')
-            .verify.containsText('//tr[5]/td[2]/span', 'Villen testi')
+            .verify.containsText('@firstRow', 'Workspace Oy')
+            .verify.containsText('@secondRow', 'Wisdom Information Technology Solutions')
+            .verify.containsText('@thirdRow', 'Westcon Middle East Free Zone Company')
+            .verify.containsText('@fourthRow', 'VisionSoft Business Solutions JLT')
     },
 
     'search by company Blank': function (browser) {
-        browser
-            .setValueByXpath('//tr[1]/td[2]/input[@type="text"]', ['Asbis', browser.Keys.ENTER])
+        var companyNameColumn = browser.page.partners().section.companyNameColumn;
+        companyNameColumn
+            .setValueBySelector('@seachColumn', ['Asbis', browser.Keys.ENTER])
 
-            .verify.containsText('//tr[1]/td[2]/span', 'Asbis Middle East Free Zone Establishment')
+            .verify.containsText('@firstRow', 'Asbis Middle East Free Zone Establishment')
     },
 
     'search by company 3 numbers': function (browser) {
-        browser
-            .setValueByXpath('//tr[1]/td[2]/input[@type="text"]', ['Asb', browser.Keys.ENTER])
+        var companyNameColumn = browser.page.partners().section.companyNameColumn;
+        companyNameColumn
+            .setValueBySelector('@seachColumn', ['Asb', browser.Keys.ENTER])
 
-            .verify.containsText('//tr[1]/td[2]/span', 'Asbis Middle East Free Zone Establishment')
+            .verify.containsText('@firstRow', 'Asbis Middle East Free Zone Establishment')
     },
 });

@@ -10,28 +10,36 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'sort by Company info up': function (browser) {
-        browser
-            .clickBySelectorXpath('//*[contains(text(), "Company info")]')
-            .clickBySelectorXpath('//*[contains(text(), "Company info")]')
+        var componyInfoColumn = browser.page.partnerParticipationStatus().section.componyInfoColumn;
+        componyInfoColumn
+            .clickBySelector('@nameColumn')
 
-            .verify.containsText('//tr[1]/td[6]/span', 'PENDING')
-            .verify.containsText('//tr[2]/td[6]/span', 'PENDING')
-            .verify.containsText('//tr[3]/td[6]/span', 'PENDING')
-            .verify.containsText('//tr[4]/td[6]/span', 'PENDING')
-            .verify.containsText('//tr[5]/td[6]/span', 'PENDING')
+            .verify.containsText('@firstRow', 'PENDING')
+            .verify.containsText('@secondRow', 'PENDING')
+            .verify.containsText('@thirdRow', 'PENDING')
+            .verify.containsText('@fourthRow', 'PENDING')
+
+            .clickBySelector('@nameColumn')
+
+            .verify.containsText('@firstRow', 'PENDING')
+            .verify.containsText('@secondRow', 'PENDING')
+            .verify.containsText('@thirdRow', 'PENDING')
+            .verify.containsText('@fourthRow', 'PENDING')
     },
 
     'sort by Company info up': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[text()="PENDING"]')
-            .verify.containsText('//tr[1]/td[6]/span', 'PENDING')
+        var componyInfoColumn = browser.page.partnerParticipationStatus().section.componyInfoColumn;
+        componyInfoColumn
+            .clickBySelector('@pendingOption')
+            .verify.containsText('@firstRow', 'PENDING')
 
-            .clickBySelectorXpath('//option[text()="OK"]')
-            .verify.elementPresent('//*[contains(text(), "No results found")]')
+            .clickBySelector('@okOption')
+            .verify.elementPresent('@noResultsFound')
 
-            .clickBySelectorXpath('(//option)[4]')
-            .verify.containsText('//tr[1]/td[6]/span', 'PENDING')
-            .verify.containsText('//tr[2]/td[6]/span', 'PENDING')
-            .verify.containsText('//tr[3]/td[6]/span', 'PENDING')
+            .clickBySelector('@allOption')
+            .verify.containsText('@firstRow', 'PENDING')
+            .verify.containsText('@secondRow', 'PENDING')
+            .verify.containsText('@thirdRow', 'PENDING')
+            .verify.containsText('@fourthRow', 'PENDING')
     },
 });

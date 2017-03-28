@@ -115,5 +115,361 @@ module.exports = {
 
             }
         },
+
+        idColumn: {
+            selector: '//tr/th[1]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[1]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[1]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[1]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[1]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[1]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[1]',
+                    locateStrategy: 'xpath'
+                },
+                noResultsFound: {
+                    selector: '//*[contains(text(),"No results found")]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
+        companyNameColumn: {
+            selector: '//tr/th[2]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[2]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[2]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[2]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[2]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[2]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[2]',
+                    locateStrategy: 'xpath'
+                },
+                noResultsFound: {
+                    selector: '//*[contains(text(),"No results found")]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
+        participationNameColumn: {
+            selector: '//tr/th[3]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[3]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[3]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[3]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[3]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[3]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[3]',
+                    locateStrategy: 'xpath'
+                },
+                noResultsFound: {
+                    selector: '//*[contains(text(),"No results found")]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
+        participationStatusColumn: {
+            selector: '//tr[1]/th[4]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr[1]/th[4]',
+                    locateStrategy: 'xpath'
+                },
+
+                allOption: {
+                    selector: '//tr[1]/td[4]/span',
+                    locateStrategy: 'xpath'
+                },
+                confirmedOption: {
+                    selector: '//option[text()="Confirmed"]',
+                    locateStrategy: 'xpath'
+                },
+                unconfirmedOption: {
+                    selector: '//option[text()="Unconfirmed"]',
+                    locateStrategy: 'xpath'
+                },
+                confirmedRebookOption: {
+                    selector: '//option[text()="Confirmed (rebook)"]',
+                    locateStrategy: 'xpath'
+                },
+                unconfirmedRebookOption: {
+                    selector: '//option[text()="Unconfirmed (rebook)"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[4]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[4]/span',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[4]/span',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[4]/span',
+                    locateStrategy: 'xpath'
+                },
+                noResultsFound: {
+                    selector: '//*[contains(text(),"No results found")]',
+                    locateStrategy: 'xpath'
+                }
+            },
+        },
+        representativesColumn: {
+            selector: '//tr/th[5]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[5]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[5]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[5]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[5]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[5]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[5]',
+                    locateStrategy: 'xpath'
+                },
+                noResultsFound: {
+                    selector: '//*[contains(text(),"No results found")]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
+        meetingGuaranteeColumn: {
+            selector: '//tr/th[6]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[6]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[6]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[6]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[6]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[6]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[6]',
+                    locateStrategy: 'xpath'
+                },
+                noResultsFound: {
+                    selector: '//*[contains(text(),"No results found")]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
+        meetingRequestsColumn: {
+            selector: '//tr/th[7]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[7]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[7]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[7]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[7]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[7]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[7]',
+                    locateStrategy: 'xpath'
+                },
+                noResultsFound: {
+                    selector: '//*[contains(text(),"No results found")]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
+        createdColumn: {
+            selector: '//tr/th[11]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[11]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[11]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[11]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[11]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[11]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[11]',
+                    locateStrategy: 'xpath'
+                },
+                noResultsFound: {
+                    selector: '//*[contains(text(),"No results found")]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
+        modifiedColumn: {
+            selector: '//tr/th[13]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameColumn: {
+                    selector: '//tr/th[13]',
+                    locateStrategy: 'xpath'
+                },
+                seachColumn: {
+                    selector: '//tr[1]/td[13]/input[@type="text"]',
+                    locateStrategy: 'xpath'
+                },
+                firstRow: {
+                    selector: '//tr[1]/td[13]/span',
+                    locateStrategy: 'xpath'
+                },
+                secondRow: {
+                    selector: '//tr[2]/td[13]',
+                    locateStrategy: 'xpath'
+                },
+                thirdRow: {
+                    selector: '//tr[3]/td[13]',
+                    locateStrategy: 'xpath'
+                },
+                fourthRow: {
+                    selector: '//tr[4]/td[13]',
+                    locateStrategy: 'xpath'
+                },
+                noResultsFound: {
+                    selector: '//*[contains(text(),"No results found")]',
+                    locateStrategy: 'xpath'
+                }
+            }
+        },
+
+        cancelParticipation: {
+            selector: '(//button[contains(text(), "Cancel participation")])[1]',
+            locateStrategy: 'xpath',
+            elements: {
+                firstButtonCancelParticipation: {
+                    selector: '(//button[contains(text(), "Cancel participation")])[1]',
+                    locateStrategy: 'xpath'
+                },
+
+                modalTitle: {
+                    selector: '(//h4[@class="modal-title"])[1]',
+                    locateStrategy: 'xpath'
+                },
+                formGroup: {
+                    selector: '(//div[@class="form-group"])[1]',
+                    locateStrategy: 'xpath'
+                },
+                closeButton: {
+                    selector: '(//button[@aria-label="Close"]/span)[1]',
+                    locateStrategy: 'xpath'
+                },
+                noButton: {
+                    selector: '//button[text()="No"]',
+                    locateStrategy: 'xpath'
+                },
+                yesButton: {
+                    selector: '//button[text()="Yes"]',
+                    locateStrategy: 'xpath'
+                },
+            },
+        }
     }
 };

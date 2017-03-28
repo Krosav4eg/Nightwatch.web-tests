@@ -10,28 +10,36 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'sort by Company info up': function (browser) {
-        browser
-            .clickBySelectorXpath('//*[contains(text(), "Invoice info")]')
-            .clickBySelectorXpath('//*[contains(text(), "Invoice info")]')
+        var invoiceInfoColumn = browser.page.partnerParticipationStatus().section.invoiceInfoColumn;
+        invoiceInfoColumn
+            .clickBySelector('@nameColumn')
 
-            .verify.containsText('//tr[1]/td[7]/span', 'PENDING')
-            .verify.containsText('//tr[2]/td[7]/span', 'PENDING')
-            .verify.containsText('//tr[3]/td[7]/span', 'PENDING')
-            .verify.containsText('//tr[4]/td[7]/span', 'PENDING')
-            .verify.containsText('//tr[5]/td[7]/span', 'PENDING')
+            .verify.containsText('@firstRow', 'PENDING')
+            .verify.containsText('@secondRow', 'PENDING')
+            .verify.containsText('@thirdRow', 'PENDING')
+            .verify.containsText('@fourthRow', 'PENDING')
+
+            .clickBySelector('@nameColumn')
+
+            .verify.containsText('@firstRow', 'PENDING')
+            .verify.containsText('@secondRow', 'PENDING')
+            .verify.containsText('@thirdRow', 'PENDING')
+            .verify.containsText('@fourthRow', 'PENDING')
     },
 
     'sort by Company info up': function (browser) {
-        browser
-            .clickBySelectorXpath('(//option[text()="PENDING"])[2]')
-            .verify.containsText('//tr[1]/td[7]/span', 'PENDING')
+        var invoiceInfoColumn = browser.page.partnerParticipationStatus().section.invoiceInfoColumn;
+        invoiceInfoColumn
+            .clickBySelector('@pendingOption')
+            .verify.containsText('@firstRow', 'PENDING')
 
-            .clickBySelectorXpath('(//option[text()="OK"])[2]')
-            .verify.elementPresent('//*[contains(text(), "No results found")]')
+            .clickBySelector('@okOption')
+            .verify.elementPresent('@noResultsFound')
 
-            .clickBySelectorXpath('(//option)[7]')
-            .verify.containsText('//tr[1]/td[7]/span', 'PENDING')
-            .verify.containsText('//tr[2]/td[7]/span', 'PENDING')
-            .verify.containsText('//tr[3]/td[7]/span', 'PENDING')
+            .clickBySelector('@allOption')
+            .verify.containsText('@firstRow', 'PENDING')
+            .verify.containsText('@secondRow', 'PENDING')
+            .verify.containsText('@thirdRow', 'PENDING')
+            .verify.containsText('@fourthRow', 'PENDING')
     },
 });

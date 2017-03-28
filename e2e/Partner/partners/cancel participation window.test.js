@@ -6,60 +6,68 @@ module.exports = _.assign(presteps, auth, {
 
     'redirection to representatives': function (browser) {
         browser
-            .relUrl('/event/2/partners')
+            .relUrl('/event/2/partners');
     },
 
     'search by company Blank': function (browser) {
-        browser
-            .setValueByXpath('//tr[1]/td[2]/input[@type="text"]', ['ESET Middle East', browser.Keys.ENTER])
-
-            .verify.containsText('//tr[1]/td[2]/span', 'ESET Middle East')
+        var companyNameColumn = browser.page.partners().section.companyNameColumn;
+        companyNameColumn
+            .setValueBySelector('@seachColumn', ['ESET Middle East', browser.Keys.ENTER])
+            .verify.containsText('@firstRow', 'ESET Middle East');
     },
 
     'Cancel participation click Close': function (browser) {
-        browser
-            .moveToElement('//tr/td[13]', 1298, 597)
-            .clickBySelectorXpath('(//button[contains(text(), "Cancel participation")])[1]')
+        var cancelParticipation = browser.page.partners().section.cancelParticipation;
+        cancelParticipation
+            .moveToElement('@firstButtonCancelParticipation', 1298, 597)
+            .clickBySelector('@firstButtonCancelParticipation')
 
-            .verify.containsText('(//h4[@class="modal-title"])[1]', 'Cancel participation')
-            .verify.containsText('(//div[@class="form-group"])[1]', 'Are you sure you want to cancel this participation?')
+            .verify.containsText('@modalTitle', 'Cancel participation')
+            .verify.containsText('@formGroup', 'Are you sure you want to cancel this participation?')
 
-            .clickBySelectorXpath('(//button[@aria-label="Close"]/span)[1]')
+            .clickBySelector('@closeButton')
 
-            .clickBySelectorXpath('(//button[contains(text(), "Cancel participation")])[1]')
-            .clickBySelectorXpath('//button[text()="No"]')
+            .clickBySelector('@firstButtonCancelParticipation')
+            .clickBySelector('@noButton');
 
-            .verify.containsText('//tr[1]/td[2]/span', 'ESET Middle East')
+        var companyNameColumn = browser.page.partners().section.companyNameColumn;
+        companyNameColumn
+
+            .verify.containsText('@firstRow', 'ESET Middle East');
     },
 
     'participation click Yes': function (browser) {
-        browser
-            .moveToElement('//tr/td[13]', 1298, 597)
-            .clickBySelectorXpath('(//button[contains(text(), "Cancel participation")])[1]')
-            .clickBySelectorXpath('//button[text()="Yes"]')
+        var cancelParticipation = browser.page.partners().section.cancelParticipation;
+        cancelParticipation
+            .moveToElement('@firstButtonCancelParticipation', 1298, 597)
+            .clickBySelector('@firstButtonCancelParticipation')
+            .clickBySelector('@yesButton');
 
-            .refresh()
+        browser.refresh();
 
-            .setValueByXpath('//tr[1]/td[2]/input[@type="text"]', ['ESET Middle East', browser.Keys.ENTER])
+        var companyNameColumn = browser.page.partners().section.companyNameColumn;
+        companyNameColumn
+            .setValueBySelector('@seachColumn', ['ESET Middle East', browser.Keys.ENTER])
 
-            .verify.elementPresent('//*[contains(text(), "No results found")]')
+            .verify.elementPresent('@noResultsFound');
     },
 
     'edit status': function (browser) {
         browser
+            .relUrl('/event/2/partners/16');
 
-            .relUrl('/event/2/partners/16')
-            .pause(3000)
-            .clickBySelectorXpath('(//option[@value=1])[1]')
-            .click('(//*[text()="Save"])[1]')
-            .waitForElementVisible('//div[@class="simple-notification toast-notification success"]', 10000)
+        var companyNameColumn = browser.page.partnersEdit().section.participationInfo;
+        companyNameColumn
+            .clickBySelector('@confirmedOption')
+            .click('@saveButton')
+            .waitForElementVisible('@successMassege', 10000);
 
-            .relUrl('/event/2/partners')
-            .pause(4000)
+        browser
+            .relUrl('/event/2/partners');
 
-            .setValueByXpath('//tr[1]/td[2]/input[@type="text"]', ['ESET Middle East', browser.Keys.ENTER])
-
-            .verify.containsText('//tr[1]/td[2]/span', 'ESET Middle East')
+        var companyNameColumn = browser.page.partners().section.companyNameColumn;
+        companyNameColumn
+            .setValueBySelector('@seachColumn', ['ESET Middle East', browser.Keys.ENTER])
+            .verify.containsText('@firstRow', 'ESET Middle East');
     },
-
 });

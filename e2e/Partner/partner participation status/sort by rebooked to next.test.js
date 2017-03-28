@@ -10,31 +10,36 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'sort by Rebooked to next up': function (browser) {
-        browser
-            .useXpath()
-            .waitForElementVisible('//h4[text()="Event (#2)"]', 5000)
-            .moveToElement('//tr/td[11]', 1298, 597)
-            .clickBySelectorXpath('//*[contains(text(), "Rebooked to next")]')
-            .clickBySelectorXpath('//*[contains(text(), "Rebooked to next")]')
+        var rebookToNextColumn = browser.page.partnerParticipationStatus().section.rebookToNextColumn;
+        rebookToNextColumn
+            .moveToElement('@nameColumn', 1298, 597)
+            .clickBySelector('@nameColumn')
 
-            .verify.containsText('//tr[1]/td[11]/span', 'Empty')
-            .verify.containsText('//tr[2]/td[11]/span', 'Empty')
-            .verify.containsText('//tr[3]/td[11]/span', 'Empty')
-            .verify.containsText('//tr[4]/td[11]/span', 'Empty')
-            .verify.containsText('//tr[5]/td[11]/span', 'Empty')
+            .verify.containsText('@firstRow', 'Empty')
+            .verify.containsText('@secondRow', 'Empty')
+            .verify.containsText('@thirdRow', 'Empty')
+            .verify.containsText('@fourthRow', 'Empty')
+
+            .clickBySelector('@nameColumn')
+
+            .verify.containsText('@firstRow', 'Empty')
+            .verify.containsText('@secondRow', 'Empty')
+            .verify.containsText('@thirdRow', 'Empty')
+            .verify.containsText('@fourthRow', 'Empty')
     },
 
     'choose Empty': function (browser) {
-        browser
-            .clickBySelectorXpath('//option[text()="Empty"]')
-            .verify.containsText('//tr[1]/td[11]/span', 'Empty')
+        var rebookToNextColumn = browser.page.partnerParticipationStatus().section.rebookToNextColumn;
+        rebookToNextColumn
+            .clickBySelector('@emptyOption')
+            .verify.containsText('@firstRow', 'Empty')
 
-            .clickBySelectorXpath('(//option[text()="OK"])[3]')
-            .verify.elementPresent('//*[contains(text(), "No results found")]')
+            .clickBySelector('@okOption')
+            .verify.elementPresent('@noResultsFound')
 
-            .clickBySelectorXpath('(//option)[10]')
-            .verify.containsText('//tr[1]/td[11]/span', 'Empty')
-            .verify.containsText('//tr[2]/td[11]/span', 'Empty')
-            .verify.containsText('//tr[3]/td[11]/span', 'Empty')
+            .clickBySelector('@allOption')
+            .verify.containsText('@firstRow', 'Empty')
+            .verify.containsText('@secondRow', 'Empty')
+            .verify.containsText('@thirdRow', 'Empty')
     },
 });

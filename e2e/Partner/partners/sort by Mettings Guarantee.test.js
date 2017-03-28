@@ -10,32 +10,32 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'sort by Mettings Guarantee up': function (browser) {
-        browser
-            .clickBySelectorXpath('//tr/th[6]')
-            .clickBySelectorXpath('//tr/th[6]')
+        var meetingGuaranteeColumn = browser.page.partners().section.meetingGuaranteeColumn;
+        meetingGuaranteeColumn
+            .clickBySelector('@nameColumn')
 
-            .verify.containsText('//tr[1]/td[6]/span', '0')
-            .verify.containsText('//tr[2]/td[6]', '0')
-            .verify.containsText('//tr[3]/td[6]', '0')
-            .verify.containsText('//tr[4]/td[6]', '0')
-            .verify.containsText('//tr[5]/td[6]', '0')
+            .verify.containsText('@firstRow', '0')
+            .verify.containsText('@secondRow', '0')
+            .verify.containsText('@thirdRow', '0')
+            .verify.containsText('@fourthRow', '0')
     },
 
     'sort by Mettings Guarantee down': function (browser) {
-        browser
-            .clickBySelectorXpath('//tr/th[6]')
+        var meetingGuaranteeColumn = browser.page.partners().section.meetingGuaranteeColumn;
+        meetingGuaranteeColumn
+            .clickBySelector('@nameColumn')
 
-            .verify.containsText('//tr[1]/td[6]/span', '0')
-            .verify.containsText('//tr[2]/td[6]', '0')
-            .verify.containsText('//tr[3]/td[6]', '0')
-            .verify.containsText('//tr[4]/td[6]', '0')
-            .verify.containsText('//tr[5]/td[6]', '0')
+            .verify.containsText('@firstRow', '0')
+            .verify.containsText('@secondRow', '0')
+            .verify.containsText('@thirdRow', '0')
+            .verify.containsText('@fourthRow', '0')
     },
 
     'search by Mettings Guarantee Blank': function (browser) {
-        browser
-            .setValueByXpath('//tr[1]/td[6]/input[@type="text"]', ['0', browser.Keys.ENTER])
+        var meetingGuaranteeColumn = browser.page.partners().section.meetingGuaranteeColumn;
+        meetingGuaranteeColumn
+            .setValueBySelector('@seachColumn', ['0', browser.Keys.ENTER])
 
-            .verify.containsText('//tr[1]/td[5]/span', '0')
+            .verify.containsText('@firstRow', '0')
     },
 });

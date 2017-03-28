@@ -10,12 +10,12 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'check event data': function (browser) {
-        browser
-            .useXpath()
-            .waitForElementVisible('//h4[text()="Event (#2)"]', 3000)
-            .verify.elementPresent('//h3[text()="Growth Session Dubai Breakfast March 2015"]')
-            .verify.elementPresent('//div[text()="Local name: Growth Session Dubai Breakfast March 2015"]')
-            .verify.elementPresent('//div[text()="Dates: 2015-03-04 08:00:00 - 2015-03-04 18:00:00"]')
-            .verify.elementPresent('//div[text()="Venue: Le Royal Méridien Beach Resort & Spa, Dubai"]');
+        var allInformation = browser.page.partners().section.allInformation;
+        allInformation
+            .verify.containsText('@titleEvent', "Event (#2)")
+            .verify.containsText('@nameEvent', "Growth Session Dubai Breakfast March 2015")
+            .verify.containsText('@localName', "Local name: Growth Session Dubai Breakfast March 2015")
+            .verify.containsText('@dates', "Dates: 2015-03-04 08:00:00 - 2015-03-04 18:00:00")
+            .verify.containsText('@venue', "Venue: Le Royal Méridien Beach Resort & Spa, Dubai");
     },
 });
