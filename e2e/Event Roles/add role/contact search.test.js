@@ -19,7 +19,7 @@ module.exports = _.assign(presteps, auth, {
         browser
             .clickBySelectorXpath('//button[contains(text(),"Save")]')
             .verify.containsText('(//p)[1]', 'Event Role is required.')
-          //  .verify.containsText('(//p)[2]', 'Event Participant is required.');
+            .verify.containsText('(//p)[2]', 'Event Participant is required.');
     },
 
     'input full name': function (browser) {
