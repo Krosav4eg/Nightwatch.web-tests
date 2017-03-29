@@ -9,6 +9,17 @@ module.exports = _.assign(presteps, auth, {
             .relUrl('/event/200/delegates')
     },
 
+    'sort by last name up': function (browser) {
+        browser
+            .clickBySelectorXpath('(//tr/th[2])[1]')
+
+            .verify.elementPresent('//tr[1]/td[2]/span/a[contains(text(),"Biermann")]')
+            .verify.elementPresent('//tr[2]/td[2]/span/a[contains(text(),"Brunzema")]')
+            .verify.elementPresent('//tr[3]/td[2]/span/a[contains(text(),"Ecke")]')
+            .verify.elementPresent('//tr[4]/td[2]/span/a[contains(text(),"Erdogan")]')
+            .verify.elementPresent('//tr[5]/td[2]/span/a[contains(text(),"Exner")]');
+    },
+
     'sort by last name down': function (browser) {
         browser
             .clickBySelectorXpath('(//tr/th[2])[1]')
@@ -23,16 +34,5 @@ module.exports = _.assign(presteps, auth, {
             .verify.elementPresent('//tr[8]/td[2]/span/a[contains(text(),"Schaub")]')
             .verify.elementPresent('//tr[9]/td[2]/span/a[contains(text(),"Reuss")]')
             .verify.elementPresent('//tr[10]/td[2]/span/a[contains(text(),"Pommer")]');
-    },
-
-    'sort by last name up': function (browser) {
-        browser
-            .clickBySelectorXpath('(//tr/th[2])[1]')
-
-            .verify.elementPresent('//tr[1]/td[2]/span/a[contains(text(),"Biermann")]')
-            .verify.elementPresent('//tr[2]/td[2]/span/a[contains(text(),"Brunzema")]')
-            .verify.elementPresent('//tr[3]/td[2]/span/a[contains(text(),"Ecke")]')
-            .verify.elementPresent('//tr[4]/td[2]/span/a[contains(text(),"Erdogan")]')
-            .verify.elementPresent('//tr[5]/td[2]/span/a[contains(text(),"Exner")]');
     },
 });

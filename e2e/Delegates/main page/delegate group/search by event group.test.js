@@ -18,7 +18,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.containsText('//tr[1]/td[12]/span', '')
             .verify.containsText('//tr[2]/td[12]/span', '')
 
-            .verify.elementPresent('//h4[contains(text(),"Delegates 0/19")]');
+            .verify.elementPresent('//h4[contains(text(),"Delegates 0/27")]');
     },
 
     'click group 1 - orange': function (browser) {
@@ -29,7 +29,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.containsText('//tr[3]/td[12]/span', 'Group 1 - orange')
             .verify.containsText('//tr[4]/td[12]/span', 'Group 1 - orange')
 
-            .verify.elementPresent('//h4[contains(text(),"Delegates 0/7")]');
+            .verify.elementPresent('//h4[contains(text(),"Delegates 0/8")]');
     },
 
     'click group 2 - violet': function (browser) {
@@ -40,7 +40,7 @@ module.exports = _.assign(presteps, auth, {
             .verify.containsText('//tr[3]/td[12]/span', 'Group 2 - violet')
             .verify.containsText('//tr[4]/td[12]/span', 'Group 2 - violet')
 
-            .verify.elementPresent('//h4[contains(text(),"Delegates 0/12")]');
+            .verify.elementPresent('//h4[contains(text(),"Delegates 0/11")]');
     },
 
 });

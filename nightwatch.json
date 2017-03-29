@@ -22,12 +22,12 @@
     "enabled": true,
     "workers": 5
   },
-  "test_settings": {
+    "test_settings": {
     "default": {
       "filter": "**/*.test.js",
       "selenium_host": "127.0.0.1",
       "selenium_port": 4444,
-      "launch_url": "http://test.skynet.managementevents.com",
+      "launch_url": "http://alpha.skynet.managementevents.com",
       "silent": true,
       "screenshots": {
         "enabled": true,
