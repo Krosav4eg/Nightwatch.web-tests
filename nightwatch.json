@@ -22,7 +22,7 @@
     "enabled": true,
     "workers": 5
   },
-  "test_settings": {
+    "test_settings": {
     "default": {
       "filter": "**/*.test.js",
       "selenium_host": "127.0.0.1",

@@ -5,7 +5,7 @@
  */
 module.exports.command = function(selector) {
     this
-        .waitForElementVisible(selector, 10000)
+        .waitForElementVisible(selector, 20000)
         .click(selector)
         .useXpath()
         .waitForElementNotVisible('//*[@id="thisIsMainLoader"]', 100000)

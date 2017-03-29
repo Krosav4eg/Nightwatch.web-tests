@@ -1122,6 +1122,6 @@ module.exports = {
                     locateStrategy: 'xpath'
                 }
             }
-        }
+        },
     }
 };
