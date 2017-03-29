@@ -6,72 +6,66 @@ module.exports = _.assign(presteps, auth, {
 
     'redirection to representatives': function (browser) {
         browser
-            .relUrl('/event/2/partners/25')
+            .relUrl('/event/2008/partners/5221')
     },
 
-    'add contact person': function (browser) {
-        browser
-            .addContactPerson('Rehab', '1');
-    },
+    // 'add contact person': function (browser) {
+    //     browser
+    //         .addContactPerson('Rehab', '1');
+    // },
 
     'send sms empty fields': function (browser) {
-        browser
-            .clickBySelectorXpath('(//button[@class="btn btn-primary btn-lg communication-participant-btn"])[2]')
-            .clickBySelectorXpath("(//button[text()='Send'])[2]")
+        var communication = browser.page.partnersEdit().section.communication;
+        communication
+            .clickBySelector('@sendSMSButton')
+            .clickBySelector("@sendSMSButtonInModal")
 
-            .waitForElementVisible('//div[@class="simple-notification toast-notification alert"]', 10000)
-            .verify.containsText('//div[@class="sn-title"]', 'Info!')
-            .verify.containsText('//div[@class="sn-content"]', 'You need to chose Cms Template and recipients')
-            .clickBySelectorXpath('//div[@class="simple-notification toast-notification alert"]')
-    },
+            .waitForElementVisible('@alertMassege', 10000)
 
-    'cancel send sms block': function (browser) {
-        browser
-            .clickBySelectorXpath("(//button[text()='Cancel'])[5]")
+            .clickBySelector("@cancelSMSButtonInModal")
     },
 
     'send sms': function (browser) {
-        browser
-            .clickBySelectorXpath('(//button[@class="btn btn-primary btn-lg communication-participant-btn"])[2]')
+        var communication = browser.page.partnersEdit().section.communication;
+        communication
+            .clickBySelector('@sendSMSButton')
 
-            .clickBySelectorXpath('(//input[@type="checkbox"])[1]')
+            .clickBySelector('@firstRepresentatives')
 
-            .clickBySelectorXpath('//option[@value="575"]')
-            .verify.valueContains('(//textarea[@class="form-control ng-untouched ng-pristine ng-valid"])[2]', 'This is the link to your meeting service: {{Partner.Link.Agenda-AUTO}}')
+            .clickBySelector('@template575Option')
+            .verify.valueContains('@textSMSInput', 'This is the link to your meeting service: {{Partner.Link.Agenda-AUTO}}')
 
-            .clickBySelectorXpath('//option[@value="97"]')
-            .verify.valueContains('(//textarea[@class="form-control ng-untouched ng-pristine ng-valid"])[2]', 'We have booked a new meeting for you. You can check your meetings from here from your mobile service')
+            .clickBySelector('@template97Option')
+            .verify.valueContains('@textSMSInput', 'We have booked a new meeting for you. You can check your meetings from here from your mobile service')
 
-            .clickBySelectorXpath('//option[@value="575"]')
-            .verify.valueContains('(//textarea[@class="form-control ng-untouched ng-pristine ng-valid"])[2]', 'This is the link to your meeting service: {{Partner.Link.Agenda-AUTO}}')
+            .clickBySelector('@template575Option')
+            .verify.valueContains('@textSMSInput', 'This is the link to your meeting service: {{Partner.Link.Agenda-AUTO}}')
 
-            .clickBySelectorXpath("(//button[text()='Send'])[2]")
+            .clickBySelector("@sendSMSButtonInModal")
 
-            .waitForElementVisible('//div[@class="simple-notification toast-notification success"]', 10000)
-            .verify.containsText('//div[@class="sn-title"]', 'Success')
-            .verify.containsText('//div[@class="sn-content"]', 'The SMS template was sent successfully.')
-            .clickBySelectorXpath('//div[@class="simple-notification toast-notification success"]')
+            .waitForElementVisible('@successSMSMassege', 10000)
 
-            .verify.containsText('(//*[@class="col-lg-8 communication-participant-text"]/p)[2]', "Testing SMS")
-            .verify.containsText('(//*[@class="col-lg-8 communication-participant-text"]/p)[2]', "Rehab E.M. Abdullah")
-            .containsCurrentDataInSelectorXpath('(//*[@class="col-lg-8 communication-participant-text"]/p)[2]');
+            .verify.containsText('@lastEditSMS', "Testing SMS")
+            .verify.containsText('@lastEditSMS', "Rehab E.M. Abdullah")
+            .containsCurrentData('@lastEditSMS');
     },
 
     'verify fields after send': function (browser) {
-        browser
-            .clickBySelectorXpath('(//button[@class="btn btn-primary btn-lg communication-participant-btn"])[2]')
+        var communication = browser.page.partnersEdit().section.communication;
+        communication
+            .clickBySelector('@sendSMSButton')
 
-            .verify.valueContains('(//textarea[@class="form-control ng-untouched ng-pristine ng-valid"])[2]', null)
+            .verify.valueContains('@textSMSInput', null)
 
-            .clickBySelectorXpath("(//button[text()='Cancel'])[4]")
+            .clickBySelector("@cancelSMSButtonInModal")
     },
 
-    'delete contact person': function (browser) {
-
-        browser
-            .sendKeys('//button[text()="Delete"]', [browser.Keys.HOME])
-            .moveToElement('//button[text()="Delete"]', 10, 10)
-            .clickBySelectorXpath('//button[text()="Delete"]')
-            .clickBySelectorXpath('(//button[text()="Yes"])[1]');
-    },
+    // 'delete contact person': function (browser) {
+    //
+    //     browser
+    //         .sendKeys('//button[text()="Delete"]', [browser.Keys.HOME])
+    //         .moveToElement('//button[text()="Delete"]', 10, 10)
+    //         .clickBySelectorXpath('//button[text()="Delete"]')
+    //         .clickBySelectorXpath('(//button[text()="Yes"])[1]');
+    // },
 });

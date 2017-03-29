@@ -741,6 +741,10 @@ module.exports = {
                     selector: '//tr[1]/td[6]/span/a[1]',
                     locateStrategy: 'xpath'
                 },
+                firstRowLogo: {
+                    selector: '//tr[1]/td[6]/span/a[2]',
+                    locateStrategy: 'xpath'
+                },
                 firstRowWithLastName: {
                     selector: '//tr[1]/td[6]//a[contains(text(),"Röynä")]',
                     locateStrategy: 'xpath'

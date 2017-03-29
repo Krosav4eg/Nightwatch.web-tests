@@ -15,76 +15,70 @@ module.exports = _.assign(presteps, auth, {
     // },
 
     'send email empty fields': function (browser) {
-        browser
-            .clickBySelectorXpath('//button[contains(text(), "Send email")]')
-            .clickBySelectorXpath("(//button[text()='Send'])[1]")
+        var communication = browser.page.partnersEdit().section.communication;
+        communication
+            .clickBySelector('@sendEmailButton')
+            .clickBySelector("@sendButton")
 
-            .waitForElementVisible('//div[@class="simple-notification toast-notification alert"]', 10000)
-            .verify.containsText('//div[@class="sn-title"]', 'Info!')
-            .verify.containsText('//div[@class="sn-content"]', 'You need to chose Cms Template and recipients')
-            .clickBySelectorXpath('//div[@class="simple-notification toast-notification alert"]')
-    },
+            .waitForElementVisible('@alertMassege', 10000)
 
-    'cancel send email block': function (browser) {
-        browser
-            .clickBySelectorXpath("//button[text()='Cancel']")
+            .clickBySelector("@cancelButton");
     },
 
     'send email': function (browser) {
-        browser
-            .clickBySelectorXpath('//button[contains(text(), "Send email")]')
+        var communication = browser.page.partnersEdit().section.communication;
+        communication
+            .clickBySelector('@sendEmailButton')
 
-            .clickBySelectorXpath('(//input[@type="checkbox"])[1]')
-            .clickBySelectorXpath('//option[@value="68"]')
+            .clickBySelector('@firstRepresentatives')
+            .clickBySelector('@template68Option')
 
-            .verify.valueContains('//*[contains(text(), "From Email:")]/../div/input', 'production.ns@managementevents.com')
-            .verify.valueContains('//*[contains(text(), "From Name:")]/../div/input', 'Needseeker Customer Service')
-            .verify.valueContains('//*[contains(text(), "Reply-To Email:")]/../div/input', 'production.ns@managementevents.com')
-            .verify.valueContains('//*[contains(text(), "Subject:")]/../div/input', 'Needseeker -tapaamiset varattavissa nyt. Linkki tapaamispalveluusi')
+            .verify.valueContains('@fromEmailInput', 'production.ns@managementevents.com')
+            .verify.valueContains('@fromNameInput', 'Needseeker Customer Service')
+            .verify.valueContains('@replyToEmailInput', 'production.ns@managementevents.com')
+            .verify.valueContains('@subjectInput', 'Needseeker -tapaamiset varattavissa nyt. Linkki tapaamispalveluusi')
 
-            .clickBySelectorXpath('//option[@value="579"]')
+            .clickBySelector('@template579Option')
 
-            .verify.valueContains('//*[contains(text(), "From Email:")]/../div/input', '{{EventVersion.PCResponsible.Email}}')
-            .verify.valueContains('//*[contains(text(), "From Name:")]/../div/input', '{{EventVersion.PCResponsible.FirstName}} {{EventVersion.PCResponsible.LastName}}')
-            .verify.valueContains('//*[contains(text(), "Reply-To Email:")]/../div/input', '{{EventVersion.PCResponsible.Email}}')
-            .verify.valueContains('//*[contains(text(), "Subject:")]/../div/input', 'Uudet Needseeker-tapaamiskreditit lisätty yrityksellenne')
+            .verify.valueContains('@fromEmailInput', '{{EventVersion.PCResponsible.Email}}')
+            .verify.valueContains('@fromNameInput', '{{EventVersion.PCResponsible.FirstName}} {{EventVersion.PCResponsible.LastName}}')
+            .verify.valueContains('@replyToEmailInput', '{{EventVersion.PCResponsible.Email}}')
+            .verify.valueContains('@subjectInput', 'Uudet Needseeker-tapaamiskreditit lisätty yrityksellenne')
 
-            .clickBySelectorXpath('//option[@value="68"]')
+            .clickBySelector('@template68Option')
 
-            .verify.valueContains('//*[contains(text(), "From Email:")]/../div/input', 'production.ns@managementevents.com')
-            .verify.valueContains('//*[contains(text(), "From Name:")]/../div/input', 'Needseeker Customer Service')
-            .verify.valueContains('//*[contains(text(), "Reply-To Email:")]/../div/input', 'production.ns@managementevents.com')
-            .verify.valueContains('//*[contains(text(), "Subject:")]/../div/input', 'Needseeker -tapaamiset varattavissa nyt. Linkki tapaamispalveluusi')
+            .verify.valueContains('@fromEmailInput', 'production.ns@managementevents.com')
+            .verify.valueContains('@fromNameInput', 'Needseeker Customer Service')
+            .verify.valueContains('@replyToEmailInput', 'production.ns@managementevents.com')
+            .verify.valueContains('@subjectInput', 'Needseeker -tapaamiset varattavissa nyt. Linkki tapaamispalveluusi')
 
-            .clickBySelectorXpath('//option[@value="579"]')
+            .clickBySelector('@template579Option')
 
-            .verify.valueContains('//*[contains(text(), "From Email:")]/../div/input', '{{EventVersion.PCResponsible.Email}}')
-            .verify.valueContains('//*[contains(text(), "From Name:")]/../div/input', '{{EventVersion.PCResponsible.FirstName}} {{EventVersion.PCResponsible.LastName}}')
-            .verify.valueContains('//*[contains(text(), "Reply-To Email:")]/../div/input', '{{EventVersion.PCResponsible.Email}}')
-            .verify.valueContains('//*[contains(text(), "Subject:")]/../div/input', 'Uudet Needseeker-tapaamiskreditit lisätty yrityksellenne')
+            .verify.valueContains('@fromEmailInput', '{{EventVersion.PCResponsible.Email}}')
+            .verify.valueContains('@fromNameInput', '{{EventVersion.PCResponsible.FirstName}} {{EventVersion.PCResponsible.LastName}}')
+            .verify.valueContains('@replyToEmailInput', '{{EventVersion.PCResponsible.Email}}')
+            .verify.valueContains('@subjectInput', 'Uudet Needseeker-tapaamiskreditit lisätty yrityksellenne')
 
-            .clickBySelectorXpath("(//button[text()='Send'])[1]")
+            .clickBySelector("@sendButton")
 
-            .waitForElementVisible('//div[@class="simple-notification toast-notification success"]', 10000)
-            .verify.containsText('//div[@class="sn-title"]', 'Success')
-            .verify.containsText('//div[@class="sn-content"]', 'The email template was sent successfully')
-            .clickBySelectorXpath('//div[@class="simple-notification toast-notification success"]')
+            .waitForElementVisible('@successMassege', 10000)
 
-            .verify.containsText('(//*[@class="col-sm-8"]/p)[1]', "Test")
-            .verify.containsText('(//*[@class="col-sm-8"]/p)[1]', "Needseeker - credits added to companies")
-            .containsCurrentDataInSelectorXpath('(//*[@class="col-sm-8"]/p)[1]');
+            .verify.containsText('@lastEdit', "Test")
+            .verify.containsText('@lastEdit', "Needseeker - credits added to companies")
+            .containsCurrentData('@lastEdit');
     },
 
     'verify fields after send': function (browser) {
-        browser
-            .clickBySelectorXpath('//button[contains(text(), "Send email")]')
+        var communication = browser.page.partnersEdit().section.communication;
+        communication
+            .clickBySelector('@sendEmailButton')
 
-            .verify.valueContains('//*[contains(text(), "From Email:")]/../div/input', '')
-            .verify.valueContains('//*[contains(text(), "From Name:")]/../div/input', '')
-            .verify.valueContains('//*[contains(text(), "Reply-To Email:")]/../div/input', '')
-            .verify.valueContains('//*[contains(text(), "Subject:")]/../div/input', '')
+            .verify.valueContains('@fromEmailInput', '')
+            .verify.valueContains('@fromNameInput', '')
+            .verify.valueContains('@replyToEmailInput', '')
+            .verify.valueContains('@subjectInput', '')
 
-            .clickBySelectorXpath("//button[text()='Cancel']")
+            .clickBySelector("@cancelButton");
     },
 
     // 'delete contact person': function (browser) {

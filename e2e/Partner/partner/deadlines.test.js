@@ -10,14 +10,13 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'verify Event Deadlines': function (browser) {
-        browser
-            .useXpath()
-            .verify.containsText('(//h4)[5]', "Event Deadlines")
+        var eventDeadlines = browser.page.partnersEdit().section.eventDeadlines;
+        eventDeadlines
+            .clickBySelector('@nameSection')
+            .expect.element('@partnerDeadline').to.not.be.visible;
 
-            .clickBySelectorXpath('(//h4)[5]')
-            .expect.element('//label[text()="Partner deadline:"]').to.not.be.visible;
-
-        browser.clickBySelectorXpath('(//h4)[5]')
-            .expect.element('//label[text()="Partner deadline:"]').to.be.visible;
+        eventDeadlines
+            .clickBySelector('@nameSection')
+            .expect.element('@partnerDeadline').to.be.visible;
     },
 });
