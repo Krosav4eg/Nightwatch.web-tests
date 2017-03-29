@@ -4,7 +4,7 @@ var auth = require('./../../presteps/auth.js');
 
 module.exports = _.assign(presteps, auth, {
 
-    'redirection to delegates': function (browser) {
+    'redirection to helpdesk': function (browser) {
         browser
             .relUrl('/events/2008/helpdesk');
     },
@@ -43,7 +43,7 @@ module.exports = _.assign(presteps, auth, {
             .clickBySelectorXpath('(//button[contains(text(),"Send SMS")])[2]')
             .useXpath()
             .verify.elementPresent('//div[contains(text(),"Please choose template.")]')
-            .clickBySelectorXpath('//span[contains(text(),"×")]')
+            .clickBySelectorXpath('//button[@class="close"]')
 
             .clickBySelectorXpath('(//button[contains(text(),"Send SMS")])[1]');
     },
@@ -58,8 +58,6 @@ module.exports = _.assign(presteps, auth, {
     'check that information would be update after you change template': function (browser) {
         browser
             .relUrl('/sms-templates/edit/99')
-            .useCss()
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
 
             .useXpath()
             .verify.elementPresent('//h1[contains(text(),"Edit Sms Template (#99)")]')
@@ -84,7 +82,7 @@ module.exports = _.assign(presteps, auth, {
 
             .clickBySelectorXpath('(//button[contains(text(),"Send SMS")])[1]')
 
-            .click('//option[contains(text(),"New meeting request")]')
+            .clickBySelectorXpath('//option[contains(text(),"New meeting request")]')
             .useCss()
             .verify.valueContains('div[class="modal in fade"] textarea ', 'autotest');
     },
@@ -92,27 +90,21 @@ module.exports = _.assign(presteps, auth, {
     'to return order': function (browser) {
         browser
             .relUrl('/sms-templates/edit/99')
-            .useCss()
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
 
             .setValueByXpath('(//textarea)[1]', 'You have received a new meeting request.')
             .clickBySelectorXpath('(//button[contains(text(),"Save")])[2]')
-
             .verify.elementPresent('//div[contains(text(),"The Localization Template was updated successfully")]');
     },
+
 
     'verify send sms button': function (browser) {
         browser
             .relUrl('/events/2008/helpdesk')
-            .useCss()
-            .waitForElementNotVisible('#thisIsMainLoader', 30000)
-
-            .useXpath()
             .clickBySelectorXpath('(//tr/td/input[@type="checkbox"])[1]')
+
             .clickBySelectorXpath('(//button[contains(text(),"Send SMS")])[1]')
+            .clickBySelectorXpath('//option[@value="99"]')
 
-            .clickBySelectorXpath('//option[contains(text(),"New meeting request")]')
-            .clickBySelectorXpath('//button[@class="btn btn-primary"]');
-    },
-
+            .clickBySelector('//button[@class="btn btn-primary"]');
+    }
 });
