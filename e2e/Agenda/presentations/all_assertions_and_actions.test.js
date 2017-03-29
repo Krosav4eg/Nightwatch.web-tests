@@ -11,8 +11,7 @@ module.exports = _.assign(presteps, auth, {
 
     'creation new container': function (browser) {
         var agendaPage = browser.page.agenda();
-        agendaPage.
-             containerCreation();
+        agendaPage.containerCreation();
     },
 
     'choose static agenda element': function (browser) {
@@ -54,8 +53,8 @@ module.exports = _.assign(presteps, auth, {
     'presentation/panel discussion has been created': function (browser) {
         var addCotainerPage = browser.page.agenda().section.addCotainer;
         addCotainerPage
-            .verify.containsText('@timeElementText',"08:00 - 09:45")
-            .verify.containsText('@namePlaceholderText',"Presentation / Panel discussion")
+            .verify.containsText('@timeElementText', "08:00 - 09:45")
+            .verify.containsText('@namePlaceholderText', "Presentation / Panel discussion")
             .verify.elementPresent('@addRoomButton')
             .verify.elementPresent('@plusPresentationButton')
             .verify.elementPresent('@text1875')
@@ -95,13 +94,13 @@ module.exports = _.assign(presteps, auth, {
             .setValueBySelector('@subheading1Input', 'Sub heading 1')
 
             .verify.elementPresent('@subheading2Text')
-            .setValueByXpath('@subheading2Input', 'Sub heading 2')
+            .setValueBySelector('@subheading2Input', 'Sub heading 2')
 
             .verify.elementPresent('@subheading3Text')
-            .setValueByXpath('@subheading3Input', 'Sub heading 3')
+            .setValueBySelector('@subheading3Input', 'Sub heading 3')
 
             .verify.elementPresent('@notesText')
-            .setValueByXpath('@notesInput', 'Simply note')
+            .setValueBySelector('@notesInput', 'Simply note')
 
             .verify.elementPresent('@createdText')
             .verify.elementPresent('@createdByText')
@@ -167,7 +166,6 @@ module.exports = _.assign(presteps, auth, {
 
     'new added speaker is displayed': function (browser) {
         browser
-            .verify.elementPresent('(//a[@href])[86]')
             .verify.containsText('//tr[2]/td[2]/span', 'Guest Speaker')
             .verify.containsText('//tr[2]/td[4]/span', 'Gorohov')
             .verify.containsText('//tr[2]/td[5]/span', 'Igor')
@@ -199,11 +197,11 @@ module.exports = _.assign(presteps, auth, {
             .waitForElementNotVisible('#thisIsMainLoader', 30000)
             .useXpath()
             .clickBySelectorXpath('//me-event-agenda-attached-presentation-list//i[@class="fa fa-trash-o delete-element"]')
-            .clickBySelectorXpath('//modal[@class="modal fade in"]//button[@data-marker="me-confirm__button__button__yes"]')
+            .clickBySelectorXpath('//button[@data-marker="me-confirm__button__button__yes"]')
     },
 
     'delete container': function (browser) {
-        browser
-            .deleteContainerForAgenda();
+        var agendaPage = browser.page.agenda();
+        agendaPage.containerCreation();
     },
 });
