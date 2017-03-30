@@ -23,7 +23,7 @@ module.exports = _.assign(presteps, auth, {
     'visible correct templates in drop down list': function (browser) {
         browser
             .clickBySelectorXpath('(//select)[6]')
-
+            .pause()
             .verify.containsText('(//option)[25]', '')
             .verify.containsText('//option[@value="576"]', 'Link to Mobile Service')
             .verify.containsText('//option[@value="577"]', 'Link to Mobile Service - 1 day before')
