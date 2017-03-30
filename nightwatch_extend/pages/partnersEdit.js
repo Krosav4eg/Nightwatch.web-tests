@@ -22,12 +22,76 @@ module.exports = {
             selector: '//div[contains(text(), "Participation info")]',
             locateStrategy: 'xpath',
             elements: {
+                nameSection: {
+                    selector: '//div[contains(text(), "Participation info")]',
+                    locateStrategy: 'xpath'
+                },
+                masterCompanyNameText: {
+                    selector: '//label[text()="Master company name:"]',
+                    locateStrategy: 'xpath'
+                },
+                masterCompanyNameInput: {
+                    selector: '//*[text()="Master company name:"]/../div',
+                    locateStrategy: 'xpath'
+                },
+                masterCompanyIdLink: {
+                    selector: '//label[text()="Master company name:"]/../div/a',
+                    locateStrategy: 'xpath'
+                },
+                participationNameInput: {
+                    selector: '//label[text()="Participation name:"]/../div/input',
+                    locateStrategy: 'xpath'
+                },
+                participationStatusSelect: {
+                    selector: '//label[text()="Participation status:"]/../div/select',
+                    locateStrategy: 'xpath'
+                },
+                unconfirmedOption: {
+                    selector: '(//option[@value=0])[1]',
+                    locateStrategy: 'xpath'
+                },
                 confirmedOption: {
                     selector: '(//option[@value=1])[1]',
                     locateStrategy: 'xpath'
                 },
+                canceledOption: {
+                    selector: '(//option[@value=2])[1]',
+                    locateStrategy: 'xpath'
+                },
+                unconfirmedRebookOption: {
+                    selector: '(//option[@value=3])[1]',
+                    locateStrategy: 'xpath'
+                },
+                confirmedRebookOption: {
+                    selector: '(//option[@value=4])[1]',
+                    locateStrategy: 'xpath'
+                },
+                rebookResponsibleInput: {
+                    selector: '//*[text()="Rebook responsible:"]/../div/me-user-autocomplete/div/input',
+                    locateStrategy: 'xpath'
+                },
+                MariAlén: {
+                    selector: '//*[contains(text(),"Mari Alén")]',
+                    locateStrategy: 'xpath'
+                },
+                GuaranteeValidYesCheckbox: {
+                    selector: '(//radio-item/div/input)[1]',
+                    locateStrategy: 'xpath'
+                },
+                GuaranteeValidNoCheckbox: {
+                    selector: '(//radio-item/div/input)[2]',
+                    locateStrategy: 'xpath'
+                },
+                packageNotesInput: {
+                    selector: '//*[@formcontrolname="packageNotes"]',
+                    locateStrategy: 'xpath'
+                },
                 saveButton: {
                     selector: '(//*[text()="Save"])[1]',
+                    locateStrategy: 'xpath'
+                },
+                confirmYesButton: {
+                    selector: '//button[@data-marker="me-confirm__button__button__yes"]',
                     locateStrategy: 'xpath'
                 },
                 successMassege: {
@@ -163,6 +227,40 @@ module.exports = {
                 },
                 successMassege: {
                     selector: '//div[contains(text(), "Success")]',
+                    locateStrategy: 'xpath'
+                },
+            }
+        },
+        rebooking: {
+            selector: '//div[contains(text(), "Rebooking")]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameSection: {
+                    selector: '//div[contains(text(), "Rebooking")]',
+                    locateStrategy: 'xpath'
+                },
+                rebookResponsible: {
+                    selector: '//div[text()="Rebook responsible"]/../div/span',
+                    locateStrategy: 'xpath'
+                },
+                rebookButton: {
+                    selector: '//button[@class="btn btn-sm btn-warning pull-right"]',
+                    locateStrategy: 'xpath'
+                },
+                rebookedButton: {
+                    selector: '//button[@class="btn btn-sm btn-success pull-right"]',
+                    locateStrategy: 'xpath'
+                },
+                rebookComments: {
+                    selector: '(//textarea)[2]',
+                    locateStrategy: 'xpath'
+                },
+                saveButton: {
+                    selector: '(//button[contains(text(),"Save")])[3]',
+                    locateStrategy: 'xpath'
+                },
+                successMassege: {
+                    selector: '//div[contains(text(),"Event Participant Rebooking successfully updated")]',
                     locateStrategy: 'xpath'
                 },
             }
@@ -332,6 +430,76 @@ module.exports = {
                 },
                 alertMassege: {
                     selector: '//div[contains(text(),"Please add marketing coordinator to the company")]',
+                    locateStrategy: 'xpath'
+                },
+            }
+        },
+        representatives: {
+            selector: '//div[contains(text(), "Representatives")]',
+            locateStrategy: 'xpath',
+            elements: {
+                nameSection: {
+                    selector: '//div[contains(text(), "Representatives")]',
+                    locateStrategy: 'xpath'
+                },
+                contactSearchText: {
+                    selector: '//div[contains(text(), "Representatives")]/../../../..//label[contains(text(),"Contact / Search")]',
+                    locateStrategy: 'xpath'
+                },
+                contactSearchInput: {
+                    selector: '//div[contains(text(), "Representatives")]/../../../..//input[@placeholder="Search contact"]',
+                    locateStrategy: 'xpath'
+                },
+                MollerText: {
+                    selector: '//*[contains(text(),"Möller")]',
+                    locateStrategy: 'xpath'
+                },
+                saveButton: {
+                    selector: '//div[contains(text(), "Representatives")]/../../../..//button[contains(text(),"Save")]',
+                    locateStrategy: 'xpath'
+                },
+                nameMollerMarkusText: {
+                    selector: '//a[contains(text(),"Möller Markus")]',
+                    locateStrategy: 'xpath'
+                },
+                emailMollerMarkusText: {
+                    selector: '//div[contains(text(),"markus.moeller@bblaw.com")]',
+                    locateStrategy: 'xpath'
+                },
+                mobileMollerMarkusText: {
+                    selector: '//div[contains(text(),"+49 160 6751398")]',
+                    locateStrategy: 'xpath'
+                },
+                idMollerMarkusText: {
+                    selector: '//a[contains(text(),"Möller Markus")]',
+                    locateStrategy: 'xpath'
+                },
+                cancelButton: {
+                    selector: '//div[contains(text(), "Representatives")]/../../../..//button[contains(text(),"Cancel")]',
+                    locateStrategy: 'xpath'
+                },
+                confirmNoButton: {
+                    selector: '//button[text()="No"]',
+                    locateStrategy: 'xpath'
+                },
+                confirmYesButton: {
+                    selector: '//button[text()="Yes"]',
+                    locateStrategy: 'xpath'
+                },
+                replaceButton: {
+                    selector: '//div[contains(text(), "Representatives")]/../../../..//button[contains(text(),"Replace")]',
+                    locateStrategy: 'xpath'
+                },
+                secondReplaceButton: {
+                    selector: '(//div[contains(text(), "Representatives")]/../../../..//button[contains(text(),"Replace")])[2]',
+                    locateStrategy: 'xpath'
+                },
+                replaceMarkusText: {
+                    selector: '//div[text()="Replace Markus Möller with:"]',
+                    locateStrategy: 'xpath'
+                },
+                replaceSelect: {
+                    selector: '//div[contains(text(), "Representatives")]/../../../..//select',
                     locateStrategy: 'xpath'
                 },
             }

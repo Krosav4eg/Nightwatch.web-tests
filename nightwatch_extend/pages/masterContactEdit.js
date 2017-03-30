@@ -1,11 +1,11 @@
 module.exports = {
     elements: {
         lastNameInput: {
-            selector: '//input[@id="lastName"]',
+            selector: '//input[@data-attribute="LastName"]',
             locateStrategy: 'xpath'
         },
         firstNameInput: {
-            selector: '//input[@id="firstName"]',
+            selector: '//input[@data-attribute="FirstName"]',
             locateStrategy: 'xpath'
         },
         academicTitleInput: {
@@ -25,11 +25,11 @@ module.exports = {
             locateStrategy: 'xpath'
         },
         mobileInput: {
-            selector: '//input[@id="mobile"]',
+            selector: '//input[@data-attribute="Mobile"]',
             locateStrategy: 'xpath'
         },
         emailInput: {
-            selector: '//input[@id="email"]',
+            selector: '//input[@data-attribute="Email"]',
             locateStrategy: 'xpath'
         },
     }
