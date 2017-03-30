@@ -10,107 +10,108 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'verify Participation info': function (browser) {
-        browser
-            .useXpath()
-            .verify.containsText('(//h4/a/div)[1]', "Participation info - 4power Infocom Free Zone Company LLC - (E#25)")
+        var participationInfo = browser.page.partnersEdit().section.participationInfo;
+        participationInfo
+            .clickBySelector('@nameSection')
+            .expect.element('@masterCompanyNameText').to.not.be.visible;
 
-            .clickBySelectorXpath('(//h4/a/div)[1]')
-            .expect.element('//label[text()="Master company name:"]').to.not.be.visible;
-
-        browser.clickBySelectorXpath('(//h4/a/div)[1]')
-            .expect.element('//label[text()="Master company name:"]').to.be.visible;
+        participationInfo.clickBySelector('@nameSection')
+            .expect.element('@masterCompanyNameText').to.be.visible;
 
     },
 
     'verify Master company name': function (browser) {
-        browser
-            .useXpath()
-            .verify.containsText('//*[text()="Master company name:"]/../div', "4power Infocom Free Zone Company LLC")
+        var participationInfo = browser.page.partnersEdit().section.participationInfo;
+        participationInfo
+            .verify.containsText('@masterCompanyNameInput', "4power Infocom Free Zone Company LLC")
 
-            .click('//label[text()="Master company name:"]/../div/a')
-            .pause(1000)
+            .click('@masterCompanyIdLink')
 
-            .verify.urlContains("/EW/MasterCompany/cruII/id/")
-            .back()
+            .verify.urlContains("/EW/MasterCompany/cruII/id/");
+        browser .back();
     },
 
   'verify Participation name': function (browser) {
-        browser
-            .waitForElementVisible('//label[text()="Participation name:"]/../div/input', 30000)
-            //.verify.valueContains('//label[text()="Participation name:"]/../div/input', "4power Infocom Free Zone Company LLC")
+      var participationInfo = browser.page.partnersEdit().section.participationInfo;
+      participationInfo
+            .waitForElementVisible('@participationNameInput', 30000)
+            .verify.valueContains('@participationNameInput', "4power Infocom Free Zone Company LLC")
     },
 
     'verify Participation status': function (browser) {
-        browser
-            .clickBySelectorXpath('(//option[@value=2])[1]')
-            .verify.containsText('//label[text()="Participation status:"]/../div/select', "Cancelled")
+        var participationInfo = browser.page.partnersEdit().section.participationInfo;
+        participationInfo
+            .clickBySelector('@canceledOption')
+            .verify.containsText('@participationStatusSelect', "Cancelled")
 
-            .clickBySelectorXpath('(//option[@value=3])[1]')
-            .verify.containsText('//label[text()="Participation status:"]/../div/select', "Unconfirmed (rebook)")
+            .clickBySelector('@unconfirmedRebookOption')
+            .verify.containsText('@participationStatusSelect', "Unconfirmed (rebook)")
 
-            .clickBySelectorXpath('(//option[@value=4])[1]')
-            .verify.containsText('//label[text()="Participation status:"]/../div/select', "Confirmed (rebook)")
+            .clickBySelector('@confirmedRebookOption')
+            .verify.containsText('@participationStatusSelect', "Confirmed (rebook)")
 
-            .clickBySelectorXpath('(//option[@value=0])[1]')
-            .verify.containsText('//label[text()="Participation status:"]/../div/select', "Unconfirmed")
+            .clickBySelector('@unconfirmedOption')
+            .verify.containsText('@participationStatusSelect', "Unconfirmed")
 
-            .clickBySelectorXpath('(//option[@value=1])[1]')
-            .verify.containsText('//label[text()="Participation status:"]/../div/select', "Confirmed")
+            .clickBySelector('@confirmedOption')
+            .verify.containsText('@participationStatusSelect', "Confirmed")
 
-            .clickBySelectorXpath('(//option[@value=2])[1]')
+            .clickBySelector('@canceledOption')
     },
 
     'verify Rebook responsible': function (browser) {
-        browser
-            .clickBySelectorCss('input[value-property-name=id]')
-            .sendKeys('.auto-complete input', 'Mari Alén')
-            .pause(2000)
-            .clickBySelectorXpath('//*[contains(text(),"Mari Alén")]')
+        var participationInfo = browser.page.partnersEdit().section.participationInfo;
+        participationInfo
+            .clickBySelector('@rebookResponsibleInput')
+            .sendKeys('@rebookResponsibleInput', 'Mari Alén')
+            .clickBySelector('@MariAlén');
 
-            .verify.containsText('//div[text()="Rebook responsible"]/../div/span', "Mari Alén")
     },
 
     'verify Guarantee Valid': function (browser) {
-        browser
-            .clickBySelectorXpath('(//radio-item/div/input)[2]')
+        var participationInfo = browser.page.partnersEdit().section.participationInfo;
+        participationInfo
+            .clickBySelector('@GuaranteeValidNoCheckbox');
     },
 
     'participation notes': function (browser) {
-        browser
-            .setValueByXpath('//*[@ngcontrol="packageNotes"]', "test test");
+        var participationInfo = browser.page.partnersEdit().section.participationInfo;
+        participationInfo
+            .setValueBySelector('@packageNotesInput', "test test");
     },
 
      'click Save': function (browser) {
-        browser
-            .click('(//*[text()="Save"])[1]')
-            .clickBySelectorXpath('//button[@data-marker="me-confirm__button__button__yes"]')
+         var participationInfo = browser.page.partnersEdit().section.participationInfo;
+         participationInfo
+            .click('@saveButton')
+            .clickBySelector('@confirmYesButton')
 
-            .waitForElementVisible('//div[@class="toast-content"]', 10000)
-            .verify.containsText('//div[@class="toast-title"]', 'Success!')
-            .verify.containsText('//div[@class="toast-message"]', 'Event Participant Company successfully update')
-            .clickBySelectorXpath('//div[@class="toast-content"]')
+            .waitForElementVisible('@successMassege', 10000)
 
-            .verify.containsText('//label[text()="Participation status:"]/../div/select', "Cancelled")
-            .verify.valueContains('//*[@ngcontrol="packageNotes"]', "test test")
-            .verify.attributeEquals('(//radio-item/div/input)[2]', 'checked', 'true')
-            .expect.element('(//radio-item/div/input)[1]').to.not.be.selected;
+            .verify.containsText('@participationStatusSelect', "Cancelled")
+            .verify.valueContains('@packageNotesInput', "test test")
+            .verify.attributeEquals('@GuaranteeValidNoCheckbox', 'checked', 'true')
+            .expect.element('@GuaranteeValidYesCheckbox').to.not.be.selected;
+
+         var rebooking = browser.page.partnersEdit().section.rebooking;
+         rebooking
+             .clickBySelector('@nameSection')
+             .verify.containsText('@rebookResponsible', "Mari Alén");
     },
 
     'edit ': function (browser) {
-        browser
-            .clickBySelectorXpath('(//option[@value=1])[1]')
-            .clickBySelectorXpath('(//radio-item/div/input)[1]')
-            .setValueByXpath('//*[@ngcontrol="packageNotes"]', "test 2 test")
-            .click('(//*[text()="Save"])[1]')
+        var participationInfo = browser.page.partnersEdit().section.participationInfo;
+        participationInfo
+            .clickBySelector('@confirmedOption')
+            .clickBySelector('@GuaranteeValidYesCheckbox')
+            .setValueBySelector('@packageNotesInput', "test 2 test")
+            .click('@saveButton')
 
-            .waitForElementVisible('//div[@class="toast-content"]', 10000)
-            .verify.containsText('//div[@class="toast-title"]', 'Success!')
-            .verify.containsText('//div[@class="toast-message"]', 'Event Participant Company successfully update')
-            .clickBySelectorXpath('//div[@class="toast-content"]')
+            .waitForElementVisible('@successMassege', 10000)
 
-            .verify.containsText('//label[text()="Participation status:"]/../div/select', "Confirmed")
-            .verify.valueContains('//*[@ngcontrol="packageNotes"]', "test 2 test")
-            .verify.attributeEquals('(//radio-item/div/input)[1]', 'checked', 'true')
-            .expect.element('(//radio-item/div/input)[2]').to.not.be.selected;
+            .verify.containsText('@participationStatusSelect', "Confirmed")
+            .verify.valueContains('@packageNotesInput', "test 2 test")
+            .verify.attributeEquals('@GuaranteeValidYesCheckbox', 'checked', 'true')
+            .expect.element('@GuaranteeValidNoCheckbox').to.not.be.selected;
     },
 });
