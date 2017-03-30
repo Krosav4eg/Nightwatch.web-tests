@@ -1127,5 +1127,135 @@ module.exports = {
                 }
             }
         },
+        templatesInDropDownList: {
+            selector: '(//select)[6]',
+            locateStrategy: 'xpath',
+            elements: {
+                dropListButton: {
+                    selector: '(//select)[6]',
+                    locateStrategy: 'xpath'
+                },
+                blankField: {
+                    selector: '(//option)[28]',
+                    locateStrategy: 'xpath'
+                },
+                directToAppAgenda: {
+                    selector: '//option[@value="607"]',
+                    locateStrategy: 'xpath'
+                },
+                linkToMobileService: {
+                    selector: '//option[@value="576"]',
+                    locateStrategy: 'xpath'
+                },
+                linkToMobileService1DayBefore: {
+                    selector: '//option[@value="577"]',
+                    locateStrategy: 'xpath'
+                },
+                newMeetingBooked: {
+                    selector: '//option[@value="97"]',
+                    locateStrategy: 'xpath'
+                },
+                newMeetingBookedRequest: {
+                    selector: '//option[@value="99"]',
+                    locateStrategy: 'xpath'
+                },
+                smsRegression: {
+                    selector: '//option[@value="608"]',
+                    locateStrategy: 'xpath'
+                },
+                textTemplateArea: {
+                    selector: '//div[@class="modal in fade"]//textarea',
+                    locateStrategy: 'xpath'
+                },
+            }
+        },
+        pageTemplateFieldIsBlank: {
+            selector: '(//tr/td/input[@type="checkbox"])[1]',
+            locateStrategy: 'xpath',
+            elements: {
+                firstCheckbox: {
+                    selector: '(//tr/td/input[@type="checkbox"])[1]',
+                    locateStrategy: 'xpath'
+                },
+                sendSmS1: {
+                    selector: '(//button[contains(text(),"Send SMS")])[1]',
+                    locateStrategy: 'xpath'
+                },
+                selectSmSTemplateHeader: {
+                    selector: '//h4[contains(text(),"Select SMS template")]',
+                    locateStrategy: 'xpath'
+                },
+                templateTextName: {
+                    selector: '//div[contains(text(),"Template:")]',
+                    locateStrategy: 'xpath'
+                }
+
+            }
+        },
+        sendSmSButtonWithoutChosenTemplate: {
+            selector: '(//button[contains(text(),"Send SMS")])[2]',
+            locateStrategy: 'xpath',
+            elements: {
+                sendSmS2: {
+                    selector: '(//button[contains(text(),"Send SMS")])[2]',
+                    locateStrategy: 'xpath'
+                },
+                choseTemplateAlert: {
+                    selector: '//div[contains(text(),"Please choose template.")]',
+                    locateStrategy: 'xpath'
+                },
+                closeButton: {
+                    selector: '//button[@class="close"]',
+                    locateStrategy: 'xpath'
+                },
+            }
+        },
+        informationWouldBeUpdate: {
+            selector: '//h1[contains(text(),"Edit Sms Template (#99)")]',
+            locateStrategy: 'xpath',
+            elements: {
+                templateHeader: {
+                    selector: '//h1[contains(text(),"Edit Sms Template (#99)")]',
+                    locateStrategy: 'xpath'
+                },
+                name: {
+                    selector: '//input[@id="name"]',
+                    locateStrategy: 'xpath'
+                },
+                recipientType: {
+                    selector: '//select[@id="recipientType"]',
+                    locateStrategy: 'xpath'
+                },
+                receiverType: {
+                    selector: '//select[@formcontrolname="receiverType"]',
+                    locateStrategy: 'xpath'
+                },
+                messageType: {
+                    selector: '//select[@formcontrolname="messageType"]',
+                    locateStrategy: 'xpath'
+                },
+                saveButton1: {
+                    selector: '(//button[contains(text(),"Save")])[1]',
+                    locateStrategy: 'xpath'
+                },
+                successTemplateAlert: {
+                    selector: '//div[contains(text(),"The Template was updated successfully")]',
+                    locateStrategy: 'xpath'
+                },
+                textArea: {
+                    selector: '(//textarea)[1]',
+                    locateStrategy: 'xpath'
+                },
+                saveButton2: {
+                    selector: '(//button[contains(text(),"Save")])[2]',
+                    locateStrategy: 'xpath'
+                },
+                successLocalizationTemplateAlert: {
+                    selector: '//div[contains(text(),"The Localization Template was updated successfully")]',
+                    locateStrategy: 'xpath'
+                },
+
+            }
+        }
     }
 };
