@@ -9,156 +9,159 @@ module.exports = _.assign(presteps, auth, {
             .relUrl('/event/212/partners/7588')
     },
 
-    'add new package': function (browser) {
-        browser
-            .clickBySelectorXpath('//*[@class="row-fluid btn btn-primary communication-participant-btn"]')
-            .verify.containsText('(//h4[@class="modal-title"])[2]', "Select package model and template")
-            .verify.elementPresent('//label[text()="Package model"]')
-            .verify.elementPresent('//label[text()="Select package"]')
-            .verify.elementPresent('(//select[@class="form-control ng-untouched ng-pristine ng-valid"])[2]')
-
-            .clickBySelectorXpath('(//button[text()="Add"])[2]')
-
-            .waitForElementVisible('//div[@class="toast-content"]', 10000)
-            .verify.containsText('//div[@class="toast-title"]', 'Error')
-            .verify.containsText('//div[@class="toast-message"]', 'Please choose package template')
-            .clickBySelectorXpath('//div[@class="toast-content"]')
-
-            .clickBySelectorXpath('//*[contains(text(), "Select package model and template")]/../../..//button[text()="Cancel"]')
-    },
+    // 'add new package': function (browser) {
+    //     browser
+    //         .clickBySelectorXpath('//*[@class="row-fluid btn btn-primary communication-participant-btn"]')
+    //         .verify.containsText('(//h4[@class="modal-title"])[2]', "Select package model and template")
+    //         .verify.elementPresent('//label[text()="Package model"]')
+    //         .verify.elementPresent('//label[text()="Select package"]')
+    //         .verify.elementPresent('(//select[@class="form-control ng-untouched ng-pristine ng-valid"])[2]')
+    //
+    //         .clickBySelectorXpath('(//button[text()="Add"])[2]')
+    //
+    //         .waitForElementVisible('//div[@class="toast-content"]', 10000)
+    //         .verify.containsText('//div[@class="toast-title"]', 'Error')
+    //         .verify.containsText('//div[@class="toast-message"]', 'Please choose package template')
+    //         .clickBySelectorXpath('//div[@class="toast-content"]')
+    //
+    //         .clickBySelectorXpath('//*[contains(text(), "Select package model and template")]/../../..//button[text()="Cancel"]')
+    // },
 
     'verify event based': function (browser) {
-        browser
-            .verify.containsText('//*[text()="Package ID"]/../div/div', '1237')
-            .verify.containsText('//*[text()="Package type"]/../div/div', 'Silver')
-            .verify.containsText('//*[text()="Package name"]/../div/div', 'Silver 2011')
-            .verify.containsText('//*[text()="Package ID"]/../div/div', '1237')
+        var package = browser.page.partnersEdit().section.package;
+        package
+            .verify.containsText('@packageIDInput', '1237')
+            .verify.containsText('@packagetypeInput', 'Silver')
+            .verify.containsText('@packageNameInput', 'Silver 2011')
 
-            .clickBySelectorXpath('//option[text()="Archived"]')
-            .clickBySelectorXpath('//option[text()="Active"]')
+            .clickBySelector('@archivedOption')
+            .clickBySelector('@activeOption')
 
-            .verify.containsText('//*[text()="Created"]/../div/div', '2016-06-28 17:29:00 /')
-            .verify.containsText('//*[text()="Modified"]/../div/div', ' Xsolve ')
-            .verify.containsText('//*[text()="Modified"]/../div/div', 'Test User')
+            .verify.containsText('@createdInput', '2016-06-28 17:29:00 /')
+            .verify.containsText('@modifiedInput', ' Xsolve ')
+            .verify.containsText('@modifiedInput', 'Test User')
     },
 
     'input fields': function (browser) {
-        browser
-            .setValueByXpath('//*[text()="Representatives"]/../div/input' , '1')
-            .setValueByXpath('//*[text()="Group discussion hosts"]/../div/input' , '2')
-            .setValueByXpath('//*[text()="One to many meeting hosts"]/../div/input' , '3')
-            .setValueByXpath('//*[text()="Lunch hosts"]/../div/input' , '4')
-            .setValueByXpath('//*[text()="Dinner hosts"]/../div/input' , '5')
+        var package = browser.page.partnersEdit().section.package;
+        package
+            .setValueBySelector('@representativesInput' , '1')
+            .setValueBySelector('@groupDiscussionHostsInput' , '2')
+            .setValueBySelector('@oneToManyMeetingHostsInput' , '3')
+            .setValueBySelector('@lunchHostsInput' , '4')
+            .setValueBySelector('@dinnerHostsInput' , '5')
 
-            .setValueByXpath('//*[text()="Invited delegates"]/../div/input' , '30')
+            .setValueBySelector('@invitedDelegatesInput' , '30')
 
-            .setValueByXpath('//*[text()="Meeting requests left"]/../div/input' , '20')
-            .setValueByXpath('//*[text()="Guaranteed meetings"]/../div/input' , '25')
-            .clickBySelectorXpath('(//*[text()="Matching"]/../div/div/label/input)[1]')
-            .clickBySelectorXpath('(//*[text()="Target service"]/../div/div/label/input)[1]')
+            .setValueBySelector('@meetingRequestsLeftInput' , '20')
+            .setValueBySelector('@guaranteedMeetingsInput' , '25')
+            .clickBySelector('@matchingYesCheckbox')
+            .clickBySelector('@targetServiceYesCheckbox')
 
-            .setValueByXpath('//*[text()="Case - whole audience"]/../div/input' , '1')
-            .setValueByXpath('//*[text()="Case - parallel"]/../div/input' , '2')
-            .setValueByXpath('//*[text()="Gold spotlight"]/../div/input' , '3')
-            .setValueByXpath('//*[text()="Keynote"]/../div/input' , '4')
-            .setValueByXpath('//*[text()="Platinum spotlight"]/../div/input' , '5')
-            .setValueByXpath('//*[text()="Presentation - whole audience"]/../div/input' , '6')
-            .setValueByXpath('//*[text()="Presentation - parallel"]/../div/input' , '7')
-            .setValueByXpath('//*[text()="Snap shot"]/../div/input' , '8')
+            .setValueBySelector('@caseWholeAudienceInput' , '1')
+            .setValueBySelector('@caseParallelInput' , '2')
+            .setValueBySelector('@goldSpotlightInput' , '3')
+            .setValueBySelector('@keynoteInput' , '4')
+            .setValueBySelector('@platinumSpotlightInput' , '5')
+            .setValueBySelector('@presentationWholeAudienceInput' , '6')
+            .setValueBySelector('@presentationParallelInput' , '7')
+            .setValueBySelector('@snapShotInput' , '8')
+
+            .clickBySelector('@saveButton')
     },
 
     'click save': function (browser) {
-        browser
-            .clickBySelectorXpath('(//*[text()="Save"])[2]')
-            .waitForElementVisible('//div[@class="toast-content"]', 10000)
-            .verify.containsText('//div[@class="toast-title"]', 'Success')
-
-            .verify.containsText('//*[text()="Modified"]/../div/div', ' Xsolve ')
-            .verify.containsText('//*[text()="Modified"]/../div/div', 'Test User')
-            .containsCurrentDataInSelectorXpath('//*[text()="Modified"]/../div/div');
+        var package = browser.page.partnersEdit().section.package;
+        package
+            .verify.containsText('@modifiedInput', ' Xsolve ')
+            .verify.containsText('@modifiedInput', 'Test User')
+            .containsCurrentData('@modifiedInput');
     },
 
     'verivy input fields': function (browser) {
-        browser
-            .verify.valueContains('//*[text()="Representatives"]/../div/input' , '1')
-            .verify.valueContains('//*[text()="Group discussion hosts"]/../div/input' , '2')
-            .verify.valueContains('//*[text()="One to many meeting hosts"]/../div/input' , '3')
-            .verify.valueContains('//*[text()="Lunch hosts"]/../div/input' , '4')
-            .verify.valueContains('//*[text()="Dinner hosts"]/../div/input' , '5')
+        var package = browser.page.partnersEdit().section.package;
+        package
+            .verify.valueContains('@representativesInput' , '1')
+            .verify.valueContains('@groupDiscussionHostsInput' , '2')
+            .verify.valueContains('@oneToManyMeetingHostsInput' , '3')
+            .verify.valueContains('@lunchHostsInput' , '4')
+            .verify.valueContains('@dinnerHostsInput' , '5')
 
-            .verify.valueContains('//*[text()="Invited delegates"]/../div/input' , '30')
+            .verify.valueContains('@invitedDelegatesInput' , '30')
 
-            .verify.valueContains('//*[text()="Meeting requests left"]/../div/input' , '20')
-            .verify.valueContains('//*[text()="Guaranteed meetings"]/../div/input' , '25')
-            .verify.attributeEquals('(//*[text()="Matching"]/../div/div/label/input)[1]', 'checked', 'true')
-            .verify.attributeEquals('(//*[text()="Target service"]/../div/div/label/input)[1]', 'checked', 'true')
+            .verify.valueContains('@meetingRequestsLeftInput' , '20')
+            .verify.valueContains('@guaranteedMeetingsInput' , '25')
+            .verify.attributeEquals('@matchingYesCheckbox', 'checked', 'true')
+            .verify.attributeEquals('@targetServiceYesCheckbox', 'checked', 'true')
 
-            .verify.valueContains('//*[text()="Case - whole audience"]/../div/input' , '1')
-            .verify.valueContains('//*[text()="Case - parallel"]/../div/input' , '2')
-            .verify.valueContains('//*[text()="Gold spotlight"]/../div/input' , '3')
-            .verify.valueContains('//*[text()="Keynote"]/../div/input' , '4')
-            .verify.valueContains('//*[text()="Platinum spotlight"]/../div/input' , '5')
-            .verify.valueContains('//*[text()="Presentation - whole audience"]/../div/input' , '6')
-            .verify.valueContains('//*[text()="Presentation - parallel"]/../div/input' , '7')
-            .verify.valueContains('//*[text()="Snap shot"]/../div/input' , '8')
+            .verify.valueContains('@caseWholeAudienceInput' , '1')
+            .verify.valueContains('@caseParallelInput' , '2')
+            .verify.valueContains('@goldSpotlightInput' , '3')
+            .verify.valueContains('@keynoteInput' , '4')
+            .verify.valueContains('@platinumSpotlightInput' , '5')
+            .verify.valueContains('@presentationWholeAudienceInput' , '6')
+            .verify.valueContains('@presentationParallelInput' , '7')
+            .verify.valueContains('@snapShotInput' , '8')
     },
 
     'edit team': function (browser) {
-        browser
-            .setValueByXpath('//*[text()="Representatives"]/../div/input' , '6')
-            .setValueByXpath('//*[text()="Group discussion hosts"]/../div/input' , '7')
-            .setValueByXpath('//*[text()="One to many meeting hosts"]/../div/input' , '8')
-            .setValueByXpath('//*[text()="Lunch hosts"]/../div/input' , '9')
-            .setValueByXpath('//*[text()="Dinner hosts"]/../div/input' , '10')
+        var package = browser.page.partnersEdit().section.package;
+        package
+            .setValueBySelector('@representativesInput' , '6')
+            .setValueBySelector('@groupDiscussionHostsInput' , '7')
+            .setValueBySelector('@oneToManyMeetingHostsInput' , '8')
+            .setValueBySelector('@lunchHostsInput' , '9')
+            .setValueBySelector('@dinnerHostsInput' , '10')
 
-            .setValueByXpath('//*[text()="Invited delegates"]/../div/input' , '20')
+            .setValueBySelector('@invitedDelegatesInput' , '20')
 
-            .setValueByXpath('//*[text()="Meeting requests left"]/../div/input' , '10')
-            .setValueByXpath('//*[text()="Guaranteed meetings"]/../div/input' , '15')
-            .clickBySelectorXpath('(//*[text()="Matching"]/../div/div/label/input)[2]')
-            .clickBySelectorXpath('(//*[text()="Target service"]/../div/div/label/input)[2]')
+            .setValueBySelector('@meetingRequestsLeftInput' , '10')
+            .setValueBySelector('@guaranteedMeetingsInput' , '15')
+            .clickBySelector('@matchingNoCheckbox')
+            .clickBySelector('@targetServiceNoCheckbox')
 
-            .setValueByXpath('//*[text()="Case - whole audience"]/../div/input' , '11')
-            .setValueByXpath('//*[text()="Case - parallel"]/../div/input' , '22')
-            .setValueByXpath('//*[text()="Gold spotlight"]/../div/input' , '33')
-            .setValueByXpath('//*[text()="Keynote"]/../div/input' , '44')
-            .setValueByXpath('//*[text()="Platinum spotlight"]/../div/input' , '55')
-            .setValueByXpath('//*[text()="Presentation - whole audience"]/../div/input' , '66')
-            .setValueByXpath('//*[text()="Presentation - parallel"]/../div/input' , '77')
-            .setValueByXpath('//*[text()="Snap shot"]/../div/input' , '88')
+            .setValueBySelector('@caseWholeAudienceInput' , '11')
+            .setValueBySelector('@caseParallelInput' , '22')
+            .setValueBySelector('@goldSpotlightInput' , '33')
+            .setValueBySelector('@keynoteInput' , '44')
+            .setValueBySelector('@platinumSpotlightInput' , '55')
+            .setValueBySelector('@presentationWholeAudienceInput' , '66')
+            .setValueBySelector('@presentationParallelInput' , '77')
+            .setValueBySelector('@snapShotInput' , '88')
     },
 
     'click save for edit': function (browser) {
-        browser
-            .clickBySelectorXpath('(//*[text()="Save"])[2]')
-            .waitForElementVisible('//div[@class="toast-content"]', 10000)
-            .verify.containsText('//div[@class="toast-title"]', 'Success')
+        var package = browser.page.partnersEdit().section.package;
+        package
+            .clickBySelector('@saveButton')
+            .waitForElementVisible('successMassege', 10000)
 
-            .containsCurrentDataInSelectorXpath('//*[text()="Modified"]/../div/div');
+            .containsCurrentData('@modifiedInput');
     },
 
     'verify after edit team': function (browser) {
-        browser
-            .verify.valueContains('//*[text()="Representatives"]/../div/input' , '6')
-            .verify.valueContains('//*[text()="Group discussion hosts"]/../div/input' , '7')
-            .verify.valueContains('//*[text()="One to many meeting hosts"]/../div/input' , '8')
-            .verify.valueContains('//*[text()="Lunch hosts"]/../div/input' , '9')
-            .verify.valueContains('//*[text()="Dinner hosts"]/../div/input' , '10')
+        var package = browser.page.partnersEdit().section.package;
+        package
+            .verify.valueContains('@representativesInput' , '6')
+            .verify.valueContains('@groupDiscussionHostsInput' , '7')
+            .verify.valueContains('@oneToManyMeetingHostsInput' , '8')
+            .verify.valueContains('@lunchHostsInput' , '9')
+            .verify.valueContains('@dinnerHostsInput' , '10')
 
-            .verify.valueContains('//*[text()="Invited delegates"]/../div/input' , '20')
+            .verify.valueContains('@invitedDelegatesInput' , '20')
 
-            .verify.valueContains('//*[text()="Meeting requests left"]/../div/input' , '10')
-            .verify.valueContains('//*[text()="Guaranteed meetings"]/../div/input' , '15')
-            .verify.attributeEquals('(//*[text()="Matching"]/../div/div/label/input)[2]', 'checked', 'true')
-            .verify.attributeEquals('(//*[text()="Target service"]/../div/div/label/input)[2]', 'checked', 'true')
+            .verify.valueContains('@meetingRequestsLeftInput' , '10')
+            .verify.valueContains('@guaranteedMeetingsInput' , '15')
+            .verify.attributeEquals('@matchingNoCheckbox', 'checked', 'true')
+            .verify.attributeEquals('@targetServiceNoCheckbox', 'checked', 'true')
 
-            .verify.valueContains('//*[text()="Case - whole audience"]/../div/input' , '11')
-            .verify.valueContains('//*[text()="Case - parallel"]/../div/input' , '22')
-            .verify.valueContains('//*[text()="Gold spotlight"]/../div/input' , '33')
-            .verify.valueContains('//*[text()="Keynote"]/../div/input' , '44')
-            .verify.valueContains('//*[text()="Platinum spotlight"]/../div/input' , '55')
-            .verify.valueContains('//*[text()="Presentation - whole audience"]/../div/input' , '66')
-            .verify.valueContains('//*[text()="Presentation - parallel"]/../div/input' , '77')
-            .verify.valueContains('//*[text()="Snap shot"]/../div/input' , '88')
+            .verify.valueContains('@caseWholeAudienceInput' , '11')
+            .verify.valueContains('@caseParallelInput' , '22')
+            .verify.valueContains('@goldSpotlightInput' , '33')
+            .verify.valueContains('@keynoteInput' , '44')
+            .verify.valueContains('@platinumSpotlightInput' , '55')
+            .verify.valueContains('@presentationWholeAudienceInput' , '66')
+            .verify.valueContains('@presentationParallelInput' , '77')
+            .verify.valueContains('@snapShotInput' , '88')
     },
 });

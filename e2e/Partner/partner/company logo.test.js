@@ -10,77 +10,73 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'add picture  jpeg': function (browser) {
-        browser
-            .setValueByXpath('//input[@id="myUnit"]', __dirname + '/658.jpeg')
+        var companyDescriptionLogos = browser.page.partnersEdit().section.companyDescriptionLogos;
+        companyDescriptionLogos
+            .setValueBySelector('@logoInput', __dirname + '/658.jpeg')
 
-            .waitForElementVisible('//h4[text()="Crop picture"]', 30000)
-            .waitForElementVisible('//img[@class="cropImage"]', 30000)
-            .getElementSize('//img[@class="cropImage"]', function (result) {
+            .waitForElementVisible('@cropPictureText', 30000)
+            .waitForElementVisible('@cropImage', 30000)
+            .getElementSize('@cropImage', function (result) {
                 this.verify.equal(typeof result, "object");
                 this.verify.equal(result.status, 0);
                 this.verify.equal(result.value.width, 712);
                 this.verify.equal(result.value.height, 401)
             })
 
-            .clickBySelectorXpath('//img[@class="cropImage"]')
-            .waitForElementVisible('//div[@class="cropControls"]', 30000)
-            .clickBySelectorXpath('//button[@class="cropZoomIn"]')
-            .getElementSize('//img[@class="cropImage"]', function (result) {
+            .clickBySelector('@cropImage')
+            .waitForElementVisible('@cropControls', 30000)
+            .clickBySelector('@cropZoomIn')
+            .getElementSize('@cropImage', function (result) {
                 this.verify.equal(typeof result, "object");
                 this.verify.equal(result.status, 0);
                 this.verify.equal(result.value.width, 775);
                 this.verify.equal(result.value.height, 436)
             })
 
-            .clickBySelectorXpath('//button[@class="cropZoomOut"]')
-            .getElementSize('//img[@class="cropImage"]', function (result) {
+            .clickBySelector('@cropZoomOut')
+            .getElementSize('@cropImage', function (result) {
                 this.verify.equal(typeof result, "object");
                 this.verify.equal(result.status, 0);
                 this.verify.equal(result.value.width, 712);
                 this.verify.equal(result.value.height, 401)
             })
 
-            .clickBySelectorXpath('//button[text()="Crop"]')
-            .waitForElementVisible('//div[text()="Image cropped"]', 20000)
+            .clickBySelector('@cropButton')
+            .waitForElementVisible('@imageCroppedText', 20000)
 
-            .clickBySelectorXpath('(//button[text()="Save changes"])[2]')
+            .clickBySelector('@saveChangesLogoButton')
 
-            .waitForElementVisible('//div[@class="simple-notification toast-notification alert"]', 10000)
-            .verify.containsText('//div[@class="toast-title"]', 'Warning!')
-            .verify.containsText('//div[@class="toast-message"]', 'Please upload updated print logo as well!')
-            .clickBySelectorXpath('//div[@class="toast-content"]')
+            .waitForElementVisible('@alertMassege', 10000)
     },
 
     'add Print logo': function (browser) {
-        browser
-            .setValueByXpath('//input[@name="printlogo"]', __dirname + '/658.jpeg')
-            .clickBySelectorXpath('(//button[text()="Save changes"])[2]')
+        var companyDescriptionLogos = browser.page.partnersEdit().section.companyDescriptionLogos;
+        companyDescriptionLogos
+            .setValueBySelector('@printlogoInput', __dirname + '/658.jpeg')
+            .clickBySelector('@saveChangesLogoButton')
 
-            .waitForElementVisible('//div[@class="toast-content"]', 10000)
-            .verify.containsText('//div[@class="toast-title"]', 'Failure!')
-            .verify.containsText('//div[@class="toast-message"]', 'Extention problem')
-            .clickBySelectorXpath('//div[@class="toast-content"]')
+            .waitForElementVisible('@extentionProblemMassege', 10000);
     },
 
     'add Print logo': function (browser) {
-        browser
-            .setValueByXpath('//input[@name="printlogo"]', __dirname + '/658.eps')
+        var companyDescriptionLogos = browser.page.partnersEdit().section.companyDescriptionLogos;
+        companyDescriptionLogos
+            .setValueBySelector('@printlogoInput', __dirname + '/658.eps')
 
-            .clickBySelectorXpath('(//button[text()="Save changes"])[2]')
+            .clickBySelector('@saveChangesLogoButton')
 
-            .waitForElementVisible('//div[@class="toast-content"]', 10000)
-            .verify.containsText('//div[@class="toast-title"]', 'Success!')
-            .verify.containsText('//div[@class="toast-message"]', 'Logo file successfully created')
-            .clickBySelectorXpath('//div[@class="toast-content"]')
+            .waitForElementVisible('@successMassege', 10000)
     },
 
     'reset to default': function (browser) {
-        browser
-            .clickBySelectorXpath('//*[text()="Reset to default"]')
+        var companyDescriptionLogos = browser.page.partnersEdit().section.companyDescriptionLogos;
+        companyDescriptionLogos
+            .clickBySelector('@resetToDefaultButton')
 
-            .getAttribute('//img[@class="contact-picture"]', "src", function(result) {
+            .getAttribute('@contactPicture', "src", function(result) {
                 var imgLoad = result.value;
                 this
+                    .useXpath()
                     .click('//label[text()="Master company name:"]/../div/a')
 
                 this.verify.attributeContains('//img[@class="contact-picture"]', "src", imgLoad )

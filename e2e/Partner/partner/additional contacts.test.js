@@ -10,46 +10,46 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'participation info': function (browser) {
-        browser
-            .useXpath()
-            .verify.containsText('(//*[@class="panel-title card-title"])[9]', "Additional contacts")
-            .clickBySelectorXpath('(//*[@class="panel-title card-title"])[9]')
-            .expect.element('//*[text()="Email"]/../../../tbody/tr/td/button').to.not.be.visible;
+        var additionalContacts = browser.page.partnersEdit().section.additionalContacts;
+        additionalContacts
+            .verify.containsText('@nameSection', "Additional contacts")
+            .clickBySelector('@nameSection')
+            .expect.element('@addButton').to.not.be.visible;
 
-        browser
-            .clickBySelectorXpath('(//*[@class="panel-title card-title"])[9]')
-            .expect.element('//*[text()="Email"]/../../../tbody/tr/td/button').to.be.visible;
+        additionalContacts
+            .clickBySelector('@nameSection')
+            .expect.element('@addButton').to.be.visible;
     },
 
     'add button': function (browser) {
-        browser
-            .useXpath()
-            .setValueByXpath('//*[text()="Email"]/../../../tbody/tr/td/input', 'test')
-            .sendKeys('//*[text()="Email"]/../../../tbody/tr/td/input', '@sd')
-            .sendKeys('//*[text()="Email"]/../../../tbody/tr/td/input', '.com')
-            .pause(2000)
-            .clickBySelectorXpath('//*[text()="Email"]/../../../tbody/tr/td/button')
+        var additionalContacts = browser.page.partnersEdit().section.additionalContacts;
+        additionalContacts
+            .setValueBySelector('@emailInput', 'test')
+            .sendKeys('@emailInput', '@sd')
+            .sendKeys('@emailInput', '.com')
+            .clickBySelector('@addButton')
 
-            .verify.elementPresent('(//div[@class="panel-collapse collapse in show"]//button[contains(text(),"Delete")])[1]')
-            .verify.elementPresent('(//div[@class="panel-collapse collapse in show"]//button[contains(text(),"Edit")])[1]')
+            .verify.elementPresent('@deleteButton')
+            .verify.elementPresent('@editButton')
 
-            .verify.elementPresent('(//input[@type="email"])[2]')
-            .verify.elementPresent('(//button[contains(text(),"Add")])[1]')
+            .verify.elementPresent('@secondemailInput')
+            .verify.elementPresent('@addButton')
 
-            .setValueByXpath('(//input[@type="email"])[2]', 'auto')
-            .sendKeys('(//input[@type="email"])[2]', '@at')
-            .setValue('(//input[@type="email"])[2]', '.ru')
-            .pause(2000)
-            .clickBySelectorXpath('(//button[contains(text(),"Add")])[1]');
+            .setValueBySelector('@secondemailInput', 'auto')
+            .sendKeys('@secondemailInput', '@at')
+            .setValue('@secondemailInput', '.ru')
+
+            .clickBySelector('@addButton');
     },
 
     'delete button': function (browser) {
-        browser
-            .clickBySelectorXpath('(//div[@class="panel-collapse collapse in show"]//button[contains(text(),"Delete")])[1]')
-            .verify.elementPresent('//div[contains(text(),"Additional contact person email deleted successfully")]')
+        var additionalContacts = browser.page.partnersEdit().section.additionalContacts;
+        additionalContacts
+            .clickBySelector('@deleteButton')
+            .verify.elementPresent('@deleteSuccessMassege')
 
-            .clickBySelectorXpath('(//div[@class="panel-collapse collapse in show"]//button[contains(text(),"Delete")])[1]')
-            .verify.elementNotPresent('(//input[@type="email"])[2]')
-            .verify.elementPresent('//div[contains(text(),"Additional contact person email deleted successfully")]');
+            .clickBySelector('@deleteButton')
+            .verify.elementNotPresent('@secondemailInput')
+            .verify.elementPresent('@deleteSuccessMassege');
     },
 });

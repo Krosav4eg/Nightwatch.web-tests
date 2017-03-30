@@ -10,14 +10,12 @@ module.exports = _.assign(presteps, auth, {
     },
 
     'verify Communication': function (browser) {
-        browser
-            .useXpath()
-            .verify.containsText('(//*[@class="panel-title card-title"])[10]', "Communication")
+        var communication = browser.page.partnersEdit().section.communication;
+        communication
+            .clickBySelector('@nameSection')
+            .expect.element('@sendEmailButton').to.not.be.visible;
 
-            .clickBySelectorXpath('(//*[@class="panel-title card-title"])[10]')
-            .expect.element('(//button[@class="btn btn-primary btn-lg btn-block"])[1]').to.not.be.visible;
-
-        browser.clickBySelectorXpath('(//*[@class="panel-title card-title"])[10]')
-            .expect.element('(//button[@class="btn btn-primary btn-lg btn-block"])[1]').to.be.visible;
+        communication.clickBySelector('@nameSection')
+            .expect.element('@sendEmailButton').to.be.visible;
     },
 });
